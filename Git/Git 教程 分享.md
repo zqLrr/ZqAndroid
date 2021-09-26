@@ -223,9 +223,9 @@ git reflog #显示所有分支的操作记录：可以用来恢复删除的commi
   git  add  修改的文件
   git rebase --continue
     ```
-
+  
   * 终止合并
-
+  
     ```bash
     git merge --abort
     gir rebase --abort
@@ -338,7 +338,7 @@ git config --global alias.co checkout #此时可以采用co 代替checkout
 
 ```bash
 git add 修改文件
-git commit --amend
+git commit --amend #会出现Vim
 ```
 
 在Vim中重新修改Comments内容。
@@ -357,11 +357,11 @@ git commit --amend
 
   退出保存后，会展现以前所有的commit comment
 
-  ![git comment](Git 教程 分享.assets/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcXFfMzIwMzUyNDE=,size_20,color_FFFFFF,t_70,g_se,x_16-20210923194245215.png)
+  <img src="Git 教程 分享.assets/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcXFfMzIwMzUyNDE=,size_20,color_FFFFFF,t_70,g_se,x_16-20210923194245215.png" alt="git comment" style="zoom:80%;" />
 
   修改为同一个Comment 
 
-  ![在这里插入图片描述](Git 教程 分享.assets/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcXFfMzIwMzUyNDE=,size_20,color_FFFFFF,t_70,g_se,x_16-20210923194409128.png)
+  <img src="Git 教程 分享.assets/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcXFfMzIwMzUyNDE=,size_20,color_FFFFFF,t_70,g_se,x_16-20210923194409128.png" alt="在这里插入图片描述" style="zoom:80%;" />
 
 * 第二种：git reset 采用回滚操作
 
@@ -541,3 +541,54 @@ $ git config --local user.name "John Doe"
 $ git config --local user.email johndoe@example.com
 ```
 
+### 3.8  工作修改Bug
+
+* 在修改的版本(release)拉出新的分支
+
+```bash
+git checkout -b newBranch
+```
+
+* 进行修改
+
+* 合并到版本中，按照合并到发版分支的流程进行(3.4)
+
+* 其他正在修改的分支需要更新
+
+  ```
+  git checkout release 
+  git pull
+  git checkout 修改的分支
+  git rebase  release
+  ```
+
+### 3.9 代码回滚的场景
+
+* 快速、稳健、紧张
+
+* git 手动回滚的操作
+
+  ```bash
+  #git reset 操作master分支
+  git reset --hard CommitID
+  #强制推送到远端
+  git push --force  
+  ```
+
+  这个流程是有风险的，无法控制,适合在自己的分支，但不适合在发版分支
+
+  <img src="Git 教程 分享.assets/image-20210926105812335.png" alt="image-20210926105812335" style="zoom:30%;" />
+
+* 利用开源工具github gitlab等 pull Request
+
+  ```bash
+  git revert  CommitID
+  #若出现冲突
+  git add 修改冲突文件
+  git commit -m "解决冲突"
+  git push 
+  ```
+
+  这个流程比较安全，发版分支建议使用这个方式
+
+  <img src="Git 教程 分享.assets/image-20210926110100621.png" alt="image-20210926110100621" style="zoom:30%;" />
