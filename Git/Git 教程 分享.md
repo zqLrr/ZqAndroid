@@ -36,7 +36,7 @@ git push origin 分支名
 git init 
 git add remote url #添加远程仓库
 #2、从其他地方克隆
-git remote
+git clone url
 ```
 
 ### 2.2 记录文件的修改
@@ -569,10 +569,14 @@ git checkout -b newBranch
 * git 手动回滚的操作
 
   ```bash
+  #查看要回滚的版本
+  git log --oneline
   #git reset 操作master分支
   git reset --hard CommitID
   #强制推送到远端
   git push --force  
+  #若要查找回滚后不存在的版本
+  git reflog
   ```
 
   这个流程是有风险的，无法控制,适合在自己的分支，但不适合在发版分支
@@ -582,6 +586,8 @@ git checkout -b newBranch
 * 利用开源工具github gitlab等 pull Request
 
   ```bash
+  git log
+  #回滚到想回滚的版本
   git revert  CommitID
   #若出现冲突
   git add 修改冲突文件
