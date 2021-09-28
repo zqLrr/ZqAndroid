@@ -18,9 +18,9 @@ https://git-scm.com/download/mac
 
 * 安装成功但是有一个Warning和next step的提示
 
-  **![image-20210820193951593](Git 教程 分享.assets/image-20210820193951593.png)**
+  **![image-20210820193951593](Git教程分享.assets/image-20210820193951593.png)**
 
-  ![image-20210820194017326](Git 教程 分享.assets/image-20210820194017326.png)
+  ![image-20210820194017326](Git教程分享.assets/image-20210820194017326.png)
 
   * 首先我按照提示在.bash_profile添加`$(/opt/homebrew/bin/brew shellenv)`，但是我发现所有的命令not commend,
 
