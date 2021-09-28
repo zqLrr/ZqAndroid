@@ -195,8 +195,8 @@ git reflog #显示所有分支的操作记录：可以用来恢复删除的commi
 
     黄金法则：绝不要在公共的分支上使用它！
 
-    * * 优点：会将历史分支复制，使项目历史呈现出完美的线性
-      * 缺点：违反了黄金法则，会造成灾难性影响，且因为历史分支发生改变，可追踪性低
+    * 优点：会将历史分支复制，使项目历史呈现出完美的线性
+    * 缺点：违反了黄金法则，会造成灾难性影响，且因为历史分支发生改变，可追踪性低
 
     ```undefined
     举例子来说，比如分支origin要合并到分支mywork上
@@ -213,77 +213,77 @@ git reflog #显示所有分支的操作记录：可以用来恢复删除的commi
   * 遇到冲突
 
     ```bash
-  # merge
-  #修改完后，提交commit 
-  git add 修改的文件
-  git commit -m "Comments"
-  git push
-  #rebase
-  #遇到冲突
-  git  add  修改的文件
-  git rebase --continue
-    ```
-  
+    # merge
+    #修改完后，提交commit 
+    git add 修改的文件
+    git commit -m "Comments"
+    git push
+    #rebase
+    #遇到冲突
+    git  add  修改的文件
+    git rebase --continue
   * 终止合并
-  
+
     ```bash
     git merge --abort
     gir rebase --abort
     ```
 
-  * 准一某个分支的部分提交——git cherry-pick :只转移Commit 中添加的部分，若是连续的，最好将连续的Commit进行转移
+* 某个分支的部分提交——git cherry-pick :只转移Commit 中添加的部分，若是连续的，最好将连续的Commit进行转移
 
-    * 基本用法
+  * 基本用法
 
-      ```bash
-      git cherry-pick <commitHash>
-      ```
+    ```bash
+    git cherry-pick <commitHash>
+    ```
 
-      ![image-20210922154731097](Git 教程 分享.assets/image-20210922154731097.png)
+  * 原理
 
-      ```bash
-      git cherry-pick f  #在master分支上将f添加到Master
-      ```
+    ![image-20210922154731097](Git 教程 分享.assets/image-20210922154731097.png)
 
-      ![image-20210922154941687](Git 教程 分享.assets/image-20210922154941687.png)
+    ```bash
+    git cherry-pick f  #在master分支上将f添加到Master
+    ```
 
-    * ```bash
-      git cherry-pick 分支名称 #将分支最后一次commit添加到Master
-      ```
+    ![image-20210922154941687](Git 教程 分享.assets/image-20210922154941687.png)
 
-    * 转移多个提交
+  * ```bash
+    git cherry-pick 分支名称 #将分支最后一次commit添加到Master
+    ```
 
-      ```bash
-      git cherry-pick <HashA> <HashB>
-      ```
+  * 转移多个提交
 
-    * 终止部分提交
+    ```bash
+    git cherry-pick <HashA> <HashB>
+    ```
 
-      ```bash
-      git cherry-pick --abort #回到操作前
-      git cherry-pick --quit  #不回到操作前
-      ```
+  * 终止部分提交
 
-    * 合并冲突
+    ```bash
+    git cherry-pick --abort #回到操作前
+    git cherry-pick --quit  #不回到操作前
+    ```
 
-      ```bash
-      #修改完后
-      git add .
-      git cherry-pick --continue 
-      ```
+  * 合并冲突
 
-    * 转移某个commit 中部分文件的提交
+    ```bash
+    #修改完后
+    git add .
+    git cherry-pick --continue 
+    ```
 
-      ```bash
-      #-n --no-commit  不提交，将添加的文件放在暂存区
-      git cherry-pick -n  <commit_id>
-      #将不需要的文件撤销
-      git restore --staged 文件名
-      git restore  文件名
-      #提交需要提交的内容
-      git commit -m "Comments"
-      git push
-      ```
+  * 转移某个commit 中部分文件的提交
+
+    ```bash
+    #-n --no-commit  不提交，将添加的文件放在暂存区
+    git cherry-pick -n  <commit_id>
+    #将不需要的文件撤销
+    git restore --staged 文件名
+    git restore  文件名
+    #提交需要提交的内容
+    git commit -m "Comments"
+    git push
+    ```
 
 ### 2.6  远程仓库 Remotes
 
@@ -373,17 +373,7 @@ git commit --amend #会出现Vim
   git push
   ```
 
-### 3.3   git pull时，解决冲突
-
-```bash
-git status --uno #查看冲突的文件
-#修改后添加
-git add .
-git commit -m ""
-git push
-```
-
-### 3.4   分支开发完后，合并到发版分支(以微博合并alpha为例)
+### 3.3   分支开发完后，合并到发版分支(以微博合并alpha为例)
 
 * 拉取develop最新代码
 
@@ -425,6 +415,7 @@ git push
   ```bash
   git reset HEAD^ --soft  #回退到commit之前，此时可以修改Commit内容
   #git reset HEAD^ --hard 回退到Add之前
+  git comment --amend #这样也行
   ```
 
   然后按照提供的模版进行Commit  **coments**的提交
@@ -474,7 +465,7 @@ git push
     ./wbpush "yourTopic" --amend 
     ```
 
-### 3.5   合并分支的某个Commit
+### 3.4   合并分支的某个Commit
 
 通过cherry-pick实现合并分支的某个Commit，假如要在a分支上合并b分支的某个commit
 
@@ -508,7 +499,7 @@ git push
   git cherry-pick --abort
   ```
 
-### 3.6  合并某个分支某个Commit 的部分内容
+### 3.5  合并某个分支某个Commit 的部分内容
 
 通过cherry-pick实现合并分支的某个Commit的部分文件，查找CommitID的方法在上面，不再赘述。
 
@@ -532,41 +523,41 @@ git push
   git push
   ```
 
-### 3.7 用户名的修改
+### 3.6 用户名的修改
 
 在某些情况下，我们可能在不同的仓库担任不同的角色，用户名需要修改，可以修改仓库本地的配置，而不影响其他仓库。
 
 ```bash
-$ git config --local user.name "John Doe"
-$ git config --local user.email johndoe@example.com
+git config --local user.name "John Doe"
+git config --local user.email johndoe@example.com
 ```
 
-### 3.8  工作修改Bug
+### 3.7  工作修改Bug
 
 * 在修改的版本(release)拉出新的分支
 
-```bash
-git checkout -b newBranch
-```
+  ```bash
+  git checkout -b newBranch
+  ```
 
 * 进行修改
 
-* 合并到版本中，按照合并到发版分支的流程进行(3.4)
+* 合并到版本中，按照合并到发版分支的流程进行(3.3)
 
 * 其他正在修改的分支需要更新
 
-  ```
+  ```bash
   git checkout release 
   git pull
   git checkout 修改的分支
   git rebase  release
   ```
 
-### 3.9 代码回滚的场景
+### 3.8 代码回滚的场景
 
 * 快速、稳健、紧张
 
-* git 手动回滚的操作
+* git reset  手动回滚的操作
 
   ```bash
   #查看要回滚的版本
@@ -598,3 +589,15 @@ git checkout -b newBranch
   这个流程比较安全，发版分支建议使用这个方式
 
   <img src="Git 教程 分享.assets/image-20210926110100621.png" alt="image-20210926110100621" style="zoom:30%;" />
+
+### 3.9  git pull时，解决冲突
+
+```bash
+git status --uno #查看冲突的文件
+#修改后添加
+git add .
+git commit -m ""
+git push
+```
+
+### 
