@@ -84,7 +84,7 @@ git reflog #显示所有分支的操作记录：可以用来恢复删除的commi
     git diff --cached # 查看staged 与 unmodified的区别
     git diff HEAD # 查看最新提交和当前工作区的区别 HEAD可以换成CommitID 
     ```
-  * git fetch  origin 远程分支   ： 下拉远程代码
+  * git fetch  origin 远程分支  ： 下拉远程代码
   * git pull   origin 远程分支  等价于
 
     * git fetch origin 远程分支
@@ -322,6 +322,12 @@ git commit --amend #会出现Vim
 
 在Vim中重新修改Comments内容。
 
+若已经push到远端，需要
+
+```bash
+git push --force
+```
+
 ### 3.2   本地清理，使commit合并成一个
 
 * 第一种: git rebase -i
@@ -487,6 +493,17 @@ git commit --amend #会出现Vim
   git commit -m "Comments"
   git push
   ```
+
+也可以通过，先将整个commit 提交，再返回删除的方式
+
+ ```bash
+ git cherry-pick <commitHash>
+ git reset --soft HEAD^
+ git restore --staged 文件名
+ git restore  文件名
+ git commit -m "Comments"
+ git push
+ ```
 
 ### 3.6 用户名的修改
 
