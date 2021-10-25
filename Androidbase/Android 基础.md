@@ -498,6 +498,16 @@ ContextWraaper使用的对象mBase是一个ContextImpl对象，因此：
 
 ​		Android的应用程序包含的三种组件：Acitivity、Boradcast Receiver和Service，都可以通过Intent启动，同时也可以利用Intent进行进程间的通信。
 
+* 构造函数：
+
+  Intent(String action)
+
+  Intent(String action, Uri uri)
+
+  Intent(Context packageContext, Class<?> cls)
+
+  Intent(String action, Uri uri,Context packageContext, Class<?> cls) 
+
 2、属性
 
 * Component属性及其配置
@@ -554,6 +564,8 @@ ContextWraaper使用的对象mBase是一个ContextImpl对象，因此：
     * 若只指定了scheme、host、port、path,Data的数据scheme、host、port、path保持一致即可启动
   * Extra属性   是一个Bundle对象
   * Flag属性  具有独特功能  查看文档
+  
+* 
 
 # UI
 

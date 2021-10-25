@@ -365,6 +365,7 @@ git push --force
   git checkout develop
   git pull --rebase
   ```
+  
 * 对本地分支进行Commit 合并
 
   ```bash
@@ -376,6 +377,7 @@ git push --force
   git checkout local
   git rebase  -i  HEAD~n  #n 表示合并的分支数 具体流程看上面
   ```
+  
 * 将develop合并到本地分支
 
   ```bash
@@ -384,12 +386,14 @@ git push --force
   git add .
   git rebase --continue
   ```
+  
 * 没有问题后,将本地分支合并到develop
 
   ```bash
   git checkout develop
   git merge local
   ```
+  
 * 修改Commit 内容
 
   ```bash
@@ -407,6 +411,7 @@ git push --force
   ```
 
   此时会自动生成Change-Id
+  
 * push到远端
 
   * 单个仓库
@@ -418,10 +423,24 @@ git push --force
   * 多个仓库
 
     ```bash
+    #切换到仓库的最外层
     wbpush "yourTopic"
     #Topic必须为字母与数字的组合,如: topic123
     #Topic之间的依赖关于必须以下划线”_”区分,如: topic123_topic45
     ```
+  
+   遇到的问题：
+  
+  ![image-20211013153833333](Git教程分享.assets/image-20211013153833333.png)
+  
+  出现该上述的文件，又不能忽略，又不能restore,restore时会提示
+  
+  ```bash
+  error: pathspec '.DS_Store' did not match any file(s) known to git
+  ```
+  
+  最后处理方法：将所有修改过的仓库，重新修改pull一下。
+  
 * 若需要对Commit进行修改
 
   * 单个仓库
@@ -576,3 +595,4 @@ git add .
 git commit -m ""
 git push
 ```
+
