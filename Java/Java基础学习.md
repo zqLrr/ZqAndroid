@@ -1,4 +1,4 @@
-# Java基础学习
+## Java基础学习
 
 ## 1、asyncTask
 
@@ -70,7 +70,7 @@ AsyncTask类允许定义将在后台执行的操作，并提供了可以用来�
 
   ![image-20210729120821220](Java基础学习.assets/image-20210729120821220.png)
 
-# 3、单例模式
+## 3、单例模式
 
 1. 推荐使用单例的方法(Lazy loading、线程安全)
 
@@ -118,7 +118,7 @@ AsyncTask类允许定义将在后台执行的操作，并提供了可以用来�
    * 工具类对象
    * 频繁访问数据库或文件的对象。
 
-# 4、工厂设计模式
+## 4、工厂设计模式
 
 简单工厂模式   工厂方法模式 抽象工厂模式
 
@@ -140,7 +140,7 @@ AsyncTask类允许定义将在后台执行的操作，并提供了可以用来�
 
 工厂可以实现多个产品，产品也需要多个抽象类
 
-# 5、函数式接口的用法 
+## 5、函数式接口的用法 
 
 * Function函数常用入口
 
@@ -223,6 +223,116 @@ AsyncTask类允许定义将在后台执行的操作，并提供了可以用来�
     System.out.println(identity);
     ```
 
-    
 
-  
+## 6、控制反转(IOC)和依赖注入DI 
+
+* IOC：是一种编程思想，是将设计好的对象交给容器控制，而不是传统的在你的对象内部控制。
+
+  传统的编程思路(将其称为正转)：
+
+  ![image-20211027183226279](Java基础学习.assets/image-20211027183226279.png)
+
+​        由上图可以看出，我们在正常编程的时候，需要自己去手动创建我们要使用的类，如果有依赖，就要将依赖的类也创建出来。
+
+​                IOC的编程思路：      
+
+<img src="Java基础学习.assets/image-20211027184121528.png" alt="image-20211027184121528" style="zoom:50%;" />
+
+​         由上图可以看出，我们编程时由IOC容器去帮我门查找和提供用户类及其依赖的类，我们是被动的接受对象。
+
+​         **IoC对编程带来的最大改变不是从代码上，而是从思想上，发生了“主从换位”的变化。应用程序原本是老大，要获取什么资源都是主动出击，但是在IoC/DI思想中，应用程序就变成被动的了，被动的等待IoC容器来创建并注入它所需要的资源了。**
+
+　　**IoC很好的体现了面向对象设计法则之一—— 好莱坞法则：“别找我们，我们找你”；即由IoC容器帮对象找相应的依赖对象并注入，而不是由对象主动去找。**
+
+* DI:其实和IOC 是一回事，只是换了一个角度说明，重点说明：“**被注入对象依赖IoC容器配置依赖对象**”
+
+　   **IoC的一个重点是在系统运行中，动态的向某个对象提供它所需要的其他对象。这一点是通过DI（Dependency Injection，依赖注入）来实现的**
+
+## 7、Java序列化
+
+* 概念
+
+  java序列化:保存内存对象的状态，包括对象的属性值,但不包括方法和static变量(因为static修饰的变量是属于类而不隶属于对象),以及用transient关键字修饰的变量(transient是禁止序列化的标识,效果等同于static修饰的变量).
+
+  java反序列化:是与java序列化相对的,表示从磁盘或者其他介质中读取序列化对象的内容.
+
+* 应用场景
+
+  - 内存中的对象保存到磁盘文件中
+  - 网络传输对象,比如Socket套接字传输
+  - 通过RMI（Remote Method Invoke 远程方法调用）传输对象,如android中的AIDL
+
+* 实现方式
+
+  * 实现Serializable序列化的空接口
+
+    ```java
+    public class TestSerializable implements Serializable {//Serializable是一个空接口
+        private static final  long serializableUID = 1L;//序列化标识，防止反序列化失败
+        private transient  int  banSerializable; //禁止序列化
+        private static  int banSeriallizable2; //禁止序列化
+        //属性中的类也必须实现序列化，否则会报异常
+    
+        public String name;
+        public int id;
+    
+        public TestSerializable() {
+        }
+    
+        public TestSerializable(String name, int id) {
+            this.name = name;
+            this.id = id;
+        }
+    }
+    ```
+
+  * Parcelable接口，android特有的序列化存储,传输效率高,需要实现里面的抽象方式,实现起来比较麻烦.
+
+    * 两个方法
+    * 一个接口
+
+    ```java
+    public class TestParcelable  implements Parcelable {
+        public  String  name;
+        public  int     id;
+        public TestParcelable(String name,int id){//构造函数
+            this.name = name;
+            this.id   = id;
+        }
+        
+        protected TestParcelable(Parcel in) {//对象反序列化读取数据
+            this.name = in.readString();
+            this.id   = in.readInt();
+        }
+        
+        @Override
+        public int describeContents() { //内容接口描述，默认返回0
+            return 0;
+        }
+    
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {//将对象序列化一个Parcel对象，将对象存入Parcel中
+            dest.writeString(name);
+            dest.writeInt(id);
+        }
+        
+        public static final Creator<TestParcelable> CREATOR = new Creator<TestParcelable>() {//实现的接口
+            @Override
+            public TestParcelable createFromParcel(Parcel in) {
+                return new TestParcelable(in);
+            }
+    
+            @Override
+            public TestParcelable[] newArray(int size) {
+                return new TestParcelable[size];
+            }
+        };
+    
+    }
+    ```
+
+* 区别
+
+  Serializable : 虽然该接口实现比较简单，但是Serializable频繁的进行IO操作,在内存序列化上开销比较大。
+
+  Parcelable： Parcelable性能比较好，在内存开销方面较小，在内存间数据传输推荐使用，但使用起来比较方便。

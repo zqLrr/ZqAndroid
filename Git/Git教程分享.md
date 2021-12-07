@@ -1,4 +1,4 @@
-# Git教程分享
+
 
 ## 1、gitHub 仓库新建与删除
 
@@ -311,6 +311,86 @@ git config --global alias.co checkout #此时可以采用co 代替checkout
   $ git config --global user.email johndoe@example.com
   ```
 
+### 2.10 git stash
+
+* git stash
+
+  将所有未提交的修改（范围包括工作区和暂存区）保存至堆栈中，用于恢复当前工作目录.
+
+  ```bash
+  #当在开发分支dev开发一半时，需要紧急开发另一个任务，可以先将其保存起来
+  dev: git stash
+  dev: git status
+     On branch master
+     nothing to commit, working tree clean
+  #当需要再开发时，可以pop出来，且可以在不同的分支，不一定非要在dev分支
+  dev: git stash pop
+  ```
+
+* git  stash save 
+
+  等同于`git stash`,但是为每个保存提供了注释
+
+  ```bash
+  git stash save "test1"
+  ```
+
+* git stash list
+
+  查看当前stash的内容
+
+  ```bash
+   $ git stash list
+   stash@{0}: On master: test2
+   stash@{1}: On master: test1
+  ```
+
+* git stash pop
+
+  将栈顶保存的修改弹出，应用到当前分支对应的工作目录，并将其从栈顶删除
+
+* git stash apply + 名称
+
+  应用`stash@{0}`到当前分支的工作目录，且不会将其从栈堆中删除
+
+  ```bash
+  git stash apply stash@{0}
+  ```
+
+* git stash drop+名称
+
+  将指定的如`stash@{0}`从栈堆中删除
+
+  ```bash
+  git stash drop stash@{0}
+  ```
+
+* git stash clear
+
+  从堆栈中清除所有的stash
+
+* git stash show
+
+  查看堆栈中最新保存的stash和当前目录的差异
+
+  ```bash
+  git stash show @stash{0} #查看指定的stash和当前目录差异。
+  git stash show -p 名称  #查看详细的不同
+  ```
+
+*  git stash branch
+
+  从最新的stash创建分支。
+
+  当stash中的内容和当前工作目录有冲突时，可以新建分支去解决冲突。
+
+* 应用场景：
+
+  * 当正在dev分支上开发某个项目，这时项目中出现一个bug，需要紧急修复，但是正在开发的内容只是完成一半，还不想提交，这时可以用git stash命令将修改的内容保存至堆栈区，然后顺利切换到hotfix分支进行bug修复，修复完成后，再次切回到dev分支，从堆栈中恢复刚刚保存的内容。
+  * 由于疏忽，本应该在dev分支开发的内容，却在master上进行了开发，需要重新切回到dev分支上进行开发，可以用git stash将内容保存至堆栈中，切回到dev分支后，再次恢复内容即可。
+
+  总的来说，git stash命令的作用就是将目前还不想提交的但是已经修改的内容进行保存至堆栈中，后续可以在某个分支上恢复出堆栈中的内容。这也就是说，stash中的内容不仅仅可以恢复到原先开发的分支，也可以恢复到其他任意指定的分支上。git stash作用的范围包括工作区和暂存区中的内容，也就是说没有提交的内容都会保存至堆栈中。
+
 ## 3、git 经典使用场景
 
 ### 3.1  当不想增加commit时，却需要修改文件或修改Commit Coment
@@ -456,7 +536,10 @@ git push --force
     #先更改单个文件
     git add file_path          (file_path为你更改的文件路径地址)
     git commit --amend        (注意，加上 --amend)
-    #在push多个仓库
+    #若执行 abandon changes 则需要将ChangID 删除
+    #若未执行 abandon changes，切记不要修改ChangID
+    
+    #此时，要确保是最新的远端代码，在push多个仓库
     ./wbpush "yourTopic" --amend 
     ```
 
@@ -595,4 +678,3 @@ git add .
 git commit -m ""
 git push
 ```
-

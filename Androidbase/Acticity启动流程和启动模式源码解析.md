@@ -1482,9 +1482,12 @@
 
 * App进程 为什么要分成两部走
 
+* Provider 也可以启动app
+* app冷启动时除了会启动Activity,还会启动Service BoardCast
+* app冷启动的时间的入口和出口，包含Application启动的时间+Activity的启动时间
+* 如何可以控制冷启动的入口代码
 
-
-
+微博在ActivityThreadHacker.java
 
 
 
