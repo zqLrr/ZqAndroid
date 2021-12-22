@@ -189,3 +189,71 @@
 
 * 在Activity中显示对话框，并对取消和确定退出按钮添加点击事件
 
+## 6、底部导航栏的实现方式
+
+### 方式一：TabLayout + Fragement
+
+* xml : 使用TabLayout控件
+
+  ```xml
+  <com.google.android.material.tabs.TabLayout
+              android:id="@+id/visitor_tab"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              app:tabTextColor="@color/black"
+              app:tabIndicatorHeight="0dp"
+              app:tabSelectedTextColor="@color/purple_700"/>
+  ```
+
+* Java文件
+
+  * 初始化数据
+
+  * 添加Tab监听
+
+    ```java
+    mTablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+        onTabItemSelected(tab.getPosition());
+        //改变Tab状态
+        for(int i= 0;i<mTablayout.getTabCount();i++){
+          if(i == tab.getPosition()){                 mTablayout.getTabAt(i).setIcon(getResources().getDrawable(DataGenerator.mTabResPressed[i]));
+          }else{
+     mTablayout.getTabAt(i).setIcon(getResources().getDrawable(DataGenerator.mTabRes[i]));
+          }
+        }
+      }
+    
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
+    
+      }
+    
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
+    
+      }
+    });
+    ```
+  
+    重点实现onTabSelected函数
+  
+    * Fragment的替换
+    * 图标的替换
+
+  * 添加Tab选项
+  
+    ```java
+    mTablayout.addTab(mTablayout.newTab().setIcon(getResources().getDrawable(R.drawable.tab_home_selector)).setText(DataGenerator.mTabTitle[0]),true);
+    ```
+  
+  注意：添加Tab选项要在Tab监听之后
+  
+  ​           可以使用setCustomView实现Tab的自定义布局
+  
+  优点：TabLayout提供了现成的控件和方法，了解了其属性和API后，能快速的实现底部导航栏
+  
+  缺点：可扩展性较差，只能使用固定的Api。
+  
+  

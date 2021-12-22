@@ -564,6 +564,68 @@ ContextWraaper使用的对象mBase是一个ContextImpl对象，因此：
     * 若只指定了scheme、host、port、path,Data的数据scheme、host、port、path保持一致即可启动
   * Extra属性   是一个Bundle对象
   * Flag属性  具有独特功能  查看文档
+  
+* 呼起App
+
+  * 通过包名和类名
+
+    ```java
+    Intent intent = new Intent();
+    ComponentName cn = new 
+      //packageName className 
+     ComponentName("com.example.moudlesipc","com.example.moudlesipc.MainActivity");
+    intent.setComponent(cn);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+    ```
+
+  * 通过Activon
+
+    ```java
+    Intent intent = new Intent();
+    //自定义com.example.moudle
+    intent.setAction("com.example.moudle");
+    intent.addCategory(Intent.CATEGORY_DEFAULT);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+    ```
+
+    注:自定义Action和`android.intent.action.VIEW`，不能一起使用，不支持，原因未知
+
+  * 通过Scheme
+
+    ```java
+    Intent intent = new Intent();
+    intent.setData(Uri.parse("arouter://m.aliyun.com"));
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+    ```
+
+    注：呼起Scheme 需要`android.intent.action.VIEW`，否则不支持展示。
+
+  * 组件暴露属性：`android:exported`
+
+    * 定义：当前组件能否被其他应用程序组件调用或跟它交互。四大组间皆有该属性
+    * True：可以被其他应用程序组件调用或跟它交互。
+    * false:只有同一个应用程序的组件或带有相同用户ID的应用程序才能启动或绑定该服务。
+
+    * **Activity、Service、Boardcast Receiver**:
+
+      * 无intent filter:默认False;
+
+      * 至少一个intent filter: 默认true
+
+      * 可以使用permission来限制外部实体唤醒当前组件
+
+        ```xml
+        android:permission="@string/app_name"
+        ```
+
+    * **Content Provider**:
+
+      * Android sdk > 16 默认false
+      * Android sdk <= 16 默认true
+      * 可以使用permission来限制外部实体唤醒当前Provider
 
 ## 8、Buddle
 
@@ -844,7 +906,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
 * tools
 
-根据官方定义，`tools`命名空间用于在 XML 文档记录一些，当应用打包的时候，会把这部分信息给过滤掉，不会增加应用的 size，说直白点，这些属性是为IDE提供相关信息。
+根据官方定义，`tools`命名空间用于在 XML 文档记录，当应用打包的时候，会把这部分信息给过滤掉，不会增加应用的 size，说直白点，这些属性是为IDE提供相关信息。
 
 ## 4、Android Values文件
 
@@ -2096,4 +2158,54 @@ AnimationSet(boolean shareInterpolator)
 * Socket通信
 
   [Socket Java实现通信](https://blog.csdn.net/qq_32035241/article/details/120364967?spm=1001.2014.3001.5501)
+
+# Android build.gradle 配置文件
+
+* Android
+
+  * compileSdk
+
+    compileSdkVersion告诉gradle使用哪个版本Android SDK编译你的应用，使用任何新添加的API就要使用对应level的Android SDK，但是该配置信息不会加在打包环境中，只是为IDE提供的编译环境。
+
+    推荐使用最新的SDK环境编译
+
+  * minSdk
+
+    指明应用程序运行所需的最小API level，若用户的机型小于这个版本，则无法安装。同时不能使用该level版本SDK所不具备的API。
+
+    你的minSdkVersion要大于你依赖的所有库的minSdkVersion。
+
+    minSDK 决定了你使用的API 版本。
+
+    使用高于minSdkVersion的API，只是编译时会报警告，但是如果运行在低版本手机上，会以为api找不到导致crash
+
+  * targetSdk
+
+    targetSdkVersion 是 Android 系统提供前向兼容的主要手段。意思就是在SDK版本更新后，根据targetSdk来维持原有的行为，假如你当前的targetSDK = 19,当Android系统更新到20时，行为不会发生变化，仍然按19来运行。
+
+    targetSdk决定了你运行的API版本。
+
+    每一Android系统会提供一套API，高版本的API兼容低版本的API。
+
+    使用低版本API的好处，可以兼容更多的机型。
+
+    使用高版本API的好处，提供了更多封装好的API,消除了低版本的一些问题和不足。
+
+    实际上三者之间的关系应该是：
+
+    ```java
+    minSdkVersion <= targetSdkVersion <= compileSdkVersion
+    ```
+
+    因此，一般是使用minSdk去兼容更多的机型，更高的targetSdk和compileSdk来维护更好的性能。
+
+  * 
+
+  * versionCode
+
+  * versionName
+
+  * testInstrumentationRunner
+
+* 
 

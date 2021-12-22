@@ -101,7 +101,7 @@ AsyncTask类允许定义将在后台执行的操作，并提供了可以用来�
        private static class SingletonInstance(){
           private final static Singleton INSTANCE = new Singleton();
        }
-       public Singleton getInstance(){
+       public static Singleton getInstance(){
          return SingletonInstance.INSTANCE;
        }
      }
@@ -336,3 +336,28 @@ AsyncTask类允许定义将在后台执行的操作，并提供了可以用来�
   Serializable : 虽然该接口实现比较简单，但是Serializable频繁的进行IO操作,在内存序列化上开销比较大。
 
   Parcelable： Parcelable性能比较好，在内存开销方面较小，在内存间数据传输推荐使用，但使用起来比较方便。
+
+## 8、Final 关键字的使用
+
+* final 修饰类
+
+  该类不能被继承，且该类中的所有变量成员和方法都会定义为final。
+
+* final 修饰函数
+
+  该函数不能被继承，因此也不能被子类重写，但该函数可以实现重载。
+
+  使用原因：
+
+  1、锁定该方法，不能被继承重写
+
+* final 修饰成员变量
+
+  该成员变量是常量,只能赋值一次，赋值后不能改变
+
+* final 修饰函数参数
+
+  * 修饰基本类型
+  * 修饰引用类型
+
+https://www.cnblogs.com/xuelisheng/p/11158110.html
