@@ -417,7 +417,7 @@
   * Activity向Fragment通信
   
     ```java
-    //1.通过Bundle传递信息   ?在Add添加后通信会报错，但我没发现
+    //1.通过Bundle传递信息   在Add添加后通信会报错，但我没发现
     //发送
     Bundle bundle = new Bundle();
     bundle.putString(ARG_PARAM,str);

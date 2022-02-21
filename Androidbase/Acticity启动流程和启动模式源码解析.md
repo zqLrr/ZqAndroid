@@ -874,12 +874,13 @@
 * standard:标准模式
   * 会创建新的Activity实例，并将该实例添加到当前Task内。
 * singleTop:Task栈顶复用模式
-  * 若要启动的Activity实例，已经位于栈顶，将不会创建
-  * 若要启动的Activity实例，没有位于栈顶，将会创建新的实例，并把它加载到栈顶
+  * 若要启动的Activity实例，已经位于栈顶，将不会创建,会调用`onNewIntent()`方法
+  * 其余和standard模式是一样的。
 * singleTask:Task内单例模式。目的：在Task中只存在一个实例
   * 若要启动的Activity不存在，则会创建新的Activity实例，并将它放入栈顶
   * 若要启动的Activity存在且在栈顶，则不会创建
-  * 若要启动的Activity存在且不在栈顶，则会将已存在的Activity之上的所有Activity出栈，使Activity位于栈顶
+  * 若要启动的Activity存在在该任务栈且不在栈顶，则会将已存在的Activity之上的所有Activity出栈，使Activity位于栈顶
+  * 若设置了`taskAffinity`,会先判断Activity是否在该属性值`taskAffinity`的任务栈,若存在，按以上的方式处理，若不在，则会新开一个任务栈新建Activity。
 * singleInstance：全局单例模式
   * 若要启动的Activity不存在，则会在新的Task创建新的Activity实例，并将它放入栈顶，该Task只会存在该Activity
   * 若要启动的Activity存在，则会把Activity转到栈顶，且该Task只会有这个Activity。
@@ -1476,12 +1477,11 @@
 | 启动模式       |                           适合场景                           |
 | -------------- | :----------------------------------------------------------: |
 | standard       | 当需要每次请求都新开一个实例的时候，比如，浏览器开多个浏览窗口。 |
-| SingleTop      | 适合作为接受通知的启动界面，比如，发送十条通知，只打开一次就够了 |
-| SingleTask     | 适合作为程序的入口，不管其他程序打开该界面多少次，都只会在任务栈中存在一份，比如浏览器的启动界面 |
+| SingleTop      | 适合作为接受通知的启动界面，比如，发送十条通知，只打开一次就够了，适用于ChildActivity |
+| SingleTask     | 适合作为程序的入口，不管其他程序打开该界面多少次，都只会在任务栈中存在一份，比如浏览器的启动界面。可以通过设置单独的`taskAffinity`,在新的任务栈中打开 |
 | SingleInstance | 适合永远都不会变化的界面，比如闹钟的提醒界面，在比如拨号程序的呼叫界面。 |
 
 * App进程 为什么要分成两部走
-
 * Provider 也可以启动app
 * app冷启动时除了会启动Activity,还会启动Service BoardCast
 * app冷启动的时间的入口和出口，包含Application启动的时间+Activity的启动时间

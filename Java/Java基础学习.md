@@ -361,3 +361,126 @@ AsyncTask类允许定义将在后台执行的操作，并提供了可以用来�
   * 修饰引用类型
 
 https://www.cnblogs.com/xuelisheng/p/11158110.html
+
+## 9、使用Interface 实现简单工厂模式
+
+* 接口类
+
+  ```java
+  public interface INetEngine {
+  
+    public User login(LoginParam param) throws ProtocolException, MalformedURLException, IOException, JSONException;
+  
+  }
+  ```
+
+* 实现接口的类
+
+  实现的方法自己实现login方法就可以
+
+* 工厂类
+
+  可以使用反射，也可以使用通过传值来分类建产品
+
+  ```java
+  public class NetEngineFactory {
+      //使用反射实现NetEnginge
+      public static <T extends  INetEngine> T CreateNetEngine(Class clazz,Context context){
+          INetEngine iNetEngine = null;
+          try {
+              iNetEngine = (INetEngine) Class.forName(clazz.getName()).getDeclaredConstructor(Context.class).newInstance(context);
+          } catch (Exception e){
+              e.printStackTrace();
+          }
+          return (T)iNetEngine;
+      }
+  }
+  ```
+
+* 使用
+
+  ```java
+   result = NetEngineFactory.CreateNetEngine(HuConnectionNetEngine.class,mContext).login(mparam);
+  ```
+
+* 对反射进行分析
+
+  通过类名实现类的实现
+
+  * newInstance()
+
+    只能实现对无参数的构造函数的创建
+
+  * getDeclaredConstructor(.class).newInstance(Param)
+
+    可以实现对含有参数的构造函数的创建
+
+## 10、类加载
+
+* 特性：JVM的生命周期只加载一次，延迟记载、按需加载，能少加载就少记载
+
+  因为JVM的空间有限
+
+* 加载时机
+
+  1）第一次创建对象要加载类.
+
+  2）调用静态方法时要加载类,访问静态属性时会加载类。
+
+  3）加载子类时必定会先加载父类。
+
+  4）创建对象引用不加载类.
+
+  5) 子类调用父类的静态方法时
+
+      (1)当子类没有覆盖父类的静态方法时，只加载父类，不加载子类
+      
+      (2)当子类有覆盖父类的静态方法时，既加载父类，又加载子类
+
+  6）访问静态常量，如果编译器可以计算出常量的值，则不会加载类,例如:public static final int a =123;否则会加载类,例如:public static final int a = math.PI。
+
+## 11、Static 关键字
+
+* 修饰成员变量
+
+* 修饰成员方法
+
+* 修饰类
+
+  会将数据放在静态存储区，实现类的所有对象的数据共享
+
+* 静态块：用来优化程序
+
+  ```java
+  Static{} //静态代码块
+  ```
+
+  1. static块可以置于类中的任何地方，类中可以有多个static块。
+  2. 在类初次被加载的时候执行且仅会被执行一次（这是优化性能的原因！！！），会按照static块的顺序来执行每个static块，一般用来初始化静态变量和调用静态方法。
+  3. 会在类加载时对静态代码块执行一次
+
+## 12、父类和子类的转换
+
+#### 父类不能直接强转成子类，除非父类是由该子类创建而来的，而子类可以直接转成父类。
+
+```java
+class Fruit {
+    public Fruit() {
+    }
+}
+
+class Apple extends Fruit {
+    public Apple() {
+        super();
+    }
+}
+
+Apple apple = new Apple();
+Fruit fruit = new Fruit();
+fruit = apple;  //不会报错，苹果是水果
+apple = (Apple)Fruit;//此时会报错，因为水果不等同于苹果
+
+Fruit fruit = new Apple();
+apple = (Apple)fruit: //不会报错，指定水果为苹果的等于苹果
+```
+

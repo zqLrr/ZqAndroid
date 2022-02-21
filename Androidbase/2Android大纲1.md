@@ -70,7 +70,36 @@
   * singleInstance：全局单例模式
     * 若要启动的Activity不存在，则会在新的Task创建新的Activity实例，并将它放入栈顶
     * 若要启动的Activity存在，则会直接把Activity转到栈顶，且该Task只会有这个Activity。
-  * 
+  
+* Activity 属性
+
+  * WindowSoftInputMode ：软键盘的输入
+
+    * 两类属性
+
+      | 类型       | Value值           | 含义                                                         |
+      | ---------- | ----------------- | ------------------------------------------------------------ |
+      | 显示与隐藏 | stateUnspecified  | 软键盘的状态并没有指定，系统将选择一个合适的状态或依赖于主题的设置 |
+      |            | stateUnchanged    | 当这个activity出现时，软键盘将一直保持在上一个activity里的状态，无论是隐藏还是显示 |
+      |            | stateHidden       | 用户选择activity时，软键盘总是被隐藏                         |
+      |            | stateAlwaysHidden | 当该Activity主窗口获取焦点时，软键盘也总是被隐藏的           |
+      |            | stateVisible      | 软键盘通常是可见的                                           |
+      | 调整屏幕   | adjustUnspecified | 默认设置，通常由系统自行决定是隐藏还是显示                   |
+      |            | adjustResize      | 该Activity总是调整屏幕的大小以便留出软键盘的空间             |
+      |            | adjustPan         | 当前窗口的内容将自动移动以便当前焦点从不被键盘覆盖和用户能总是看到输入内容的部分 |
+
+* 生命周期变化
+
+  * 场景一：界面A 新开一个界面，然后返回到原来的界面A
+
+    ```java
+    //新开
+    A onPause()
+    //关闭
+    A onResume()
+    ```
+
+    
 
 ## 2、Boradcast Receiver 
 
@@ -389,6 +418,7 @@
   
   public String getType(Uri uri)
   // 得到数据类型，即返回当前 Url 所代表数据的MIME类型
+  //模糊查询时，将'%'放到参数里，而不是放在Where中
   ```
 
 4.Uri
@@ -565,7 +595,7 @@ ContextWraaper使用的对象mBase是一个ContextImpl对象，因此：
   * Extra属性   是一个Bundle对象
   * Flag属性  具有独特功能  查看文档
   
-* 呼起App
+* 呼起另一个App
 
   * 通过包名和类名
 
@@ -1195,13 +1225,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 * 存储在相对路径下，使用FileOutputStream类获取文件，BufferedWriter类写入。（以销毁时存户数据为例）
 
   ```Java
-  @Override
-  protected void onDestroy() {
-      super.onDestroy();
-      String InputSting = editSave.getText().toString();
-      save(InputSting);
-  }
-  
   private void save(String str) {
       FileOutputStream out = null;
       BufferedWriter writer = null;
@@ -1260,7 +1283,202 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
       }
   ```
 
-## 1、SQLite数据库的使用
+* 文件目录
+
+  ![image-20220125113008059](2Android大纲1.assets/image-20220125113008059.png)
+
+  * App独立文件：即所有App都可以共享的文件
+
+    正常的使用：`Environment.getExternalStorageDirectory()`,然后自己命名子目录.已过期
+
+    ```java
+    File sdCard = Environment.getExternalStorageDirectory();
+    File directory_pictures = new File(sdCard, "Pictures");
+    Log.i(TAG,"publicfile: "+directory_pictures.getpath());
+    //publicfile: /storage/emulated/0/Pictures
+    ```
+
+    也可以使用App独立文件中提供的已有目录:`Environment.getExternalStoragePublicDirectory()`
+
+    ```java
+    File publicfile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+    Log.d(TAG, "publicfile: "+ publicfile.getPath());
+    //publicfile: /storage/emulated/0/Pictures
+    ```
+
+    实际路径为：/sdcard/Pictures
+
+    但是以上已经过时，不能使用文件路径读取共有目录，建议采用ContentProvider+ContentResolver+uri
+
+    Media和SAF(Storage Access Framework)获取Uri,然后写入文件。
+
+    ```java
+    //通过Uri获取文件输入流、输出流的方式
+     OutputStream fs = getContentResolver().openOutputStream(uri);
+     InputStream is = getContentResolver().inputStream(uri);
+    ```
+  
+    * 系统的共有目录：建议采用MediaStore提供的Uri来实现
+  
+      系统共有目录的访问权限：读写共享目录自己创建的文件时不需要权限
+  
+    | Uri类型   | 无权限                                          | READ_EXTERNAL                                                |
+    | --------- | ----------------------------------------------- | ------------------------------------------------------------ |
+    | Audio     | 可读写APP自己创建的文件，但不可直接使用路径访问 | 可以读取其他APP创建的媒体类文件，删除和修改操作需要用户授权。 |
+    | Image     | 可读写APP自己创建的文件，但不可直接使用路径访问 | 可以读其他APP创建的媒体类文件，删改操作需要用户授权          |
+    | File      | 可读写APP自己创建的文件，但不可直接使用路径访问 | 不可读写其他APP创建的非媒体类文件                            |
+    | Downloads | 可读写APP自己创建的文件，但不可直接使用路径访问 | 不可读写其他APP创建的非媒体类文件                            |
+    
+    uri由MeidaStore 提供，因为是系统原有的目录，因而已经有现成的Uri使用,以下为几个现成的例子。
+  
+    | 类型      | MediaStore API                               | Uri                                   | 目录     |
+    | --------- | -------------------------------------------- | ------------------------------------- | -------- |
+    | Audio     | MediaStore.Audio.Media.EXTERNAL_CONTENT_URI  | content://media/external/Audio/media  | Music    |
+    | Images    | MediaStore.Images.Media.EXTERNAL_CONTENT_URI | content://media/external/images/media | Pictures |
+    | Vedio     | MediaStore.Video.Media.EXTERNAL_CONTENT_URI  | content://media/external/Vedio/media  | Movies   |
+    | Downloads | MediaStore.Downloads.EXTERNAL_CONTENT_URI    | content://media/external/downloads    | Download |
+    
+    在系统原有的目录下新建Demo，可以采用在ContentValues中，添加相对路径
+  
+    ```java
+    //保证根目录和Uri一致即可
+    contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + File.separator + "demo");
+    ```
+    
+    * 其他应用创建的共有目录：建议采用`Storage Access Framework`，原因：MediaStore没有提供现成的
+  
+    
+  
+    Uri 和 path的转换
+  
+    * Uri转Path
+  
+      1.MediaStore提供的Uri,以Host为`content:`,都存在数据库，可以通过查询数据库存储的文件路径
+  
+      ```java
+      public void getFilePathFromUri() {
+              Cursor cur = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, MediaStore.Images.ImageColumns.DISPLAY_NAME + " = ?", new String[]{picname+".jpg"}, null);
+              int i = cur.getCount();
+              if(cur.moveToFirst()){
+                  int index = cur.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                  String filepath = cur.getString(index);
+              }
+          }
+      ```
+    
+      2. File uri 是文件生成的Uri ,以Host为`file:`
+  
+      ```java
+      //生成方式
+      Uri uri = Uri.fromFile(File file)
+      //Uri转path
+      String filepath = Uri.getpath();
+      ```
+    
+    * Path 转 Uri
+  
+      1. File Path To Media Uri
+  
+         ```java
+         //一般不会用到
+         先获取Media Uri,再根据filepath获取Media._ID,最后拼接起来的Uri.
+         ```
+    
+      2. File Path To Uri
+  
+      ```java
+      Uri uri = Uri.fromFile(File file）
+      ```
+    
+  * App专属文件(私有目录)：只有该App可以读取的文件
+  
+    Android 10之后，读写App专属文件将不再需要权限，但是无法访问和修改其他App的私有目录。
+  
+    * Internal Storage
+    
+      ```java
+      //在Activity或Fragment中
+      File priinnerfile = getFilesDir();
+      Log.d(TAG, "private internal file:"+priinnerfile.getPath());
+      ```
+    
+      ```java
+      //Android 路径
+      private internal file:/data/user/0/com.example.androiddemo/files
+        //实际路径
+       /data/data/包名/files
+      ```
+    
+    * External Storage
+  
+      ```xml
+      #权限添加 该权限在Android 10已过时，使用以下方法可以不用申请权限
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+      #可以读取别的应用保存在共有目录的文件
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+      ```
+      
+      * getExternalFilesDir(String type)
+      
+        * Type= null ,指默认路径files文件夹
+      
+        ```java
+        String privatefile = getExternalFilesDir(null).toString();
+        Log.d(TAG, "private External file: "+privatefile);
+        ```
+      
+        ```java
+         private External file: /storage/emulated/0/Android/data/com.example.androiddemo/files
+           //实际路径
+           /sdcard/Android/data/包名/files
+        ```
+      
+        * Type 可以指定files的子文件夹，如`Caches`
+        
+        ```java
+        String privatefile = getExternalFilesDir("Caches").toString();
+        Log.d(TAG, "private External file: "+privatefile);
+        ```
+        
+        ```java
+         private External file: /storage/emulated/0/Android/data/com.example.androiddemo/files/Caches
+           //实际路径
+        /sdcard/Android/data/包名/files/Caches
+        ```
+
+Android10,之后，为了避免应用在共享目录中任意乱写文件，于是提出了`Scoped Storage`，即作用域存储、分区存储或沙盒存储，基本原则如下：
+
+1. App私有文件不需要任何权限
+2. 共有目录,即App独立文件无法通过路径直接访问，不能新建、删除和修改目录/文件等
+3. 共有目录，即App独立文件的访问，需要通过Uri访问
+
+```xml
+//在Application中添加以下属性可以紧致分区存储，但Android 11会强制开启
+android:requestLegacyExternalStorage="true" 
+```
+
+* Android 11 为什么只能通过Uri,而不能通过文件路径访问
+  1. 文件的存储和读取,主要是通过`FileInputStream`和`FileOutputStream`来实现的，看其文件存储的源码可知,在构建`FileDescriptor fd = IoBridge.open(name, O_RDONLY)`时,抛出了权限异常
+  2. 而通过Uri构造的InputStream则可以构`FileDescriptor`,因此适用于Uri读取文件
+
+注：Devices file explorer刷新需要通过刷新手机列表
+
+* 权限总结
+
+  App读写自己新建的文件时，不需要任何权限
+
+  App读写他人新建的文件时，权限区分如下：
+
+  | 类型                       | 权限                                                         |
+  | -------------------------- | ------------------------------------------------------------ |
+  | Internal Storage           | 不可访问                                                     |
+  | External Storage           | 需要授权才可以访问,可以采用File Provider                     |
+  | 系统共有目录               | 可访问媒体文件，但修改需要授权，非媒体文件不可访问，不可授权 |
+  | 应用在sdcard新建的其他文件 | 同上                                                         |
+
+  
+
+## 3、SQLite数据库的使用
 
 * SQLite是一个轻量级的数据库。
 
@@ -2145,7 +2363,7 @@ AnimationSet(boolean shareInterpolator)
 
 # Android 网络
 
-1、TCP 
+## 1、TCP 连接
 
 * 三次握手
 
@@ -2155,9 +2373,126 @@ AnimationSet(boolean shareInterpolator)
 
 ![361632315212_.pic_副本](Android 基础.assets/361632315212_.pic_副本.png)
 
+* TLS\SSL 加密过程
+
+  加密类型：
+
+  * 对称加密：加密解密使用相同的密钥
+  * 非对称加密：加密解密使用不同的密钥，比如用公钥加密，使用私钥解密
+
+  TLS/SSL同时使用了非对称加密和对称加密，原因是对称加密有利于获得较优的通话性能，而非对称加密提供了更好的密钥传输方法。
+
+  * TLS/SSL加密过程的通俗理解
+    * 1、当浏览器向服务器请求一个安全的网页(通常是 https://)，顺便发送可以使用的加密协议
+    * 2、服务器就把它的证书和公钥发回来，以及选择你可以使用的加密协议A
+    * 3、浏览器检查证书是不是由信赖的机构颁发的，确认证书有效和此证书是此网站的
+    * 4、使用公钥加密了一个随机对称密钥，包括加密的Url一起发送给服务器
+    * 5、服务器用自己的私钥解密了你发送的密钥，并用这个随机对成的密钥给浏览器请求的Url解密
+    * 6、然后服务器用浏览器发的对称密钥给浏览器请求的网页加密发送给浏览器
+    * 7、浏览器用对称密钥进行解密阅读，之后都用对成密钥加解密
+
+  | **浏览器**                                                   |                                                           | **服务器**                                                   |
+  | ------------------------------------------------------------ | --------------------------------------------------------- | ------------------------------------------------------------ |
+  | 发起                                                         | —> 1.浏览器通知服务器浏览器所支持的加密协议               | 接收                                                         |
+  | 接收                                                         | <— 2.服务器通知浏览器从1中选用的加密协议,并给予证书       | 发起                                                         |
+  | 3.用CA的公钥鉴别服务器的证书是否有效,有效则生成一个随机数(秘密数),秘密数加上2确定的加密协议产生会话密钥 |                                                           |                                                              |
+  | 发起                                                         | —> 4.浏览器用服务器的公钥加密秘密数发给服务器             | 接收                                                         |
+  |                                                              |                                                           | 5.服务器用私钥对4解密获得秘密数再加上2确定的加密协议产生会话密钥 |
+  |                                                              | <— 握手结束,使用相同的会话密钥加密传输的数据(对称加密) —> |                                                              |
+
+  
+
 * Socket通信
 
   [Socket Java实现通信](https://blog.csdn.net/qq_32035241/article/details/120364967?spm=1001.2014.3001.5501)
+
+## 2、网络请求之——HttpUrlConnection
+
+HttpURLconnection是基于http协议的，支持get，post，put，delete等各种请求方式，是标准的java接口。
+
+* 请求方法     setRequestMethod(Method)
+  * GET
+  * POST
+* 延迟时间    setConnectTimeout(mills)
+
+* 请求头参数 等同于Http的[请求参数](https://www.cnblogs.com/lauhp/p/8979393.html)，这里只记录主要的请求参数和主要调用方法
+
+  请求头参数一律使用setRequestProperty(Key,Value)
+
+  * User-Agent：产生请求的浏览器类型。
+
+    ```xml
+    User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0
+    ```
+
+  * Accept：客户端可识别的内容类型列表。
+
+    ```xml
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    ```
+
+  * accept-language：可以识别的语言
+
+    ```xml
+    Accept-Language: zh-cn,zh;q=0.5
+    ```
+
+  * Content-Type：内容类型
+
+    ```xml
+    Content-Type: application/x-www-form-urlencoded; charset=utf-8
+    ```
+
+* 请求
+
+  ```java
+  //1、创建URl 对象
+  URL url = new URL(furl);
+  //2、创建httpUrlConnection
+  HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+  //3、设置请求头
+  connection.setRequestMethod("POST");
+  connection.setConnectTimeout(6 * 1000);
+  connection.setRequestProperty("Accept-Language", "zh-CN,zh;q=0.8");
+  connection.setRequestProperty("Accept", "*/*");
+  connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+  //4、连接
+  connection.connect();
+  //5、设置响应
+  if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+    result = strread(connection.getInputStream());
+  }
+  //6、关闭连接
+  connection.disconnect();
+  ```
+
+* 读取响应的结果
+
+  ```java
+  //解析inputStream
+  private static String strread(InputStream inputStream) throws IOException {
+    StringBuilder builder = new StringBuilder();
+    byte[] buffer = new byte[1024];
+    int len = 0;
+    while ((len = inputStream.read(buffer)) != -1) {
+      builder.append(new String(buffer, 0, len, "UTF-8"));
+    }
+    inputStream.close();
+    return builder.toString();
+  }
+  
+  //可以用来解析图片等资源
+  private static byte[] byteread(InputStream inputStream) throws IOException {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    byte[] buffer = new byte[1024];
+    int len = 0;
+    while ((len = inputStream.read(buffer)) != -1) {
+      outputStream.write(buffer, 0, len);
+    }
+    inputStream.close();
+    return outputStream.toByteArray();
+  }
+  ```
 
 # Android build.gradle 配置文件
 
@@ -2198,8 +2533,6 @@ AnimationSet(boolean shareInterpolator)
     ```
 
     因此，一般是使用minSdk去兼容更多的机型，更高的targetSdk和compileSdk来维护更好的性能。
-
-  * 
 
   * versionCode
 
