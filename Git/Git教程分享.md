@@ -58,7 +58,7 @@ git log #显示所有提交过的版本信息
 git log --oneline #显示简介的log信息
 git log --graph --oneline #图形化显示当前分支的提交日志
 git log --graph --patch #图形化显示当前分支的提交日志及每次修改的内容
-git log --pretty=format #将日志输出更改为默认格式以外的格式
+git log --pretty=forgit mat #将日志输出更改为默认格式以外的格式
 
 git reflog #显示所有分支的操作记录：可以用来恢复删除的commit 操作
 ```
@@ -220,39 +220,42 @@ git reflog #显示所有分支的操作记录：可以用来恢复删除的commi
 
     ```bash
     git cherry-pick <commitHash>
+    #多个commit一起提交
+    git cherry-pick commitA..commitB   #范围(A,B]
+    git cherry-pick commitA^..commitB  #范围[A,B]
     ```
   * 原理
-
+  
     ![image-20210922154731097](Git教程分享.assets/image-20210922154731097.png)
-
+  
     ```bash
     git cherry-pick f  #在master分支上将f添加到Master
     ```
-
+  
     ![image-20210922154941687](Git教程分享.assets/image-20210922154941687.png)
   * ```bash
     git cherry-pick 分支名称 #将分支最后一次commit添加到Master
     ```
   * 转移多个提交
-
+  
     ```bash
     git cherry-pick <HashA> <HashB>
     ```
   * 终止部分提交
-
+  
     ```bash
     git cherry-pick --abort #回到操作前
     git cherry-pick --quit  #不回到操作前
     ```
   * 合并冲突
-
+  
     ```bash
     #修改完后
     git add .
     git cherry-pick --continue 
     ```
   * 转移某个commit 中部分文件的提交
-
+  
     ```bash
     #-n --no-commit  不提交，将添加的文件放在暂存区
     git cherry-pick -n  <commit_id>

@@ -231,7 +231,40 @@
 
   T(n) =O(n),S(n) = O(1)
 
-  5、
+## 5、[寻找两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/)
 
-  
+```java
+ /**
+     * 二分法实现
+     * 1、考虑将中位数的两类情况归一 [(m+n+1)/2 + (m+n+2)/2]/2
+     * 2、考虑特殊情况 nums为null 或为一
+     * 3、考虑边界问题 nums下标
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    public double findMidTwoByBin(int[] nums1,int [] nums2){
+        int numslength1 = nums1.length;
+        int numslength2 = nums2.length;
+        int left = (numslength1+ numslength2 +1)/2;
+        int right = (numslength1 + numslength2 +2)/2;
+        return (double) (findKth(nums1,0,nums2,0,left) + findKth(nums1,0,nums2,0,right))/2;
+    }
+    /**
+     * 找到第k个值
+     */
+    public int findKth(int [] nums1,int i,int []nums2,int j,int k){
+        if(i >= nums1.length) return nums2[j+k-1];
+        if(j >= nums2.length) return nums1[j+k-1];
+        if(k == 1) return Math.min(nums1[i],nums2[j]);
+        //一般情况
+        int minValuenums1 = (i + k / 2 - 1) < nums1.length ? nums1[i + k / 2 - 1] : Integer.MAX_VALUE;
+        int minValuenums2 = (j + k / 2 - 1) < nums2.length ? nums2[j + k / 2 - 1] : Integer.MAX_VALUE;
+        if(minValuenums1 < minValuenums2){
+            return  findKth(nums1,i+k/2,nums2,j,k-k/2);
+        } else{
+            return  findKth(nums1,i,nums2,j+k/2,k-k/2);
+        }
+    }
+```
 

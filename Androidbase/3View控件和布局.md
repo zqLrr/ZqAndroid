@@ -479,6 +479,8 @@ setScaleType时会重新刷新。
     mDrawMatrix.postTranslate(dx, dy);
   ```
 
+
+
 ## View UI 布局
 
 ### ScrollView

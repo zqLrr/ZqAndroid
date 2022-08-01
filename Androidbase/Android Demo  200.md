@@ -83,6 +83,10 @@
             Intent intent = new Intent(MainActivity.this, Message.class);
             PendingIntent Pi = PendingIntent.getActivity(this, 0, intent, 0);
     
+     //创建通知渠道
+            NotificationChannel channel1 = new NotificationChannel(CHANNEL_1, "热点信息", NotificationManager.IMPORTANCE_HIGH);
+            channel1.setDescription("通知渠道描述");
+             notificationManager.createNotificationChannel(channel1);
     
             //创建消息通知类
             Notification notification = new Notification.Builder(MainActivity.this)
@@ -98,10 +102,7 @@
                     .setContentIntent(Pi)
                     .build();
     
-            //创建通知渠道
-            NotificationChannel channel1 = new NotificationChannel(CHANNEL_1, "热点信息", NotificationManager.IMPORTANCE_HIGH);
-            channel1.setDescription("通知渠道描述");
-            notificationManager.createNotificationChannel(channel1);
+          
             //发送通知
             notificationManager.notify(NOTIFYID, notification);
     ```
