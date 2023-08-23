@@ -200,7 +200,7 @@
     * String callingPackage： Activity1所在的Application 的包名
     * intent
     * String resolvedType:  intent.resolveTypeIfNeeded(who.getContentResolver())
-    * IBinder resultTo: attachToApplication时的mTolen
+    * IBinder resultTo: attachToApplication时的mToken
     * String resultWho:  target != null ? target.mEmbeddedID : null
     * int requestCode: -1
     *  int startFlags:   0 
@@ -1487,7 +1487,7 @@
 * app冷启动的时间的入口和出口，包含Application启动的时间+Activity的启动时间
 * 如何可以控制冷启动的入口代码
 
-微博在ActivityThreadHacker.java
+
 
 
 

@@ -25,7 +25,11 @@ git push origin 分支名
 从2021年8月13日开始，github不再支持用户名和密码的push 方式，而是推荐使用token,方法很简单，在用户名下->Settings->Developer settings->Personal access tokens->generate new token,生成完成后，一定要复制粘贴，因为token只出现一次，将token输入到密码输入的地方即可。当然你也可以用SSH-Key的方式，避免输入的操作。
 ![删除仓库](Git教程分享.assets/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcXFfMzIwMzUyNDE=,size_20,color_FFFFFF,t_70,g_se,x_16.png)
 
-## 1.4 个人网站搭建
+## 1.4 仓库初始化
+
+
+
+## 1.5 个人网站搭建
 
 
 

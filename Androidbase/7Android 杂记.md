@@ -1,6 +1,15 @@
-# 7Android 杂记
+# 7.Android 杂记
 
-## IMSL IMEL MEID ICCID相关知识
+## IMSI IMEI MEID ICCID相关知识
+
+### IMEI
+
+IMEI(International Mobile Equipment Identity)是移动设备国际身份码的缩写，移动装备国际辨识码，是由15位数字组成的"电子[串号](http://baike.baidu.com/view/545571.htm)"，它与每台手机一一对应，而且该码是全世界唯一的。
+
+* 每一部手机在组装完成后都将被赋予一个全球唯一的一组号码，这个号码从生产到交付使用都将被制造生产的厂商所记录。
+* 手机用户可以在手机中查到自己手机的IMEI码。
+* 但是有些手机是有两个IMEL,这是因为在移动设备开发规范中，IMEI和IMSI存在一一对应的关系，所以在双卡双待的情况下，两个IMEL号相对安全。
+* 有些双卡双待也是一个IMEI,是因为手机系统和入网时都不查IMEI.
 
 ###  IMSI
 
@@ -13,15 +22,6 @@ Mcc：Mobile Country Code，移动国家码，MCC的资源由国际电联（ITU�
  MNC:Mobile Network Code，移动网络码，共2位，中国移动TD系统使用00，中国联通GSM系统使用01，中国移动GSM系统使用02，中国电信CDMA系统使用03，一个典型的IMSI号码为460030912121001。
 
  MSIN:Mobile Subscriber Identification Number共有10位，其结构如下：09+M0M1M2M3+ABCD　其中的M0M1M2M3和MDN号码中的H0H1H2H3可存在对应关系，ABCD四位为自由分配。
-
-### IMEI
-
-IMEI(International Mobile Equipment Identity)是移动设备国际身份码的缩写，移动装备国际辨识码，是由15位数字组成的"电子[串号](http://baike.baidu.com/view/545571.htm)"，它与每台手机一一对应，而且该码是全世界唯一的。
-
-* 每一部手机在组装完成后都将被赋予一个全球唯一的一组号码，这个号码从生产到交付使用都将被制造生产的厂商所记录。
-* 手机用户可以在手机中查到自己手机的IMEI码。
-* 但是有些手机是有两个IMEL,这是因为在移动设备开发规范中，IMEI和IMSI存在一一对应的关系，所以在双卡双待的情况下，两个IMEL号相对安全。
-* 有些双卡双待也是一个IMEI,是因为手机系统和入网时都不查IMEI.
 
 ### MEID
 
@@ -40,7 +40,7 @@ Integrate circuit card identity 集成电路卡识别码（固化在手机SIM卡
 ```java
 @RequiresPermission(android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE)
 //IMSI
-telephoneManager.getSub
+telephoneManager.getSubscriberId()
 //ICCID
 telephoneManager.getSimSerialNumber()
  //IMEI MEID
@@ -122,7 +122,9 @@ telephoneManager.getDeviceID()
           Log.d(TAG, "get phone mobile type: "+ type);
         }
 
+蜂窝网络
 
+### Cpu架构（64/32）
 
 ## Android 的权限
 
@@ -280,10 +282,187 @@ WeiboLocationManager#startNotGmsFuzzyLocation
 * CERT.SF
 * CERT.RSA
 
-# Android Gradlew 依赖问题
 
-1. `Program type already present: XXX`
 
-一般是依赖重复导致的，解决方案是排除重复的依赖。
+# Android studio从4.2之后换成新的命名方式
 
-排查依赖的命令：`./gradlew -g 模块名:dependencies`,会出现多个依赖树，
+## 一.背景
+
+> 以下 Android Studio  简称 as
+> 以下 Android Gradle Plugin  简称 AGP
+
+[as官方下载地址](https://www.shouxicto.com/?url=aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5nb29nbGUuY24vc3R1ZGlv)
+
+我刚开始学Android 编程的时候，还在用Eclipse，后面开始用as，从 as `2.0` 不断升级到 `4.2`（2021年4月）。由于 as 本身是基于 Intellij 克隆的，为了和Intellij版本号保持一致， 谷歌在 2020年11月对 as 版本号的叫法进行了变更，点击了解[变更说明](https://www.shouxicto.com/?url=aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vc3R1ZGlvL3JlbGVhc2VzL2dyYWRsZS1wbHVnaW4jdmVyc2lvbmluZy11cGRhdGU=)。
+
+## 二.第一个新版本2020.3.1
+
+如果沿用以前的编号叫法，2021年8月发布的版本应叫 as 4.3。但是，新版编号系统将其命名为 Android Studio Arctic Fox (2020.3.1)，或简称为`Arctic Fox`（北极狐）。
+
+![2021 Android Studio 版本名启用新代号  第1张](7Android 杂记.assets/20210915135120163168508090501.webp)
+
+现在是2021年，怎么新的版本编号名反而叫2020.3.1了，是不是越更新越旧？其实不是这样的，名字只是一个叫法，具体含义如下。
+
+### 2.1 新编号说明
+
+![2021 Android Studio 版本名启用新代号  第2张](7Android 杂记.assets/20210915135121163168508184699.webp)
+
+- 第1 和 第2 组数字：as是基于 IntelliJ  平台的哪个版本进行迭代的。
+- 第3组数字： as 主版本从 1 开始，每个主版本递增 1。
+- 第4组数字： as 次要版本/补丁程序版本，从1开始，每个次要版本递增1。因为是第一个版本，暂时没有补丁。后续如果as升级，会叫做：2020.3.1.1。
+
+此外，还将为每个主要版本提供版本名称，分别以A 到Z 的动物来命名。所以：2020.3.1 ==  Arctic Fox。
+
+### 2.2 为啥as要改名？
+
+- 新的命名更加符合 IntelliJ 的命名规范，与Intellij 版本号 对齐。
+- 新命名给开发者带来了更多的可见性，比如我们能明确知道as版本是基于 IntelliJ 哪个版本开发的。
+
+### 2.3 AGP版本 与 as 版本解耦
+
+以前我们升级了as版本后， 通常会在项目下的build.gradle 里更新 AGP插件版本
+
+```markdown
+   dependencies {
+      classpath "com.android.tools.build:gradle:4.2" // 以前
+     // classpath "com.android.tools.build:gradle:7.0.0" // 现在
+   }
+```
+
+
+
+- 以前Gradle插件的版本一直以来都是与AS的版本保持一致的。
+- 现在AGP的版本与as的版本变化解耦，AGP 版本不再跟随Android Studio的主版本变化和发版节奏。在[AGP 7.0之](https://www.shouxicto.com/?url=aHR0cHM6Ly9hbmRyb2lkLWRldmVsb3BlcnMuZ29vZ2xlYmxvZy5jb20vMjAyMC8xMi9hbm5vdW5jaW5nLWFuZHJvaWQtZ3JhZGxlLXBsdWdpbi5odG1s)后，Gradle将会推出自己的年度主要版本，每年发布一个主要版本。
+- AGP 7.0 最低JDK版本要求`JAVA 11` ，AGP 只会1年发布一个大版本，比如 2021发布了AGP 7.0, 后续补丁也是基于7.1.1 ，7.1.2。  使用稳定版AGP 的项目可以使用较新版本的as中。
+
+https://www.shouxicto.com/?url=aHR0cHM6Ly9naXRodWIuY29tL2FuZHJvaWQvY29tcG9zZS1zYW1wbGVz)
+
+## 三.Canary和Beta区别
+
+- Canary 版：这些是前沿版本，大约每周更新一次，[下载地址](https://www.shouxicto.com/?url=aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vc3R1ZGlvL3ByZXZpZXc=)。
+
+  除了接收 Android Studio 的 Canary 版之外，您还将收到其他 SDK 工具的预览版，包括 Android 模拟器。
+
+  虽然这些版本存在较多的错误，但它们已经过测试，我们希望为您提供这些版本，以便您尝试新功能并提供反馈。此版本不推荐用于生产开发。
+
+- 开发者版：这些是精心挑选的 Canary 版本，已经过全面的内部测试。
+
+- Beta 版：这些是基于稳定 Canary build 的候选版本，这类版本会先收集反馈，然后再作为稳定版进行发布。
+
+- 稳定版：官方稳定版[下载地址](https://www.shouxicto.com/?url=aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vc3R1ZGlv)。
+
+# PackageManager
+
+> PackageManager主要是管理应用程序包，通过它就可以获取应用程序信息
+>
+> 获得已安装的应用程序信息 。可以通过getPackageManager()方法获得。
+
+主要方法：
+
+```java
+public abstract PackageManager getPackageManager()  
+功能：获得一个PackageManger对象  public abstract Drawable getApplicationIcon(String packageName)
+参数： packageName 包名
+功能：返回给定包名的图标，否则返回null
+ 
+public abstract ApplicationInfo   getApplicationInfo(String packageName, int flags)
+参数：packagename 包名,flags 该ApplicationInfo是此flags标记，通常可以直接赋予常数0即可
+功能：返回该ApplicationInfo对象
+public abstract List<ApplicationInfo>  getInstalledApplications(int flags)
+参数：flag为一般为GET_UNINSTALLED_PACKAGES，那么此时会返回所有ApplicationInfo。我们可以对ApplicationInfo
+　　的flags过滤,得到我们需要的。
+功能：返回给定条件的所有PackageInfo
+public abstract List<PackageInfo>  getInstalledPackages(int flags) 
+参数:flag为一般为GET_UNINSTALLED_PACKAGES，那么此时会返回所有PackageInfo。我们可以对ApplicationInfo
+　　的flags过滤,得到我们需要的。
+功能：返回给定条件的所有PackageInfo
+public abstractResolveInfo  resolveActivity(Intent intent, int flags)
+参数：intent查寻条件，Activity所配置的action和category
+　　flags： MATCH_DEFAULT_ONLY  ：Category必须带有CATEGORY_DEFAULT的Activity，才匹配
+　　GET_INTENT_FILTERS   ：匹配Intent条件即可
+　　GET_RESOLVED_FILTER  ：匹配Intent条件即可
+功能 ：返回给定条件的ResolveInfo对象(本质上是Activity)
+public abstract  List<ResolveInfo>  queryIntentActivities(Intent intent, int flags)
+参数同上
+功能 ：返回给定条件的所有ResolveInfo对象(本质上是Activity)，集合对象
+public abstract ResolveInfo  resolveService(Intent intent, int flags)
+参数同上
+功能 ：返回给定条件的ResolveInfo对象(本质上是Service)
+public abstract List<ResolveInfo> queryIntentServices(Intent intent, int flags)
+参数同上
+功能 ：返回给定条件的所有ResolveInfo对象(本质上是Service)，集合对象
+```
+
+* PackageInfo 
+
+  > 说明：手动获取AndroidManifest.xml文件的信息 。
+  >
+  > 常用字段：
+  >
+  > public String  packageName          包名
+  >
+  > public ActivityInfo[]   activities          所有<activity>节点信息
+  >
+  > public ApplicationInfo applicationInfo    <application>节点信息，只有一个
+  >
+  > public ActivityInfo[]  receivers         所有<receiver>节点信息，多个
+  >
+  > public ServiceInfo[]  services         所有<service>节点信息 ，多个
+
+* ResoveInfo
+
+  > 说明：根据<intent>节点来获取其上一层目录的信息，通常是<activity>、<receiver>、<service>节点信息。
+
+* PackageItemInfo
+
+  > 说明： AndroidManifest.xml文件中所有节点的基类，提供了这些节点的基本信息：label、icon、 meta-data。它并不
+  >
+  > 直接使用，而是由子类继承然后调用相应方法。
+
+* ApplicationInfo
+
+  > 说明：获取一个特定引用程序中<application>节点的信息。
+  >
+  > 字段说明：flags字段： FLAG_SYSTEM　系统应用程序、FLAG_EXTERNAL_STORAGE　表示该应用安装在sdcard中
+  >
+  > 常用方法继承至PackageItemInfo类中的loadIcon()和loadLabel()
+
+* ActivityInfo 
+
+  >说明： 获得应用程序中<activity/>或者 <receiver />节点的信息 。我们可以通过它来获取我们设置的任何属性，包括theme 、launchMode、launchmode等.
+  >
+  >常用方法继承至PackageItemInfo类中的loadIcon()和loadLabel()
+
+* ServiceInfo 
+
+  > 说明： 同ActivityInfo类似 ，同样继承自 PackageItemInfo，只不过它表示的是<service>节点信息。
+
+# ActivityManager
+
+# ANR
+
+> ANR——应用无响应，Activity是5秒，BroadCastReceiver是10秒，Service是20秒。
+
+查看ANR 的一个简单方法
+
+1.adb bugreport anrlog.zip
+
+Analog.zip是文件名，可以随便写
+
+2.打开bugreport文件，查找最近一次的ANR
+
+VM TRACES AT LAST ANR
+
+
+
+ANR 产生原因：
+
+1.输入事件超时 5s,包括按键和触摸事件
+
+2.服务超时：前台服务在20s内未执行完成，后台服务在200s内未完成
+
+3.广播类型超时，前台15s,后台60s
+
+4.ContentProvider 在访问ContentProvider可以自定义ANR的时间
+
+在onCreate()时处理耗时操作不会造成ANR的操作，因为在主线程中执行耗时操作后再次点击屏幕按键才会产生ANR，onPause()中更容易产生ANR.

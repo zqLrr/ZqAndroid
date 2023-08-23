@@ -128,7 +128,9 @@ public class OttoActivity extends AppCompatActivity {
 
 
 
+注意事项：
 
+1.Otto在父类中注册是没问题的，但是订阅写在父类是无法收到的
 
 
 

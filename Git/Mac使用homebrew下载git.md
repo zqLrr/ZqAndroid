@@ -60,3 +60,5 @@ https://git-scm.com/download/mac
 
 7、git --version 显示版本即为成功。
 
+
+

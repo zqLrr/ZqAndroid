@@ -911,7 +911,7 @@ Observable.from(students)
 | blockingFirst()           | 阻塞并返回第一个收到的元素                                 |
 | blockingForEach(a - f(a)) | 阻塞每一个元素，直到complete。收到每个元素都调用回调去处理 |
 
-## 5、背压策略
+## 5、背压策略(Flowable)
 
 一种 **控制事件流速** 的策略
 

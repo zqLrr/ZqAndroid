@@ -499,3 +499,4 @@ setScaleType时会重新刷新。
 
 *  android:fillViewport     是否可以拉伸其内容填满Viewport
 
+# View加载流程

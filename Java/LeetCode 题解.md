@@ -1,5 +1,170 @@
 # LeetCode 题解
 
+# 数据结构
+
+栈
+
+- [155. 最小栈 E](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/min-stack/)
+
+思路一：用链表实现
+
+思路二：用辅助栈，将当前最小值的数据入辅助栈，出栈的时候将最小值和辅助栈一起出
+
+```java
+public class MinStack2 {
+
+  class Node {
+    public int val;
+    public int min;
+    public Node next;
+    public  Node(){}
+    public Node(int val,Node next){
+      this.val = val;
+      this.next =next;
+    }
+
+  }
+
+  private Node head;
+
+  public MinStack2() {
+    head = null;
+  }
+
+  public void push(int val) {
+    Node temp = new Node(val,null);
+    if(head == null){
+      head = temp;
+      head.min = val;
+    } else{
+      temp.next = head;
+      temp.min = Math.min(val,head.min);
+      head = temp;
+    }
+  }
+
+  public void pop() {
+    if(head != null){
+      head = head.next;
+    }
+  }
+
+  public int top() {
+    if(head != null){
+      return  head.val;
+    }
+    return 0;
+  }
+
+  public int getMin() {
+    if(head != null){
+      return  head.min;
+    }
+    return 0;
+  }
+}
+```
+
+
+
+- [85. 最大矩形 H](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/maximal-rectangle/)
+
+不会
+
+链表
+
+- [206. 反转链表 E](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/reverse-linked-list/)
+
+- [160. 相交链表 E](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/intersection-of-two-linked-lists/)
+
+- [876. 链表的中间结点 E](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/middle-of-the-linked-list/)
+
+- [21. 合并两个有序链表 E](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/merge-two-sorted-lists/), [23. 合并K个升序链表 H](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/merge-k-sorted-lists/)
+
+- [141. 环形链表 E](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/linked-list-cycle/), [142. 环形链表 II M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+- [19. 删除链表的倒数第 N 个结点 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)
+
+- [287. 寻找重复数 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/find-the-duplicate-number/)
+
+- [146. LRU 缓存机制 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/lru-cache/)
+
+树
+
+- 二叉树前序/中序/[后序遍历](https://www.zhihu.com/search?q=后序遍历&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A1720536467})
+
+  主要是递归和迭代
+
+- [判断是否是平衡二叉树](https://leetcode.cn/problems/ping-heng-er-cha-shu-lcof/)
+
+- [二叉树剪枝](https://leetcode.cn/problems/pOCWxh/)
+
+- [二叉树染色](https://leetcode.cn/problems/er-cha-shu-ran-se-UGC/)
+
+  自底向上的动态规划，此题的重点在于求最优解，不在于染色哪个节点
+
+  动态转移方程染色：dp[i] = max(dp[i],root.val + left[j]+)
+
+  意思是除了当前节点染色，还需要i-1个节点，迭代查找左子树j个，右子树i-1-j个
+
+  如果当前节点不染色的情况下，也就是dp[0] 左子树k个，或者右子树k个，但是因为左右子树不一定能达到k个，最重要的是不用考虑染色情况，不需要知道左右子树的染色情况，只要总价值就行，为dp[0]=Max(Left[])+Max(right[])
+
+- [112. 路径总和 E](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/path-sum/), [113. 路径总和 II M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/path-sum-ii/), [437. 路径总和 III M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/path-sum-iii/)
+
+- [236. 二叉树的最近公共祖先 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+
+- [958. 二叉树的完全性检验 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/check-completeness-of-a-binary-tree/)
+
+- [124. 二叉树中的最大路径和 H](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
+
+**平衡二叉树**
+
+- 基本原理和操作
+- 为什么有了BST和AVL还需要红黑树
+
+**完全二叉树**
+
+- 完全二叉树的插入
+- [222. 完全二叉树的节点个数 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/count-complete-tree-nodes/)
+
+哈希表
+
+[剑指 Offer 48. 最长不含重复字符的子字符串 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+
+**前缀和+哈希表**
+
+- [560. 和为K的子数组 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/subarray-sum-equals-k/)
+- [523. 连续的子数组和 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/continuous-subarray-sum/)
+
+图
+
+- [200. 岛屿数量 M](https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/number-of-islands/)
+- 字节跳动大闯关
+
+并查集
+
+## 查找
+
+## 排序
+
+最短路径、[最小生成树](https://www.zhihu.com/search?q=最小生成树&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A714596562})、网络流建模
+
+## 动态规划
+
+背包问题、最长子序列、计数问题
+
+## 模式匹配
+
+* [5. 最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)
+
+  
+
+## 基础技巧
+
+## 分治、倍增、二分法、[贪心算法](https://www.zhihu.com/search?q=贪心算法&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A714596562})
+
+
+
 ## 1、3的幂
 
 * 题目描述
@@ -266,5 +431,73 @@
             return  findKth(nums1,i,nums2,j+k/2,k-k/2);
         }
     }
+```
+
+6.用两个栈实现队列
+
+
+
+8.[从尾到头打印链表](https://leetcode.cn/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
+
+思路一：利用链表和数组的关系
+
+```java
+int size = 0;
+ListNode temp = head;
+while (head.next != null) {
+  head = head.next;
+  size++;
+}
+head = temp;
+int[] res = new int[size];
+for (int i = size - 1; i >= 0; i--) {
+  res[i] = head.val;
+  head = head.next;
+}
+return res;
+```
+
+思路二:递归 先加最后回溯后加前面的
+
+```java
+ ArrayList<Integer> arrayList = new ArrayList<Integer>();
+    public int[] reversePrint2(ListNode head) {
+        rec(head);
+        int [] res = new int[arrayList.size()];
+        for (int i = 0; i > arrayList.size(); i++) {
+            res[i] = arrayList.get(i);
+        }
+        return res;
+    }
+
+    public void rec(ListNode head){
+        if(head == null)
+            return;
+        rec(head.next);
+        arrayList.add(head.val)
+    }
+
+```
+
+思路三：利用栈先进后出的特性
+
+9.[计算布尔二叉树的值](https://leetcode.cn/problems/evaluate-boolean-binary-tree/)
+
+思路：递归实现 O(n)
+
+```java
+public boolean evaluateTree(TreeNode root) {
+  if(root.val == 2){
+    return evaluateTree(root.left) || evaluateTree(root.right);
+  } else if(root.val == 3){
+    return evaluateTree(root.left) && evaluateTree(root.right);
+  } else {
+    if(root.val == 0){
+      return  true;
+    } else {
+      return  false;
+    }
+  }
+}
 ```
 

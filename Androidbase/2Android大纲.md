@@ -54,7 +54,7 @@
 
     注意：横屏和竖屏切换时会先销毁再重建
 
-  * OnSaveInstanceState() 方法是为了当用户暂时从您的应用切换到其他应用，并在稍后返回您的应用，他们希望界面状态保持不变。但是当Activity因系统限制而被销毁时，该方法和ViewModel()方法来保留用户的瞬时界面状态。
+  * OnSaveInstanceState() 方法是为了当用户暂时从您的应用切换到其他应用，并在稍后返回您的应用，他们希望界面状态保持不变。当Activity因系统限制而被销毁时，该方法和ViewModel()方法来保留用户的瞬时界面状态。
 
 * 启动模式
 
@@ -99,7 +99,10 @@
     A onResume()
     ```
 
-    
+
+* onCreateView()方法
+
+  会在onCreate()时去渲染每个view,每个view完成后会进行这个方法的回调
 
 ## 2、Boradcast Receiver 
 
@@ -736,6 +739,62 @@ ContextWraaper使用的对象mBase是一个ContextImpl对象，因此：
 
 ## 8、Buddle
 
+## 9、OnSaveInstanceState()&&OnRestoreInstanceState()
+
+> 当一个Activity被kill之前，会调用onSaveInstanceState()来保存当前activity的状态数据。然后Activity重新打开时，用来保存状态信息的Bundle会同时传给两个方法,即onRestoreInstanceState() and onCreate()。
+
+* 一般时机为系统异常退出时，会调用onSaveInstanceState()。
+  * 资源相关的系统配置发生改变导致Activity被杀死并重新构建
+  * 因为系统内存不足杀死某些低优先级的Activity而后重新构建
+* 网上说时机有：横竖屏切换、Home键、跳转到第三方应用时，会调用，但是我暂时没验证出来。
+
+onSavedInstanceState()就是系统会默认为我们保存当前Activity的视图结构，如文本框用户输入的数据，ListView滚动的位置等，这些View相关的状态都会为我们保存，其中的数据以Bundle数据形式进行存储，调用时机在onStop()之前。
+
+OnRestoreInstanceState() 和 OnSaveInstanceState()并不在生命周期中。
+OnRestoreInstanceState()在onStart()方法只有调用，将OnSaveInstanceState保存的数据恢复。
+
+![image-20221128165024975](2Android大纲.assets/image-20221128165024975.png)
+
+Activity中:OnSaveInstanceState保存的数据会在onCreate()中获取，在onCreate()中获取需要判断Bundle是否为空。
+
+Fragment中：没有OnRestoreInstanceState方法，保存数据仍然在OnSaveInstanceState(),因此恢复数据应该放在onCreateView()和onActivityCreated()中。
+
+但是有一种情况是不会走到OnSaveInstanceState()中，FragmentA 打开，然后打开FragmentB，接着返回A。
+
+因此可以使用Fragment#arguments()在OnDestoryView中去保存数据。
+
+## 10.onNewIntent()  ——Activity
+
+> 如果在 AndroidManifest.xml 中，将 Activity 的 launchMode 设置成了 "singleTop" 模式，或者在调用 startActivity(Intent) 时，设置了FLAG_ACTIVITY_SINGLE_TOP 标识，那么，当该 Activity 再次被启动时，如果它依然存在于 Activity 栈中，并且刚好处于栈的最顶层时，那么它将不会被重新创建，而是直接使用原来的实例.
+
+具体和启动模式的关系如下：
+
+* SingleTop
+
+  如果当前任务的顶部已存在 Activity 的实例，则系统会通过调用其 `onNewIntent()` 方法来将 intent 转送给该实例，而不是创建 Activity 的新实例。
+
+* SingleTask
+
+  如果另外的任务中已存在该 Activity 的实例，则系统会通过调用其 `onNewIntent()` 方法将 intent 转送到该现有实例，而不是创建新实例。Activity 一次只能有一个实例存在。
+
+* SingleInstance
+
+  和SingleTask相似。
+
+其次在使用StartActivity()中Intent.addFlags(FLAG_ACTIVITY_SINGLE_TOP),会调用onNewIntent()方法。
+
+在TabActivity+Activity +Fragment中，onRestrat()方法每次热启动都会走到，但是onNewIntent()没有走到,即热启动不会走onNewIntent()。
+
+在TabActivity + Fragment中，onRestrat()方法每次热启动都会走到，但是onNewIntent()没有走到,即热启动不会走onNewIntent()。
+
+## 11.onAcitivityResult --Activity&&Fragment
+
+1.Activity和Fragment StartActvityResult()后，是分开的，结果如下：
+
+Fragment.startActivityResult(intent,requestCode), Fragment#onAcitivityResult()会收到正确的requestcode,而Activity会收到RequestCode，但是结果不对。
+
+Activity.startActivityResult(intent,requestCode), Activity#onAcitivityResult()会收到正确的requestcode,而Fragment不会收到RequestCode。
+
 # UI
 
 ## 1、Fragement 生命周期
@@ -907,6 +966,8 @@ F1:onResume()
 
 ![img](https://upload-images.jianshu.io/upload_images/2397836-f1f6a200704884a2.png?imageMogr2/auto-orient/strip|imageView2/2/w/1130/format/webp)
 
+>activity界面显示流程:activity启动后，不会立马去显示界面上的view，而是等到onResume的时候才会真正显示view的时机，首先会触发windowManager.addView方法，在该方法中触发代理对象WindowManagerGlobal的addView方法，代理对象的addView方法中创建了viewRootImpl，将setContentView中创建的decorView通过viewRootImpl的setView方法放到了viewRootImpl中，最终经过viewRootImpl一系列的方法最终调用performTraversals方法。
+
 Activity中包含了一个Window，Window是一个抽象类，Phonewindow是window的实现，PhoneWindow对应一个DecorView和ViewRootImpl，DecorView是一个应用窗口的根容器，它本质上是一个FrameLayout,是最顶层的View，包含两个子元素，TitleView和ContentView。
 
 * View绘制的起点：View的绘制是由ViewRoot来负责的。每个应用程序窗口的decorView都有一个与之关联的ViewRoot对象，这种关联关系是由WindowManager来维护的。
@@ -954,6 +1015,15 @@ Activity中包含了一个Window，Window是一个抽象类，Phonewindow是wind
     第四步：onDrawForeground(canvas)：对前景色跟滚动条进行绘制。
 
     第五步：drawDefaultFocusHighlight(canvas)：绘制默认焦点高亮
+
+4.requestLayout 和 Invalidate的区别
+
+大部分情况下，两者都要一起使用。
+
+requestLayout会直接递归调用父窗口的requestLayout，直到ViewRootImpl,然后触发peformTraversals，由于mLayoutRequested为true，会导致onMeasure和onLayout被调用。不一定会触发OnDraw
+requestLayout触发onDraw可能是因为在在layout过程中发现l,t,r,b和以前不一样，那就会触发一次invalidate，所以触发了onDraw，也可能是因为别的原因导致mDirty非空（比如在跑动画）
+view的invalidate不会导致ViewRootImpl的invalidate被调用，而是递归调用父view的invalidateChildInParent，直到ViewRootImpl的invalidateChildInParent，然后触发peformTraversals，会导致当前view被重绘，由于mLayoutRequested为false，不会导致onMeasure和onLayout被调用，而OnDraw会被调用
+当宽高发生改变的时候调用requestLayout()
 
 4、坐标系
 
@@ -1135,6 +1205,12 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
 ​     			由哪个对象发出，经过哪些对象和最终达到的对象和处理
 
+为什么会有事件分发这个处理？
+
+原因：1.View要处理的Touch事件比较多，比如Touch事件,长按事件和点击事件 
+
+​             2.View是树型结构的
+
 2、事件分发顺序：Activity->ViewGroup->View
 
 3、事件分发机制：
@@ -1143,7 +1219,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
   ![img](https://upload-images.jianshu.io/upload_images/944365-fbf47bbac698759e.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
 
-     首先调用Actvty的dispatchTouchEvent()，判断是否向下分发，若是，执行ViewGroup的dispatchTouchEvent（）。若不是，执行Activity的onTouchEvent()，判断是否在边界内来决定是否消费。
+  首先会调用Activity#dispatchTouchEvent(),进行事件分发，由Activity的结构可知，会有一个Window，实际上就是PhoneWindow,调用Window#superDispatch，通过源码可知调用的是DecorView.superDispatchTouchEvent(),DecorView是Activity中的第一个ViewGroup，它的父类是ViewGroup，将Activity的事件传递到ViewGroup。若传递后被消费，则结束，若未被消费，会调用Activity#onTouchEvent()方法，当前Activity进行消费，会有一个判断是否在边界内，若在，不被消费，若不在被消费。
 
 * GroupView
 
@@ -1380,12 +1456,14 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
 * 文件目录
 
+  ![img](2Android大纲.assets/312618d73ed9cdd1368de634fde27518.png)
+
   ![image-20220125113008059](2Android大纲1.assets/image-20220125113008059.png)
 
   * App独立文件：即所有App都可以共享的文件
 
     正常的使用：`Environment.getExternalStorageDirectory()`,然后自己命名子目录.已过期
-
+  
     ```java
     File sdCard = Environment.getExternalStorageDirectory();
     File directory_pictures = new File(sdCard, "Pictures");
@@ -1394,7 +1472,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
     ```
 
     也可以使用App独立文件中提供的已有目录:`Environment.getExternalStoragePublicDirectory()`
-
+  
     ```java
     File publicfile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
     Log.d(TAG, "publicfile: "+ publicfile.getPath());
@@ -1406,7 +1484,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
     但是以上已经过时，不能使用文件路径读取共有目录，建议采用ContentProvider+ContentResolver+uri
 
     Media和SAF(Storage Access Framework)获取Uri,然后写入文件。
-
+  
     ```java
     //通过Uri获取文件输入流、输出流的方式
      OutputStream fs = getContentResolver().openOutputStream(uri);
@@ -1850,8 +1928,19 @@ ViewModel：如上图所示，ViewModel与Presenter的区别，在MVVM中，View
 
 ## 3、Android进程间通信
 
-* Intent 
+分几个大类
 
+1.进程共享 开启:process=remote，使得所有进程都可以访问这个进程
+
+2.广播
+
+3.Binder机制： AIDL,intent,Messager
+
+4.Socket
+
+5.共享内存 ContentProvider file 
+
+* Intent 
   * Activity，Service，Receiver 都支持在 Intent 中传递 Bundle 数据，而 Bundle 实现了 Parcelable 接口，可以在不同的进程间进行传输。
 
 * 文件共享
@@ -1893,6 +1982,7 @@ ViewModel：如上图所示，ViewModel与Presenter的区别，在MVVM中，View
   * 一次拷贝
   * 分配pid  安全性高
   * 采用C/S的通信模式
+* 广播
 
 # 动画
 
@@ -2434,7 +2524,7 @@ AnimationSet(boolean shareInterpolator)
     * 4、使用公钥加密了一个随机对称密钥，包括加密的Url一起发送给服务器
     * 5、服务器用自己的私钥解密了你发送的密钥，并用这个随机对成的密钥给浏览器请求的Url解密
     * 6、然后服务器用浏览器发的对称密钥给浏览器请求的网页加密发送给浏览器
-    * 7、浏览器用对称密钥进行解密阅读，之后都用对成密钥加解密
+    * 7、浏览器用对称密钥进行解密阅读，之后都用对称密钥加解密
 
   | **浏览器**                                                   |                                                           | **服务器**                                                   |
   | ------------------------------------------------------------ | --------------------------------------------------------- | ------------------------------------------------------------ |
@@ -2538,52 +2628,4 @@ HttpURLconnection是基于http协议的，支持get，post，put，delete等各�
     return outputStream.toByteArray();
   }
   ```
-
-# Android build.gradle 配置文件
-
-* Android
-
-  * compileSdk
-
-    compileSdkVersion告诉gradle使用哪个版本Android SDK编译你的应用，使用任何新添加的API就要使用对应level的Android SDK，但是该配置信息不会加在打包环境中，只是为IDE提供的编译环境。
-
-    推荐使用最新的SDK环境编译
-
-  * minSdk
-
-    指明应用程序运行所需的最小API level，若用户的机型小于这个版本，则无法安装。同时不能使用该level版本SDK所不具备的API。
-
-    你的minSdkVersion要大于你依赖的所有库的minSdkVersion。
-
-    minSDK 决定了你使用的API 版本。
-
-    使用高于minSdkVersion的API，只是编译时会报警告，但是如果运行在低版本手机上，会以为api找不到导致crash
-
-  * targetSdk
-
-    targetSdkVersion 是 Android 系统提供前向兼容的主要手段。意思就是在SDK版本更新后，根据targetSdk来维持原有的行为，假如你当前的targetSDK = 19,当Android系统更新到20时，行为不会发生变化，仍然按19来运行。
-
-    targetSdk决定了你运行的API版本。
-
-    每一Android系统会提供一套API，高版本的API兼容低版本的API。
-
-    使用低版本API的好处，可以兼容更多的机型。
-
-    使用高版本API的好处，提供了更多封装好的API,消除了低版本的一些问题和不足。
-
-    实际上三者之间的关系应该是：
-
-    ```java
-    minSdkVersion <= targetSdkVersion <= compileSdkVersion
-    ```
-
-    因此，一般是使用minSdk去兼容更多的机型，更高的targetSdk和compileSdk来维护更好的性能。
-
-  * versionCode
-
-  * versionName
-
-  * testInstrumentationRunner
-
-* 
 

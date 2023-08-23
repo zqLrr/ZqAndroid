@@ -14,7 +14,7 @@ Java 注解（Annotation）又称 Java 标注，也可以说是给源代码加�
 * 元注解
 * 自定义注解
 
-![image-20211027122140132](Java注解（Annotation）.assets/image-20211027122140132.png)
+![xe](Java注解（Annotation）.assets/image-20211027122140132.png)
 
 ### 基本注解
 
@@ -115,7 +115,7 @@ Java内置的注解共有5个：
   有一个枚举数组属性`ElementType `，有以下几种类型：
 
   * TYPE：用于描述类、接口(包括注解类型) 或enum声明
-  * FIELD：用于描述域
+  * FIELD：用于描述属性
   * METHOD：用于描述方法
   * PARAMETER： 用于描述参数
   * CONSTRUCTOR： 用于描述构造器
@@ -131,7 +131,7 @@ Java内置的注解共有5个：
   @Target(ElementType.ANNOTATION_TYPE)
   public @interface Target {
       ElementType[] value();
-  }
+  }s s s s s s s s s s s s s s s s s s s s s s s s s s s s
   ```
 
 * **@Documented**：表明这个注解应该被 javadoc工具记录. 默认情况下,javadoc是不包括注解的. 但如果声明注解时指定了 @Documented,则它会被 javadoc 之类的工具处理, 所以注解类型信息也会被包括在生成的文档中，是一个标记注解，没有成员。
@@ -227,46 +227,46 @@ public @interface Table {
 //获取注解使用实例
 
 //注解 @Master 和@Shusheng
- @Repeatable(ShuShengs.class)
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.TYPE)
-    public @interface ShuSheng {
-        String name() default "ben";
-        int age();
-    }
+@Repeatable(ShuShengs.class)
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface ShuSheng {
+  String name() default "ben";
+  int age();
+}
 
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.TYPE)
-    public @interface ShuShengs {
-        ShuSheng[] value();
-    }
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface ShuShengs {
+  ShuSheng[] value();
+}
 
-    //使用注解的类 Anose Annotation
-    @Master
-    public class AnoBase {
-    }
+//使用注解的类 Anose Annotation
+@Master
+public class AnoBase {
+}
 
-    @ShuSheng(name="frank",age=18)
-    @ShuSheng(age = 20)
-    public class AnnotationDemo extends AnoBase{
-    }
+@ShuSheng(name="frank",age=18)
+@ShuSheng(age = 20)
+public class AnnotationDemo extends AnoBase{
+}
 
-    public static  void main(String[] args){
+public static  void main(String[] args){
 
-        Class<?> cInstance=AnnotationDemo.class;
+  Class<?> cInstance=AnnotationDemo.class;
 
-        //获取AnnotationDemo上的重复注解
-        ShuSheng[] ssAons= cInstance.getAnnotationsByType(ShuSheng.class);
-        System.out.println("重复注解:"+ Arrays.asList(ssAons).toString());
+  //获取AnnotationDemo上的重复注解
+  ShuSheng[] ssAons= cInstance.getAnnotationsByType(ShuSheng.class);
+  System.out.println("重复注解:"+ Arrays.asList(ssAons).toString());
 
-        //获取AnnotationDemo上的所有注解，包括从父类继承的
-        Annotation[] allAno=cInstance.getAnnotations();
-        System.out.println("所有注解:"+Arrays.asList(allAno).toString());
+  //获取AnnotationDemo上的所有注解，包括从父类继承的
+  Annotation[] allAno=cInstance.getAnnotations();
+  System.out.println("所有注解:"+Arrays.asList(allAno).toString());
 
-        //判断AnnotationDemo上是否存在Master注解
-        boolean isP=cInstance.isAnnotationPresent(Master.class);
-        System.out.println("是否存在Master: "+isP);
-    }
+  //判断AnnotationDemo上是否存在Master注解
+  boolean isP=cInstance.isAnnotationPresent(Master.class);
+  System.out.println("是否存在Master: "+isP);
+}
 ```
 
 输出结果如下：
@@ -287,6 +287,17 @@ APT是Annotation-Processing-tool的简写，称为**注解处理器**，一般�
 ## Android 注解处理器(Android Annotation Processor)
 
 Android 中常用的APT有**ButterKnife**, **Dagger2**，**Glide**等，只关注第二种注解的处理方式。
+
+APT的使用：
+
+1.继承AbstractProcessor
+
+2.实现Processor的关键方法
+
+3.注册处理器
+
+* 手动注册
+* 自动注册
 
 [仿照ButterKnife简单的做个注解](https://blog.csdn.net/shusheng0007/article/details/90734159)
 

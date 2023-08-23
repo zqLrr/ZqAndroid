@@ -1,3 +1,5 @@
+
+
 # JAVA 多线程和线程池详解
 
 ## 线程知识整理
@@ -11,7 +13,7 @@
 
 #### 内核线程模型(一对一模型)
 
-内核线程模型即完全依赖操作系统内核提供的内核线程(Kernel-Level Thread ，KLT)来实现多线程，这个模型线程的切换调度由系统内核完成，系统内核负责将多个线程执行的任务映射到各个CPU中去执行。LWP(Light Weight Process),即轻量级进程，系统内核提供给用户进程的接口。
+内核线程模型即完l
 
 <img src="JAVA 线程详解.assets/b1bbc9bc78b2fb060bdfc244057fcf3c.png" alt="b1bbc9bc78b2fb060bdfc244057fcf3c" style="zoom:50%;" />
 
@@ -61,7 +63,12 @@ Java线程的内存模型是基于操作系统提供的原生线程模型来实�
   * stop() 强制结束当前线程，已被interrupt()代替
   * interrupt() 中断线程，自己中断自己是没问题的，但是如果是其他的线程，需要判断
   * checkAccess() 判断是否外部可以中断该线程
-  * 
+  * wait() 等待 必须在synchronized上使用。 Wait() 是object的方法，而不是Thread
+  * notify()/notifyAll() 唤醒.         notify()/notifyall() 是object的方法，而不是Thread
+  * suspend() 挂起线程  不推荐使用 因为会占用Cpu和锁不放
+  * resume()  继续线程
+  * Join() 阻塞当前线程，内部方法上的上线是wait()
+  * yield() 让当前线程让出
 
 * 实现runable
 
@@ -335,7 +342,7 @@ Lock锁的方法相比较于synchorized,需要手动的去实现启动同步和�
 
   * maximumPoolSize。最大线程数，知识点：如果使用的是无界队列，这个参数是不会起作用的，具体看线程的执行流程
 
-  * keepAliveTime  空闲线程最大生存空间，当线程数>corePoolSize时，若一个线程空闲的时间达到了keepAliveTime，则会终止，直到线程数不超过corePoolSize。如果调用了`allowCoreThreadTimeOut`(boolean)方法，可以将`allowCoreThreadTimeOut`设置为true.此时会将keepAliveTime扩展到corePoolSize线程以内，即只要线程空闲的时间达到了keepAliveTime，就会会终止线程；
+  * keepAliveTime  空闲线程最大生存空间，当线程数>corePoolSize时，若一个线程空闲的时间达到了keepAliveTime，则会终止，直到线程数不超过corePoolSize。如果调用了`allowCoreThreadTimeOut`(boolean)方法，可以将`allowCoreThreadTimeOut`设置为true.此时会将keepAliveTime扩展到corePoolSize线程以内，即只要线程空闲的时间达到了keepAliveTime，就会终止线程；
 
   * unit 线程存活时间的的单位。可选的单位有`days`、`hours`等。
 
@@ -385,34 +392,36 @@ Lock锁的方法相比较于synchorized,需要手动的去实现启动同步和�
 
 ​                 可以自定义线程策略，比如不拒绝而是添加线程数，再比如记录日志后进行重试
 
-                ```java
-                //添加线程
-                public void rejectedExecution(Runnable runnable, ThreadPoolExecutor threadPoolExecutor) {
-                  if (null == threadPoolExecutor || threadPoolExecutor.isShutdown()) {
-                    return;
-                  }
-                
-                  int maxSize = threadPoolExecutor.getMaximumPoolSize();
-                  threadPoolExecutor.setMaximumPoolSize(++maxSize);
-                  threadPoolExecutor.execute(runnable);
-                }
-                //拒绝后记录日志并重试
-                @Override
-                public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-                  String msg = String.format("Thread pool is EXHAUSTED!" +
-                                             " Thread Name: %s, Pool Size: %d (active: %d, core: %d, max: %d, largest: %d), Task: %d (completed: "
-                                             + "%d)," +
-                                             " Executor status:(isShutdown:%s, isTerminated:%s, isTerminating:%s), in %s://%s:%d!",
-                                             threadName, e.getPoolSize(), e.getActiveCount(), e.getCorePoolSize(), e.getMaximumPoolSize(),
-                                             e.getLargestPoolSize(),
-                                             e.getTaskCount(), e.getCompletedTaskCount(), e.isShutdown(), e.isTerminated(), e.isTerminating(),
-                                             url.getProtocol(), url.getIp(), url.getPort());
-                  logger.warn(msg);
-                  dumpJStack();
-                  dispatchThreadPoolExhaustedEvent(msg);
-                  throw new RejectedExecutionException(msg);
-                }
-                ```
+~~~java
+       
+            //添加线程
+            public void rejectedExecution(Runnable runnable, ThreadPoolExecutor threadPoolExecutor) {
+              if (null == threadPoolExecutor || threadPoolExecutor.isShutdown()) {
+                return;
+              }
+            
+              int maxSize = threadPoolExecutor.getMaximumPoolSize();
+              threadPoolExecutor.setMaximumPoolSize(++maxSize);
+              threadPoolExecutor.execute(runnable);
+            }
+            //拒绝后记录日志并重试
+            @Override
+            public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+              String msg = String.format("Thread pool is EXHAUSTED!" +
+                                         " Thread Name: %s, Pool Size: %d (active: %d, core: %d, max: %d, largest: %d), Task: %d (completed: "
+                                         + "%d)," +
+                                         " Executor status:(isShutdown:%s, isTerminated:%s, isTerminating:%s), in %s://%s:%d!",
+                                         threadName, e.getPoolSize(), e.getActiveCount(), e.getCorePoolSize(), e.getMaximumPoolSize(),
+                                         e.getLargestPoolSize(),
+                                         e.getTaskCount(), e.getCompletedTaskCount(), e.isShutdown(), e.isTerminated(), e.isTerminating(),
+                                         url.getProtocol(), url.getIp(), url.getPort());
+              logger.warn(msg);
+              dumpJStack();
+              dispatchThreadPoolExhaustedEvent(msg);
+              throw new RejectedExecutionException(msg);
+            }
+            ```
+~~~
 
 线程池参数设置的参考设置建议：
 
@@ -526,12 +535,61 @@ Android 中使用遇到的问题：
 
 2、使用非核心线程创建Looper,线程会被回收
 
-原因：
+原因：非核心线程会有存活时间，当非核心线程空闲时间超过存活时间会被回收。
 
 解决方案：
 
+# 实战Java并发程序设计 笔记
 
+必须知道的概念：
 
+`同步`：必须等到结果返回才会可以继续执行
 
+`异步`：不需要等返回结果就可以继续执行
 
-工作，换成单线程池去创建
+`并发`：两个或多个任务执行的时候是轮流交替执行的，单核Cpu执行多线程的时候就是并发
+
+`并行`：两个或多个任务执行的时候是并行执行
+
+`临界区`：在并行时，多个线程共享的资源
+
+`阻塞`：在线程拿不到自己继续执行的资源时，就会挂起，就是阻塞。
+
+`死锁`：死锁指线程之间都占有对方想要的资源，造成线程都无法执行。
+
+`饥饿`：指某个线程因为种种原因一直无法获得自己想要的资源，比如优先级过低
+
+`活锁`：指线程的资源策略，一直冲突
+
+`并发级别`：根据并发策略的进行分类
+
+* `阻塞`
+* `无饥饿`
+* `无障碍`
+* `无锁`
+* `无等待`
+
+`原子性`：线程操作过程是不可中断的
+
+`可见性`：当一个线程修改了某一个共享变量的值时，其他线程是否能够立即知道这个修改。
+
+`有序性`：因为cpu流水线的操作（为了提高执行效率），会进行指令重排，从而造成不是那么有序
+
+但是指令重排的前提是保证串行语义的一致性。
+
+`指令重排的排序原则`：Happen-Before原则
+
+> 程序顺序原则：一个线程内保证语义的串行性
+>
+> volatile规则:volatile变量的写先于读发生，这保证了volatile变量的可见性
+>
+> 锁规则：解锁必然发生在随后的加锁前
+>
+> 线程的start()先于它的每一个动作
+>
+> 线程的所有操作先于线程的终结(Thread.join())
+>
+> 线程的中断（interrupt()）先于被中断线程的代码
+>
+> 对象的构造函数的执行、结束先于finalize()方法
+

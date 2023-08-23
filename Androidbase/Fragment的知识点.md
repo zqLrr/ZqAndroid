@@ -37,7 +37,7 @@
 
   * addToBackStack()方法影响Fragment的生命周期
     * 不添加该方法，替换Fragment时会销毁fragment实例
-    * 添加该方法，替换Fragment时只会销毁界面
+    * 添加该方法，替换Fragment时只会销毁View
   * add(): onAttach()->…->onResume()。
   * remove(): onPause()->…->onDetach()。
   * replace(): 相当于旧Fragment调用remove()，新Fragment调用add()。和addToBackStack()有关
@@ -175,7 +175,7 @@
     
     * attach():重建view视图，附加到UI上并显示。
     
-    * addToBackStack( string name):可选方法。FragmentManager拥有回退栈（BackStack），类似于Activity的任务栈，如果添加了该语句，就把该事务加入回退栈，当用户点击返回按钮，会回退该事务（回退指的是如果事务是`add(frag1)`，那么回退操作就是`remove(frag1)`；如果没添加该语句，用户点击返回按钮会直接销毁Activity。name为添加的fragment标签名称。
+    * addToBackStack( string name):可选方法。FragmentManager拥有回退栈（BackStack），类似于Activity的任务栈，如果添加了该语句，就把该事务加入回退栈，当用户点击返回按钮，会回退该事务（回退指的是如果事务是`add(frag1)`，那么回退操作就是`remove(frag1)`；如果没添加该语句，用户点击返回按钮会直接销毁。name为添加的fragment标签名称。
     
     * popBackStack(): 从栈里弹出Fragment，是异步执行的，是丢到主线程的MessageQueue执行，popBackStackImmediate()是其同步方法
       * 无参  将回退栈的栈顶弹出，并回退该事务。
