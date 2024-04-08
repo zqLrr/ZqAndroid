@@ -1,0 +1,705 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Android Demo 200 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#android-demo-200" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Android Demo  200
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1、抽屉式公告
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2、滑动菜单
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3、退出对话框
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4、消息通知
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5、苹果退出对话框
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6、底部导航栏的实现方式
+  </a>
+  
+    <nav class="md-nav" aria-label="6、底部导航栏的实现方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tablayout-fragement" class="md-nav__link">
+    方式一：TabLayout + Fragement
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="android-demo-200">Android Demo  200</h1>
+<h2 id="1">1、抽屉式公告</h2>
+<ul>
+<li>
+<p>设置SlidingDrawer控件</p>
+</li>
+<li>
+<p>设置抽屉引导按钮</p>
+</li>
+<li>
+<p>设置抽屉显示内容</p>
+</li>
+<li>
+<p>实现全屏抽屉式广告</p>
+</li>
+</ul>
+<p><code>xml
+  android:content="@id/show_content"  //SlidingDraw 显示内容
+  android:handle="@id/ly_1" //打开抽屉式公告的按钮</code></p>
+<h2 id="2">2、滑动菜单</h2>
+<ul>
+<li>绘制隐藏菜单界面</li>
+<li>新建一个HorizontalScrollView的子类View，用来设置滚动</li>
+<li>在View 中重写onMeasure()、onLayout()、onTouchEvent()方法</li>
+<li>绘制主界面，将View添加进去</li>
+<li>遇到的问题</li>
+<li>因为总体主题布局，Button的颜色不变<ul>
+<li>MainActivity 继承Activity</li>
+<li>修改主题</li>
+</ul>
+</li>
+</ul>
+<h2 id="3">3、退出对话框</h2>
+<ul>
+<li>
+<p>实现主界面布局</p>
+</li>
+<li>
+<p>实现Dialog布局</p>
+</li>
+<li>
+<p>新建动画自定义样式</p>
+</li>
+<li>
+<p>新建一个Dialog继承Dialog，绘制布局</p>
+</li>
+<li>
+<p>在主布局中实现onKeyDown()函数</p>
+</li>
+</ul>
+<p><code>java
+    @Override
+      public boolean onKeyDown(int keyCode, KeyEvent event) {
+          //如果单击了返回按钮
+          if(keyCode == KeyEvent.KEYCODE_BACK){
+              dlg = new Dialog(this);
+              dlg.setCancelable(false);//点击空白处不消失
+              Window window = dlg.getWindow();
+              window.setContentView(R.layout.dialog_layout);
+              window.setWindowAnimations(R.style.myStyle);
+              Bt_Ensure = (Button)window.findViewById(R.id.Ensure);
+              Bt_Cancle =(Button)window.findViewById(R.id.Cancle);
+              initEvent();
+              dlg.show(); //显示对话框
+  }</code></p>
+<h2 id="4">4、消息通知</h2>
+<ul>
+<li>
+<p>创建主布局和消息返回的布局</p>
+</li>
+<li>
+<p>发送消息（在Android8.0之后，必须要添加通知渠道）</p>
+</li>
+<li>
+<p>获取通知服务管理</p>
+</li>
+<li>
+<p>创建通知渠道</p>
+</li>
+<li>
+<p>创建一个启动其他Activity的Intent (PendingIntent)</p>
+</li>
+<li>
+<p>创建消息通知类</p>
+</li>
+<li>
+<p>发送通知</p>
+<p>```java
+      //获取通知服务管理
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</p>
+<pre><code>    //创建一个启动其他消息的Intent
+    Intent intent = new Intent(MainActivity.this, Message.class);
+    PendingIntent Pi = PendingIntent.getActivity(this, 0, intent, 0);
+</code></pre>
+<p>//创建通知渠道
+        NotificationChannel channel1 = new NotificationChannel(CHANNEL_1, "热点信息", NotificationManager.IMPORTANCE_HIGH);
+        channel1.setDescription("通知渠道描述");
+         notificationManager.createNotificationChannel(channel1);</p>
+<pre><code>    //创建消息通知类
+    Notification notification = new Notification.Builder(MainActivity.this)
+            .setChannelId(CHANNEL_1)  //设置消息通道渠道
+            .setAutoCancel(true)    //设置打开消息通知后该通知自动消失
+            .setTicker("第一条通知发送了")
+            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)) //设置下拉列表中的大图
+            .setContentTitle("我是标题")  //设置标题
+            .setContentText("点击查看详情")
+            .setWhen(System.currentTimeMillis()) //设置当前时间为发送时间
+            //设置标题蓝消息通知小图标
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentIntent(Pi)
+            .build();
+
+    //发送通知
+    notificationManager.notify(NOTIFYID, notification);
+</code></pre>
+<p>```</p>
+</li>
+</ul>
+<h2 id="5">5、苹果退出对话框</h2>
+<ul>
+<li>
+<p>建立退出对话框的Activity</p>
+</li>
+<li>
+<p>创建对话框布局和样式</p>
+</li>
+</ul>
+<p>```xml
+  <?xml version="1.0" encoding="utf-8"?></p>
+<p><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:background="@drawable/mdialog_bg"
+      android:orientation="vertical"
+      android:layout_height="match_parent">
+  <!--    对话框标题区域--></p>
+<p><RelativeLayout
+      android:layout_width="@dimen/layout_width"
+      android:layout_height="@dimen/layout_height"
+      android:id="@+id/layout_title"
+      android:gravity="center">
+      <TextView
+          android:id="@+id/title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/text_title"
+          android:textColor="@color/black"
+          android:gravity="center"/>
+  </RelativeLayout>
+  <!--    对话框横线--></p>
+<pre><code>  &lt;View
+      android:layout_width="@dimen/layout_width"
+      android:layout_height="1dp"
+      android:background="@color/grey"
+      android:layout_below="@+id/layout_title"
+      android:layout_marginBottom="10dp"/&gt;
+</code></pre>
+<!--    对话框按钮-->
+<pre><code>  &lt;RelativeLayout
+      android:id="@+id/bottomBtn"
+      android:layout_width="@dimen/layout_width"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/layout_title"&gt;
+      &lt;LinearLayout
+          android:layout_width="@dimen/layout_width"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"&gt;
+</code></pre>
+<!--            取消按钮-->
+<pre><code>          &lt;Button
+              android:id="@+id/btn_cancle"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:text="@string/text_cancel"
+              android:textColor="@color/blue"
+              android:paddingTop="10dp"
+              android:paddingBottom="10dp"/&gt;
+          &lt;View
+              android:layout_width="1dp"
+              android:layout_height="match_parent"
+              android:background="@color/grey"/&gt;
+          &lt;Button
+              android:id="@+id/btn_exit"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:text="@string/text_exit"
+              android:textColor="@color/blue"
+              android:paddingTop="10dp"
+              android:paddingBottom="10dp"/&gt;
+      &lt;/LinearLayout&gt;
+  &lt;/RelativeLayout&gt;
+</code></pre>
+<p></RelativeLayout>
+  ```</p>
+<ul>
+<li>新建Mdialog 继承于Dialog，添加样式和布局</li>
+</ul>
+<p><code>java
+   super(context,R.style.mdialog);
+   //绘制背景
+   View view = LayoutInflater.from(getContext()).inflate(R.layout.activity_mdialog,null);</code></p>
+<ul>
+<li>在Activity中显示对话框，并对取消和确定退出按钮添加点击事件</li>
+</ul>
+<h2 id="6">6、底部导航栏的实现方式</h2>
+<h3 id="tablayout-fragement">方式一：TabLayout + Fragement</h3>
+<ul>
+<li>xml : 使用TabLayout控件</li>
+</ul>
+<p><code>xml
+  &lt;com.google.android.material.tabs.TabLayout
+              android:id="@+id/visitor_tab"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              app:tabTextColor="@color/black"
+              app:tabIndicatorHeight="0dp"
+              app:tabSelectedTextColor="@color/purple_700"/&gt;</code></p>
+<ul>
+<li>
+<p>Java文件</p>
+</li>
+<li>
+<p>初始化数据</p>
+</li>
+<li>
+<p>添加Tab监听</p>
+<p>```java
+mTablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+  @Override
+  public void onTabSelected(TabLayout.Tab tab) {
+    onTabItemSelected(tab.getPosition());
+    //改变Tab状态
+    for(int i= 0;i&lt;mTablayout.getTabCount();i++){
+      if(i == tab.getPosition()){                 mTablayout.getTabAt(i).setIcon(getResources().getDrawable(DataGenerator.mTabResPressed[i]));
+      }else{
+ mTablayout.getTabAt(i).setIcon(getResources().getDrawable(DataGenerator.mTabRes[i]));
+      }
+    }
+  }</p>
+<p>@Override
+  public void onTabUnselected(TabLayout.Tab tab) {</p>
+<p>}</p>
+<p>@Override
+  public void onTabReselected(TabLayout.Tab tab) {</p>
+<p>}
+});
+```</p>
+<p>重点实现onTabSelected函数</p>
+<ul>
+<li>Fragment的替换</li>
+<li>图标的替换</li>
+</ul>
+</li>
+<li>
+<p>添加Tab选项</p>
+<p><code>java
+mTablayout.addTab(mTablayout.newTab().setIcon(getResources().getDrawable(R.drawable.tab_home_selector)).setText(DataGenerator.mTabTitle[0]),true);</code></p>
+</li>
+</ul>
+<p>注意：添加Tab选项要在Tab监听之后</p>
+<p>​           可以使用setCustomView实现Tab的自定义布局</p>
+<p>优点：TabLayout提供了现成的控件和方法，了解了其属性和API后，能快速的实现底部导航栏</p>
+<p>缺点：可扩展性较差，只能使用固定的Api。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

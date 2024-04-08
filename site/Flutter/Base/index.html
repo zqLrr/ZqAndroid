@@ -1,0 +1,1548 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Flutter基础入门 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#flutter" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Flutter基础入门
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1mac" class="md-nav__link">
+    1、Mac 安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2hello-word" class="md-nav__link">
+    2、Hello Word 第一个实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3、常用组件
+  </a>
+  
+    <nav class="md-nav" aria-label="3、常用组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-text" class="md-nav__link">
+    3.1 Text常用组件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-container" class="md-nav__link">
+    3.2 Container组件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-image" class="md-nav__link">
+    3.3 Image 图片组件的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-listview" class="md-nav__link">
+    3.4 ListView
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-flutteractionbutton" class="md-nav__link">
+    3.5 FlutterActionButton
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-bottomappbar" class="md-nav__link">
+    3.6 BottomAppBar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4flutter" class="md-nav__link">
+    4、Flutter的布局
+  </a>
+  
+    <nav class="md-nav" aria-label="4、Flutter的布局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-row" class="md-nav__link">
+    4.1 水平布局 Row
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-column" class="md-nav__link">
+    4.2 垂直布局  Column
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-stack" class="md-nav__link">
+    4.3 层叠布局  Stack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-listview34" class="md-nav__link">
+    4.4  ListView布局（见3.4）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-gridview-34" class="md-nav__link">
+    4.5 GridView布局 （见3.4）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-card" class="md-nav__link">
+    4.6 卡片布局 card
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5、导航
+  </a>
+  
+    <nav class="md-nav" aria-label="5、导航">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1  导航函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 导航参数的传递和接收
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    5.3 异步等待返回函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6、生命周期
+  </a>
+  
+    <nav class="md-nav" aria-label="6、生命周期">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statelesswidget" class="md-nav__link">
+    StatelessWidget
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statefulwidget" class="md-nav__link">
+    StatefulWidget
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createstate" class="md-nav__link">
+    createState
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initstate" class="md-nav__link">
+    initState
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#didchangedependencies" class="md-nav__link">
+    didChangeDependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    build
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addpostframecallback" class="md-nav__link">
+    addPostFrameCallback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#didupdatewidget" class="md-nav__link">
+    didUpdateWidget
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deactivate" class="md-nav__link">
+    deactivate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispose" class="md-nav__link">
+    dispose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-applifecyclestate" class="md-nav__link">
+    App生命周期: AppLifeCycleState
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    7、实例进阶
+  </a>
+  
+    <nav class="md-nav" aria-label="7、实例进阶">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    7.1、底部导航栏
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    7.2 实现安装包下载和安装
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="flutter">Flutter基础入门</h1>
+<h2 id="1mac">1、Mac 安装</h2>
+<ul>
+<li><a href="https://flutter.dev/docs/get-started/install/macos">配置SDK</a></li>
+<li>
+<p>下载SDK</p>
+</li>
+<li>
+<p>配置环境变量</p>
+<p><code>bash
+ export PATH="$PATH:`pwd`/flutter/bin"</code></p>
+</li>
+</ul>
+<p><code>pwd</code>为flutter SDK的解压路径</p>
+<ul>
+<li>检查依赖项</li>
+</ul>
+<p><code>bash
+  flutter doctor</code></p>
+<p>按照提示将所有的错误修改过来，直到检测没有问题</p>
+<ul>
+<li>
+<p>安装Android studio就可以使用</p>
+</li>
+<li>
+<p>安装Flutter和Dart插件</p>
+</li>
+<li>
+<p>配置VSCode</p>
+</li>
+<li>
+<p>下载Flutter插件</p>
+</li>
+</ul>
+<h2 id="2hello-word">2、Hello Word 第一个实例</h2>
+<ul>
+<li>热更新   可以随时更新</li>
+<li>Vscode  <code>o</code>切换预览模式 如Android ios mac</li>
+</ul>
+<h2 id="3">3、常用组件</h2>
+<h3 id="31-text">3.1 Text常用组件</h3>
+<ul>
+<li>TextAlign    文本对齐方式</li>
+<li>maxLines    设置行数</li>
+<li>overflow    设置文本溢出</li>
+<li>clip     直接切断</li>
+<li>ellipsis 显示省略号</li>
+<li>fade    显示渐变效果</li>
+<li><a href="https://docs.flutter.io/flutter/painting/TextStyle-class.html">style</a></li>
+</ul>
+<h3 id="32-container">3.2 Container组件</h3>
+<ul>
+<li>Alignment  容器内child的对其方式   纵向+横向</li>
+<li>宽高和颜色属性  和前端html一致</li>
+<li>padding     内边距</li>
+<li>const EdgeInsets.all(data)</li>
+<li>const EdgeInsets.fromLTRB(v1,v2,v3,v4)</li>
+<li>margin.      外边距</li>
+<li>const EdgeInsets.all(data)</li>
+<li>const EdgeInsets.fromLTRB(v1,v2,v3,v4)</li>
+<li>decoration  装饰 修饰背景和边框</li>
+<li>BoxDecoration 实现渐变</li>
+<li>border 边框</li>
+</ul>
+<h3 id="33-image">3.3 Image 图片组件的使用</h3>
+<ul>
+<li>加载图片的方式</li>
+<li>
+<p>Image.asset:  加载资源图片，就是将加载项目资源目录中的图片，加入图片后会增大打包的体积，使用相对路径</p>
+<p>加载相对路径时，需要在pubsec.yaml中添加</p>
+<p><code>dart
+  assets:
+  - images/1.webp //相对路径的资源</code></p>
+</li>
+<li>
+<p>Image.network:  网络资源图片</p>
+</li>
+<li>
+<p>Image.file： 加载本地图片，就是加载本地文件中的图片，与包体无关</p>
+</li>
+<li>
+<p>Image.memory： 加载Unit8List资源图片</p>
+</li>
+<li>Fit   控制图片的拉伸和挤压</li>
+<li>BoxFit.fill ：全图显示，图片会被拉伸，并充满父容器</li>
+<li>BoxFit.contain：全图显示，显示原比例，可能会有空隙</li>
+<li>BoxFit.cover：原比例覆盖父容器，但可能会被裁减</li>
+<li>BoxFit.fitWidth：横向充满容器，纵向可能会被拉伸，可能被裁减</li>
+<li>BoxFit.fitHeight：纵向充满容器，横向可能会被拉伸，可能被裁减</li>
+<li>BoxFit.scaleDown：全图显示，但不允许超过原图片大小</li>
+<li>colorBlendMode      图片混合模式</li>
+<li>Color 和 colorBlendMode混合使用，可以修改图片的颜色</li>
+<li>repeat  图片重复</li>
+<li>ImageRepeat.repeat：横向和纵向都进行重复</li>
+<li>ImageRepeat.repeatX: 横向重复，纵向不重复</li>
+<li>ImageRepeat.repeatY: 纵向重复，横向不重复</li>
+</ul>
+<h3 id="34-listview">3.4 ListView</h3>
+<ul>
+<li>
+<p>使用Widget 数组</p>
+</li>
+<li>
+<p>ListTitle组件</p>
+</li>
+<li>
+<p>title:Text</p>
+</li>
+<li>subtitle:Text</li>
+<li>
+<p>leading: icon</p>
+</li>
+<li>
+<p>图片列表</p>
+</li>
+</ul>
+<p><code>dart
+  body: new ListView(
+    children:&lt;Widget&gt;[
+     new Image.network(
+        'http://jspang.com/static/upload/20181111/G-wj-ZQuocWlYOHM6MT2Hbh5.jpg'
+      ),
+       new Image.network(
+        'http://jspang.com/static/upload/20181109/1bHNoNGpZjyriCNcvqdKo3s6.jpg'
+      ),
+       new Image.network(
+        'http://jspang.com/static/myimg/typescript_banner.jpg'
+      ),new Image.network(
+        'http://jspang.com/static/myimg/smile-vue.jpg'
+      )
+    ]
+  ),</code></p>
+<ul>
+<li>
+<p>横向列表</p>
+</li>
+<li>
+<p>scrollDirection:Axis.horizontal</p>
+</li>
+<li>
+<p>优化代码：一切皆组件，可以将组件的形式用类实现，拆分出组件</p>
+</li>
+</ul>
+<p><code>dart
+  class MyList extends StatelessWidget{
+    @override
+    Widget build(BuildContext context){
+      return ListView(
+          scrollDirection: Axis.horizontal,
+          children: &lt;Widget&gt;[
+            new Container(
+              width:180.0,
+              color: Colors.lightBlue,
+            ), new Container(
+              width:180.0,
+              color: Colors.amber,
+            ), new Container(
+              width:180.0,
+              color: Colors.deepOrange,
+            ),new Container(
+              width:180.0,
+              color: Colors.deepPurpleAccent,
+            ),
+          ],
+      );
+    }
+  }</code></p>
+<ul>
+<li>
+<p>动态列表</p>
+</li>
+<li>
+<p>传入参数</p>
+<p><code>dart
+void main () =&gt; runApp(MyApp(
+  items: new List&lt;String&gt;.generate(1000, (i)=&gt; "Item $i")
+));</code></p>
+</li>
+<li>
+<p>接收参数</p>
+<p><code>dart
+ final List&lt;String&gt; items;
+  MyApp({Key ?key, @required this.items}):super(key:key);</code></p>
+</li>
+<li>
+<p>显示参数   ListView.builder</p>
+<p><code>dart
+body: new ListView.builder(
+  itemCount: items.length,
+  itemBuilder: (context,index){
+    return new ListTile(
+      title: new Text('${items[index]}'),
+    );
+  },
+),</code></p>
+</li>
+<li>
+<p>网格列表 GridView</p>
+</li>
+<li>
+<p>padding  网格内边距</p>
+</li>
+<li>crossAxisSpacing 网格间间距</li>
+<li>crossAxisCount     网格的列数</li>
+<li>childAspectRatio    宽高比</li>
+</ul>
+<p><code>dart
+  body: GridView.count(
+    crossAxisCount: 3,
+    padding: const EdgeInsets.all(10),
+    crossAxisSpacing: 20.0,
+    children: &lt;Widget&gt;[
+      const Text('This is  1'),
+      const Text('This is  2'),
+      const Text('This is  3'),
+      const Text('This is  4'),
+      const Text('This is  5'),
+    ],
+  ),</code></p>
+<h3 id="35-flutteractionbutton">3.5 FlutterActionButton</h3>
+<p>可交互的浮动按钮</p>
+<p>常用属性：</p>
+<ul>
+<li>onPressed ：点击相应事件，最常用的一个属性。</li>
+<li>tooltip：长按显示的提示文字，因为一般只放一个图标在上面，防止用户不知道，当我们点击长按时就会出现一段文字性解释。非常友好，不妨碍整体布局。</li>
+<li>child ：放置子元素，一般放置Icon Widget。</li>
+</ul>
+<pre><code class="language-dart">floatingActionButton: FloatingActionButton(
+    onPressed: (){
+      Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext context){
+        return EachView('New Page');
+      }));
+    },
+    tooltip: 'Increment',
+    child: Icon(
+      Icons.add,
+      color: Colors.white,
+    ),
+  ),
+</code></pre>
+<ul>
+<li>floatingActionButton的位置：</li>
+</ul>
+<p><code>dart
+  floatingActionButtonLocation:FloatingActionButtonLocation.centerDocked</code></p>
+<h3 id="36-bottomappbar">3.6 BottomAppBar</h3>
+<p>底部导航栏之一。</p>
+<p>常用属性：</p>
+<ul>
+<li>color:这个不用多说，底部工具栏的颜色。</li>
+<li>shape：设置底栏的形状，一般使用这个都是为了和<code>floatingActionButton</code>融合，所以使用的值都是CircularNotchedRectangle(),有缺口的圆形矩形。</li>
+<li>child ： 里边可以放置大部分Widget，让我们随心所欲的设计底栏。</li>
+</ul>
+<h2 id="4flutter">4、Flutter的布局</h2>
+<h3 id="41-row">4.1 水平布局 Row</h3>
+<ul>
+<li>不灵活的布局   直接将控件添加在Row中</li>
+</ul>
+<p><code>dart
+  body: new Row(
+    children: &lt;Widget&gt;[
+      new ElevatedButton(
+        onPressed: () {},
+        style:ElevatedButton.styleFrom(
+          primary: Colors.white, //set background color
+          onPrimary: Colors.red,  
+          fixedSize:Size.fromWidth(100.0) //set Button Width
+        ),
+        child: new Text(
+          '红色按钮',
+          style: TextStyle(
+            color: Colors.red,
+          ),
+        ),
+      ),
+      new ElevatedButton(
+        onPressed: () {},
+        child: new Text(
+          '蓝色按钮',
+          style: TextStyle(
+            color: Colors.lightBlue,
+          ),
+        ),
+      ),
+      new ElevatedButton(
+        onPressed: () {},
+        child: new Text(
+          '黑色按钮',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      ),
+    ],
+  ),</code></p>
+<p>会在最右边留有空隙，如下图：</p>
+<p><img alt="image-20211103113840958" src="../Base.assets/image-20211103113840958.png" /></p>
+<ul>
+<li>灵活布局 自适应扩展到整行</li>
+</ul>
+<p>添加Expanded控件，Expanded extends Flexible。</p>
+<p><code>dart
+  Expanded(
+    child:new ElevatedButton(
+      onPressed: () {},
+      child: new Text(
+        '红色按钮',
+        style: TextStyle(
+          color: Colors.red,
+        ),
+      ),
+    ),
+  ),</code></p>
+<ul>
+<li>按照需求定义，对灵活和不灵活，进行控制</li>
+</ul>
+<p>如：两边固定，中间自适应    两边不使用Expanded,中间使用Expanded</p>
+<h3 id="42-column">4.2 垂直布局  Column</h3>
+<ul>
+<li>
+<p>mainAxisAlignment      主轴的对其方式</p>
+</li>
+<li>
+<p>crossAxisAlignment      副轴的对其方式</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>layout</th>
+<th>横轴</th>
+<th>竖轴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Row</td>
+<td>mainAxisAlignment</td>
+<td>crossAxisAlignment</td>
+</tr>
+<tr>
+<td>Column</td>
+<td>crossAxisAlignment</td>
+<td>mainAxisAlignment</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>也可以通过Expanded来实现灵活布局</li>
+</ul>
+<p><code>dart
+  new Column(
+    crossAxisAlignment: CrossAxisAlignment.start, //水平向左
+    mainAxisAlignment: MainAxisAlignment.center,//竖直垂直
+    children: [
+      const Text("this is  first"),
+      Expanded(child: const Text("this is  first qqqqqq"),),
+      const Text("this is  first"),
+      const Text("this is  first"),
+    ],    
+  ),</code></p>
+<h3 id="43-stack">4.3 层叠布局  Stack</h3>
+<ul>
+<li>
+<p>将两个View 重叠在一起</p>
+</li>
+<li>
+<p>CircleAvater 组件  圆形形状容器，常用来做头像</p>
+</li>
+<li>
+<p>Alignment，以上层容器的左上角为原点</p>
+</li>
+</ul>
+<p><code>dart
+  var  stack = new Stack(
+    alignment: const FractionalOffset(0.5, 0.5),
+    children: &lt;Widget&gt;[ 
+      new CircleAvatar(
+        backgroundImage: new NetworkImage('blogtouxiang.jpg'),
+        radius: 100.0,
+      ),
+      new Container(
+        decoration: new BoxDecoration(
+          color: Colors.lightBlue,
+        ),
+        padding:EdgeInsets.all(5.0),
+        child: Text('This is on Image'),
+      )
+    ],
+  );</code></p>
+<ul>
+<li>Positioned 组件 层叠定位组件</li>
+</ul>
+<p>使用绝对定位来使组件布局在上层，适用于三个及三个以上的组件。原点是上层布局的左上角</p>
+<ul>
+<li>bottom: 距离层叠组件下边的距离</li>
+<li>left：距离层叠组件左边的距离</li>
+<li>top：距离层叠组件上边的距离</li>
+<li>right：距离层叠组件右边的距离</li>
+<li>width: 层叠定位组件的宽度</li>
+<li>height: 层叠定位组件的高度</li>
+</ul>
+<p><code>dart
+  var stack = new Stack(
+    alignment: const FractionalOffset(0.5, 0.5),
+    children: &lt;Widget&gt;[
+      new CircleAvatar(
+        backgroundImage: new NetworkImage(
+          'http://jspang.com/static//myimg/blogtouxiang.jpg'),
+        radius: 100.0,
+      ),
+      new Positioned(
+        child: Text('this is first'),
+        left: 10.0,
+        top: 10.0,
+      ),
+      new Positioned(
+        child: Text('this is first'),
+        bottom: 10.0,
+        right: 10.0,
+      ),
+    ],
+  );</code></p>
+<h3 id="44-listview34">4.4  ListView布局（见<a href="#3.4 ListView">3.4</a>）</h3>
+<h3 id="45-gridview-34">4.5 GridView布局 （见<a href="#3.4 ListView">3.4</a>）</h3>
+<h3 id="46-card">4.6 卡片布局 card</h3>
+<p>只是显示了一个卡片的样式布局，没有看到有别的特殊之处。</p>
+<pre><code class="language-dart">var card = new Card(
+  child: Column(
+    children: &lt;Widget&gt;[
+      ListTile(
+        title: new Text('Beijing City'),
+        subtitle: new Text('zhangsan : 111122443'),
+        leading: new Icon(Icons.account_box,color: Colors.lightBlue,),
+      ),
+      new Divider(),
+      ListTile(
+        title: new Text('Beijing City'),
+        subtitle: new Text('zhangsan : 111122443'),
+        leading: new Icon(Icons.account_box,color: Colors.lightBlue,),
+      ),
+      new Divider(),
+      ListTile(
+        title: new Text('Beijing City'),
+        subtitle: new Text('zhangsan : 111122443'),
+        leading: new Icon(Icons.account_box,color: Colors.lightBlue,),
+      ),
+    ],
+  ),
+);
+</code></pre>
+<h2 id="5">5、导航</h2>
+<h3 id="51">5.1  导航函数</h3>
+<ul>
+<li>
+<p>Navigator</p>
+</li>
+<li>
+<p>push:导航到下一页，参数context</p>
+</li>
+<li>
+<p>pop:返回上一页,参数context</p>
+</li>
+<li>
+<p>MaterialPageRoute 建立路由</p>
+</li>
+</ul>
+<p><code>dart
+  new  MaterialPageRoute(
+    builder:(context) =&gt;new SecondScreen())
+    );</code></p>
+<p>Demo:</p>
+<pre><code class="language-dart">class FirstScreen extends StatelessWidget{
+   @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+         appBar: AppBar(title: Text('Nav 01'),),
+         body:Center(
+           child:ElevatedButton(
+             onPressed: (){
+               Navigator.push(context, MaterialPageRoute(
+                 builder: (context)=&gt;new SecondScreen()
+                 ));
+             }, 
+             child: Text('View detail')
+             ),
+         ) ,
+    );
+  }
+}
+class SecondScreen extends StatelessWidget{
+   @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(
+        title:Text('this is second'),
+      ),
+      body: Center(
+        child:ElevatedButton(onPressed: (){
+            Navigator.pop(context);
+        }, 
+        child: Text('Pop'),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+<h3 id="52">5.2 导航参数的传递和接收</h3>
+<ul>
+<li>传递  使用Navigator组件，MaterialPageRoute传递参数</li>
+</ul>
+<p><code>dart
+  Navigator.push(
+    context, 
+    MaterialPageRoute(
+      builder:(context)=&gt;new ProductDetail(product:products[index])
+    )
+  );</code></p>
+<ul>
+<li>接收参数</li>
+</ul>
+<p><code>dart
+  const ProductDetial({ Key? key ,required this.product}) : super(key: key);</code></p>
+<p>​        该类中要声明这个参数product</p>
+<h3 id="53">5.3 异步等待返回函数</h3>
+<ul>
+<li>async/await语法</li>
+</ul>
+<p>请求数据，待异步返回后，将数据进行显示</p>
+<ul>
+<li>Navigator.pop(context,data)</li>
+</ul>
+<p>pop可以在第二个参数重，返回数据</p>
+<ul>
+<li>SnackBar  弹出框</li>
+</ul>
+<p>显示弹出框：<strong>ScaffoldMessenger</strong>.<strong>of</strong>(context).<strong>showSnackBar</strong>(SnackBar)</p>
+<p>显示内容： content</p>
+<p>显示时间：duration</p>
+<p>添加按钮：action</p>
+<p><code>java
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text('$result'),
+    duration: Duration(milliseconds: 2000),
+    backgroundColor: Colors.red,
+    action: SnackBarAction(label:'Cancle', onPressed: (){
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    }),
+  ));</code></p>
+<p>5.2 5.3 整体代码</p>
+<pre><code class="language-dart">void main(List&lt;String&gt; args) {
+  runApp(MaterialApp(
+    title: 'this is Nav for gerArgs',
+    home: new nav2(
+      products: List.generate(
+          20, (index) =&gt; Product('商品 $index', '这是一个商品编号，编号为：$index')),
+    ),
+  ));
+}
+
+class Product {
+  final String title;
+  final String description;
+  Product(this.title, this.description);
+}
+
+class nav2 extends StatelessWidget {
+  final List&lt;Product&gt; products;
+  const nav2({Key? key, required this.products}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('商品详情页面'),
+      ),
+      body: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(products[index].title),
+            subtitle: Text(products[index].description),
+            onTap: () {
+              _navigateToDetail(context, index);
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  _navigateToDetail(BuildContext context, index) async {
+    final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =&gt; new ProductDetial(product: products[index])));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('$result'),
+      duration: Duration(milliseconds: 2000),
+      backgroundColor: Colors.red,
+      action: SnackBarAction(label:'Cancle', onPressed: (){
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      }),
+      ));
+  }
+}
+
+class ProductDetial extends StatelessWidget {
+  const ProductDetial({Key? key, required this.product}) : super(key: key);
+  final Product product;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(product.title),
+        ),
+        body: Column(
+          children: &lt;Widget&gt;[
+            Text(product.description),
+            Expanded(
+                child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, &quot;This is return data&quot;);
+              },
+              child: Text('return data'),
+            )),
+          ],
+        ));
+  }
+}
+</code></pre>
+<p>6、打包教程</p>
+<ul>
+<li>使用./gradlew 打包(仅限于Android)</li>
+<li>./gradlew -v 查看gralew的版本</li>
+<li>./gradlew  clean  清除build文件</li>
+<li>./gradlew assembleDebug 编译并打debug包</li>
+<li>./gradlew assembleRelease 编译并打Release包</li>
+<li>./gradlew installDebug  Debug模式打包并安装</li>
+<li>./gradlew installRelease Release模式打包并安装</li>
+<li>
+<p>./gradlew uninstallRelease/uninstallDebug 卸载debug或Release包</p>
+</li>
+<li>
+<p>生成KeyStore 通过配置打包</p>
+</li>
+</ul>
+<h2 id="6">6、生命周期</h2>
+<ul>
+<li>
+<p>在Flutter中，使用Widgets构建UI，而Widget是不可变的，但是可以根据对应的状态刷新Widget,因此Widget有两种类型。</p>
+</li>
+<li>
+<p>StatelessWidget</p>
+</li>
+<li>StatefulWidget</li>
+</ul>
+<h3 id="statelesswidget">StatelessWidget</h3>
+<p>​       由源码可知，Text、ListTitele等组件继承于StatelessWidget，可知这些组件没有状态可以改变，通过构造方法把text widget 初始化，然后用properties构建要被显示的内容，父widget实际上控制着这些窗口部件的显示状态，因此StatelessWidget是无状态的组件。最外层需要采用StatlessWidget,因为需要context.</p>
+<ul>
+<li>应用场景</li>
+<li>创建一个自定义的进度控件，这个控件金使用初始化的属性来展示给用户，这样就不需要持有任何状态，因为父部件会控制其是否显示，这样父部件就管理了这个widget本身是否显示的状态了。</li>
+<li>
+<p>创建一个用在列表中的单项widget等</p>
+</li>
+<li>
+<p>生命周期</p>
+</li>
+<li>构造函数</li>
+<li>build()</li>
+</ul>
+<h3 id="statefulwidget">StatefulWidget</h3>
+<p>​       StatefulWidget是由2个对象Widget和State组成的，为了性能，State管理状态，Widget管理UI，根据状态变化，Widget也可以随其改变，不依赖于其初始化时的静态状态，可以随着用户的输入，各种形式的异步回包或其他形式的状态变化而变化。</p>
+<p>​       Image继承于<code>StatefuiWidget</code>,该组件持有以下三个属性的引用：</p>
+<pre><code>    ```dart
+    ImageStream _imageStream;
+
+    ImageInfo _imageInfo;
+
+    bool _isListeningToStream = false;
+    ```
+</code></pre>
+<p>可以随着监听图片引用的变化,通过_handleImageChanged方法来调用state类的setState方法，从而更新图片，它自己管理自己的State,而不是依赖于父类。</p>
+<ul>
+<li>生命周期</li>
+</ul>
+<p><img alt="1115039-20190712152636551-2080302016" src="../Base.assets/1115039-20190712152636551-2080302016.jpeg" /></p>
+<p>3个阶段：</p>
+<p>1、组件初始化</p>
+<p>createState-&gt;initState-&gt;didChangeDependencies-&gt;build</p>
+<p>2、状态改变</p>
+<p>setState: didupdateWidget-&gt;build</p>
+<p>3、销毁</p>
+<p>deactivate-&gt;dispose</p>
+<p>生命周期：</p>
+<p>1、createState</p>
+<p>2、initState</p>
+<p>3、didChangeDependencies</p>
+<p>4、build</p>
+<p>5、addPostFrameCallback</p>
+<p>6、didupdateWidget</p>
+<p>7、deactivate</p>
+<p>8、dispose</p>
+<h3 id="createstate">createState</h3>
+<p>createState 是 StatefulWidget 里创建 State 的方法，当要创建新的 StatefulWidget 的时候，会立即执行 createState，而且只执行一次，createState 必须要实现。</p>
+<h3 id="initstate">initState</h3>
+<p>前面的 createState 是在创建 StatefulWidget 的时候会调用，initState 是 StatefulWidget 创建完后调用的第一个方法，而且只执行一次，类似于 Android 的 onCreate()、iOS 的 viewDidLoad()，所以在这里 View 并没有渲染，但是这时 StatefulWidget 已经被加载到渲染树里了，这时 StatefulWidget 的 <strong>mount</strong>的值会变为 true，直到 <strong>dispose</strong>调用的时候才会变为 false。可以在 <strong>initState</strong>里做一些初始化的操作。</p>
+<p>在 override <strong>initState</strong>的时候必须要调用 super.initState()。</p>
+<h3 id="didchangedependencies">didChangeDependencies</h3>
+<p>当 StatefulWidget 第一次创建的时候，<strong>didChangeDependencies</strong>方法会在 <strong>initState</strong>方法之后立即调用，之后当 StatefulWidget 刷新的时候，就不会调用了，除非你的 StatefulWidget 依赖的 InheritedWidget 发生变化之后，<strong>didChangeDependencies</strong>才会调用，所以 <strong>didChangeDependencies</strong>有可能会被调用多次。（还需要继续了解，至少不是树的上一级发生改变它改变）</p>
+<h3 id="build">build</h3>
+<p>该方法用来渲染UI，禁止在其中做除了渲染之外的操作。第一次创建时会调用，UI需要重新渲染时，如setState,会被调用。</p>
+<h3 id="addpostframecallback">addPostFrameCallback</h3>
+<p>在渲染结束后，进行的回调，只会被调用一次,即使被刷新也不会再次被调用，并且该方法是在initState里添加回调。</p>
+<pre><code class="language-dart">@override
+void initState() {
+  // TODO: implement initState
+  super.initState();
+  print(&quot;EmailStateScreen:initState&quot;);
+  SchedulerBinding.instance!.addPostFrameCallback((_) { 
+    print(&quot;EmailStateScreen:addPostFrameCallback&quot;);
+  });
+}
+</code></pre>
+<h3 id="didupdatewidget">didUpdateWidget</h3>
+<p>按照状态图，应该是在setState时调用，但是实际上并没有调用,可能知识祖先节点发生改变，才会改变。</p>
+<h3 id="deactivate">deactivate</h3>
+<p>当要将 State 对象从渲染树中移除的时候，就会调用 <strong>deactivate</strong>生命周期，这标志着 StatefulWidget 将要销毁，但是有时候 State 不会被销毁，而是重新插入到渲染树中，</p>
+<h3 id="dispose">dispose</h3>
+<p>当 View 不需要再显示，从渲染树中移除的时候，State 就会永久的从渲染树中移除，就会调用 <strong>dispose</strong>生命周期，这时候就可以在 <strong>dispose</strong>里做一些取消监听、动画的操作，和 <strong>initState</strong>是相反的。</p>
+<h3 id="app-applifecyclestate">App生命周期: AppLifeCycleState</h3>
+<p>1、resumed: 可见并能响应用户的输入,相当于onResume()</p>
+<p>2、inactive:   部分可见，无法处理响应，相当于OnPause()</p>
+<p>3、paused:不可见并不能响应用户的输入，但是在后台继续活动中,相当于onStop()</p>
+<p>4、suspending: 安卓的挂起</p>
+<p>生命周期的观测需要使用监听：<strong>WidgetsBindingObserver</strong>，使用方法如下：</p>
+<p>1、State的类添加监听</p>
+<pre><code class="language-dart">class _MyHomePageState extends State&lt;MyHomePage&gt; with WidgetsBindingObserver {
+    ...
+}
+</code></pre>
+<p>2、在 State 的 <strong>initState</strong>里添加监听：</p>
+<pre><code class="language-dart">@override
+void initState(){
+  super.initState();
+  WidgetsBinding.instance.addObserver(this);
+}
+</code></pre>
+<p>3、在 State 的 <strong>dispose</strong>里移除监听</p>
+<pre><code class="language-dart">@override
+void dispose() {
+  // TODO: implement dispose
+  super.dispose();
+  WidgetsBinding.instance.removeObserver(this);
+}
+</code></pre>
+<p>4、在State的<strong>didChangeAppLifecycleState</strong>区分状态，必须实现监听才行。</p>
+<pre><code class="language-dart">@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+  super.didChangeAppLifecycleState(state);
+  if (state == AppLifecycleState.paused) {
+    // went to Background
+  }
+  if (state == AppLifecycleState.resumed) {
+    // came back to Foreground
+  }
+}
+</code></pre>
+<p>前台切入后台：inactive-&gt;paused</p>
+<p>后台切入前台：resumed</p>
+<h2 id="7">7、实例进阶</h2>
+<h3 id="71">7.1、底部导航栏</h3>
+<ul>
+<li>Statefulwidget 组件</li>
+</ul>
+<p>具有可变状态的窗口组件，也可以通过<code>Stful</code>快速创建</p>
+<ul>
+<li>bottomNavigationBar 底部导航栏组件</li>
+</ul>
+<p>require items</p>
+<p>BottomNavigationBarItem 导航栏每个选项的组件</p>
+<ul>
+<li>List  创建</li>
+</ul>
+<p><code>dart
+  //1、第一种
+  List&lt;Widget&gt; pages = [];
+  //2、第二种  growable :false 固定长度 true 可变长度
+  List&lt;Widget&gt; pagess = List.empty(growable: true);
+  //建造者模式
+    pages
+        ..add(HomeScreen())
+        ..add(EmailScreen())
+        ..add(PagesScreen())
+        ..add(AirPalyScreen());</code></p>
+<ul>
+<li>
+<p>bottomNavigationBar 点击事件</p>
+</li>
+<li>
+<p>利用索引进行切换</p>
+</li>
+</ul>
+<p><code>dart
+  currentIndex: _currentIndex,
+  onTap: (index){
+    setState(() {
+      _currentIndex = index;
+    });
+  },</code></p>
+<p>关键完整代码：</p>
+<pre><code class="language-dart">class _BottomNavigationWidgetState extends State&lt;BottomNavigationWidget&gt; {
+  final _BottomNavigationColor = Colors.lightBlue;
+  int _currentIndex = 0;
+  List&lt;Widget&gt; pages = [];
+  // 或 List&lt;Widget&gt; pagess = List.empty(growable: true);
+  @override
+  void initState() {
+
+    pages
+      ..add(HomeScreen())
+      ..add(EmailScreen())
+      ..add(PagesScreen())
+      ..add(AirPalyScreen());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: pages[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: _BottomNavigationColor,
+            ),
+            title: Text(
+              'Home',
+              style: TextStyle(
+                color: Colors.orange,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.email,color: _BottomNavigationColor,),
+            title: Text(
+              'Email',
+              style: TextStyle(
+                color: Colors.orange,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pages,color: _BottomNavigationColor,),
+            title: Text(
+              'Pages',
+              style: TextStyle(
+                color: Colors.orange,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.airplay,color: _BottomNavigationColor,),
+            title: Text(
+              'airplay',
+              style: TextStyle(
+                color: Colors.orange,
+              ),
+            ),
+          ),
+        ],
+        currentIndex: _currentIndex,
+        onTap: (index){
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
+    );
+  }
+}
+</code></pre>
+<h2 id="72">7.2 实现安装包下载和安装</h2>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

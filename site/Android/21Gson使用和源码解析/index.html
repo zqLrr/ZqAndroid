@@ -1,0 +1,1831 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>21Gson使用和源码解析 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#21gson" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              21Gson使用和源码解析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1gson" class="md-nav__link">
+    1.Gson的使用
+  </a>
+  
+    <nav class="md-nav" aria-label="1.Gson的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-tojson-fromjson" class="md-nav__link">
+    1.1 tojson &amp;&amp; fromjson 序列化和反序列化
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 tojson && fromjson 序列化和反序列化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    基本属性 primitives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-object" class="md-nav__link">
+    类-Object
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-collections" class="md-nav__link">
+    Array &amp;&amp; Collections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    Map
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    泛型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    复杂类型的集合
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-gsonbuilder" class="md-nav__link">
+    1.2 GsonBuilder的其他属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 自定义序列化和反序列化
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 自定义序列化和反序列化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-serializers" class="md-nav__link">
+    JSON Serializers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-deserializers" class="md-nav__link">
+    JSON Deserializers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-creators" class="md-nav__link">
+    Instance Creators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typeadapter" class="md-nav__link">
+    TypeAdapter实现自定义序列化和反序列化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 常用的类
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 常用的类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object" class="md-nav__link">
+    Object
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class" class="md-nav__link">
+    Class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22100" class="md-nav__link">
+    2.源码解析(源码以2.10.0为例，并添加自己的修改)
+  </a>
+  
+    <nav class="md-nav" aria-label="2.源码解析(源码以2.10.0为例，并添加自己的修改)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gson" class="md-nav__link">
+    Gson中关键类的说明
+  </a>
+  
+    <nav class="md-nav" aria-label="Gson中关键类的说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gson_1" class="md-nav__link">
+    Gson
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gsonbuilder" class="md-nav__link">
+    GsonBuilder
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gson_2" class="md-nav__link">
+    Gson解析的原理流程图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonreader" class="md-nav__link">
+    JsonReader 的源码解析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="21gson">21Gson使用和源码解析</h1>
+<p>Gson<a href="https://github.com/google/gson">官网</a></p>
+<p>Gson<a href="https://github.com/google/gson/blob/master/UserGuide.md#TOC-Primitives-Examples">使用文档</a></p>
+<p>使用Gson的原因</p>
+<p>1.解析快</p>
+<ul>
+<li>减少了反射</li>
+</ul>
+<p>2.功能全</p>
+<ul>
+<li>序列化参数</li>
+<li>忽略参数</li>
+</ul>
+<h2 id="1gson">1.Gson的使用</h2>
+<h3 id="11-tojson-fromjson">1.1 tojson &amp;&amp; fromjson 序列化和反序列化</h3>
+<h4 id="primitives">基本属性 primitives</h4>
+<pre><code class="language-java">// Serialization
+Gson gson = new Gson();
+gson.toJson(1);            // ==&gt; 1
+gson.toJson(&quot;abcd&quot;);       // ==&gt; &quot;abcd&quot;
+gson.toJson(new Long(10)); // ==&gt; 10
+int[] values = { 1 };
+gson.toJson(values);       // ==&gt; [1]
+
+// Deserialization
+int one = gson.fromJson(&quot;1&quot;, int.class);
+Integer one = gson.fromJson(&quot;1&quot;, Integer.class);
+Long one = gson.fromJson(&quot;1&quot;, Long.class);
+Boolean false = gson.fromJson(&quot;false&quot;, Boolean.class);
+String str = gson.fromJson(&quot;\&quot;abc\&quot;&quot;, String.class);
+String[] anotherStr = gson.fromJson(&quot;[\&quot;abc\&quot;]&quot;, String[].class);
+</code></pre>
+<h4 id="-object">类-Object</h4>
+<pre><code class="language-java">class BagOfPrimitives {
+  private int value1 = 1;
+  private String value2 = &quot;abc&quot;;
+  private transient int value3 = 3;
+  BagOfPrimitives() {
+    // no-args constructor
+  }
+}
+// Serialization
+BagOfPrimitives obj = new BagOfPrimitives();
+Gson gson = new Gson();
+String json = gson.toJson(obj);
+
+// ==&gt; json is {&quot;value1&quot;:1,&quot;value2&quot;:&quot;abc&quot;}
+// Deserialization
+BagOfPrimitives obj2 = gson.fromJson(json, BagOfPrimitives.class);
+// ==&gt; obj2 is just like obj
+</code></pre>
+<p>注意：</p>
+<p>1.推荐类中的属性使用私有属性。</p>
+<p>2.序列化和反序列化不需要注解，所有都使用默认的。</p>
+<p>3.transient 属性不被序列化和反序列化</p>
+<p>4.如何处理空值</p>
+<ul>
+<li>序列化时(tojson)，空值会被忽略</li>
+<li>反序列化时(fromjson),空值会被反序列化相应的默认值，Object = null,boolean = false ,int = 0;</li>
+</ul>
+<p>5.<em>synthetic</em>属性不被序列化和反序列化</p>
+<p>6.内部类中对应外部类的属性将被忽略，不会被序列化和反序列化</p>
+<p>7.~~匿名类和内部类会被排除~~。经验证匿名类仍然会被序列化，但内部类会被排除</p>
+<h4 id="array-collections">Array &amp;&amp; Collections</h4>
+<pre><code class="language-java">Gson gson = new Gson();
+int[] ints = {1, 2, 3, 4, 5};
+String[] strings = {&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;};
+// Serialization
+gson.toJson(ints);     // ==&gt; [1,2,3,4,5]
+gson.toJson(strings);  // ==&gt; [&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;]
+
+// Deserialization
+int[] ints2 = gson.fromJson(&quot;[1,2,3,4,5]&quot;, int[].class);
+// ==&gt; ints2 will be same as ints
+</code></pre>
+<pre><code class="language-java">Gson gson = new Gson();
+Collection&lt;Integer&gt; ints = Arrays.asList(1,2,3,4,5);
+
+// Serialization
+String json = gson.toJson(ints);  // ==&gt; json is [1,2,3,4,5]
+
+// Deserialization
+TypeToken&lt;Collection&lt;Integer&gt;&gt; collectionType = new TypeToken&lt;Collection&lt;Integer&gt;&gt;(){};
+// Note: For older Gson versions it is necessary to use `collectionType.getType()` as argument below,
+// this is however not type-safe and care must be taken to specify the correct type for the local variable
+Collection&lt;Integer&gt; ints2 = gson.fromJson(json, collectionType);
+// ==&gt; ints2 is same as ints
+</code></pre>
+<p>注意：Collection 在反序列化时，需要使用泛型TypeToken,因为它无法指定结果类的具体类型。</p>
+<h4 id="map">Map</h4>
+<pre><code class="language-java">Gson gson = new Gson();
+Map&lt;String, String&gt; stringMap = new LinkedHashMap&lt;&gt;();
+stringMap.put(&quot;key&quot;, &quot;value&quot;);
+stringMap.put(null, &quot;null-entry&quot;);
+
+// Serialization
+String json = gson.toJson(stringMap); // ==&gt; json is {&quot;key&quot;:&quot;value&quot;,&quot;null&quot;:&quot;null-entry&quot;}
+
+Map&lt;Integer, Integer&gt; intMap = new LinkedHashMap&lt;&gt;();
+intMap.put(2, 4);
+intMap.put(3, 6);
+
+// Serialization
+String json = gson.toJson(intMap); // ==&gt; json is {&quot;2&quot;:4,&quot;3&quot;:6}
+
+// Deserialization
+Gson gson = new Gson();
+TypeToken&lt;Map&lt;String, String&gt;&gt; mapType = new TypeToken&lt;Map&lt;String, String&gt;&gt;(){};
+String json = &quot;{\&quot;key\&quot;: \&quot;value\&quot;}&quot;;
+
+// Note: For older Gson versions it is necessary to use `mapType.getType()` as argument below,
+// this is however not type-safe and care must be taken to specify the correct type for the local variable
+Map&lt;String, String&gt; stringMap = gson.fromJson(json, mapType);
+// ==&gt; stringMap is {key=value}
+</code></pre>
+<p>注意：Gson默认将<code>java.util.Map</code>使用Json对象的形式序列化，本质上是在Map上调用toString()方法。</p>
+<p>​      但对于复杂的Map对象，需要使用这个功能：<code>GsonBuilder().enableComplexMapKeySerialization()</code>,如果使用了这个功能，将会使用TypeAdapter#write()方法代替<code>toString()</code></p>
+<pre><code class="language-java">class PersonName {
+  String firstName;
+  String lastName;
+
+  PersonName(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  // ... equals and hashCode
+}
+
+Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
+Map&lt;PersonName, Integer&gt; complexMap = new LinkedHashMap&lt;&gt;();
+complexMap.put(new PersonName(&quot;John&quot;, &quot;Doe&quot;), 30);
+complexMap.put(new PersonName(&quot;Jane&quot;, &quot;Doe&quot;), 35);
+
+// Serialization; complex map is serialized as a JSON array containing key-value pairs (as JSON arrays)
+String json = gson.toJson(complexMap);
+// ==&gt; json is [[{&quot;firstName&quot;:&quot;John&quot;,&quot;lastName&quot;:&quot;Doe&quot;},30],[{&quot;firstName&quot;:&quot;Jane&quot;,&quot;lastName&quot;:&quot;Doe&quot;},35]]
+//
+//若具备Enable的gson对象序列化常规的Map类型，还是会序列化成常规的Json对象。
+Map&lt;String, String&gt; stringMap = new LinkedHashMap&lt;&gt;();
+stringMap.put(&quot;key&quot;, &quot;value&quot;);
+// Serialization; non-complex map is serialized as a regular JSON object
+String json = gson.toJson(stringMap); // json is {&quot;key&quot;:&quot;value&quot;}
+</code></pre>
+<p>若使用不具备Enable的gson对象，会导致编码的键格式错误，如下:</p>
+<pre><code class="language-java">Gson gson = new Gson();
+String json = gson.toJson(complexMap);
+// ==&gt; {&quot;com.example.androiddemo.gson.PersonName@8e33f51&quot;:30,&quot;com.example.androiddemo.gson.PersonName@fb2d3b6&quot;:35}
+</code></pre>
+<h4 id="_1">泛型</h4>
+<p>泛型无法直接使用toJson()||fromJson(),因为获取的class类型是 泛型的class，因此需要使用<code>TypeToken</code>Class。</p>
+<pre><code class="language-java">class Foo&lt;T&gt; {
+  T value;
+}
+//错误使用
+Gson gson = new Gson();
+Foo&lt;Bar&gt; foo = new Foo&lt;Bar&gt;();
+gson.toJson(foo); // May not serialize foo.value correctly
+
+gson.fromJson(json, foo.getClass()); // Fails to deserialize foo.value as Bar
+//正确使用
+Type fooType = new TypeToken&lt;Foo&lt;Bar&gt;&gt;() {}.getType();
+gson.toJson(foo, fooType);
+gson.fromJson(json, fooType);
+</code></pre>
+<p>问题：为什么使用<code>new TypeToken&lt;Foo&lt;Bar&gt;&gt;() {}</code>匿名内部类来获取<code>getType()</code>,直接使用new () 不好吗？</p>
+<p><a href="https://www.pudn.com/news/628f83bdbf399b7f351eb061.html">答</a>：Java5之后规定了新的Class文件格式规范，方法与域的描述符增添了对泛型信息的记录。因此泛型写到Class文件有这样的一个规律：</p>
+<ul>
+<li>声明一侧的，源码里写了什么运行时就能看到什么。</li>
+<li>使用一侧的，源码里写了什么到运行时就没了</li>
+</ul>
+<p>因此出现这样的情况：</p>
+<pre><code class="language-java">List&lt;String&gt; list1 = new ArrayList&lt;String&gt;();//左侧声明 右侧使用
+List list2 = new ArrayList&lt;String&gt;();//左侧声明 右侧使用
+</code></pre>
+<p>实例1 <code>list1</code>class文件中会保存String这个传入的泛型参数的信息(路径),而实例2<code>list2</code>就没有包含String。</p>
+<p>同理，</p>
+<pre><code class="language-java">new TypeToken&lt;Foo&lt;Bar&gt;&gt;()//若只是用new()，则相当于TypeToken&lt;T&gt; = new TypeToken&lt;Foo&lt;Bar&gt;&gt;() 和实例2一样
+new TypeToken&lt;Foo&lt;Bar&gt;&gt;(){} //使用匿名内部类相当于TypeToken&lt;Foo&lt;Bar&gt;&gt; = new TypeToken&lt;Foo&lt;Bar&gt;&gt;() 和实例1一样
+</code></pre>
+<p>这样就不会出现找不到正确的泛型类型的问题。</p>
+<p>RowType就是类型擦除后的原始类型。</p>
+<p>除了类型擦除这个原因之外，TypeToken使用匿名内部类的原因，是因为TypeToken无参构造函数的作用域是protected。</p>
+<p>使用匿名内部类的场景：</p>
+<ul>
+<li>只用到类的一个实例</li>
+<li>类在定义后马上用到（一般只用一次）</li>
+<li>类非常小（SUN推荐是在4行代码以下）</li>
+<li>给类命名并不会导致你的代码更容易被理解</li>
+</ul>
+<h4 id="_2">复杂类型的集合</h4>
+<p>像以下复杂类型的集合，无法直接使用TypeToken实现反序列化。</p>
+<pre><code class="language-java">Collection collection = new ArrayList();
+collection.add(&quot;hello&quot;);
+collection.add(5);
+collection.add(new Event(&quot;GREETINGS&quot;, &quot;guest&quot;));
+class Event {
+  private String name;
+  private String source;
+  private Event(String name, String source) {
+    this.name = name;
+    this.source = source;
+  }
+}
+String json = gson.toJson(collection); //toJson可以直接使用。
+</code></pre>
+<p>因此，gson提供了以下几种方案：</p>
+<ul>
+<li>使用Gson的JsonParser API来实现，即转换成JsonElement来实现。</li>
+</ul>
+<p><code>java
+  JsonArray array = JsonParser.parseString(json).getAsJsonArray();
+      String message = gson.fromJson(array.get(0), String.class);
+      int number = gson.fromJson(array.get(1), int.class);
+      Event event = gson.fromJson(array.get(2), Event.class);</code></p>
+<ul>
+<li>
+<p>为<code>Collection.class</code>注册一个Type Adapter，这个gson本身就有。</p>
+</li>
+<li>
+<p>为 <code>MyCollectionMemberType</code> 注册一个TypeAdapter,并使用 <code>Collection&lt;MyCollectionMemberType&gt;</code>。</p>
+</li>
+</ul>
+<h3 id="12-gsonbuilder">1.2 GsonBuilder的其他属性</h3>
+<p>主要是指序列化时的影响。</p>
+<ul>
+<li>
+<p>setPrettyPrinting() //设置输出格式为可读性优先(默认是体积小优先),会使Json的格式</p>
+</li>
+<li>
+<p>serializeNulls() //设置输出null(默认null会被忽略)</p>
+</li>
+<li>
+<p>setVersion(1.0) 和注解 <a href="https://github.com/google/gson/blob/master/gson/src/main/java/com/google/gson/annotations/Since.java">@Since</a>可以区分Json解析的版本。</p>
+</li>
+</ul>
+<p>```java
+  public class VersionedClass {
+    @Since(1.1) private final String newerField;
+    @Since(1.0) private final String newField;
+    private final String field;</p>
+<pre><code>public VersionedClass() {
+  this.newerField = "newer";
+  this.newField = "new";
+  this.field = "old";
+}
+</code></pre>
+<p>}</p>
+<p>VersionedClass versionedObject = new VersionedClass();
+  Gson gson = new GsonBuilder().setVersion(1.0).create();
+  String jsonOutput = gson.toJson(versionedObject);
+  System.out.println(jsonOutput);
+  System.out.println();</p>
+<p>gson = new Gson();
+  jsonOutput = gson.toJson(versionedObject);
+  System.out.println(jsonOutput);
+  //output
+  {"newField":"new","field":"old"}
+  {"newerField":"newer","newField":"new","field":"old"}
+  ```</p>
+<ul>
+<li>excludeFieldsWithModifiers()//设置不被包括在序列化中的修饰符(默认为static //transient，但是你可以覆盖设置)</li>
+</ul>
+<p><code>java
+  (Modifier.STATIC, Modifier.TRANSIENT, Modifier.VOLATILE</code></p>
+<ul>
+<li>Gson's <code>@Expose</code></li>
+</ul>
+<p>该注解的作用，需要使用<code>new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()</code>，只输出添加了<code>@Expose</code>注解的属性。</p>
+<ul>
+<li>setExclusionStrategies()可以用户自定义排除策略。</li>
+</ul>
+<p>```java
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target({ElementType.FIELD})
+  public @interface Foo {
+    // Field tag only annotation
+  }</p>
+<p>public class SampleObjectForTest {
+    @Foo private final int annotatedField;
+    private final String stringField;
+    private final long longField;
+    private final Class&lt;?&gt; clazzField;</p>
+<pre><code>public SampleObjectForTest() {
+  annotatedField = 5;
+  stringField = "someDefaultValue";
+  longField = 1234;
+}
+</code></pre>
+<p>}</p>
+<p>public class MyExclusionStrategy implements ExclusionStrategy {
+    private final Class&lt;?&gt; typeToSkip;</p>
+<pre><code>private MyExclusionStrategy(Class&lt;?&gt; typeToSkip) {
+  this.typeToSkip = typeToSkip;
+}
+
+public boolean shouldSkipClass(Class&lt;?&gt; clazz) {
+  return (clazz == typeToSkip);
+}
+
+public boolean shouldSkipField(FieldAttributes f) {
+  return f.getAnnotation(Foo.class) != null;
+}
+</code></pre>
+<p>}</p>
+<p>public static void main(String[] args) {
+    Gson gson = new GsonBuilder()
+        .setExclusionStrategies(new MyExclusionStrategy(String.class)) //排除String类型和@Foo注解的属性
+        .serializeNulls()
+        .create();
+    SampleObjectForTest src = new SampleObjectForTest();
+    String json = gson.toJson(src);
+    System.out.println(json);
+  }
+  //output
+  {"longField":1234}
+  ```</p>
+<ul>
+<li>属性的自定义名称 <a href="https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/annotations/SerializedName.html">@SerializedName</a> </li>
+</ul>
+<p>通过注解 <a href="https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/annotations/SerializedName.html">@SerializedName</a> ，可以重新命名Json的Key值。</p>
+<ul>
+<li>使用<a href="https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/com/google/gson/FieldNamingPolicy.html">FieldNamingPolicy</a>来定义Json的Key值输出形式。</li>
+</ul>
+<p>```java
+  private class SomeObject {
+    @SerializedName("custom_naming") private final String someField;
+    private final String someOtherField;</p>
+<pre><code>public SomeObject(String a, String b) {
+  this.someField = a;
+  this.someOtherField = b;
+}
+</code></pre>
+<p>}</p>
+<p>SomeObject someObject = new SomeObject("first", "second");
+  Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+  String jsonRepresentation = gson.toJson(someObject);
+  System.out.println(jsonRepresentation);
+  //output
+  {"custom_naming":"first","SomeOtherField":"second"}
+  ```</p>
+<ul>
+<li>Stream</li>
+</ul>
+<h3 id="13">1.3 自定义序列化和反序列化</h3>
+<blockquote>
+<p>Gson为常用的类内置了一些序列化和反序列化，参考<a href="https://github.com/google/gson/blob/master/gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java"><code>TypeAdapters</code></a></p>
+</blockquote>
+<p>但是提供的内置方法往往不够使用，因此提供了以下的方法自定义序列化和反序列化。</p>
+<ul>
+<li>JSON Serializers: Need to define custom serialization for an object</li>
+<li>JSON Deserializers: Needed to define custom deserialization for a type</li>
+<li>Instance Creators: Not needed if no-args constructor is available or a deserializer is registered(如果无参构造函数可以获取或者反序列化已注册，则不需要)，自定义某种对象的创建行为。</li>
+</ul>
+<pre><code class="language-java">GsonBuilder gson = new GsonBuilder();
+gson.registerTypeAdapter(MyType2.class, new MyTypeAdapter());
+gson.registerTypeAdapter(MyType.class, new MySerializer());
+gson.registerTypeAdapter(MyType.class, new MyDeserializer());
+gson.registerTypeAdapter(MyType.class, new MyInstanceCreator());
+</code></pre>
+<p><code>registerTypeAdapter</code>提供了检查是否至少实现了一种以上的接口并且注册他们。</p>
+<h4 id="json-serializers">JSON Serializers</h4>
+<p>实现<code>JsonSerializer</code>接口，借助JsonElement实现对特定的需求进行序列化，由源码可知最后回调用serialize()方法。</p>
+<pre><code class="language-java">//设置boolean类型为0 或1
+public class BooleanSerializer implements JsonSerializer&lt;Boolean&gt; {
+
+    public JsonElement serialize(Boolean aBoolean, Type type,
+        JsonSerializationContext jsonSerializationContext) 
+    {
+        if(aBoolean){
+           return new JsonPrimitive(1);
+        }
+        return new JsonPrimitive(0);
+    }
+}
+public static void main(String[] args) throws Exception 
+    {
+        Employee emp = new Employee(1, &quot;Lokesh&quot;, &quot;Gupta&quot;, &quot;howtodoinjava@gmail.com&quot;, true);
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Boolean.class, new BooleanSerializer())
+                .setPrettyPrinting()
+                .create();
+
+        String json = gson.toJson(emp);
+
+        System.out.println(json);
+    }
+</code></pre>
+<h4 id="json-deserializers">JSON Deserializers</h4>
+<p>同理，实现<code>JsonDeserializers</code>接口，借助JsonElement实现。</p>
+<pre><code class="language-java">//将年月日转换成LocalData
+public class Employee 
+{
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private LocalDate dob;
+}
+public class EmployeeDeserializer implements JsonDeserializer&lt;Employee&gt; 
+{  
+    @Override
+    public Employee deserialize(JsonElement json, Type typeOfT, 
+                JsonDeserializationContext context) throws JsonParseException 
+    {
+        JsonObject jsonObject = json.getAsJsonObject();
+
+        LocalDate localDate = LocalDate.of(
+                jsonObject.get(&quot;year&quot;).getAsInt(),
+                jsonObject.get(&quot;month&quot;).getAsInt(),
+                jsonObject.get(&quot;day&quot;).getAsInt()
+        );
+
+        return new Employee(
+                jsonObject.get(&quot;id&quot;).getAsInt(), 
+                jsonObject.get(&quot;firstName&quot;).getAsString(), 
+                jsonObject.get(&quot;lastName&quot;).getAsString(), 
+                jsonObject.get(&quot;email&quot;).getAsString(), 
+                localDate);
+    }
+}
+//注册使用即可
+</code></pre>
+<h4 id="instance-creators">Instance Creators</h4>
+<p>可使用场景：</p>
+<p>1.需要重新定义行为的创建方式。如创建子类</p>
+<p>2.创建的实例也是泛型的，通过ParameterizedType获取Type类型</p>
+<pre><code class="language-java">//第二种情况
+public class Id&lt;T&gt; {
+  private final Class&lt;T&gt; classOfId;
+  private final long value;
+  public Id(Class&lt;T&gt; classOfId, long value) {
+    this.classOfId = classOfId;
+    this.value = value;
+  }
+}
+class IdInstanceCreator implements InstanceCreator&lt;Id&lt;?&gt;&gt; {
+  public Id&lt;?&gt; createInstance(Type type) {
+    Type[] typeParameters = ((ParameterizedType)type).getActualTypeArguments();
+    Type idType = typeParameters[0]; // Id has only one parameterized type T
+    return new Id((Class)idType, 0L);
+  }
+}
+//使用
+Gson gson=new GsonBuilder()
+  .registerTypeAdapter(Id.getClass(),new IdInstanceCreator())
+  .create();
+String json=&quot;&quot;;
+Id&lt;Foo&gt; id=gson.fromJson(json,Id.getClass());
+</code></pre>
+<p>InstanceCreater源码解析</p>
+<blockquote>
+<p>知晓其何时创建实例，学习gson优秀的源码</p>
+</blockquote>
+<p>1.InstanceCreater注册</p>
+<pre><code class="language-java">private final Map&lt;Type, InstanceCreator&lt;?&gt;&gt; instanceCreators
+  = new HashMap&lt;Type, InstanceCreator&lt;?&gt;&gt;();
+
+//先放在map中
+public GsonBuilder registerTypeAdapter(Type type, Object typeAdapter) {
+
+  if (typeAdapter instanceof InstanceCreator&lt;?&gt;) {
+    //放入map中
+    instanceCreators.put(type, (InstanceCreator) typeAdapter);
+  }
+  //省略部分代码
+  return this;
+}
+
+ public Gson create() {
+
+    addTypeAdaptersForDate(datePattern, dateStyle, timeStyle, factories);
+
+    //删除与本文无关的代码
+    return new Gson(...,..., instanceCreators,
+        ..., ...,
+        ..., ..., ..., ...,
+        ..., ..., ...);
+  }
+//Gson构造函数
+ private final ConstructorConstructor constructorConstructor;
+ Gson(。。。,
+      final Map&lt;Type, InstanceCreator&lt;?&gt;&gt; instanceCreators, 。。。。。) {
+    this.constructorConstructor = new ConstructorConstructor(instanceCreators);
+  ｝
+</code></pre>
+<p>从中可以看出最后instanceCreators以map的形式放在Gson对象中持有的ConstructorConstructor对象中的map中。</p>
+<pre><code class="language-java">//Gson持有ConstructorConstructor对象。
+public final class ConstructorConstructor {
+  private final Map&lt;Type, InstanceCreator&lt;?&gt;&gt; instanceCreators;
+
+  public ConstructorConstructor(Map&lt;Type, InstanceCreator&lt;?&gt;&gt; instanceCreators) {
+    this.instanceCreators = instanceCreators;
+  }
+ ｝
+</code></pre>
+<p>ReflectiveTypeAdapterFactory对象初始化TypeAdapter时，会获取ObjectConstruct。</p>
+<pre><code class="language-java">//Gson初始化时会将ConstructorConstructor对象传递给ReflectiveTypeAdapterFactory
+Gson(,,,,,,,){
+  factories.add(new ReflectiveTypeAdapterFactory(
+        constructorConstructor, fieldNamingStrategy, excluder, jsonAdapterFactory));
+}
+public &lt;T&gt; TypeAdapter&lt;T&gt; create(Gson gson, final TypeToken&lt;T&gt; type) {
+    //根据type获取ObjectConstructor
+    ObjectConstructor&lt;T&gt; constructor = constructorConstructor.get(type);
+    return new Adapter&lt;T&gt;(constructor, getBoundFields(gson, type, raw));
+  }
+</code></pre>
+<p>然后看一下，ObjectConstructor#get方法来实现获取Type对应的实例，为什么要加一个ConstructorConstructor来获取实例。</p>
+<pre><code class="language-java">public &lt;T&gt; ObjectConstructor&lt;T&gt; get(TypeToken&lt;T&gt; typeToken) {
+    final Type type = typeToken.getType();
+    final Class&lt;? super T&gt; rawType = typeToken.getRawType();
+
+    // 创建对象方式A
+    final InstanceCreator&lt;T&gt; typeCreator = (InstanceCreator&lt;T&gt;) instanceCreators.get(type);
+    //客户端没有传InstanceCreator的时候为null
+    if (typeCreator != null) {
+      return new ObjectConstructor&lt;T&gt;() {//省略部分代码 };
+    }
+
+    // 创建对象方式B
+    final InstanceCreator&lt;T&gt; rawTypeCreator =
+        (InstanceCreator&lt;T&gt;) instanceCreators.get(rawType);
+     //客户端没有传InstanceCreator的时候为null   
+    if (rawTypeCreator != null) {
+      return new ObjectConstructor&lt;T&gt;() {
+        @Override public T construct() {//省略部分代码 }
+      };
+    }
+
+   // 创建对象方式C
+    //如果没有配置InstanceCreator的实现
+    ObjectConstructor&lt;T&gt; defaultConstructor = newDefaultConstructor(rawType);
+    if (defaultConstructor != null) {
+      return defaultConstructor;
+    }
+
+ // 创建对象方式D
+
+//如果没有配置InstanceCreator的实现
+ ObjectConstructor&lt;T&gt; defaultImplementation = newDefaultImplementationConstructor(type, rawType);
+    if (defaultImplementation != null) {
+      return defaultImplementation;
+    }
+
+    // finally try unsafe
+    return newUnsafeAllocator(type, rawType);
+  }
+</code></pre>
+<p>此处使用了设计模式——策略模式，有五种策略来实现获取对象实例。</p>
+<p>1、根据type通过客户端传入的InstanceCreator
+2、根据rawType通过客户端传入的InstanceCreator
+3、通过constructor 的newInstance 详见newDefaultConstructor方法
+4、判断是否是集合对象，来初始化目标javaBean对象，详见newDefaultImplementationConstructor
+5、最后调用newUnsafeAllocator来完成对象的初始，详见newUnsafeAllocator。</p>
+<p>2.使用入口：创建对象的实例，在Adapter中(ReflectiveTypeAdapterFactory)来创建实例</p>
+<pre><code class="language-java"> //创建对象的实例：这段至关重要 参考《Gson反射解析机制详解（1）》
+public T read(JsonReader in) throws IOException {
+      //....
+      //实例化一个对象  constructor是ObjectConstructor&lt;T&gt;
+      T instance = constructor.construct();
+
+        in.beginObject();
+        //遍历json为instance的字段自动赋值
+        while (in.hasNext()) {
+          String name = in.nextName();
+          BoundField field = boundFields.get(name);
+          if (field == null || !field.deserialized) {
+            in.skipValue();
+          } else {
+            field.read(in, instance);
+          }
+        }
+
+      in.endObject();
+      //返回一个java bean对象
+      return instance;
+    }
+</code></pre>
+<p>从而在Gson的constructor#construct 获取实例。</p>
+<pre><code class="language-java"> T instance = constructor.construct(); 
+</code></pre>
+<h4 id="typeadapter">TypeAdapter实现自定义序列化和反序列化</h4>
+<blockquote>
+<p>TypeAdapter和Serializer、Deserializer起到相同的作用，区别在于TypeAdapter使用流来解析数据，而不是使用JsonElement.</p>
+</blockquote>
+<p>由<code>GsonBuilder().registerTypeAdapter()</code>可知，TypeAdapter会以工厂模式的方式添加到factories。</p>
+<pre><code class="language-java">public GsonBuilder registerTypeAdapter(Type type, Object typeAdapter) {
+    Objects.requireNonNull(type);
+    $Gson$Preconditions.checkArgument(typeAdapter instanceof JsonSerializer&lt;?&gt;
+        || typeAdapter instanceof JsonDeserializer&lt;?&gt;
+        || typeAdapter instanceof InstanceCreator&lt;?&gt;
+        || typeAdapter instanceof TypeAdapter&lt;?&gt;);
+    ...
+    if (typeAdapter instanceof JsonSerializer&lt;?&gt; || typeAdapter instanceof JsonDeserializer&lt;?&gt;) {
+      TypeToken&lt;?&gt; typeToken = TypeToken.get(type);
+      //Serializer、Deserializer 封装在了TreeTypeAdapter中
+      factories.add(TreeTypeAdapter.newFactoryWithMatchRawType(typeToken, typeAdapter));
+    }
+    if (typeAdapter instanceof TypeAdapter&lt;?&gt;) {
+      //这里是新建了Factory
+      @SuppressWarnings({&quot;unchecked&quot;, &quot;rawtypes&quot;})
+      TypeAdapterFactory factory = TypeAdapters.newFactory(TypeToken.get(type), (TypeAdapter)typeAdapter);
+      factories.add(factory);
+    }
+    return this;
+  }
+</code></pre>
+<p>主要使用了<code>read()</code>和<code>write()</code>方法来实现对Json数据流的处理，以下是一个demo.</p>
+<pre><code class="language-java">public class BookTypeAdapter extends TypeAdapter {
+
+  @Override
+  public Book read(final JsonReader in) throws IOException {
+    final Book book = new Book();
+
+    in.beginObject();
+    while (in.hasNext()) {
+      switch (in.nextName()) {
+      case &quot;isbn&quot;:
+        book.setIsbn(in.nextString());
+        break;
+      case &quot;title&quot;:
+        book.setTitle(in.nextString());
+        break;
+      case &quot;authors&quot;:
+        book.setAuthors(in.nextString().split(&quot;;&quot;));
+        break;
+      }
+    }
+    in.endObject();
+
+    return book;
+  }
+
+  @Override
+  public void write(final JsonWriter out, final Book book) throws IOException {
+    out.beginObject();
+    out.name(&quot;isbn&quot;).value(book.getIsbn());
+    out.name(&quot;title&quot;).value(book.getTitle());
+    out.name(&quot;authors&quot;).value(StringUtils.join(book.getAuthors(), &quot;;&quot;));
+    out.endObject();
+  }
+}
+</code></pre>
+<h3 id="14">1.4 常用的类</h3>
+<h4 id="object">Object</h4>
+<blockquote>
+<p>每个类包括数组都继承自Object</p>
+</blockquote>
+<h4 id="class">Class</h4>
+<blockquote>
+<p>Class<T>是一个类。类对象由Java虚拟机自动构建，用于表示JVM运行时类或接口的信息。Class类的构造函数被设计为私有的，这意味着我们不能通过new的方式来创建Class对象，只有JVM才能创建该类的实例。</p>
+</blockquote>
+<h4 id="type">Type</h4>
+<blockquote>
+<p>是一个接口，自1.5之后，是Java所有类型的通用超级接口。</p>
+</blockquote>
+<p>Raw Type:原始类型，包括类和接口。基本数据类型和不涉及泛型的所有引用类型(类、接口、数组)均是Class类型。</p>
+<p>Parameterized types:参数化类型，指泛型，例如List<String>是一个参数化类型。</p>
+<ul>
+<li>getActualTypeArguments()返回Type[]，即“&lt;&gt;”里的参数，比如Map<String,Integer></li>
+<li>getRawType()返回Tpye，得到“&lt;&gt;”前面的类型，比如List</li>
+<li>getOwnerType()返回Type，返回ParameterizedType类型所在的类的Type。如Map.Entry<String,Object>这个参数化类型返回的是Map(因为Map.Entry这个类型所在的类是Map)的类型。</li>
+</ul>
+<p>Array types:带有泛型的数组类型，也就是带有参数化类或者接口所表示的数组对应的类型，例如 List s[]、Map<String,Integer> map[]等对应的类型均是GenericArrayType类型,而List s[]、Map map[]是Class类型。</p>
+<p>类型变量(type variables)：也叫泛型变量，即泛型中的变量，例如：T、K、V等变量，可以表示任何类。
+基本数据类型(primitive types)：byte、short、boolean、char、int、long、float、double八大基本数据类型。
+通配符类型(WildcardType) ：通配符对应的类型，例如 List&lt;? extends Object&gt; 中?对应的类型</p>
+<h2 id="22100">2.源码解析(源码以2.10.0为例，并添加自己的修改)</h2>
+<blockquote></blockquote>
+<h3 id="gson">Gson中关键类的说明</h3>
+<h4 id="gson_1">Gson</h4>
+<h4 id="gsonbuilder">GsonBuilder</h4>
+<h3 id="gson_2">Gson解析的原理流程图</h3>
+<p>Gson是一个序列化和反序列化Json数据的Java库，总结工作中使用到的原理，主要是对Gson的一个反序列化过程的解析。</p>
+<p>Gson序列化源码分析</p>
+<p>Gson反序列化源码分析</p>
+<h3 id="jsonreader">JsonReader 的源码解析</h3>
+<blockquote>
+<p>JsonReader是用来反序列化Json字符串的主要类。</p>
+</blockquote>
+<p>重点属性</p>
+<p>stack： 一个int数组，默认32位</p>
+<p>stackSize: 栈的长度</p>
+<p>Peeked： 当前字符的状态 一共有17种状态</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PEEKED_NONE</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_BEGIN_OBJECT</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_END_OBJECT</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_BEGIN_ARRAY</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_END_ARRAY</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_TRUE</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_FALSE</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_NULL</td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_SINGLE_QUOTED</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_DOUBLE_QUOTED</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_UNQUOTED</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_BUFFERED</td>
+<td>11</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_SINGLE_QUOTED_NAME</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_DOUBLE_QUOTED_NAME</td>
+<td>13</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_UNQUOTED_NAME</td>
+<td>14</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_LONG</td>
+<td>15</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_NUMBER</td>
+<td>16</td>
+<td></td>
+</tr>
+<tr>
+<td>PEEKED_EOF</td>
+<td>17</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>JsonScope：8种状态，当前层级的状态peekStack</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EMPTY_ARRAY</td>
+<td>1</td>
+</tr>
+<tr>
+<td>NONEMPTY_ARRAY</td>
+<td>2</td>
+</tr>
+<tr>
+<td>EMPTY_OBJECT</td>
+<td>3</td>
+</tr>
+<tr>
+<td>DANGLING_NAME</td>
+<td>4</td>
+</tr>
+<tr>
+<td>NONEMPTY_OBJECT</td>
+<td>5</td>
+</tr>
+<tr>
+<td>EMPTY_DOCUMENT</td>
+<td>6</td>
+</tr>
+<tr>
+<td>NONEMPTY_DOCUMENT</td>
+<td>7</td>
+</tr>
+<tr>
+<td>CLOSED</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>重点方法：</p>
+<ul>
+<li>doPeek()</li>
+</ul>
+<blockquote>
+<p>这个方法是最重要的一个方法，该方法进行字符读取，并根据当前的层级状态peekStack来处理字符串，最后返回将要处理字符的状态Peeked。</p>
+</blockquote>
+<p>我们需要知道Json是一个层级的树形，它是一层一层的，主要是通过<code>[]</code>、<code>{}</code>来对数据进行层级的分层。</p>
+<pre><code class="language-java">{
+  stack[stackSize++] = JsonScope.EMPTY_DOCUMENT;
+}
+  int peeked = PEEKED_NONE;
+</code></pre>
+<p>首先，它在构造代码块中先将层级定位1层，此时代码的层级是1，代码层级的状态是EMPTY_DOCUMENT，peeked的初始状态是PEEKED_NONE。</p>
+<p>我们以一个简单的例子，走一下,在此为了更好的理解，会交叉写一下其他的方法。</p>
+<pre><code class="language-xml">{&quot;a&quot;: [&quot;one&quot;], &quot;b&quot;: 123}
+</code></pre>
+<p>若要反序列化这个字符串，需要这样读。</p>
+<pre><code class="language-java"> JsonReader reader = new JsonReader(reader(
+        &quot;{\&quot;a\&quot;: [\&quot;one\&quot;], \&quot;b\&quot;: 123}&quot;));
+ reader.beginObject();
+ reader.nextName();
+ reader.beginArray();
+ reader.nextString();
+ reader.endArray();
+ reader.nextName();
+ reader.nextInt();
+ reader.endObject();
+</code></pre>
+<p><code>reader.beginObject()</code>中会看到:</p>
+<pre><code class="language-java"> public void beginObject() throws IOException {
+    int p = peeked;
+    if (p == PEEKED_NONE) {
+      p = doPeek();
+    }
+   ...
+  }
+</code></pre>
+<p>都会先走dopeek()方法，获取PeekStack，进行判断字符状态。</p>
+<p><img alt="image-20230315171132500" src="../21Gson%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.assets/image-20230315171132500.png" /></p>
+<p>初始化时，PeekStack=EMPTY_DOCUMENT</p>
+<pre><code class="language-java">else if (peekStack == JsonScope.EMPTY_DOCUMENT) {
+  if (lenient) {
+    consumeNonExecutePrefix();//这一步就是把前面无关的字符删除，比如空格，· 等不属于json的字符
+  }
+  stack[stackSize - 1] = JsonScope.NONEMPTY_DOCUMENT;
+} 
+//此时stack[NONEMPTY_DOCUMENT],StackSize=1
+</code></pre>
+<p>将当前层级的状态修改为了JsonScope.NONEMPTY_DOCUMENT。</p>
+<pre><code class="language-java"> int c = nextNonWhitespace(true); //这个方法是读取下一个字符
+    switch (c) {
+    ...
+    case '{':
+      return peeked = PEEKED_BEGIN_OBJECT;
+    default:
+      pos--; // Don't consume the first character in a literal value.
+    }
+</code></pre>
+<p>根据字符的ASCii码对相应的字符返回相应的字符状态，根据以上代码会返回 peeked = PEEKED_BEGIN_OBJECT。</p>
+<p>接着看beginObject(),</p>
+<pre><code class="language-java">if (p == PEEKED_BEGIN_OBJECT) {
+  push(JsonScope.EMPTY_OBJECT);
+  peeked = PEEKED_NONE;
+} else {
+  throw new IllegalStateException(&quot;Expected BEGIN_OBJECT but was &quot; + peek() + locationString());
+}
+
+  private void push(int newTop) {
+      ...
+      stack[stackSize++] = newTop;
+    }
+//此时stack[NONEMPTY_DOCUMENT,EMPTY_OBJECT],StackSize =2;
+</code></pre>
+<p>当字符是PEEKED_BEGIN_OBJECT时，会在stack[]中添加新的层级EMPTY_OBJECT,StackSize+1。接着看nextName(),</p>
+<pre><code class="language-java"> public String nextName() throws IOException {
+    int p = peeked;
+    if (p == PEEKED_NONE) {
+      p = doPeek();
+    }
+  ...
+  }
+</code></pre>
+<p>它也会走dopeek()，这时取到的PeekStack = PEEKED_BEGIN_OBJECT。</p>
+<pre><code class="language-java">if (peekStack == JsonScope.EMPTY_OBJECT || peekStack == JsonScope.NONEMPTY_OBJECT) {
+      stack[stackSize - 1] = JsonScope.DANGLING_NAME;
+      // Look for a comma before the next element.
+            ...
+      int c = nextNonWhitespace(true);
+      switch (c) {
+      case '&quot;':
+        return peeked = PEEKED_DOUBLE_QUOTED_NAME;
+     ...
+      default:
+      ...
+      }
+    }
+//此时stack[NONEMPTY_DOCUMENT,DANGLING_NAME],StackSize =2;
+</code></pre>
+<p>将当前的层级状态改为DANGLING_NAME，并返回字符状态为PEEKED_DOUBLE_QUOTED_NAME，再看nextName()</p>
+<pre><code class="language-java">   String result;
+    if (p == PEEKED_UNQUOTED_NAME) {
+      result = nextUnquotedValue();
+    } else if (p == PEEKED_SINGLE_QUOTED_NAME) {
+      result = nextQuotedValue('\'');
+    } else if (p == PEEKED_DOUBLE_QUOTED_NAME) {
+      result = nextQuotedValue('&quot;'); 
+    } else {
+      throw new IllegalStateException(&quot;Expected a name but was &quot; + peek() + locationString());
+    }
+    peeked = PEEKED_NONE;
+    pathNames[stackSize - 1] = result;
+    return result;
+</code></pre>
+<p><code>nextQuotedValue('"')</code>会读取到<code>""</code>中的内容给result中，接着将peeked设置为PEEKED_NONE。到这里我们会发现PEEKED_NONE是新的字符开始读取和结束的状态。</p>
+<p>接着 <code>reader.beginArray();</code>,beginArray()和beginObject()方法很像，我们走一下，还是先走doPeek()</p>
+<pre><code class="language-java">if (peekStack == JsonScope.DANGLING_NAME) {
+  stack[stackSize - 1] = JsonScope.NONEMPTY_OBJECT;
+  // Look for a colon before the value.
+  int c = nextNonWhitespace(true);
+  switch (c) {
+    case ':':
+      break;
+    case '=':
+      checkLenient();
+      if ((pos &lt; limit || fillBuffer(1)) &amp;&amp; buffer[pos] == '&gt;') {
+        pos++;
+      }
+      break;
+    default:
+      throw syntaxError(&quot;Expected ':'&quot;);
+  }
+}
+//此时stack[NONEMPTY_DOCUMENT,NONEMPTY_OBJECT],StackSize =2;
+</code></pre>
+<p>此时的层级状态为DANGLING_NAME，会修改成NONEMPTY_OBJECT,在<code>:</code>处break,dopeek()接着往下走。</p>
+<pre><code class="language-java">int c = nextNonWhitespace(true);//读取下一个字符
+    switch (c) {
+        ...
+    case '[':
+      return peeked = PEEKED_BEGIN_ARRAY;
+      ...
+    default:
+      pos--; // Don't consume the first character in a literal value.
+    }
+</code></pre>
+<p>会返回字符的状态PEEKED_BEGIN_ARRAY。 在看beginArray()，会在stack[]中再加一层，StackSize+1。</p>
+<pre><code class="language-java"> //begainArray
+if (p == PEEKED_BEGIN_ARRAY) {
+      push(JsonScope.EMPTY_ARRAY);
+      pathIndices[stackSize - 1] = 0;
+      peeked = PEEKED_NONE;
+    } else {
+      throw new IllegalStateException(&quot;Expected BEGIN_ARRAY but was &quot; + peek() + locationString() + &quot;，v=&quot;+nextErrorString());
+    }
+//此时stack[NONEMPTY_DOCUMENT,NONEMPTY_OBJECT,EMPTY_ARRAY],StackSize =3
+</code></pre>
+<p><code>reader.nextString();</code>仍然先走dopeek()</p>
+<pre><code class="language-java">if (peekStack == JsonScope.EMPTY_ARRAY) {
+  stack[stackSize - 1] = JsonScope.NONEMPTY_ARRAY;
+}
+ int c = nextNonWhitespace(true);
+    switch (c) {
+    case '&quot;':
+      return peeked = PEEKED_DOUBLE_QUOTED;
+    default:
+      pos--; // Don't consume the first character in a literal value.
+    }
+//此时stack[NONEMPTY_DOCUMENT,NONEMPTY_OBJECT,NONEMPTY_ARRAY],StackSize =3
+</code></pre>
+<p>然后在nextString()中将<code>nextQuotedValue('"')</code>,将双引号中的字符读取出来。字符状态恢复到PEEKED_NONE。</p>
+<p>reader.endArray(); 仍然先走dopeek()</p>
+<p>```java 
+if (peekStack == JsonScope.NONEMPTY_ARRAY) {
+  // Look for a comma before the next element.
+  int c = nextNonWhitespace(true);
+  switch (c) {
+    case ']':
+      return peeked = PEEKED_END_ARRAY;
+    case ';':
+      checkLenient(); // fall-through
+    case ',':
+      break;
+    default:
+      throw syntaxError("Unterminated array");
+  }
+} </p>
+<pre><code>
+会返回字符状态PEEKED_END_ARRAY，看一下endArray().
+
+```java
+if (p == PEEKED_END_ARRAY) {
+  stackSize--;
+  pathIndices[stackSize - 1]++; //为了记录路径使用的
+  peeked = PEEKED_NONE;
+} else {
+  throw new IllegalStateException(&quot;Expected END_ARRAY but was &quot; + peek() + locationString());
+}
+//此时stack[NONEMPTY_DOCUMENT,NONEMPTY_OBJECT],StackSize =2 
+
+//实际上stack[NONEMPTY_DOCUMENT,NONEMPTY_OBJECT,NONEMPTY_ARRAY]，但是NONEMPTY_ARRAY这个已经无关紧要了只是没有清0而已
+</code></pre>
+<p>reader.nextName();仍然先走doPeek().</p>
+<pre><code class="language-java">if (peekStack == JsonScope.EMPTY_OBJECT || peekStack == JsonScope.NONEMPTY_OBJECT) {
+      stack[stackSize - 1] = JsonScope.DANGLING_NAME;
+      // Look for a comma before the next element.
+      if (peekStack == JsonScope.NONEMPTY_OBJECT) {
+        int c = nextNonWhitespace(true);
+        switch (c) {
+        ...
+        case ',':
+          break;
+        ...
+        }
+      }
+      int c = nextNonWhitespace(true);
+      switch (c) {
+      case '&quot;':
+        return peeked = PEEKED_DOUBLE_QUOTED_NAME;
+        ...
+      }
+    }
+//此时stack[NONEMPTY_DOCUMENT,DANGLING_NAME],StackSize =2 
+</code></pre>
+<p>返回字符状态PEEKED_DOUBLE_QUOTED_NAME，nextName()中，会读取字符串的值，并将字符移动到<code>"</code>的位置。</p>
+<p>reader.nextInt(),仍然先走doPeek()</p>
+<pre><code class="language-java">if (peekStack == JsonScope.DANGLING_NAME) {
+      stack[stackSize - 1] = JsonScope.NONEMPTY_OBJECT;
+      // Look for a colon before the value.
+      int c = nextNonWhitespace(true);
+      switch (c) {
+      case ':':
+        break;
+      default:
+        throw syntaxError(&quot;Expected ':'&quot;);
+      }
+    } 
+result = peekNumber();
+if (result != PEEKED_NONE) {
+  return result;
+}
+//此时stack[NONEMPTY_DOCUMENT,NONEMPTY_OBJECT],StackSize =2 
+</code></pre>
+<p>peekNumber()方法会读取<code>:</code>后的数字，正常情路下主要返回PEEKED_LONG和PEEKED_NUMBER这两个状态，在nextInt()中去读取要读取的字符串。</p>
+<p>reader.endObject(); 仍然走dopeek(),返回字符状态PEEKED_END_OBJECT。</p>
+<pre><code class="language-java">if (peekStack == JsonScope.NONEMPTY_OBJECT) {
+  int c = nextNonWhitespace(true);
+  switch (c) {
+    case '}':
+      return peeked = PEEKED_END_OBJECT;
+      ...
+    default:
+      throw syntaxError(&quot;Unterminated object&quot;);
+  }
+}
+</code></pre>
+<p>endObject()中会将stack[]进行更新。</p>
+<pre><code class="language-java"> if (p == PEEKED_END_OBJECT) {
+      stackSize--;
+      pathNames[stackSize] = null; // Free the last path name so that it can be garbage collected!
+      pathIndices[stackSize - 1]++;
+      peeked = PEEKED_NONE;
+    } else {
+      throw new IllegalStateException(&quot;Expected END_OBJECT but was &quot; + peek() + locationString());
+    }
+//此时stack[NONEMPTY_DOCUMENT],StackSize =1
+</code></pre>
+<p>到此整个上面代码的源码流程就走完了，因为走的是正常情况，中间的纠错没有细致来分析，但此时stack[]仍然是NONEMPTY_DOCUMENT，是不是就还可以继续往下走，可以用JsonReader#peek()，仍然走dopeek()</p>
+<pre><code class="language-java">if (peekStack == JsonScope.NONEMPTY_DOCUMENT) {
+  int c = nextNonWhitespace(false);
+  if (c == -1) {
+    return peeked = PEEKED_EOF;
+  } else {
+    checkLenient();
+    pos--;
+  }
+}
+//此时stack[NONEMPTY_DOCUMENT],StackSize =1 仍然不变
+</code></pre>
+<p>但是会返回字符状态PEEKED_EOF，这是结束的标志。</p>
+<p>由以上的流程来总结一下doPeek()方法：</p>
+<blockquote>
+<p>根据JsonCope来返回当前的字符状态，主要处理JsonCope的状态，读取下一个字符，判断当前字符的状态。</p>
+</blockquote>
+<pre><code class="language-java">//第一个流程 能直接根据当前字符和JsonScope确定当前字符状态的
+ if (peekStack == JsonScope.EMPTY_ARRAY) {
+      stack[stackSize - 1] = JsonScope.NONEMPTY_ARRAY;
+    } else if (peekStack == JsonScope.NONEMPTY_ARRAY) {
+      // Look for a comma before the next element.
+      int c = nextNonWhitespace(true);
+      switch (c) {
+      case ']':
+        return peeked = PEEKED_END_ARRAY;
+      case ';':
+        checkLenient(); // fall-through
+      case ',':
+        break;
+      default:
+        throw syntaxError(&quot;Unterminated array&quot;);
+      }
+    } else if (peekStack == JsonScope.EMPTY_OBJECT || peekStack == JsonScope.NONEMPTY_OBJECT) {
+      stack[stackSize - 1] = JsonScope.DANGLING_NAME;
+      // Look for a comma before the next element.
+      if (peekStack == JsonScope.NONEMPTY_OBJECT) {
+        int c = nextNonWhitespace(true);
+        switch (c) {
+        case '}':
+          return peeked = PEEKED_END_OBJECT;
+        case ';':
+          checkLenient(); // fall-through
+        case ',':
+          break;
+        default:
+          throw syntaxError(&quot;Unterminated object&quot;);
+        }
+      }
+      int c = nextNonWhitespace(true);
+      switch (c) {
+      case '&quot;':
+        return peeked = PEEKED_DOUBLE_QUOTED_NAME;
+      case '\'':
+        checkLenient();
+        return peeked = PEEKED_SINGLE_QUOTED_NAME;
+      case '}':
+        if (peekStack != JsonScope.NONEMPTY_OBJECT) {
+          return peeked = PEEKED_END_OBJECT;
+        } else {
+          throw syntaxError(&quot;Expected name&quot;);
+        }
+      default:
+        checkLenient();
+        pos--; // Don't consume the first character in an unquoted string.
+        if (isLiteral((char) c)) {
+          return peeked = PEEKED_UNQUOTED_NAME;
+        } else {
+          throw syntaxError(&quot;Expected name&quot;);
+        }
+      }
+    } else if (peekStack == JsonScope.DANGLING_NAME) {
+      stack[stackSize - 1] = JsonScope.NONEMPTY_OBJECT;
+      // Look for a colon before the value.
+      int c = nextNonWhitespace(true);
+      switch (c) {
+      case ':':
+        break;
+      case '=':
+        checkLenient();
+        if ((pos &lt; limit || fillBuffer(1)) &amp;&amp; buffer[pos] == '&gt;') {
+          pos++;
+        }
+        break;
+      default:
+        throw syntaxError(&quot;Expected ':'&quot;);
+      }
+    } else if (peekStack == JsonScope.EMPTY_DOCUMENT) {
+      if (lenient) {
+        consumeNonExecutePrefix();
+      }
+      stack[stackSize - 1] = JsonScope.NONEMPTY_DOCUMENT;
+    } else if (peekStack == JsonScope.NONEMPTY_DOCUMENT) {
+      int c = nextNonWhitespace(false);
+      if (c == -1) {
+        return peeked = PEEKED_EOF;
+      } else {
+        checkLenient();
+        pos--;
+      }
+    } else if (peekStack == JsonScope.CLOSED) {
+      throw new IllegalStateException(&quot;JsonReader is closed&quot;);
+    }
+//第二步 消费下一个字符 
+ int c = nextNonWhitespace(true);
+    switch (c) {
+    case ']':
+      if (peekStack == JsonScope.EMPTY_ARRAY) {
+        return peeked = PEEKED_END_ARRAY;
+      }
+      // fall-through to handle &quot;,]&quot;
+    case ';':
+    case ',':
+      // In lenient mode, a 0-length literal in an array means 'null'.
+      if (peekStack == JsonScope.EMPTY_ARRAY || peekStack == JsonScope.NONEMPTY_ARRAY) {
+        checkLenient();
+        pos--;
+        return peeked = PEEKED_NULL;
+      } else {
+        throw syntaxError(&quot;Unexpected value&quot;);
+      }
+    case '\'':
+      checkLenient();
+      return peeked = PEEKED_SINGLE_QUOTED;
+    case '&quot;':
+      return peeked = PEEKED_DOUBLE_QUOTED;
+    case '[':
+      return peeked = PEEKED_BEGIN_ARRAY;
+    case '{':
+      return peeked = PEEKED_BEGIN_OBJECT;
+    default:
+      pos--; // Don't consume the first character in a literal value.
+    }
+//若以上未消费，
+int result = peekKeyword();//主要是处理true,false,null
+    if (result != PEEKED_NONE) {
+      return result;
+    }
+
+    result = peekNumber();//主要是处理int,short,byte,long,flat,double类型的
+    if (result != PEEKED_NONE) {
+      return result;
+    }
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1289 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Git教程分享 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1github" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git教程分享
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Android/1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Android/2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1github" class="md-nav__link">
+    1、gitHub 仓库新建与删除
+  </a>
+  
+    <nav class="md-nav" aria-label="1、gitHub 仓库新建与删除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1  新建仓库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2  删除仓库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-git-pushtoken" class="md-nav__link">
+    1.3 git push时需要token
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 仓库初始化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 个人网站搭建
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2git" class="md-nav__link">
+    2、git 基本命令总结
+  </a>
+  
+    <nav class="md-nav" aria-label="2、git 基本命令总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-git" class="md-nav__link">
+    2.1  获取git 存储库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 记录文件的修改
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 查看提交历史
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    2.4 提交和撤销提交
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    由于文件的状态不同，因此查看的方式也略有不同
+  </a>
+  
+    <nav class="md-nav" aria-label="由于文件的状态不同，因此查看的方式也略有不同">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5  分支管理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    merge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit" class="md-nav__link">
+    修改完后，提交commit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebase" class="md-nav__link">
+    rebase
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    遇到冲突
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit_1" class="md-nav__link">
+    多个commit一起提交
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    修改完后
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-n-no-commit" class="md-nav__link">
+    -n --no-commit  不提交，将添加的文件放在暂存区
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    将不需要的文件撤销
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    提交需要提交的内容
+  </a>
+  
+    <nav class="md-nav" aria-label="提交需要提交的内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#26-remotes" class="md-nav__link">
+    2.6  远程仓库 Remotes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27" class="md-nav__link">
+    2.7 标签
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-git" class="md-nav__link">
+    2.8 git 操作别名
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-git" class="md-nav__link">
+    2.9 git配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210-git-stash" class="md-nav__link">
+    2.10 git stash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3git" class="md-nav__link">
+    3、git 经典使用场景
+  </a>
+  
+    <nav class="md-nav" aria-label="3、git 经典使用场景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-commitcommit-coment" class="md-nav__link">
+    3.1  当不想增加commit时，却需要修改文件或修改Commit Coment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-commit" class="md-nav__link">
+    3.2   本地清理，使commit合并成一个
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-alpha" class="md-nav__link">
+    3.3   分支开发完后，合并到发版分支(以微博合并alpha为例)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    切换到仓库的最外层
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topic-topic123" class="md-nav__link">
+    Topic必须为字母与数字的组合,如: topic123
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topic_-topic123_topic45" class="md-nav__link">
+    Topic之间的依赖关于必须以下划线”_”区分,如: topic123_topic45
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    先更改单个文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abandon-changes-changid" class="md-nav__link">
+    若执行 abandon changes 则需要将ChangID 删除
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abandon-changeschangid" class="md-nav__link">
+    若未执行 abandon changes，切记不要修改ChangID
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push" class="md-nav__link">
+    此时，要确保是最新的远端代码，在push多个仓库
+  </a>
+  
+    <nav class="md-nav" aria-label="此时，要确保是最新的远端代码，在push多个仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#34-commit" class="md-nav__link">
+    3.4   合并分支的某个Commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-commit" class="md-nav__link">
+    3.5  合并某个分支某个Commit 的部分内容
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36" class="md-nav__link">
+    3.6 用户名的修改
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-bug" class="md-nav__link">
+    3.7  工作修改Bug
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38" class="md-nav__link">
+    3.8 代码回滚的场景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-git-pull" class="md-nav__link">
+    3.9  git pull时，解决冲突
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssl" class="md-nav__link">
+    处理SSL代理问题：
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h2 id="1github">1、gitHub 仓库新建与删除</h2>
+<h3 id="11">1.1  新建仓库</h3>
+<p>点击New repository,按照提示的内容填写即可。</p>
+<p><img alt="85b9dd9cb2924ddfaf1c681c9f6402f6" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/85b9dd9cb2924ddfaf1c681c9f6402f6.png" /></p>
+<h3 id="12">1.2  删除仓库</h3>
+<p>选中要删除的仓库，点击Setting,拉到最下面，点击 <code>Delete this repository</code>,输入仓库名称，确认即可。
+<img alt="e1bbfcc6b1a949fdbc0e52ec10b0b73b" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/e1bbfcc6b1a949fdbc0e52ec10b0b73b.png" /></p>
+<h3 id="13-git-pushtoken">1.3 git push时需要token</h3>
+<pre><code class="language-git">git add .
+git commit -m &quot;comment&quot;
+git pull origin 分支名
+git push origin 分支名
+</code></pre>
+<p>从2021年8月13日开始，github不再支持用户名和密码的push 方式，而是推荐使用token,方法很简单，在用户名下-&gt;Settings-&gt;Developer settings-&gt;Personal access tokens-&gt;generate new token,生成完成后，一定要复制粘贴，因为token只出现一次，将token输入到密码输入的地方即可。当然你也可以用SSH-Key的方式，避免输入的操作。
+<img alt="删除仓库" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/watermark%2Ctype_ZHJvaWRzYW5zZmFsbGJhY2s%2Cshadow_50%2Ctext_Q1NETiBAcXFfMzIwMzUyNDE%3D%2Csize_20%2Ccolor_FFFFFF%2Ct_70%2Cg_se%2Cx_16.png" /></p>
+<h2 id="14">1.4 仓库初始化</h2>
+<h2 id="15">1.5 个人网站搭建</h2>
+<h2 id="2git">2、git 基本命令总结</h2>
+<h3 id="21-git">2.1  获取git 存储库</h3>
+<pre><code class="language-bash">#1、本地新建后和远程连接
+git init 
+git add remote url #添加远程仓库
+#2、从其他地方克隆
+git clone url
+</code></pre>
+<h3 id="22">2.2 记录文件的修改</h3>
+<p>文件类型：tracked     untracked ；下图为文件状态的生命周期</p>
+<p><img alt="文件的生命周期" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/image-20210923170033131.png" /></p>
+<pre><code class="language-bash">git status #查看文件状态
+git status  -uno #查看共同修改的文件
+git status -s #查看文件状态:简写
+</code></pre>
+<h3 id="23">2.3 查看提交历史</h3>
+<p>git log 按照时间倒序 显示</p>
+<pre><code class="language-bash">git log #显示所有提交过的版本信息
+git log --oneline #显示简介的log信息
+git log --graph --oneline #图形化显示当前分支的提交日志
+git log --graph --patch #图形化显示当前分支的提交日志及每次修改的内容
+git log --pretty=forgit mat #将日志输出更改为默认格式以外的格式
+
+git reflog #显示所有分支的操作记录：可以用来恢复删除的commit 操作
+</code></pre>
+<h3 id="24">2.4 提交和撤销提交</h3>
+<p><img alt="git提交和撤销操作" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/image-20210923171715720.png" /></p>
+<ul>
+<li>提交</li>
+</ul>
+<p><code>bash
+  git add .
+  git commit -m "Commit"
+  git pull origin 远程分支
+  git push origin 远程分支</code></p>
+<ul>
+<li>
+<p>git diff :查看修改的文件与以前的不同</p>
+<p>```bash</p>
+<h1 id="_1">由于文件的状态不同，因此查看的方式也略有不同</h1>
+<p>git diff # 查看modified 与 unmodified的区别
+git diff --cached # 查看staged 与 unmodified的区别
+git diff HEAD # 查看最新提交和当前工作区的区别 HEAD可以换成CommitID 
+```
+  * git fetch  origin 远程分支  ： 下拉远程代码
+  * git pull   origin 远程分支  等价于</p>
+<ul>
+<li>git fetch origin 远程分支</li>
+<li>git merge origin/远程分支</li>
+<li>
+<p>git pull --rebase  等价于</p>
+</li>
+<li>
+<p>git fetch origin 远程分支</p>
+</li>
+<li>git rebase origin/远程分支</li>
+<li>撤销：撤销的操作按照Git 2.23.0 版</li>
+</ul>
+</li>
+</ul>
+<p>解释一下：工作区、暂存区和HEAD的概念，工作区就是你可以看到的文件夹，即你修改的地方，git提供了暂存区的概念，即在工作区向本地分支提交时，有一个暂存区，我们在git add .时将工作区修改的文件添加到操作区，然后通过git commit 提交到本地分支当前状态，将其称为HEAD。</p>
+<ul>
+<li>未加入到暂存区时：git restore 文件名</li>
+<li>加入到暂存区时(git add .)：git restore --staged  文件名</li>
+<li>提交到HEAD(git commit)(本地分支时)：<ul>
+<li>撤销本次修改：git reset HEAD^ --hard</li>
+<li>撤销本次提交：git reset HEAD^ --soft</li>
+</ul>
+</li>
+<li>回滚历史版本 ,首先需要知道commit 的ID，然后回滚到该Commit : git reset --hard CommitID<ul>
+<li>HEAD 为本地分支当前commit</li>
+<li>HEAD^ 上一个 HEAD^^上上个</li>
+<li>HEAD～100 上100个</li>
+</ul>
+</li>
+<li>当本地回滚后，为了使远程和本地保持一样，可以git push --force origin 会修改远程分支的commit</li>
+<li>重做提交或者忘记其他的更改</li>
+</ul>
+<p>git在每次commit时，会生成一个快照，但有时我们只是稍微的改动，不想再添加一个commit，就可以使用以下方法：</p>
+<p><code>bash
+  git commit --amend</code></p>
+<p>--amend 可以实现两种情况：</p>
+<ul>
+<li>
+<p>修改或添加文件</p>
+<p><code>bash
+git add forgotten_file
+git commit --amend</code>
+  * 修改Coments的内容</p>
+</li>
+</ul>
+<h3 id="25">2.5  分支管理</h3>
+<ul>
+<li>新建分支</li>
+</ul>
+<p><code>bash
+  git branch 分支名称 # 新建
+  git checkout -b  分支名称 #新建并切换</code>
+* 删除分支</p>
+<p><code>bash
+  git branch  -d 分支名称 #合并过的分支
+  git branch  -D 分支名称  #未合并的分支
+  git push --delete origin  分支名称 #删除远程分支</code>
+* 查看分支</p>
+<p><code>bash
+  git branch --all #查看所有分支
+  git branch -v #查看所有分支的最后一次提交
+  git branch --merged #合并到本分支的其他分支
+  git branch --no-merged #未合并到本分支的其他分支</code>
+* 更改分支名称</p>
+<p><code>bash
+  git branch -m oldname newname</code>
+* 提交远端分支并跟踪</p>
+<p><code>bash
+  git push origin 分支名称
+  git branch --set-upstream-to origin/分支名称</code>
+* 分支的合并</p>
+<p>git merge 和rebase 都可以实现分支的合并，但是也存在不同。</p>
+<ul>
+<li>
+<p>git merge</p>
+<p><code>bash
+git merge 要合并的分支名</code></p>
+<ul>
+<li>优点：是一个安全的操作，现有的分支不会被更改</li>
+<li>缺点：若上游的分支过于活跃，容易污染分支历史</li>
+</ul>
+<p><img alt="git merge" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/image-20210922195839354.png" />
+  * git rebase</p>
+<p><code>bash
+git  rebase  要合并的分支名</code></p>
+<p>黄金法则：绝不要在公共的分支上使用它！</p>
+<ul>
+<li>优点：会将历史分支复制，使项目历史呈现出完美的线性</li>
+<li>缺点：违反了黄金法则，会造成灾难性影响，且因为历史分支发生改变，可追踪性低</li>
+</ul>
+<p><code>undefined
+举例子来说，比如分支origin要合并到分支mywork上
+- 先找到两个分支最近的共同祖先节点，然后将mywork分支上从这个节点之后的所有提交都提取出来放到本地文件夹下作为补丁文件存放。
+- 将分支mywork拉取到分支origin的最新节点
+- 依次将存放的补丁文件一个一个应用到分支origin上</code></p>
+<p><img alt="git rebase" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/image-20210922195904313.png" />使用场景区别</p>
+<ul>
+<li>在只有自己使用的分支可以使用git rebase</li>
+<li>在公共分支上使用git merge</li>
+<li>遇到冲突</li>
+</ul>
+<p>```bash</p>
+<h1 id="merge">merge</h1>
+<h1 id="commit">修改完后，提交commit</h1>
+<p>git add 修改的文件
+git commit -m "Comments"
+git push</p>
+<h1 id="rebase">rebase</h1>
+<h1 id="_2">遇到冲突</h1>
+<p>git  add  修改的文件
+git rebase --continue
+```
+  * 终止合并</p>
+<p><code>bash
+git merge --abort
+gir rebase --abort</code>
+* 某个分支的部分提交——git cherry-pick :只转移Commit 中添加的部分，若是连续的，最好将连续的Commit进行转移</p>
+</li>
+<li>
+<p>基本用法</p>
+<p>```bash
+git cherry-pick <commitHash></p>
+<h1 id="commit_1">多个commit一起提交</h1>
+<p>git cherry-pick commitA..commitB   #范围(A,B]
+git cherry-pick commitA^..commitB  #范围[A,B]
+```
+  * 原理</p>
+<p><img alt="image-20210922154731097" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/image-20210922154731097.png" /></p>
+<p><code>bash
+git cherry-pick f  #在master分支上将f添加到Master</code></p>
+<p><img alt="image-20210922154941687" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/image-20210922154941687.png" />
+  * <code>bash
+git cherry-pick 分支名称 #将分支最后一次commit添加到Master</code>
+  * 转移多个提交</p>
+<p><code>bash
+git cherry-pick &lt;HashA&gt; &lt;HashB&gt;</code>
+  * 终止部分提交</p>
+<p><code>bash
+git cherry-pick --abort #回到操作前
+git cherry-pick --quit  #不回到操作前</code>
+  * 合并冲突</p>
+<p>```bash</p>
+<h1 id="_3">修改完后</h1>
+<p>git add .
+git cherry-pick --continue 
+```
+  * 转移某个commit 中部分文件的提交</p>
+<p>```bash</p>
+<h1 id="-n-no-commit">-n --no-commit  不提交，将添加的文件放在暂存区</h1>
+<p>git cherry-pick -n  <commit_id></p>
+<h1 id="_4">将不需要的文件撤销</h1>
+<p>git restore --staged 文件名
+git restore  文件名</p>
+<h1 id="_5">提交需要提交的内容</h1>
+<p>git commit -m "Comments"
+git push
+```</p>
+</li>
+</ul>
+<h3 id="26-remotes">2.6  远程仓库 Remotes</h3>
+<pre><code class="language-bash">git remote # 查看远程仓库 默认远程仓库为origin 
+git remote add RemoteName url # 默认为origin,这是Git为你克隆的服务器提供的默认名称
+git remote remove 远程仓库名 #删除远程仓库
+git remote rename oleRemoteName newRemoteName #重命名远程仓库
+</code></pre>
+<h3 id="27">2.7 标签</h3>
+<p>将仓库中重要的版本添加特定标记</p>
+<pre><code class="language-bash">git tag #显示所有的tag
+git tag tagname # 添加标记
+git tag -a tagname -m Comments#给标记创建注释
+git push origin tagname #推送标记
+git push origin --tags #推送所有标记
+git checkout tagname #查看标记所在的commit 
+</code></pre>
+<h3 id="28-git">2.8 git 操作别名</h3>
+<p>可以对git的一些操作设置别名</p>
+<pre><code class="language-bash">git config --global alias.othername 原有的操作名称如checkout
+git config --global alias.co checkout #此时可以采用co 代替checkout
+</code></pre>
+<h3 id="29-git">2.9 git配置</h3>
+<p>只记录客户端的配置，服务端的配置不进行记录。通过以下的配置，可以使git自定义的运行</p>
+<ul>
+<li>
+<p>git 使用一系列的配置文件来确定行为，主要存储于(system,global,local),后者会覆盖前者。</p>
+</li>
+<li>
+<p>--system 存储于文件<code>[path]/etc/gitconfig</code></p>
+</li>
+<li>--global  存储于文件<code>~/.gitconfig</code> (or<code>~/.config/git/config</code>) ，和用户有关系</li>
+<li>--local     存储于文件<code>.git/config</code>,当前仓库的git config文件</li>
+</ul>
+<p><code>bash
+  #将用户名和邮箱配置在global
+  $ git config --global user.name "John Doe"
+  $ git config --global user.email johndoe@example.com</code></p>
+<h3 id="210-git-stash">2.10 git stash</h3>
+<ul>
+<li>git stash</li>
+</ul>
+<p>将所有未提交的修改（范围包括工作区和暂存区）保存至堆栈中，用于恢复当前工作目录.</p>
+<p><code>bash
+  #当在开发分支dev开发一半时，需要紧急开发另一个任务，可以先将其保存起来
+  dev: git stash
+  dev: git status
+     On branch master
+     nothing to commit, working tree clean
+  #当需要再开发时，可以pop出来，且可以在不同的分支，不一定非要在dev分支
+  dev: git stash pop</code></p>
+<ul>
+<li>git  stash save </li>
+</ul>
+<p>等同于<code>git stash</code>,但是为每个保存提供了注释</p>
+<p><code>bash
+  git stash save "test1"</code></p>
+<ul>
+<li>git stash list</li>
+</ul>
+<p>查看当前stash的内容</p>
+<p><code>bash
+   $ git stash list
+   stash@{0}: On master: test2
+   stash@{1}: On master: test1</code></p>
+<ul>
+<li>git stash pop</li>
+</ul>
+<p>将栈顶保存的修改弹出，应用到当前分支对应的工作目录，并将其从栈顶删除</p>
+<ul>
+<li>git stash apply + 名称</li>
+</ul>
+<p>应用<code>stash@{0}</code>到当前分支的工作目录，且不会将其从栈堆中删除</p>
+<p><code>bash
+  git stash apply stash@{0}</code></p>
+<ul>
+<li>git stash drop+名称</li>
+</ul>
+<p>将指定的如<code>stash@{0}</code>从栈堆中删除</p>
+<p><code>bash
+  git stash drop stash@{0}</code></p>
+<ul>
+<li>git stash clear</li>
+</ul>
+<p>从堆栈中清除所有的stash</p>
+<ul>
+<li>git stash show</li>
+</ul>
+<p>查看堆栈中最新保存的stash和当前目录的差异</p>
+<p><code>bash
+  git stash show @stash{0} #查看指定的stash和当前目录差异。
+  git stash show -p 名称  #查看详细的不同</code></p>
+<ul>
+<li>git stash branch</li>
+</ul>
+<p>从最新的stash创建分支。</p>
+<p>当stash中的内容和当前工作目录有冲突时，可以新建分支去解决冲突。</p>
+<ul>
+<li>
+<p>应用场景：</p>
+</li>
+<li>
+<p>当正在dev分支上开发某个项目，这时项目中出现一个bug，需要紧急修复，但是正在开发的内容只是完成一半，还不想提交，这时可以用git stash命令将修改的内容保存至堆栈区，然后顺利切换到hotfix分支进行bug修复，修复完成后，再次切回到dev分支，从堆栈中恢复刚刚保存的内容。</p>
+</li>
+<li>由于疏忽，本应该在dev分支开发的内容，却在master上进行了开发，需要重新切回到dev分支上进行开发，可以用git stash将内容保存至堆栈中，切回到dev分支后，再次恢复内容即可。</li>
+</ul>
+<p>总的来说，git stash命令的作用就是将目前还不想提交的但是已经修改的内容进行保存至堆栈中，后续可以在某个分支上恢复出堆栈中的内容。这也就是说，stash中的内容不仅仅可以恢复到原先开发的分支，也可以恢复到其他任意指定的分支上。git stash作用的范围包括工作区和暂存区中的内容，也就是说没有提交的内容都会保存至堆栈中。</p>
+<h2 id="3git">3、git 经典使用场景</h2>
+<h3 id="31-commitcommit-coment">3.1  当不想增加commit时，却需要修改文件或修改Commit Coment</h3>
+<pre><code class="language-bash">git add 修改文件
+git commit --amend #会出现Vim
+</code></pre>
+<p>在Vim中重新修改Comments内容。</p>
+<p>若已经push到远端，需要</p>
+<pre><code class="language-bash">git push --force
+</code></pre>
+<h3 id="32-commit">3.2   本地清理，使commit合并成一个</h3>
+<ul>
+<li>第一种: git rebase -i</li>
+</ul>
+<p><code>bash
+  git rebase -i HEAD~n #n 表示合并的分支数</code></p>
+<p>此时，进入到Vim,将第一个保留不变，将剩下的commit 换成操作符  <code>s</code></p>
+<p><img alt="修改commit " src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/0778308b9f0a487db1192faa6beb0d4d.png" /></p>
+<p>退出保存后，会展现以前所有的commit comment</p>
+<p><img src="Git教程分享.assets/commitEdit1.png" alt="commitEdit1" style="zoom:67%;" /></p>
+<p>修改为同一个Comment</p>
+<p><img src="Git教程分享.assets/CommitEdit2.png" alt="CommitEdit2" style="zoom:67%;" />
+* 第二种：git reset 采用回滚操作</p>
+<p><code>bash
+  #回滚到要合并Commit 最开始的那个
+  git log #查找Commit id
+  git reset --soft CommitID
+  git commit -m "重新写一个Comment"
+  git push</code></p>
+<h3 id="33-alpha">3.3   分支开发完后，合并到发版分支(以微博合并alpha为例)</h3>
+<ul>
+<li>拉取develop最新代码</li>
+</ul>
+<p><code>bash
+  git checkout develop
+  git pull --rebase</code></p>
+<ul>
+<li>对本地分支进行Commit 合并</li>
+</ul>
+<p><code>bash
+  git st #查询有几个commits 数量 按照前面的流程此时为1
+  #若超过一个 在git push review时会自动合并，并要求填写新的coments</code></p>
+<p><code>bash
+  git checkout local
+  git rebase  -i  HEAD~n  #n 表示合并的分支数 具体流程看上面</code></p>
+<ul>
+<li>将develop合并到本地分支</li>
+</ul>
+<p><code>bash
+  git rebase develop 
+  #若有冲突 解决冲突
+  git add .
+  git rebase --continue</code></p>
+<ul>
+<li>没有问题后,将本地分支合并到develop</li>
+</ul>
+<p><code>bash
+  git checkout develop
+  git merge local</code></p>
+<ul>
+<li>修改Commit 内容</li>
+</ul>
+<p><code>bash
+  git reset HEAD^ --soft  #回退到commit之前，此时可以修改Commit内容
+  #git reset HEAD^ --hard 回退到Add之前
+  git comment --amend #这样也行</code></p>
+<p>然后按照提供的模版进行Commit  <strong>coments</strong>的提交</p>
+<p><code>Vim
+  [comments]荣耀的角标适配
+  [jira_id]WBMOBILE-8122
+  [version]B93</code></p>
+<p>此时会自动生成Change-Id</p>
+<ul>
+<li>
+<p>push到远端</p>
+</li>
+<li>
+<p>单个仓库</p>
+<p><code>bash
+ git pull --rebase             ###先更新当前仓库代码
+ git push review               ###运行此命令往Gerrit推送Code Review</code>
+  * 多个仓库</p>
+<p>```bash</p>
+<h1 id="_6">切换到仓库的最外层</h1>
+<p>wbpush "yourTopic"</p>
+<h1 id="topic-topic123">Topic必须为字母与数字的组合,如: topic123</h1>
+<h1 id="topic_-topic123_topic45">Topic之间的依赖关于必须以下划线”_”区分,如: topic123_topic45</h1>
+<p>```</p>
+</li>
+</ul>
+<p>遇到的问题：</p>
+<p><img alt="image-20211013153833333" src="../Git%E6%95%99%E7%A8%8B%E5%88%86%E4%BA%AB.assets/image-20211013153833333.png" /></p>
+<p>出现该上述的文件，又不能忽略，又不能restore,restore时会提示</p>
+<p><code>bash
+  error: pathspec '.DS_Store' did not match any file(s) known to git</code></p>
+<p>最后处理方法：将所有修改过的仓库，重新修改pull一下。</p>
+<ul>
+<li>
+<p>若需要对Commit进行修改</p>
+</li>
+<li>
+<p>单个仓库</p>
+<p><code>bash
+git add file_path          (file_path为你更改的文件路径地址)
+git commit --amend        (注意，加上 --amend)
+git push review</code>
+  * 多个仓库</p>
+<p>```bash</p>
+<h1 id="_7">先更改单个文件</h1>
+<p>git add file_path          (file_path为你更改的文件路径地址)
+git commit --amend        (注意，加上 --amend)</p>
+<h1 id="abandon-changes-changid">若执行 abandon changes 则需要将ChangID 删除</h1>
+<h1 id="abandon-changeschangid">若未执行 abandon changes，切记不要修改ChangID</h1>
+<h1 id="push">此时，要确保是最新的远端代码，在push多个仓库</h1>
+<p>./wbpush "yourTopic" --amend 
+```</p>
+</li>
+</ul>
+<h3 id="34-commit">3.4   合并分支的某个Commit</h3>
+<p>通过cherry-pick实现合并分支的某个Commit，假如要在a分支上合并b分支的某个commit</p>
+<ul>
+<li>查找要合并的CommitId</li>
+</ul>
+<p><code>bash
+  git checkout b
+  git log</code>
+* 找到CommitID后进行合并</p>
+<p>因为每一个commit 只保存它自己的增量，若与前面的版本有关，请加上前面的CommitID</p>
+<p><code>bash
+  git checkout a  #切换到a分支
+  git cherry-pick &lt;commitHash&gt; #添加一个Commit
+  git cherry-pick &lt;commitHashA&gt; &lt;commitHashB&gt; #添加commitID 从A到所有的Commit</code>
+* 若存在冲突，解决冲突后</p>
+<p><code>bash
+  git add 修改文件
+  git cherry-pick --continue</code>
+* 若要终止，回到合并前</p>
+<p><code>bash
+  git cherry-pick --abort</code></p>
+<h3 id="35-commit">3.5  合并某个分支某个Commit 的部分内容</h3>
+<p>通过cherry-pick实现合并分支的某个Commit的部分文件，查找CommitID的方法在上面，不再赘述。</p>
+<ul>
+<li>git cherry-pick -n  合并，但不提交，将文件放在暂存区</li>
+</ul>
+<p><code>bash
+  git cherry-pick -n  &lt;commitHash&gt;</code>
+* 将不需要的文件撤销</p>
+<p><code>bash
+  git restore --staged 文件名
+  git restore  文件名</code>
+* 提交剩下的内容</p>
+<p><code>bash
+  git commit -m "Comments"
+  git push</code></p>
+<p>也可以通过，先将整个commit 提交，再返回删除的方式</p>
+<p><code>bash
+ git cherry-pick &lt;commitHash&gt;
+ git reset --soft HEAD^
+ git restore --staged 文件名
+ git restore  文件名
+ git commit -m "Comments"
+ git push</code></p>
+<h3 id="36">3.6 用户名的修改</h3>
+<p>在某些情况下，我们可能在不同的仓库担任不同的角色，用户名需要修改，可以修改仓库本地的配置，而不影响其他仓库。</p>
+<pre><code class="language-bash">git config --local user.name &quot;John Doe&quot;
+git config --local user.email johndoe@example.com
+</code></pre>
+<h3 id="37-bug">3.7  工作修改Bug</h3>
+<ul>
+<li>在修改的版本(release)拉出新的分支</li>
+</ul>
+<p><code>bash
+  git checkout -b newBranch</code>
+* 进行修改
+* 合并到版本中，按照合并到发版分支的流程进行(3.3)
+* 其他正在修改的分支需要更新</p>
+<p><code>bash
+  git checkout release 
+  git pull
+  git checkout 修改的分支
+  git rebase  release</code></p>
+<h3 id="38">3.8 代码回滚的场景</h3>
+<ul>
+<li>快速、稳健、紧张</li>
+<li>git reset  手动回滚的操作</li>
+</ul>
+<p><code>bash
+  #查看要回滚的版本
+  git log --oneline
+  #git reset 操作master分支
+  git reset --hard CommitID
+  #强制推送到远端
+  git push --force  
+  #若要查找回滚后不存在的版本
+  git reflog</code></p>
+<p>这个流程是有风险的，无法控制,适合在自己的分支，但不适合在发版分支</p>
+<p><img src="Git教程分享.assets/image-20210926105812335.png" alt="image-20210926105812335" style="zoom:30%;" />
+* 利用开源工具github gitlab等 pull Request</p>
+<p><code>bash
+  git log
+  #回滚到想回滚的版本
+  git revert  CommitID
+  #若出现冲突
+  git add 修改冲突文件
+  git commit -m "解决冲突"
+  git push</code></p>
+<p>这个流程比较安全，发版分支建议使用这个方式</p>
+<p><img src="Git教程分享.assets/image-20210926110100621.png" alt="image-20210926110100621" style="zoom:30%;" /></p>
+<h3 id="39-git-pull">3.9  git pull时，解决冲突</h3>
+<pre><code class="language-bash">git status --uno #查看冲突的文件
+#修改后添加
+git add .
+git commit -m &quot;&quot;
+git push
+</code></pre>
+<h1 id="ssl">处理SSL代理问题：</h1>
+<pre><code class="language-bash">git config --global -e
+</code></pre>
+<p>1.若设置代理,在git全局配置上，</p>
+<p><code>bash
+   #7891 是vpn代理号
+   [http]
+           proxy = socks5://127.0.0.1:7891
+           #sslverify = false
+   [https]
+           proxy = socks5://127.0.0.1:7891
+           #sslverify = false</code></p>
+<p>2.若未设置代理，设置sslverify = false。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

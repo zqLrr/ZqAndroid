@@ -1,0 +1,2139 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Java基础学习 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#java" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Java基础学习
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    Java基础学习
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1asynctask" class="md-nav__link">
+    1、asyncTask
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2synchronized" class="md-nav__link">
+    2、Synchronized 锁机制的原理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3、函数式接口的用法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4iocdi" class="md-nav__link">
+    4、控制反转(IOC)和依赖注入DI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5java" class="md-nav__link">
+    5、Java序列化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6final" class="md-nav__link">
+    6、Final 关键字的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7interface" class="md-nav__link">
+    7、使用Interface 实现简单工厂模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    8、类加载
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11static" class="md-nav__link">
+    11、Static 关键字
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    12、父类和子类的转换
+  </a>
+  
+    <nav class="md-nav" aria-label="12、父类和子类的转换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    父类不能直接强转成子类，除非父类是由该子类创建而来的，而子类可以直接转成父类。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-volatile" class="md-nav__link">
+    13、 volatile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    14、日期的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15string-format" class="md-nav__link">
+    15、String Format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16java-clone" class="md-nav__link">
+    16、Java Clone
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17java" class="md-nav__link">
+    17、java 迭代器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18" class="md-nav__link">
+    18、红黑树
+  </a>
+  
+    <nav class="md-nav" aria-label="18、红黑树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bst" class="md-nav__link">
+    二叉搜索树（BST）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avl" class="md-nav__link">
+    平衡二叉树（AVL）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19java" class="md-nav__link">
+    19、Java 泛型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    20、内部类、匿名内部类、静态内部类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21synthetic" class="md-nav__link">
+    21.synthetic关键字
+  </a>
+  
+    <nav class="md-nav" aria-label="21.synthetic关键字">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    举例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22collection-map" class="md-nav__link">
+    22.Collection &amp;&amp; Map
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    23.泛型
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24java" class="md-nav__link">
+    24.Java [堆，栈，方法区]
+  </a>
+  
+    <nav class="md-nav" aria-label="24.Java [堆，栈，方法区]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    堆
+  </a>
+  
+    <nav class="md-nav" aria-label="堆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gc" class="md-nav__link">
+    GC类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gc_1" class="md-nav__link">
+    GC具体流程：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    栈
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    方法区
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    回收对象
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Java基础学习</h1>
+
+<h2 id="java">Java基础学习</h2>
+<h2 id="1asynctask">1、asyncTask</h2>
+<ol>
+<li>使用原因：在后台进行处理耗时操作。</li>
+</ol>
+<p>AsyncTask类允许定义将在后台执行的操作，并提供了可以用来监控进度及在GUI线程上发布结果的处理程序。</p>
+<p>优点：简单，快捷，过程可控</p>
+<ol>
+<li>
+<p>基本原理</p>
+</li>
+<li>
+<p>它可以用来创建一个异步任务，该任务由两部分组成：将在后台执行的处理，以及在处理完成后执行的UI更新。</p>
+</li>
+<li>
+<p>是一个抽象类，有三个泛型参数</p>
+<ul>
+<li>
+<p>Params. 启动任务执行的输入参数，比如HTTP请求的URL。(输入参数)</p>
+</li>
+<li>
+<p>Progress 后台任务执行的百分比。(报告进度的值)</p>
+</li>
+<li>
+<p>Result. 返回结果的值</p>
+</li>
+</ul>
+<p>三者不是必需的，不想使用可以直接指定为void. </p>
+</li>
+<li>
+<p>执行分为四个步骤，每一步对应一个回调方法</p>
+</li>
+<li>
+<p>需要子类化</p>
+</li>
+<li>
+<p>需要xublishProgress方法来更新实时的任务进度。该方法是抽象方法，子类必须实现。</p>
+<ul>
+<li>onProgressUpdate(Progress):UI thread将调用这个方法从而在界面上展示任务的进展情况，例如通过一个进度条进行展示。</li>
+<li>onPostExecute(Result):在doInBackground执行完成后，onPostExecute()方法将被UI thread调用，后台的计算结果将通过该方法传递到UI thread</li>
+<li><strong>onCancelled()</strong>   用户调用取消时，会进行的操作</li>
+</ul>
+</li>
+<li>
+<p>注意要点：</p>
+</li>
+<li>
+<p>Task的实例必须在UI线程创建</p>
+</li>
+<li>execute()方法必须在UI线程被创建</li>
+<li>不要手动调用这四个方法</li>
+<li>该Task只能执行一次，多次调用会出错</li>
+</ol>
+<h2 id="2synchronized">2、Synchronized 锁机制的原理</h2>
+<ul>
+<li>
+<p>是一种独占式的重量级锁，在运行到同步方法或者同步代码块的时候，让程序的运行级别由用户态切换到内核态，把所有的线程挂起，通过操作系统的指令，去调度线程。</p>
+</li>
+<li>
+<p>实现原理：</p>
+</li>
+<li>
+<p>在JVM中实现，基于进入和退出Monitor对象来实现方法和代码块的同步</p>
+</li>
+<li>
+<p>同步代码块：</p>
+<p>monitorenter指令插入到同步代码块的开始位置，monitorexit指令插入到同步代码块的结束位置，JVM需要保证每一个monitorenter都有一个monitorexit与之相对应。任何对象都有一个monitor与之相关联，当且一个monitor被持有之后，他将处于锁定状态。线程执行到monitorenter指令时，将会尝试获取对象所对应的monitor所有权，即尝试获取对象的锁；</p>
+</li>
+<li>
+<p>同步方法：</p>
+</li>
+<li>
+<p>作用：</p>
+</li>
+<li>确保线程互斥的访问同步代码</li>
+<li>保证共享变量的修改能及时看见</li>
+<li>
+<p>有效解决重排序问题</p>
+</li>
+<li>
+<p>锁机制相关原理：</p>
+</li>
+<li>
+<p>自旋概念：阻塞时挂起线程和恢复线程在操作系统太浪费时间，使其线程稍微等一会，但也有等待时间限制，一般为自旋10次。</p>
+</li>
+<li>锁消除：所使用的资源没有其他线程用，消除锁</li>
+<li>锁粗化：同时对一个对象反复加锁和解锁，扩大锁的范围</li>
+<li>锁的状态（只能由低到高）：<ul>
+<li>无锁状态</li>
+<li>偏向锁状态</li>
+<li>轻量级锁状态</li>
+<li>重量级锁状态</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image-20210729120821220" src="../Java%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/image-20210729120821220.png" /></p>
+<h2 id="3">3、函数式接口的用法</h2>
+<ul>
+<li>Function函数常用入口</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consumer</td>
+<td>Consumer&lt; T &gt;</td>
+<td>接收T对象，不返回值</td>
+</tr>
+<tr>
+<td>Predicate</td>
+<td>Predicate&lt; T &gt;</td>
+<td>接收T对象并返回boolean</td>
+</tr>
+<tr>
+<td>Function</td>
+<td>Function&lt; T, R &gt;</td>
+<td>接收T对象，返回R对象</td>
+</tr>
+<tr>
+<td>Supplier</td>
+<td>Supplier&lt; T &gt;</td>
+<td>提供T对象（例如工厂），不接收值</td>
+</tr>
+<tr>
+<td>UnaryOperator</td>
+<td>UnaryOperator</td>
+<td>接收T对象，返回T对象</td>
+</tr>
+<tr>
+<td>BinaryOperator</td>
+<td>BinaryOperator</td>
+<td>接收两个T对象，返回T对象</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Function常用方法使用：apply andThen compose</p>
+</li>
+<li>
+<p>apply  输入T，执行操作后，返回R </p>
+<p>```java
+import java.util.function.Function;</p>
+<p>public class FunctionTest<In, Out> {</p>
+<pre><code>private Function&lt;In, Out&gt; processor = new Function&lt;In, Out&gt;() {
+    @Override
+    public Out apply(In in) {
+        return (Out) new String("apply:" + in);
+
+    }
+};
+
+public static void main(String[] args) {
+    FunctionTest&lt;String, String&gt; functionTest = new FunctionTest();
+    System.out.println(functionTest.processor.apply("hello~!"));
+}
+</code></pre>
+<p>}</p>
+<p>//输出
+apply:hello~!
+```</p>
+</li>
+<li>
+<p>apply lambda</p>
+<p>```java
+import java.util.function.Function;</p>
+<p>public class FunctionTest<In, Out> {</p>
+<pre><code>private Function&lt;In, Out&gt; processor = in -&gt; {
+    return (Out) new String("apply:" + in);
+};
+
+public static void main(String[] args) {
+    FunctionTest&lt;String, String&gt; functionTest = new FunctionTest();
+    System.out.println(functionTest.processor.apply("hello~!"));
+}
+</code></pre>
+<p>}
+//输出和上面一样
+```</p>
+</li>
+<li>
+<p>andThen   先执行apply,再执行andThen</p>
+<p><code>java
+Function&lt;Integer, Integer&gt; name = e -&gt; e * 2;
+Function&lt;Integer, Integer&gt; square = e -&gt; e * e;
+int value = name.andThen(square).apply(3);
+System.out.println("andThen value=" + value);
+//输出 value=36</code></p>
+</li>
+<li>
+<p>compose  先执行compose,再执行apply
+    <code>java
+    int value2 = name.compose(square).apply(3);
+    System.out.println("compose value2=" + value2);
+    //输出value2=18</code></p>
+</li>
+<li>
+<p>返回一个执行了apply()方法之后只会返回输入参数的函数对象</p>
+<p><code>java
+Object identity = Function.identity().apply("huohuo");
+System.out.println(identity);</code></p>
+</li>
+</ul>
+<h2 id="4iocdi">4、控制反转(IOC)和依赖注入DI</h2>
+<ul>
+<li>IOC：是一种编程思想，是将设计好的对象交给容器控制，而不是传统的在你的对象内部控制。</li>
+</ul>
+<p>传统的编程思路(将其称为正转)：</p>
+<p><img alt="image-20211027183226279" src="../Java%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/image-20211027183226279.png" /></p>
+<p>​        由上图可以看出，我们在正常编程的时候，需要自己去手动创建我们要使用的类，如果有依赖，就要将依赖的类也创建出来。</p>
+<p>​                IOC的编程思路：      </p>
+<p><img src="Java基础学习.assets/image-20211027184121528.png" alt="image-20211027184121528" style="zoom:50%;" /></p>
+<p>​         由上图可以看出，我们编程时由IOC容器去帮我门查找和提供用户类及其依赖的类，我们是被动的接受对象。</p>
+<p>​         <strong>IoC对编程带来的最大改变不是从代码上，而是从思想上，发生了“主从换位”的变化。应用程序原本是老大，要获取什么资源都是主动出击，但是在IoC/DI思想中，应用程序就变成被动的了，被动的等待IoC容器来创建并注入它所需要的资源了。</strong></p>
+<p><strong>IoC很好的体现了面向对象设计法则之一—— 好莱坞法则：“别找我们，我们找你”；即由IoC容器帮对象找相应的依赖对象并注入，而不是由对象主动去找。</strong></p>
+<ul>
+<li>DI:其实和IOC 是一回事，只是换了一个角度说明，重点说明：“<strong>被注入对象依赖IoC容器配置依赖对象</strong>”</li>
+</ul>
+<p><strong>IoC的一个重点是在系统运行中，动态的向某个对象提供它所需要的其他对象。这一点是通过DI（Dependency Injection，依赖注入）来实现的</strong></p>
+<h2 id="5java">5、Java序列化</h2>
+<ul>
+<li>概念</li>
+</ul>
+<p>java序列化:保存内存对象的状态，包括对象的属性值,但不包括方法和static变量(因为static修饰的变量是属于类而不隶属于对象),以及用transient关键字修饰的变量(transient是禁止序列化的标识,效果等同于static修饰的变量).</p>
+<p>java反序列化:是与java序列化相对的,表示从磁盘或者其他介质中读取序列化对象的内容.</p>
+<ul>
+<li>
+<p>应用场景</p>
+</li>
+<li>
+<p>内存中的对象保存到磁盘文件中</p>
+</li>
+<li>网络传输对象,比如Socket套接字传输</li>
+<li>
+<p>通过RMI（Remote Method Invoke 远程方法调用）传输对象,如android中的AIDL</p>
+</li>
+<li>
+<p>实现方式</p>
+</li>
+<li>
+<p>实现Serializable序列化的空接口</p>
+<p>```java
+public class TestSerializable implements Serializable {//Serializable是一个空接口
+    private static final  long serializableUID = 1L;//序列化标识，防止反序列化失败
+    private transient  int  banSerializable; //禁止序列化
+    private static  int banSeriallizable2; //禁止序列化
+    //属性中的类也必须实现序列化，否则会报异常</p>
+<pre><code>public String name;
+public int id;
+
+public TestSerializable() {
+}
+
+public TestSerializable(String name, int id) {
+    this.name = name;
+    this.id = id;
+}
+</code></pre>
+<p>}
+```</p>
+</li>
+<li>
+<p>Parcelable接口，android特有的序列化存储,传输效率高,需要实现里面的抽象方式,实现起来比较麻烦.</p>
+<ul>
+<li>两个方法</li>
+<li>一个接口</li>
+</ul>
+<p>```java
+public class TestParcelable  implements Parcelable {
+    public  String  name;
+    public  int     id;
+    public TestParcelable(String name,int id){//构造函数
+        this.name = name;
+        this.id   = id;
+    }</p>
+<pre><code>protected TestParcelable(Parcel in) {//对象反序列化读取数据
+    this.name = in.readString();
+    this.id   = in.readInt();
+}
+
+@Override
+public int describeContents() { //内容接口描述，默认返回0
+    return 0;
+}
+
+@Override
+public void writeToParcel(Parcel dest, int flags) {//将对象序列化一个Parcel对象，将对象存入Parcel中
+    dest.writeString(name);
+    dest.writeInt(id);
+}
+
+public static final Creator&lt;TestParcelable&gt; CREATOR = new Creator&lt;TestParcelable&gt;() {//实现的接口
+    @Override
+    public TestParcelable createFromParcel(Parcel in) {
+        return new TestParcelable(in);
+    }
+
+    @Override
+    public TestParcelable[] newArray(int size) {
+        return new TestParcelable[size];
+    }
+};
+</code></pre>
+<p>}
+```</p>
+</li>
+<li>
+<p>区别</p>
+</li>
+</ul>
+<p>Serializable : 虽然该接口实现比较简单，但是Serializable频繁的进行IO操作,在内存序列化上开销比较大。</p>
+<p>Parcelable： Parcelable性能比较好，在内存开销方面较小，在内存间数据传输推荐使用，但使用比较复杂。</p>
+<h2 id="6final">6、Final 关键字的使用</h2>
+<ul>
+<li>final 修饰类</li>
+</ul>
+<p>该类不能被继承，且该类中的所有变量成员和方法都会定义为final。</p>
+<ul>
+<li>final 修饰函数</li>
+</ul>
+<p>该函数不能被继承，因此也不能被子类重写，但该函数可以实现重载。</p>
+<p>使用原因：</p>
+<p>1、锁定该方法，不能被继承重写</p>
+<ul>
+<li>final 修饰成员变量</li>
+</ul>
+<p>该成员变量是常量,只能赋值一次，赋值后不能改变</p>
+<ul>
+<li>
+<p>final 修饰函数参数</p>
+</li>
+<li>
+<p>修饰基本类型</p>
+</li>
+<li>修饰引用类型</li>
+</ul>
+<p>https://www.cnblogs.com/xuelisheng/p/11158110.html</p>
+<h2 id="7interface">7、使用Interface 实现简单工厂模式</h2>
+<ul>
+<li>接口类</li>
+</ul>
+<p>```java
+  public interface INetEngine {</p>
+<pre><code>public User login(LoginParam param) throws ProtocolException, MalformedURLException, IOException, JSONException;
+</code></pre>
+<p>}
+  ```</p>
+<ul>
+<li>实现接口的类</li>
+</ul>
+<p>实现的方法自己实现login方法就可以</p>
+<ul>
+<li>工厂类</li>
+</ul>
+<p>可以使用反射，也可以使用通过传值来分类建产品</p>
+<p><code>java
+  public class NetEngineFactory {
+      //使用反射实现NetEnginge
+      public static &lt;T extends  INetEngine&gt; T CreateNetEngine(Class clazz,Context context){
+          INetEngine iNetEngine = null;
+          try {
+              iNetEngine = (INetEngine) Class.forName(clazz.getName()).getDeclaredConstructor(Context.class).newInstance(context);
+          } catch (Exception e){
+              e.printStackTrace();
+          }
+          return (T)iNetEngine;
+      }
+  }</code></p>
+<ul>
+<li>使用</li>
+</ul>
+<p><code>java
+   result = NetEngineFactory.CreateNetEngine(HuConnectionNetEngine.class,mContext).login(mparam);</code></p>
+<ul>
+<li>对反射进行分析</li>
+</ul>
+<p>通过类名实现类的实现</p>
+<ul>
+<li>
+<p>newInstance()</p>
+<p>只能实现对无参数的构造函数的创建</p>
+</li>
+<li>
+<p>getDeclaredConstructor(.class).newInstance(Param)</p>
+<p>可以实现对含有参数的构造函数的创建</p>
+</li>
+</ul>
+<h2 id="8">8、类加载</h2>
+<ul>
+<li>特性：JVM的生命周期只加载一次，延迟记载、按需加载，能少加载就少记载</li>
+</ul>
+<p>因为JVM的空间有限</p>
+<ul>
+<li>加载时机</li>
+</ul>
+<p>1）第一次创建对象要加载类.</p>
+<p>2）调用静态方法时要加载类,访问静态属性时会加载类。</p>
+<p>3）加载子类时必定会先加载父类。</p>
+<p>4）创建对象引用不加载类.</p>
+<p>5) 子类调用父类的静态方法时</p>
+<pre><code>  (1)当子类没有覆盖父类的静态方法时，只加载父类，不加载子类
+
+  (2)当子类有覆盖父类的静态方法时，既加载父类，又加载子类
+</code></pre>
+<p>6）访问静态常量，如果编译器可以计算出常量的值，则不会加载类,例如:public static final int a =123;否则会加载类,例如:public static final int a = math.PI。</p>
+<p>【类加载】https://blog.csdn.net/weixin_45987569/article/details/127844934</p>
+<ul>
+<li>
+<p>类加载机制</p>
+</li>
+<li>
+<p>启动类加载器</p>
+</li>
+<li>扩展类加载器</li>
+<li>
+<p>系统类加载器</p>
+</li>
+<li>
+<p>双亲委派原则</p>
+</li>
+</ul>
+<h2 id="11static">11、Static 关键字</h2>
+<ul>
+<li>
+<p>修饰成员变量</p>
+</li>
+<li>
+<p>修饰成员方法</p>
+</li>
+</ul>
+<p>静态方法又称类方法，不需要实例化，可以直接使用类来调用，不可以直接调用非静态方法和非静态常量。</p>
+<p>静态方法不能使用this,因为this是引用类的当前实例，使用类方法并没有实例化，因此this会引用一个不存在的对象，会报错。</p>
+<ul>
+<li>修饰类</li>
+</ul>
+<p>会将数据放在静态存储区，实现类的所有对象的数据共享</p>
+<ul>
+<li>静态块：用来优化程序</li>
+</ul>
+<p><code>java
+  Static{} //静态代码块</code></p>
+<ol>
+<li>static块可以置于类中的任何地方，类中可以有多个static块。</li>
+<li>在类初次被加载的时候执行且仅会被执行一次（这是优化性能的原因！！！），会按照static块的顺序来执行每个static块，一般用来初始化静态变量和调用静态方法。</li>
+<li>会在类加载时对静态代码块执行一次</li>
+</ol>
+<p>代码块有三种构造代码块，静态代码块 和构造方法代码块。执行顺序：静态代码块，构造代码块，构造方法代码块。</p>
+<h2 id="12">12、父类和子类的转换</h2>
+<h4 id="_1">父类不能直接强转成子类，除非父类是由该子类创建而来的，而子类可以直接转成父类。</h4>
+<pre><code class="language-java">class Fruit {
+    public Fruit() {
+    }
+}
+
+class Apple extends Fruit {
+    public Apple() {
+        super();
+    }
+}
+
+Apple apple = new Apple();
+Fruit fruit = new Fruit();
+fruit = apple;  //不会报错，苹果是水果
+
+apple = (Apple)Fruit;//此时会报错，因为水果不等同于苹果
+Fruit fruit = new Apple();
+apple = (Apple)fruit: //不会报错，指定水果为苹果的等于苹果
+</code></pre>
+<h2 id="13-volatile">13、 volatile</h2>
+<p>是依赖于Java的内存模型，线程执行时会将变量从主内存加载到线程工作内存，建立一个副本，在某个时刻写回。valatile指的每次都读取主内存的值，有更新则立即写回主内存，可以看作是程度较轻的“synchornized”</p>
+<h2 id="14">14、日期的使用</h2>
+<ul>
+<li>SimpleDataFormat</li>
+</ul>
+<p>日期格式的规范</p>
+<table>
+<thead>
+<tr>
+<th>Letter</th>
+<th>Date or Time Component</th>
+<th>Presentation</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>G</code></td>
+<td>Era designator</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#text">Text</a></td>
+<td><code>AD</code></td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Year</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#year">Year</a></td>
+<td><code>1996</code>; <code>96</code></td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>Week year</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#year">Year</a></td>
+<td><code>2009</code>; <code>09</code></td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>Month in year (context sensitive)</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#month">Month</a></td>
+<td><code>July</code>; <code>Jul</code>; <code>07</code></td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>Month in year (standalone form)</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#month">Month</a></td>
+<td><code>July</code>; <code>Jul</code>; <code>07</code></td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Week in year</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>27</code></td>
+</tr>
+<tr>
+<td><code>W</code></td>
+<td>Week in month</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Day in year</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>189</code></td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Day in month</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>F</code></td>
+<td>Day of week in month</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>Day name in week</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#text">Text</a></td>
+<td><code>Tuesday</code>; <code>Tue</code></td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>Day number of week (1 = Monday, ..., 7 = Sunday)</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>Am/pm marker</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#text">Text</a></td>
+<td><code>PM</code></td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>Hour in day (0-23)</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Hour in day (1-24)</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>24</code></td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td>Hour in am/pm (0-11)</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Hour in am/pm (1-12)</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td>Minute in hour</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>30</code></td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>Second in minute</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>55</code></td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>Millisecond</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>978</code></td>
+</tr>
+<tr>
+<td><code>z</code></td>
+<td>Time zone</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#timezone">General time zone</a></td>
+<td><code>Pacific Standard Time</code>; <code>PST</code>; <code>GMT-08:00</code></td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>Time zone</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#rfc822timezone">RFC 822 time zone</a></td>
+<td><code>-0800</code></td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>Time zone</td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html#iso8601timezone">ISO 8601 time zone</a></td>
+<td><code>-08</code>; <code>-0800</code>; <code>-08:00</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-java">//示例
+SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd'T'HH:mm:ssXXX&quot;);
+Date date = new Date(System.currentTimeMillis());
+testData.setText(dateFormat.format(date));
+//X是在Android API 24之后才可以使用，因此24之前使用Z
+</code></pre>
+<p>SimpleDataFormat(String pattern,Local locla):local是匹配当前的环境和语言模式</p>
+<ul>
+<li>DateTimeFormatter</li>
+</ul>
+<p>SimpleDateFormat是线程不安全的，仍然需要我们进行线程安全的处理，而DateTimeFormatter是1.8的新增的线程安全的日期格式化类。</p>
+<p><code>java
+  ZonedDateTime datatime = ZonedDateTime.now();
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss ZZZZ");
+  testData.setText(datatime.format(formatter));</code></p>
+<ul>
+<li>
+<p>日期类</p>
+</li>
+<li>
+<p>java.util.Date</p>
+<p><code>java
+//示例
+Date date = new Date(System.currentTimeMillis());</code></p>
+</li>
+<li>
+<p>Calendar</p>
+<p><code>java
+Calendar calendar = Calendar.getInstance();
+SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+System.out.println(formatter.format(calendar.getTime()));</code></p>
+</li>
+<li>
+<p>Date/Time API ——JAVA 8 新增</p>
+<ul>
+<li>LocalData 只会产生当天的日期</li>
+</ul>
+<p><code>java
+  LocalDate date = LocalDate.now();</code></p>
+<ul>
+<li>LocalTime 只会产生时间</li>
+</ul>
+<p><code>java
+  LocalTime time = LocalTime.now();</code></p>
+<ul>
+<li>LocalDateTime 时间和日期</li>
+</ul>
+<p><code>java
+  LocalDateTime dateTime = LocalDateTime.now();</code></p>
+<ul>
+<li>ZoneDateTime 时间、日期和时区</li>
+</ul>
+<p><code>java
+   ZonedDateTime datatime = ZonedDateTime.now();</code></p>
+</li>
+</ul>
+<h2 id="15string-format">15、String Format</h2>
+<p>https://blog.csdn.net/weixin_42338519/article/details/89392562</p>
+<h2 id="16java-clone">16、Java Clone</h2>
+<ul>
+<li>概述</li>
+</ul>
+<p>Java克隆基本数据类型,非常简单可以按照以下方式：</p>
+<p><code>java
+  int a = 1;
+  int b = a;</code></p>
+<p>这样可以实现，是因为Java的基本数据类型是每次创建都是申请内存来存值，每个基本数据变量都有自己的空间。
+  而如果是我们新建的类，即引用类型，如果直接使用以上方式，则并不能实现,参考以下案例：</p>
+<p>```java
+  class Student {<br />
+      private int number;  </p>
+<pre><code>  public int getNumber() {  
+      return number;  
+  }
+
+  public void setNumber(int number) {  
+      this.number = number;  
+  }
+</code></pre>
+<p>}<br />
+  public class Test {  </p>
+<pre><code>  public static void main(String args[]) {  
+      Student stu1 = new Student();  
+      stu1.setNumber(12345);  
+      Student stu2 = stu1;  
+      //输出结果1  
+      System.out.println("学生1:" + stu1.getNumber());  
+      System.out.println("学生2:" + stu2.getNumber());
+
+      stu2.setNumber(23456);
+    //输出结果2
+     System.out.println("学生1:" + stu1.getNumber());  
+      System.out.println("学生2:" + stu2.getNumber());  
+  }
+</code></pre>
+<p>}</p>
+<p>//输出结果1:
+  学生1:12345<br />
+  学生2:12345
+  //输出结果2
+  学生1:23456 
+  学生2:23456
+  ```</p>
+<p>原因是<code>Student stu2 = stu1</code>,只是将stu1的引用赋值给了stu2,两者在内存中指向的是同一个对象地址。</p>
+<p>因此使用直接的赋值是不行的。那么使用new Student()可以吗？看以下代码：</p>
+<p>```java
+  class Student {<br />
+      private int number;  </p>
+<pre><code>  public int getNumber() {  
+      return number;  
+  }
+
+  public void setNumber(int number) {  
+      this.number = number;  
+  }
+</code></pre>
+<p>}<br />
+  public class Test {  </p>
+<pre><code>  public static void main(String args[]) {  
+      Student stu1 = new Student();  
+      stu1.setNumber(12345);  
+      Student stu2 = new Student;  
+      stu2.setNumber(stu1.getNumber);
+      //输出结果1  
+      System.out.println("学生1:" + stu1.getNumber());  
+      System.out.println("学生2:" + stu2.getNumber());
+
+      stu2.setNumber(23456);
+    //输出结果2
+     System.out.println("学生1:" + stu1.getNumber());  
+      System.out.println("学生2:" + stu2.getNumber());  
+  }
+</code></pre>
+<p>}</p>
+<p>//输出结果1:
+  学生1:12345<br />
+  学生2:12345
+  //输出结果2
+  学生1:12345
+  学生2:23456
+  ```</p>
+<p>这样是可以的，但是如果属性很多的话，我们写这样的方法就很麻烦，因此必须使用Clone。而通过clone方法赋值的对象跟原来的对象时同时独立存在的。</p>
+<ul>
+<li>
+<p>Clone的实现</p>
+<p>实现Object的Clone(),该方法是Native方法，速度比较快，实现该方法，必须实现Cloneable接口</p>
+<p><code>java
+/* 1) x.clone() != x will be true
+2) x.clone().getClass() == x.getClass() will be true, but these are not absolute requirements.
+3) x.clone().equals(x) will be true, this is not an absolute requirement.该方法使用一般要判空*/
+protected Object clone() throws CloneNotSupportedException {
+        if (!(this instanceof Cloneable)) {
+            throw new CloneNotSupportedException("Class " + getClass().getName() +
+                                                 " doesn't implement Cloneable");
+        }
+                //internalClone是一个Native方法，在JDK目录下的src.zip可以查看
+        return internalClone();
+    }</code></p>
+<ul>
+<li>浅克隆</li>
+</ul>
+<p>实现的步骤：</p>
+<ol>
+<li>被复制的类需要实现Clonenable接口</li>
+<li>重写Clone()方法，访问修饰符为Public 方法中调用super.clone()方法得到需要的复制对象</li>
+</ol>
+<p>```java
+  class Student implements Cloneable{<br />
+      private int number;  </p>
+<pre><code>  public int getNumber() {  
+      return number;  
+  }
+
+  public void setNumber(int number) {  
+      this.number = number;  
+  }
+
+  @Override  
+  public Object clone() {  
+      Student stu = null;  
+      try{  
+          stu = (Student)super.clone();  
+      }catch(CloneNotSupportedException e) {  
+          e.printStackTrace();  
+      }  
+      return stu;  
+  }
+</code></pre>
+<p>}<br />
+  ```</p>
+<p>​        浅克隆复制原型的值类型的成员变量和引用类型成员变量的引用给复制对象，也就是说值成员变量二者是区分开的，但是引用变量二者指的是相同的内存地址。如下图所示：</p>
+<p><img alt="image-20220315104105054" src="../Java%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/image-20220315104105054.png" /></p>
+<ul>
+<li>深Clone</li>
+</ul>
+<p>深克隆区别于浅克隆是会复制引用类型的变量给复制对象。如下图：</p>
+<p><img alt="image-20220315104218384" src="../Java%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/image-20220315104218384.png" /></p>
+<p>实现方法：</p>
+<p>1、通过实现引用类型的clone()方法来实现</p>
+<p>2、通过序列化来实现</p>
+<p>```java
+  //以下是通过实现引用类型的Clone()方法来实现深克隆
+  class Address implements Cloneable {
+      private String add;</p>
+<pre><code>  public String getAdd() {
+      return add;
+  }
+
+  public void setAdd(String add) {
+      this.add = add;
+  }
+
+  @Override
+  public Object clone() {
+      Address addr = null;
+      try{
+          addr = (Address)super.clone();
+      }catch(CloneNotSupportedException e) {
+          e.printStackTrace();
+      }
+      return addr;
+  }
+</code></pre>
+<p>}</p>
+<p>class Student implements Cloneable{
+      private int number;</p>
+<pre><code>  private Address addr;
+
+  public Address getAddr() {
+      return addr;
+  }
+
+  public void setAddr(Address addr) {
+      this.addr = addr;
+  }
+
+  public int getNumber() {
+      return number;
+  }
+
+  public void setNumber(int number) {
+      this.number = number;
+  }
+
+  @Override
+  public Object clone() {
+      Student stu = null;
+      try{
+          stu = (Student)super.clone();   //浅复制
+      }catch(CloneNotSupportedException e) {
+          e.printStackTrace();
+      }
+      stu.addr = (Address)addr.clone();   //深度复制
+      return stu;
+  }
+</code></pre>
+<p>}
+  ```</p>
+<p>第一种方式的缺点在于，如果有多层克隆或者多个引用类型，就需要全部实现其clone()方法，这样实现就会很麻烦，因此采用序列化的方式实现，序列化就是将对象写到流的过程，写到流中的对象是原有对象的一个拷贝，而原对象仍然存在于内存中。通过序列化实现的拷贝不仅可以复制对象本身，而且可以复制其引用的成员对象，因此通过序列化将对象写到一个流中，再从流里将其读出来，可以实现深克隆。</p>
+<p>```java
+  //通过序列化实现深克隆
+  public class Outer implements Serializable{
+    private static final long serialVersionUID = 369285298572941L;  //最好是显式声明ID
+    public Inner inner;
+  　//Discription:[深度复制方法,需要对象及对象所有的对象属性都实现序列化]
+    public Outer myclone() {
+        Outer outer = null;
+        try { // 将该对象序列化成流,因为写在流里的是对象的一个拷贝，而原对象仍然存在于JVM里面。所以利用这个特性可以实现对象的深拷贝
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+  　　　　　　// 将流序列化成对象
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            outer = (Outer) ois.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return outer;
+    }
+  }
+  //内部类也必须序列化
+  public class Inner implements Serializable{
+    private static final long serialVersionUID = 872390113109L; //最好是显式声明ID
+    public String name = "";</p>
+<pre><code>public Inner(String name) {
+    this.name = name;
+}
+
+@Override
+public String toString() {
+    return "Inner的name值为：" + name;
+}
+</code></pre>
+<p>}
+  //除此之外还可以实现Parcelable
+  ```</p>
+</li>
+</ul>
+<h2 id="17java">17、java 迭代器</h2>
+<ul>
+<li>Iterable 接口</li>
+</ul>
+<p>一个集合对象要表明自己支持迭代，能有使用foreach语句的特权，就必须实现Iterable接口，表明我是可迭代的！然而实现Iterable接口，就必需为foreach语句提供一个迭代器。这个迭代器是用接口定义的 iterator方法提供的。也就是iterator方法需要返回一个Iterator对象。</p>
+<p><code>java
+  //Iterable JDK源码//可以通过成员内部类，方法内部类，甚至匿名内部类去实现Iterator
+  public interface Iterable&lt;T&gt;
+  {
+      Iterator&lt;T&gt; iterator();
+  }</code></p>
+<ul>
+<li>Iterator  迭代器 实现了Iterable，就会有迭代器</li>
+</ul>
+<p>包含3个方法: hasNext ,  next , remove。</p>
+<p>```java 
+  List<Integer> li = new ArrayList&lt;&gt;();</p>
+<p>li.add(1);
+  li.add(2);
+  li.add(3);</p>
+<p>//不使用foreach 而手动迭代
+  Iterator<Integer> iter = li.iterator();    //获取ArrayList 的迭代器</p>
+<p>while(iter.hasNext())                      //①先探测能否继续迭代
+  {
+    System.out.println(iter.next());       //②后取出本次迭代出的元素</p>
+<pre><code>//invoke  remove()                     //③最后如果需要，调用remove
+</code></pre>
+<p>}
+  ```</p>
+<h2 id="18">18、红黑树</h2>
+<h3 id="bst">二叉搜索树（BST）</h3>
+<ul>
+<li>
+<p>若任意结点的左子树不空，则左子树上所有结点的值均不大于它的根结点的值。</p>
+</li>
+<li>
+<p>若任意结点的右子树不空，则右子树上所有结点的值均不小于它的根结点的值。</p>
+</li>
+<li>
+<p>任意结点的左、右子树也分别为二叉搜索树。</p>
+</li>
+</ul>
+<h3 id="avl">平衡二叉树（AVL）</h3>
+<p><strong>任意节点的子树的高度差都小于等于 1</strong></p>
+<ul>
+<li>是二叉排序树</li>
+<li>任何一个节点的左子树或者右子树都是「平衡二叉树」（左右高度差小于等于 1）</li>
+</ul>
+<p>红黑树在是二叉搜索树的情况下，满足以下要求：</p>
+<ol>
+<li>节点是红色或黑色。</li>
+<li>根是黑色。</li>
+<li>所有叶子都是黑色（叶子是NIL节点）。</li>
+<li>每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）</li>
+<li>从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。</li>
+</ol>
+<h2 id="19java">19、Java 泛型</h2>
+<p><strong>通配符</strong>:没啥区别，只不过是编码时的一种约定俗成的东西。比如上述代码中的 T ，我们可以换成 A-Z 之间的任何一个 字母都可以，并不会影响程序的正常运行，但是如果换成其他的字母代替 T ，在可读性上可能会弱一些。<strong>通常情况下，T，E，K，V，？是这样约定的：</strong></p>
+<ul>
+<li>？表示不确定的 java 类型</li>
+<li>T (type) 表示具体的一个java类型</li>
+<li>K V (key value) 分别代表java键值中的Key Value</li>
+<li>E (element) 代表<strong>Element</strong></li>
+</ul>
+<h2 id="20">20、内部类、匿名内部类、静态内部类</h2>
+<ul>
+<li>成员内部类</li>
+</ul>
+<p>```java
+  public class Test {
+       //不对外开放的
+       class memberInnerClass{
+           public void memberInner(){
+               System.out.println("成员内部类");
+           }
+       }
+      //内部类 对外开放
+      public  class  inner{
+          public  String  innername;
+          public void log(){
+              System.out.println(" inner log");
+          }
+      }</p>
+<p>}
+  ```</p>
+<ul>
+<li>内部类就像一个实例成员一样存在于外部类中。</li>
+<li>内部类可以访问外部类的所有成员就想访问自己的成员一样没有限制。</li>
+<li>内部类中的this指的是内部类的实例对象本身，如果要用外部类的实例对象就可以用类名.this的方式获得。</li>
+<li>
+<p>内部类对象中不能有静态成员，原因很简单，内部类的实例对象是外部类实例对象的一个成员。</p>
+</li>
+<li>
+<p>方法内部类</p>
+</li>
+</ul>
+<p>```java
+   public class A {</p>
+<pre><code>   public void A(){
+       System.out.println("方法内部类");
+   }
+</code></pre>
+<p>}</p>
+<p>public class Test {</p>
+<pre><code>   public void methodInner(){
+       //短暂性的
+       class B extends A{
+
+       }
+       new B().A();
+
+   }
+</code></pre>
+<p>```</p>
+<ol>
+<li>方法中的内部类没有访问修饰符， 即方法内部类对包围它的方法之外的任何东西都不可见。</li>
+<li>
+<p>方法内部类只能够访问该方法中的局部变量，所以也叫<strong>局部内部类</strong>。而且这些局部变量一定要是final修饰的常量。</p>
+</li>
+<li>
+<p>静态内部类</p>
+</li>
+</ol>
+<blockquote>
+<p>静态内部类不持有外部类的对象，可以将其完全从外部类中移除，而不会影响。</p>
+</blockquote>
+<pre><code class="language-java"> //静态内部类
+    public static class staticinner{
+        public  String  staticinnername;
+        public void log(){
+            System.out.println(&quot;static inner log&quot;);
+        }
+    }
+</code></pre>
+<ol>
+<li>只能访问外部类的静态成员对象和方法</li>
+<li>
+<p>不会引起内存泄漏</p>
+</li>
+<li>
+<p>匿名内部类</p>
+</li>
+<li>
+<p>一个类用于<strong>继承其他类或是实现接口</strong>，并不需要增加额外的方法，只是对继承方法的事先或是覆盖。</p>
+</li>
+<li>只是为了获得一个对象实例，不需要知道其实际类型。</li>
+<li>类名没有意义，也就是不需要使用到。</li>
+</ol>
+<pre><code class="language-java">//匿名内部类
+    public inner niinner = new inner(){
+        public void log(){
+            System.out.println(&quot;niming inner log&quot;);
+        }
+    };
+ //静态匿名内部类,实际上就是匿名内部类，加静态是因为new 的这个类是静态内部类
+    public staticinner staticinnerni = new staticinner(){
+        public void log(){
+            System.out.println(&quot;niming static inner log&quot;);
+        }
+    };
+</code></pre>
+<ul>
+<li>命令<code>javac</code>生成的class文件分析</li>
+</ul>
+<blockquote>
+<p>javac  javafilename</p>
+</blockquote>
+<p>会对内部类、静态内部类生成相对应的class文件，会对匿名内部类生成$1、$2、$3这样的文件。</p>
+<p>DemoOutter.java文件编译后会生成如下的文件：</p>
+<p><img alt="image-20220516155752188" src="../Java%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/image-20220516155752188.png" /></p>
+<p>可以看到内部类生成inner.class,静态内部类生成staticinner.class文件,而其他的匿名内部类生成$1、$2、$3、$4文件。</p>
+<pre><code class="language-java">//DemoOutter.java
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class DemoOutter {
+
+    //内部类
+    public  class  inner{
+        public  String  innername;
+        public void log(){
+            System.out.println(&quot; inner log&quot;);
+        }
+    }
+
+
+    //匿名内部类
+    public inner niinner = new inner(){
+        public void log(){
+            System.out.println(&quot;niming inner log&quot;);
+        }
+    };
+
+
+    //静态内部类
+    public static class staticinner{
+        public  String  staticinnername;
+        public void log(){
+            System.out.println(&quot;static inner log&quot;);
+        }
+    }
+
+
+    //静态匿名内部类
+    public staticinner staticinnerni = new staticinner(){
+        public void log(){
+            System.out.println(&quot;niming static inner log&quot;);
+        }
+    };
+//
+//    public staticinner Staticinnerni2 = new staticinner();
+
+
+    public Runnable mRunable = new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(&quot;workThead outter log&quot;);
+        }
+    };
+
+    public void  outterlog(){
+        System.out.println(&quot;outter log&quot;);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(&quot;workThead outter log&quot;);
+            }
+        }).start();
+    }
+
+
+    public static void main(String[] args) {
+    }
+}
+
+</code></pre>
+<p><code>.inner.class</code> 可以看到其多了一个构造函数，该构造函数将外部类的引用给了内部类<code>this.this$0</code></p>
+<pre><code class="language-java">public class DemoOutter$inner {
+    public String innername;
+
+    public DemoOutter$inner(DemoOutter var1) {
+        this.this$0 = var1;
+    }
+
+    public void log() {
+        System.out.println(&quot; inner log&quot;);
+    }
+}
+</code></pre>
+<p>而<code>.staticinner.class</code>则没有这个构造函数，不会持有外部类引用</p>
+<pre><code class="language-java">public class DemoOutter$staticinner {
+    public String staticinnername;
+
+    public DemoOutter$staticinner() {
+    }
+
+    public void log() {
+        System.out.println(&quot;static inner log&quot;);
+    }
+}
+</code></pre>
+<p>而匿名内部类$1.class和内部类一样持有了外部类的引用。</p>
+<pre><code class="language-java">
+class DemoOutter$1 extends inner {
+    DemoOutter$1(DemoOutter var1) {
+        super(var1);
+        this.this$0 = var1;
+    }
+
+    public void log() {
+        System.out.println(&quot;niming inner log&quot;);
+    }
+}
+</code></pre>
+<h2 id="21synthetic">21.synthetic关键字</h2>
+<blockquote>
+<p>有synthetic标记的field和method是class内部使用的，是编译器自动生成的，正常的源代码里<strong>不会出现</strong>synthetic field。</p>
+</blockquote>
+<h3 id="_2">举例</h3>
+<p>1.内部类访问外部类</p>
+<p>非static的inner class里面都会有一个this$0的字段保存它的父对象</p>
+<pre><code class="language-java">//java写法
+class parent {   
+     public  void foo() {   
+    }   
+
+     class inner {   
+        inner() {   
+          foo();   
+        }   
+    }   
+} 
+//编译后
+class parent$inner   
+{   
+    synthetic parent  this$ 0;   
+
+    parent$inner(parent  this$ 0)   
+    {   
+        this. this$ 0 =  this$ 0;   
+        this$ 0.foo();   
+    }   
+}  
+</code></pre>
+<p>2.内部类方位外部类私有属性</p>
+<blockquote>
+<p>在jvm里，所有class的私有成员都不允许在其他类里访问，包括它的inner class。在java语言里inner class是可以访问父类的私有成员的。在class里是用如下的方法实现的：</p>
+</blockquote>
+<pre><code class="language-java">class parent   
+{   
+   private  int value =  0;  
+
+  synthetic  static  int access$ 000(parent obj)   
+  {   
+     return value;   
+  }   
+}  
+</code></pre>
+<h2 id="22collection-map">22.Collection &amp;&amp; Map</h2>
+<p><a href="https://blog.csdn.net/m0_46191714/article/details/122758597">博客</a></p>
+<h2 id="23">23.泛型</h2>
+<ul>
+<li>Java泛型</li>
+</ul>
+<p>Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。</p>
+<p>泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。</p>
+<ul>
+<li>泛型使用</li>
+</ul>
+<p>泛型使用方式，分别为：泛型类、泛型接口、泛型方法。</p>
+<p>①泛型类，泛型类的声明和非泛型类的声明类似，除了在类名后面添加了类型参数声明部分。</p>
+<p>泛型类的类型参数声明部分也包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符。</p>
+<p>格式为：public class 类名&lt;泛型类型1,…&gt;</p>
+<pre><code class="language-java">public class Box&lt;T&gt; {
+
+  private T t;
+
+  public void add(T t) {
+    this.t = t;
+  }
+
+  public T get() {
+    return t;
+  }
+
+  public static void main(String[] args) {
+    Box&lt;Integer&gt; integerBox = new Box&lt;Integer&gt;();
+    Box&lt;String&gt; stringBox = new Box&lt;String&gt;();
+    integerBox.add(new Integer(10));
+    stringBox.add(new String(&quot;Java泛型&quot;));
+
+    System.out.printf(&quot;整型值为 :%d\n\n&quot;, integerBox.get());
+    System.out.printf(&quot;字符串为 :%s\n&quot;, stringBox.get());
+  }
+}
+</code></pre>
+<p>②泛型方法，所有泛型方法声明都有一个类型参数声明部分（由尖括号分隔），该类型参数声明部分在方法返回类型之前（在下面例子中的<E>）。</p>
+<p>每一个类型参数声明部分包含一个或多个类型参数，参数间用逗号隔开。一个泛型参数，也被称为一个类型变量，是用于指定一个泛型类型名称的标识符。</p>
+<p>格式为：public &lt;泛型类型&gt; 返回类型 方法名(泛型类型 .)</p>
+<pre><code class="language-java">public class ObjectPrint {  
+    public &lt;T&gt; void show(T t) {
+        System.out.println(t); 
+    }
+}
+public class ObjectToolDemo { 
+    public static void main(String[] args) { 
+        ObjectPrint op = new ObjectPrint();
+        op.show(&quot;java&quot;);
+        op.show(1100);
+        op.show(true);
+    }
+}
+</code></pre>
+<p>③泛型通配符，类型通配符一般是使用?代替具体的类型参数。例如 List&lt;?&gt; 在逻辑上是List<String>,List<Integer> 等所有List&lt;具体类型实参&gt;的父类。</p>
+<pre><code class="language-java">public class GenericTest {
+
+
+    public static void main(String[] args) {
+        List&lt;String&gt; names = new ArrayList&lt;String&gt;();
+        List&lt;Integer&gt; ages = new ArrayList&lt;Integer&gt;();
+        List&lt;Number&gt; numbers = new ArrayList&lt;Number&gt;();
+
+        names.add(&quot;icon&quot;);
+        ages.add(18);
+        numbers.add(314);
+
+        getData(names);
+        getData(ages);
+        getData(numbers);
+
+   }
+
+   public static void getData(List&lt;?&gt; data) {
+      System.out.println(&quot;data :&quot; + data.get(0));
+   }
+}
+</code></pre>
+<p>因为getData()方法的参数是List类型的，所以names，ages，numbers都可以作为这个方法的实参，这就是通配符的作用。</p>
+<p>④泛型上下边界，可能有时候，你会想限制那些被允许传递到一个类型参数的类型种类范围。例如，一个操作数字的方法可能只希望接受Number或者Number子类的实例。这就是有界类型参数的目的。</p>
+<p>要声明一个有界的类型参数，首先列出类型参数的名称，后跟extends关键字，最后紧跟它的上界限。</p>
+<pre><code class="language-java">public class GenericTest {
+
+
+    public static void main(String[] args) {
+        List&lt;String&gt; name = new ArrayList&lt;String&gt;();
+        List&lt;Integer&gt; age = new ArrayList&lt;Integer&gt;();
+        List&lt;Number&gt; number = new ArrayList&lt;Number&gt;();
+
+        name.add(&quot;icon&quot;);
+        age.add(18);
+        number.add(314);
+
+        //getUperNumber(name);//1
+        getUperNumber(age);//2
+        getUperNumber(number);//3
+
+   }
+
+   public static void getData(List&lt;?&gt; data) {
+      System.out.println(&quot;data :&quot; + data.get(0));
+   }
+
+   public static void getUperNumber(List&lt;? extends Number&gt; data) {
+          System.out.println(&quot;data :&quot; + data.get(0));
+       }
+}
+</code></pre>
+<p>上图中的extends不是类继承里的那个extends，两个根本没有任何关联。图中的extends后的BoundingType可以是类，也可以是接口，意思是说，T是在BoundingType基础上创建的，具有BoundingType的功能，可能是JAVA开发人员不想再引入一个关键字，所以用已有的extends来代替而已。</p>
+<p>类型通配符下界限通过形如 List&lt;? super Number&gt;来定义，表示类型只能接受Number及其三层父类类型，如 Object 类型的实例。</p>
+<p>? extends Number
+? super Number
+这两者有什么区别呢？
+1."? extends T" 表示类型的上界，表示参数化类型可能是T或者是T的子类，只能取，不能写；
+2."? super T" 表示类型的下界，Java core中叫超类型限定，表示参数化类型是此类型的超类型（父类型），甚至是Object。只能写，不能取。</p>
+<ul>
+<li>泛型的优势</li>
+</ul>
+<p>①运行时不确定类型；
+②类型安全；
+③消除强制转换；
+④提高虚拟机性能。</p>
+<ul>
+<li>泛型擦除</li>
+</ul>
+<p>Java5之后规定了新的Class文件格式规范，方法与域的描述符增添了对泛型信息的记录。因此泛型写到Class文件有这样的一个规律：</p>
+<ul>
+<li>声明一侧的，源码里写了什么运行时就能看到什么。</li>
+<li>使用一侧的，源码里写了什么到运行时就没了</li>
+</ul>
+<p>因此出现这样的情况：</p>
+<pre><code class="language-java">List&lt;String&gt; list1 = new ArrayList&lt;String&gt;();//左侧声明 右侧使用
+List list2 = new ArrayList&lt;String&gt;();//左侧声明 右侧使用
+</code></pre>
+<p>实例1 <code>list1</code>class文件中会保存String这个传入的泛型参数的信息(路径),而实例2<code>list2</code>就没有包含String。</p>
+<p>因此在使用泛型时尽量声明和定义都使用明确类型。</p>
+<p>假设参数类型的占位符为T，擦除规则如下：</p>
+<blockquote>
+<p><T>擦除后变为Obecjt</p>
+<p>&lt;? extends A&gt;擦除后变为A</p>
+<p>*&lt;？ super A&gt;擦除后变为Object</p>
+</blockquote>
+<ul>
+<li>泛型擦除的代价</li>
+</ul>
+<p>1.不可以使用<code>arg instanceof T</code>表达式和<code>new T()</code>表达式</p>
+<p>2.泛型方法也会发生泛型擦除</p>
+<ul>
+<li>泛型擦除的补偿，即如何避免泛型擦除</li>
+</ul>
+<p>使用Class来帮忙，因为Class对象获得运行时类型和泛型擦除没有关系。</p>
+<h2 id="24java">24.Java [堆，栈，方法区]</h2>
+<p>1、<a href="https://so.csdn.net/so/search?q=JVM&amp;spm=1001.2101.3001.7020">JVM</a>内存分为堆（heap）、栈（stock）、方法区（method）三个区域，分别用于储存不同的数据。</p>
+<p><img src="Java基础学习.assets/image-20230717204807498.png" alt="image-20230717204807498" style="zoom:50%;" /></p>
+<h3 id="_3">堆</h3>
+<p>2、JVM只有一个堆区，在虚拟机启动时创建，被所有线程共享，堆区不放基本类型（成员变量除外）和对象的引用，只存储对象本身（包括class对象和异常对象）和数组，堆是GC所管理的主要区域（对不需要的对象进行标记，而后进行清除）。</p>
+<ul>
+<li>新生代：Eden Survivor 存储新生的对象 </li>
+<li>老生代：Tenured  存储被长时间使用的对象</li>
+<li>元空间：1.8之前被称为永久代：存储一些方法中操作的临时对象等。</li>
+</ul>
+<p>3、GC（Garbage Controller）流程：</p>
+<ul>
+<li>基本所有数据都会保存在JVM的堆内存之中。</li>
+<li>对于整个的GC流程里面，最需要处理的事是 年轻代 和 老年代 的内存清理操作。</li>
+<li>元空间（永久代）都不在GC范围内。</li>
+</ul>
+<h4 id="gc">GC类型</h4>
+<ul>
+<li>YoungGC</li>
+<li>Full GC </li>
+</ul>
+<h4 id="gc_1"><strong>GC具体流程：</strong></h4>
+<ol>
+<li>当现在有一个新生的对象产生，JVM需要为该对象进行内存空间申请。</li>
+<li>先判断Eden区是否有内存空间，如果有，直接将新对象保存在Eden区。</li>
+<li>如果Eden区的内存空间不足，会自动执行一个Minor GC操作，将Eden区无用内存空间进行清理。</li>
+<li>清理Eden区之后继续判断Eden区内存空间情况，如果充足，则将新对象直接保存在Eden区。</li>
+<li>如果执行了Minor GC之后发现Eden区的内存仍然不足，那就判断存活区的内存空间，并将Eden区的部分活跃对象保存在存活区。</li>
+<li>活跃对象迁移到存活区后，继续判断Eden区内存空间情况，如果充足，则将新对象直接保存在Eben区。</li>
+<li>如果存活区也没有空间了，则继续判断老年区，如果老年区充足，则将存活区部分活跃对象保存在老年区。</li>
+<li>存活区的活跃对象迁移到老年区后，则将Eden区的部分活跃对象保存到存活区。</li>
+<li>活跃对象迁移到存活区后，继续判断Eden区内存空间情况，如果充足，则将新对象直接保存在Eden区。</li>
+<li>如果老年区也满了，这时候产生Minor GC（full GC）进行老年区的内存清理。</li>
+<li>如果老年区执行Major GC之后发现无法进行对象保存，会产生OutOfMemoryError异常。</li>
+</ol>
+<p>堆内存调整</p>
+<p><strong>堆内存空间调整参数：</strong></p>
+<ul>
+<li>-Xms：设置初始分配大小，默认为物理内存的1/64</li>
+<li>-Xmx：最大分配内存，默认为物理内存的1/4</li>
+<li>-xmn：设置年轻代的大小 默认情况是年轻代：老年代=1:2</li>
+<li>-XX:+PrintGCDetails：输出详细的GC处理日志</li>
+<li>-XX:+PrintGCTimeStamps：输出GC的时间戳信息</li>
+<li>-XX:+PrintGCDateStamps：输出GC的时间戳信息（以日期的形式）</li>
+<li>-XX:+PrintHeapAtGC：在GC进行处理的前后打印堆内存信息</li>
+<li>-Xloggc:(SavePath)：设置日志信息保存文件</li>
+<li>在堆内存的调整策略中，基本上只要调整两个参数：-Xms和-Xmx</li>
+</ul>
+<pre><code class="language-java">Runtime runtime = Runtime.getRuntime();
+long maxMemory = runtime.maxMemory();
+long totalMemory = runtime.totalMemory();
+System.out.println(&quot;max_memory=&quot; + maxMemory /(double)1024/1024 + &quot;M&quot;);
+System.out.println(&quot;total_memory=&quot; + totalMemory /(double)1024/1024 + &quot;M&quot;);
+</code></pre>
+<p>Jvm调优</p>
+<p>1.增加堆内存大小</p>
+<p>2.<strong>加大一下年轻代的容量和减少对象进入老年代的年龄阈值</strong></p>
+<h3 id="_4">栈</h3>
+<p>1、每个线程包含一个栈区（堆只有一个所有线程共享），栈中只保存基本数据类型的对象和自定义对象的引用，对象都存放在堆区中。
+2、每个栈中的数据（原始类型 和 对象引用）都是私有的，其他栈不能访问。
+3、栈分为3部分：基本类型变量区、执行环境上下文、操作指令区（存放操作指令）。</p>
+<p>4、过程：栈用于存储程序运行时在方法中声明的所有局部变量（栈主要存储方法中的局部变量）。JVM会为每一个方法分配一个对应的空间，这个空间称为该方法的栈帧。一个栈帧对应一个正在调用的方法，栈帧中存储了该方法的参数、局部变量等数据。当某一方法调用完成后，其对应的栈帧将被清除，局部变量失效。（方法结束，局部变量失效，从栈中清除）</p>
+<h3 id="_5">方法区</h3>
+<p>方法区：存放class二进制文件，存储着class文件的信息和动态常量池，class文件的信息包括类信息和静态常量池，也是堆中的永久代。</p>
+<p>运行常量池是方法区的一部分，常量池用于存放编译期生成的各种字面量和符号引用（还有翻译出来的直接引用），这部分内容在类加载后进入方法区的运行时常量池中存放。
+运行时常量池相对于Class文件常量池的另一个重要特征是具备动态性，运行期也可能将新的常量放入池中。</p>
+<p>线程安全的共享区域。</p>
+<h3 id="_6">回收对象</h3>
+<p>主要是区分堆中哪些对象已死，可以进行回收，主要是当一个对象的引用没有变量去记录的时候，该对象就会成为垃圾对象，并在垃圾回收器空闲的时候回收。</p>
+<p>两种对对象进行回收判断的方法：</p>
+<p>1.引用计数法</p>
+<blockquote>
+<p>每个对象中添加一个引用计数器，当有别人引用它的时候，计数器就会加1，当别人不引用它的时候，计数器就会减1，当计数器为0的时候对象就可以当成垃圾。</p>
+</blockquote>
+<p>2.可达性分析算法</p>
+<blockquote>
+<p>通过系列的称为 GC Roots 的对象作为起始点，从这些节点开始向下搜索，搜索走过的路径成为 引 用连，当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可达的，会被判断为可回收的对 象。</p>
+</blockquote>
+<p>可以成为GCRoot的：</p>
+<ul>
+<li>虚拟机栈中 (栈帧中的本地变量表) 引用的对象  </li>
+<li>方法区中类静态属性引用的对象  </li>
+<li>方法区中常量的引用对象 </li>
+<li>本地方法栈中引用的对象</li>
+</ul>
+<p><strong>GC Roots的对象：</strong> GC管理的主要区域是Java堆，一般情况下只针对堆进行垃圾回收。被GC Roots引用的对象不被GC回收，可以作为<strong>GCRoots对象</strong>的是 java虚拟机栈中引用的对象、 本地方法栈中jni引用的对象、 方法区运行时常量池引用的对象、 方法区中静态属性引用的对象、 运行中的线程（可联想到--内存泄露啊)、 由引导类加载器加载的对象、 GC控制的对象。</p>
+<p>即局部变量和静态变量可以作为GC Root</p>
+<p>JVM中主要使用可达性分析算法，尽量不要创建很大的对象</p>
+<p>原因 : GC回收算法从来不对大对象(&gt;=85000字节)堆进行内存压缩整理，在堆中大的内存块会浪费太多CPU</p>
+<p>判断是否被回收，可以重写Object.finalize()方法。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

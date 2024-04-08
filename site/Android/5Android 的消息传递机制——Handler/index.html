@@ -1,0 +1,1227 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>5、Android 的消息传递机制——Handler机制 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#5android-handler" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5、Android 的消息传递机制——Handler机制
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.目标
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3handler" class="md-nav__link">
+    3.Handler源码解析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4handler" class="md-nav__link">
+    4.Handler消息机制的原理分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5.消息屏障
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6handler" class="md-nav__link">
+    6.Handler使用的注意要点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7handler-native" class="md-nav__link">
+    7.Handler Native
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="5android-handler">5、Android 的消息传递机制——Handler机制</h1>
+<h2 id="1">1.概述</h2>
+<pre><code>Android的消息机制是通过 Handler 的运行机制来实现将一个任务切换到 Handler 所在的线程中去执行。Handler作为消息机制的上层接口，Handler将一个任务的消息发送到Handler所在的线程中去执行对消息的处理，开发者只需要和Handler打交道就可以，但是实际上Handler需要Looper、MessageQueue和Message来支持。
+</code></pre>
+<blockquote>
+<p>Android有大量的消息驱动方式来进行交互，比如Android的四剑客<code>Activity</code>, <code>Service</code>, <code>Broadcast</code>, <code>ContentProvider</code>的启动过程的交互，都离不开消息机制，Android某种意义上也可以说成是一个以消息驱动的系统。</p>
+<p>消息机制涉及MessageQueue/Message/Looper/Handler这4个类。</p>
+</blockquote>
+<p>主要目的:<strong>多个线程并发更新UI的同时 保证线程安全</strong></p>
+<h2 id="2">2.目标</h2>
+<ul>
+<li>
+<p>了解Handler的原理</p>
+</li>
+<li>
+<p>Handler是如何实现线程切换的</p>
+</li>
+<li>
+<p>Handler如何保证多线程安全</p>
+</li>
+</ul>
+<p>通过MessageQueue的enqueueMessage()和next()保证了入队和出队的线程安全</p>
+<ul>
+<li>Handler如何保证主线程loop()不会在死循环中卡死？</li>
+</ul>
+<p>通过loop()的死循环保证了主线程不会退出，不是简单的死循环，当没有消息的时候会主动进入线程阻塞，释放CPU</p>
+<p>发生ANR的原因是因为没有及时处理MessageQueue的事件造成的，真正会卡死主线程的操作是在回调方法onCreate/onStart/onResume等操作时间过长，会导致掉帧，甚至发生ANR，looper.loop本身不会导致应用卡死。</p>
+<ul>
+<li>主线程死循环，如何保证其他事务进行处理的</li>
+</ul>
+<p>在ActivityThread开了一个线程去处理其他事务。</p>
+<h2 id="3handler">3.Handler源码解析</h2>
+<ul>
+<li>Message </li>
+</ul>
+<blockquote>
+<p>消息分为硬件产生的消息(如按钮、触摸)和软件生成的消息,消息机制中主要传递信息的载体。</p>
+</blockquote>
+<ul>
+<li>
+<p>主要属性</p>
+<ul>
+<li>What,arg1,arg2,obj:用来存储信息</li>
+<li>target:用来保存message对应的handler,消息分发时通过target找到对应的handler。</li>
+<li>callback:用来存储runable()</li>
+<li>next:用来存储下一条消息，Loop()循环时、消息缓存都会使用到。</li>
+<li>when:用来存储消息的延迟时间，sendMessage时会给其赋值。</li>
+</ul>
+</li>
+<li>
+<p>为了减少消息的产生，提高消息的利用率，建议使用如下的方式生成消息:</p>
+<p><code>java
+//Message方法 Message.obtain()及其重载方法
+ public static Message obtain() {
+        synchronized (sPoolSync) {
+            if (sPool != null) {
+                Message m = sPool;
+                sPool = m.next;
+                m.next = null;
+                m.flags = 0; // clear in-use flag
+                sPoolSize--;
+                return m;
+            }
+        }
+        return new Message();
+    }
+//handler handler#obtainMessage()及其重载方法
+ public final Message obtainMessage()
+    {
+        return Message.obtain(this);
+    }</code></p>
+<p>主要是因为在message#recycleUnchecked()，会在MessageQueue||Looper中将使用完的消息回收到消息缓存中。</p>
+<p><code>java
+ @UnsupportedAppUsage
+    void recycleUnchecked() {
+        // Mark the message as in use while it remains in the recycled object pool.
+        // Clear out all other details.
+        flags = FLAG_IN_USE;
+        what = 0;
+        arg1 = 0;
+        arg2 = 0;
+        obj = null;
+        replyTo = null;
+        sendingUid = UID_NONE;
+        workSourceUid = UID_NONE;
+        when = 0;
+        target = null;
+        callback = null;
+        data = null;
+      //MAX_POOL_SIZE:50 在这里进行回收
+        synchronized (sPoolSync) {
+            if (sPoolSize &lt; MAX_POOL_SIZE) {
+                next = sPool;
+                sPool = this;
+                sPoolSize++;
+            }
+        }
+    }</code></p>
+</li>
+<li>
+<p>Handler</p>
+</li>
+</ul>
+<blockquote>
+<p>消息辅助类，主要功能向消息池发送各种消息事件(<code>Handler.sendMessage</code>)和处理相应消息事件(<code>Handler.handleMessage</code>)；4.主线程的handler。</p>
+</blockquote>
+<ul>
+<li>
+<p>主要属性</p>
+<ul>
+<li>mLooper，通过ThreadLocal获取当前线程的Looper</li>
+<li>mQueue，从Looper中获取MessageQueue</li>
+<li>mCallback，接口回调，用来处理Message</li>
+<li>mAsynchronous，是否是异步消息，主要是同步屏障使用</li>
+</ul>
+</li>
+<li>
+<p>主要方法</p>
+<ul>
+<li>发送信息 </li>
+</ul>
+<blockquote>
+<p>主要有sendMessage和Post方法，post是将runable存到Message中，然后调用sendMessage.</p>
+</blockquote>
+<p><img alt="sendMessage" src="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler.assets/image-20221228121355416.png" /></p>
+<ul>
+<li>进入消息队列</li>
+</ul>
+<blockquote>
+<p>从上图可以看出所有的消息最后都会通过enqueueMessage进到消息队列</p>
+</blockquote>
+<p>```java
+ private boolean enqueueMessage(@NonNull MessageQueue queue, @NonNull Message msg,
+            long uptimeMillis) {
+        msg.target = this;
+        msg.workSourceUid = ThreadLocalWorkSource.getUid();</p>
+<pre><code>    if (mAsynchronous) {
+        msg.setAsynchronous(true);
+    }
+    //最后会调用到Queue的equeueMessage
+    return queue.enqueueMessage(msg, uptimeMillis);
+}
+</code></pre>
+<p>```</p>
+<ul>
+<li>处理消息 </li>
+</ul>
+<blockquote>
+<p>优先级：Message.callback &gt; Handler.callback &gt; Handler#handleMessage()</p>
+</blockquote>
+<p><code>java
+public void dispatchMessage(@NonNull Message msg) {
+        if (msg.callback != null) {
+            handleCallback(msg);
+        } else {
+            if (mCallback != null) {
+                if (mCallback.handleMessage(msg)) {
+                    return;
+                }
+            }
+            handleMessage(msg);
+        }
+    }</code></p>
+</li>
+<li>
+<p>MessageQueue</p>
+</li>
+</ul>
+<blockquote>
+<p>消息队列的主要功能向消息池投递消息(<code>MessageQueue.enqueueMessage</code>)和取走消息池的消息(<code>MessageQueue.next</code>)；MessageQueue是消息机制的Java层和C++层的连接纽带，大部分核心方法都交给native层来处理。</p>
+</blockquote>
+<ul>
+<li>
+<p>创建消息队列的时机，Looper创建时，同时会创建MessageQueue</p>
+</li>
+<li>
+<p>主要属性</p>
+<ul>
+<li>mQuitAllowed :是否允许消息队列退出,主要是创建消息队列时使用，mQuitAllowed为false时只存在主线程</li>
+<li>mQuitting: 是否可以退出</li>
+</ul>
+</li>
+<li>
+<p>主要方法</p>
+<ul>
+<li>进入消息队列 enqueuemessage() 关键方法</li>
+</ul>
+<p>```java
+ boolean enqueueMessage(Message msg, long when) {
+        //进队的Message必须持有handler
+            if (msg.target == null) {
+            throw new IllegalArgumentException("Message must have a target.");
+        }
+                //同步方法 保证了多线程下的线程安全
+        synchronized (this) {
+            if (msg.isInUse()) {
+                throw new IllegalStateException(msg + " This message is already in use.");
+            }
+                        //若是选择了退出，新建的消息不会再入队，并且会被销毁
+            if (mQuitting) {
+                IllegalStateException e = new IllegalStateException(
+                        msg.target + " sending message to a Handler on a dead thread");
+                Log.w(TAG, e.getMessage(), e);
+                msg.recycle();
+                return false;
+            }</p>
+<pre><code>        msg.markInUse();
+      //Message设置了延迟时间 when
+        msg.when = when;
+        Message p = mMessages;
+        boolean needWake;
+      //会根据when将消息入队到合适的位置
+        if (p == null || when == 0 || when &lt; p.when) {
+            // New head, wake up the event queue if blocked.
+            msg.next = p;
+            mMessages = msg;
+            needWake = mBlocked; //mBlocked：是否线程阻塞
+        } else {
+            // Inserted within the middle of the queue.  Usually we don't have to wake
+            // up the event queue unless there is a barrier at the head of the queue
+            // and the message is the earliest asynchronous message in the queue.
+            needWake = mBlocked &amp;&amp; p.target == null &amp;&amp; msg.isAsynchronous();
+            Message prev;
+            for (;;) {
+                prev = p;
+                p = p.next;
+                if (p == null || when &lt; p.when) {
+                    break;
+                }
+                if (needWake &amp;&amp; p.isAsynchronous()) {
+                    needWake = false;
+                }
+            }
+            msg.next = p; // invariant: p == prev.next
+            prev.next = msg;
+        }
+
+        // We can assume mPtr != 0 because mQuitting is false.
+      //会唤醒阻塞的线程
+        if (needWake) {
+            nativeWake(mPtr);
+        }
+    }
+    return true;
+}
+</code></pre>
+<p>```</p>
+<ul>
+<li>next()</li>
+</ul>
+<p>```java
+Message next() {
+        // Return here if the message loop has already quit and been disposed.
+        // This can happen if the application tries to restart a looper after quit
+        // which is not supported. 当App重新启动已经退出的Loop时，直接返回null
+        final long ptr = mPtr;
+        if (ptr == 0) {
+            return null;
+        }</p>
+<pre><code>    int pendingIdleHandlerCount = -1; // -1 only during first iteration 空闲进程的清理
+    int nextPollTimeoutMillis = 0; //阻塞的时间 是在Native中进行的
+    //for循环拿到下一个Message 此处会阻塞
+    for (;;) {
+        if (nextPollTimeoutMillis != 0) {
+            Binder.flushPendingCommands();
+        }
+
+        //阻塞线程
+        nativePollOnce(ptr, nextPollTimeoutMillis);
+
+       //同步方法 和enqueueumessage 保证了线程安全 
+        synchronized (this) {
+            // Try to retrieve the next message.  Return if found.
+            final long now = SystemClock.uptimeMillis();
+            Message prevMsg = null;
+            Message msg = mMessages;
+            if (msg != null &amp;&amp; msg.target == null) {
+                // Stalled by a barrier.  Find the next asynchronous message in the queue.
+              //当target为null时，说明发出了消息屏障，会优先执行异步消息
+                do {
+                    prevMsg = msg;
+                    msg = msg.next;
+                } while (msg != null &amp;&amp; !msg.isAsynchronous());
+            }
+            if (msg != null) {
+                if (now &lt; msg.when) {
+                    // Next message is not ready.  Set a timeout to wake up when it is ready.
+                    //当下一个消息没有到延迟时间时，会阻塞线程
+                    nextPollTimeoutMillis = (int) Math.min(msg.when - now, Integer.MAX_VALUE);
+                } else {
+                    // Got a message.
+                    mBlocked = false;
+                    if (prevMsg != null) {
+                        prevMsg.next = msg.next;
+                    } else {
+                        mMessages = msg.next;
+                    }
+                    msg.next = null;
+                    if (DEBUG) Log.v(TAG, "Returning message: " + msg);
+                    msg.markInUse();
+                    return msg;
+                }
+            } else {
+                // No more messages.
+                nextPollTimeoutMillis = -1;
+            }
+
+            // Process the quit message now that all pending messages have been handled.
+          //若有退出标记，会返回null的message
+            if (mQuitting) {
+                dispose();
+                return null;
+            }
+
+            // If first time idle, then get the number of idlers to run.
+            // Idle handles only run if the queue is empty or if the first message
+            // in the queue (possibly a barrier) is due to be handled in the future.
+
+          //最后会执行对MessageQueue的清理工作
+            if (pendingIdleHandlerCount &lt; 0
+                    &amp;&amp; (mMessages == null || now &lt; mMessages.when)) {
+                pendingIdleHandlerCount = mIdleHandlers.size();
+            }
+            if (pendingIdleHandlerCount &lt;= 0) {
+                // No idle handlers to run.  Loop and wait some more.
+                mBlocked = true;
+                continue;
+            }
+
+            if (mPendingIdleHandlers == null) {
+                mPendingIdleHandlers = new IdleHandler[Math.max(pendingIdleHandlerCount, 4)];
+            }
+            mPendingIdleHandlers = mIdleHandlers.toArray(mPendingIdleHandlers);
+        }
+
+        // Run the idle handlers.
+        // We only ever reach this code block during the first iteration.
+        for (int i = 0; i &lt; pendingIdleHandlerCount; i++) {
+            final IdleHandler idler = mPendingIdleHandlers[i];
+            mPendingIdleHandlers[i] = null; // release the reference to the handler
+
+            boolean keep = false;
+            try {
+                keep = idler.queueIdle();
+            } catch (Throwable t) {
+                Log.wtf(TAG, "IdleHandler threw exception", t);
+            }
+
+            if (!keep) {
+                synchronized (this) {
+                    mIdleHandlers.remove(idler);
+                }
+            }
+        }
+
+        // Reset the idle handler count to 0 so we do not run them again.
+        pendingIdleHandlerCount = 0;
+
+        // While calling an idle handler, a new message could have been delivered
+        // so go back and look again for a pending message without waiting.
+        nextPollTimeoutMillis = 0;
+    }
+}
+</code></pre>
+<p>```</p>
+<ul>
+<li>quit(boolean safe) ：是否可以退出，safe为true,清空已分发过或者阻塞的消息，safe为false全部清空</li>
+</ul>
+<p>```java
+ void quit(boolean safe) {
+        if (!mQuitAllowed) {
+            throw new IllegalStateException("Main thread not allowed to quit.");
+        }</p>
+<pre><code>    synchronized (this) {
+        if (mQuitting) {
+            return;
+        }
+        mQuitting = true;
+
+        if (safe) {
+            removeAllFutureMessagesLocked();
+        } else {
+            removeAllMessagesLocked();
+        }
+
+        // We can assume mPtr != 0 because mQuitting was previously false.
+        //唤醒消息队列
+        nativeWake(mPtr);
+    }
+}
+</code></pre>
+<p>```</p>
+</li>
+<li>
+<p>Looper</p>
+</li>
+</ul>
+<blockquote>
+<p>不断循环执行(<code>Looper.loop</code>)，按分发机制将消息分发给目标处理者。</p>
+</blockquote>
+<ul>
+<li>Looper的新建</li>
+</ul>
+<p><code>java
+  //主线程Looper的建立
+   public static void prepareMainLooper() {
+          prepare(false);
+          synchronized (Looper.class) {
+              if (sMainLooper != null) {
+                  throw new IllegalStateException("The main Looper has already been prepared.");
+              }
+              sMainLooper = myLooper();
+          }
+      }
+  //其他线程Looper的建立 Looper.prepare()
+  private static void prepare(boolean quitAllowed) {
+          if (sThreadLocal.get() != null) {
+              throw new RuntimeException("Only one Looper may be created per thread");
+          }
+          sThreadLocal.set(new Looper(quitAllowed));
+      }
+  //区别：主线程不允许Looper退出
+  //会新建MessageQueue，并绑定线程和Looper
+   private Looper(boolean quitAllowed) {
+          mQueue = new MessageQueue(quitAllowed);
+          mThread = Thread.currentThread();
+      }</code></p>
+<ul>
+<li>
+<p>主要属性</p>
+<ul>
+<li>mQueue</li>
+<li>sMainLooper 主线程的Looper</li>
+</ul>
+</li>
+<li>
+<p>主要方法</p>
+<ul>
+<li>loop()</li>
+</ul>
+<p>```java
+   public static void loop() {
+          final Looper me = myLooper();
+          if (me == null) {
+              throw new RuntimeException("No Looper; Looper.prepare() wasn't called on this thread.");
+          }
+          if (me.mInLoop) {
+              Slog.w(TAG, "Loop again would have the queued messages be executed"
+                      + " before this one completed.");
+          }</p>
+<pre><code>      me.mInLoop = true;
+      final MessageQueue queue = me.mQueue;
+
+      // Make sure the identity of this thread is that of the local process,
+      // and keep track of what that identity token actually is.
+      Binder.clearCallingIdentity();
+      final long ident = Binder.clearCallingIdentity();
+
+      // Allow overriding a threshold with a system prop. e.g.
+      // adb shell 'setprop log.looper.1000.main.slow 1 &amp;&amp; stop &amp;&amp; start'
+      final int thresholdOverride =
+              SystemProperties.getInt("log.looper."
+                      + Process.myUid() + "."
+                      + Thread.currentThread().getName()
+                      + ".slow", 0);
+
+      boolean slowDeliveryDetected = false;
+
+      for (;;) {
+          Message msg = queue.next(); // might block 这里可能会阻塞
+          //退出后message会为null,此时Loop会退出循环
+          if (msg == null) {
+              // No message indicates that the message queue is quitting.
+              return;
+          }
+
+          // This must be in a local variable, in case a UI event sets the logger
+          final Printer logging = me.mLogging;
+          if (logging != null) {
+              logging.println("&gt;&gt;&gt;&gt;&gt; Dispatching to " + msg.target + " " +
+                      msg.callback + ": " + msg.what);
+          }
+          // Make sure the observer won't change while processing a transaction.
+          final Observer observer = sObserver;
+
+          final long traceTag = me.mTraceTag;
+          long slowDispatchThresholdMs = me.mSlowDispatchThresholdMs;
+          long slowDeliveryThresholdMs = me.mSlowDeliveryThresholdMs;
+          if (thresholdOverride &gt; 0) {
+              slowDispatchThresholdMs = thresholdOverride;
+              slowDeliveryThresholdMs = thresholdOverride;
+          }
+          final boolean logSlowDelivery = (slowDeliveryThresholdMs &gt; 0) &amp;&amp; (msg.when &gt; 0);
+          final boolean logSlowDispatch = (slowDispatchThresholdMs &gt; 0);
+
+          final boolean needStartTime = logSlowDelivery || logSlowDispatch;
+          final boolean needEndTime = logSlowDispatch;
+
+          if (traceTag != 0 &amp;&amp; Trace.isTagEnabled(traceTag)) {
+              Trace.traceBegin(traceTag, msg.target.getTraceName(msg));
+          }
+
+          final long dispatchStart = needStartTime ? SystemClock.uptimeMillis() : 0;
+          final long dispatchEnd;
+          Object token = null;
+          if (observer != null) {
+              token = observer.messageDispatchStarting();
+          }
+          long origWorkSource = ThreadLocalWorkSource.setUid(msg.workSourceUid);
+          try {
+            //重点方法，会分发到message的handler
+              msg.target.dispatchMessage(msg);
+              if (observer != null) {
+                  observer.messageDispatched(token, msg);
+              }
+              dispatchEnd = needEndTime ? SystemClock.uptimeMillis() : 0;
+          } catch (Exception exception) {
+              if (observer != null) {
+                  observer.dispatchingThrewException(token, msg, exception);
+              }
+              throw exception;
+          } finally {
+              ThreadLocalWorkSource.restore(origWorkSource);
+              if (traceTag != 0) {
+                  Trace.traceEnd(traceTag);
+              }
+          }
+          if (logSlowDelivery) {
+              if (slowDeliveryDetected) {
+                  if ((dispatchStart - msg.when) &lt;= 10) {
+                      Slog.w(TAG, "Drained");
+                      slowDeliveryDetected = false;
+                  }
+              } else {
+                  if (showSlowLog(slowDeliveryThresholdMs, msg.when, dispatchStart, "delivery",
+                          msg)) {
+                      // Once we write a slow delivery log, suppress until the queue drains.
+                      slowDeliveryDetected = true;
+                  }
+              }
+          }
+          if (logSlowDispatch) {
+              showSlowLog(slowDispatchThresholdMs, dispatchStart, dispatchEnd, "dispatch", msg);
+          }
+
+          if (logging != null) {
+              logging.println("&lt;&lt;&lt;&lt;&lt; Finished to " + msg.target + " " + msg.callback);
+          }
+
+          // Make sure that during the course of dispatching the
+          // identity of the thread wasn't corrupted.
+          final long newIdent = Binder.clearCallingIdentity();
+          if (ident != newIdent) {
+              Log.wtf(TAG, "Thread identity changed from 0x"
+                      + Long.toHexString(ident) + " to 0x"
+                      + Long.toHexString(newIdent) + " while dispatching to "
+                      + msg.target.getClass().getName() + " "
+                      + msg.callback + " what=" + msg.what);
+          }
+
+          msg.recycleUnchecked();
+      }
+  }
+</code></pre>
+<p>```</p>
+<ul>
+<li>quit() &amp;&amp; quitsafely():会调用MessageQueue的方法,保证了退出后消息队列为空，且next获取不到消息</li>
+</ul>
+</li>
+<li>
+<p>四者关系</p>
+</li>
+</ul>
+<p>Handler :Looper:MessageQueue:Thread  1:1:1:1</p>
+<p>Handler:Message 1:N</p>
+<ul>
+<li>消息机制运行的原理</li>
+</ul>
+<p><img alt="handler_java" src="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler.assets/handler_java.jpg" /></p>
+<p>在子线程中生成Message,通过Looper分发到主线程中让Handler去处理.</p>
+<ul>
+<li>Handler 更新UI的原理</li>
+</ul>
+<p>​        现有的Handler介绍书籍中大多说是为了实现在非UI线程更新界面UI，但是Handler 却不是仅仅专门用来更新UI的。看一下工作线程更新UI的过程：在 UI 线程创建一个 <code>Handler</code> 对象，在子线程中使用这个 <code>Handler</code> 对象将要显示的数据切换到 <code>Handler</code> 所在的 UI 线程，再操作 UI 控件来显示数据。</p>
+<p>实际上Handler的主要作用是为了实现线程的调度，切换线程，可以从UI线程切换到工作线程，也可以从工作线程切换到UI线程。</p>
+<p>​       那么为什么子线程不能更新UI呢？实际上子线程是可以更新UI的，但是更新UI使用的是单线程模型，即哪个线程创建的UI，哪个线程可以修改，Android 的 UI 控件不是线程安全的，如果在多线程中并发访问可能会导致 UI 控件处于不可预期的状态；而如果对 UI 控件的访问加上锁机制，会让 UI 访问的逻辑变得复杂，也会降低 UI 访问的效率。而我们大部分的UI操作都是在UI线程创建的，因此常用Handler来帮助工作线程修改UI。</p>
+<pre><code class="language-java">//ViewRootImpl
+void checkThread() {
+    if (mThread != Thread.currentThread()) {
+        throw new CalledFromWrongThreadException(
+                &quot;Only the original thread that created a view hierarchy can touch its views.&quot;);
+    }
+}
+</code></pre>
+<p>​     由<code>checkThread</code>方可知，更新UI必须是新建UI的线程。</p>
+<ul>
+<li>Android Handler运行的流程</li>
+</ul>
+<p><img alt="5265a0a7c0054f2bbcbc93804f199aeb" src="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler.assets/5265a0a7c0054f2bbcbc93804f199aeb.png" /></p>
+<ul>
+<li>在主线程创建 Handler 对象 handler，默认使用的是主线程的 Looper 对象以及对应的 MessageQueue 对象；</li>
+<li>在工作线程通过 Handler 对象 handler 的发送消息方法发送消息，最终通过 MessageQueue 对象的 enqueueMessage 方法把消息加入到消息队列中</li>
+<li>Looper.loop() 方法运行在创建 Handler 里的线程，在这里就是运行在主线程， Loop.loop() 方法不断从消息队列中获取符合条件的 Message 对象；</li>
+<li>获取到符合条件的 Message 对象后，通过 Message 对象持有的 target 字段（实际就是发送该消息的那个 Handler 对象）的 dispatchMessage 方法把消息回调给发送消息的那个 Handler，这样消息就在主线程接收到了。</li>
+</ul>
+<h2 id="4handler">4.Handler消息机制的原理分析</h2>
+<ul>
+<li>
+<p>Handler作为消息机制的上层接口，可以实现对消息的所有处理</p>
+</li>
+<li>
+<p>Handler的构造函数中，会获取当前线程的Looper对象、MessageQueue对象，<code>mcallback</code> 和<code>mAsynchronous</code></p>
+<p>```java
+//构造函数有5个 仅以其中的一个为例
+public Handler(@Nullable Callback callback, boolean async) {</p>
+<pre><code>    mLooper = Looper.myLooper();
+    if (mLooper == null) {
+        throw new RuntimeException(
+            "Can't create handler inside thread " + Thread.currentThread()
+                    + " that has not called Looper.prepare()");
+    }
+    mQueue = mLooper.mQueue;
+    mCallback = callback;
+    mAsynchronous = async;
+}
+</code></pre>
+<p>```</p>
+</li>
+<li>
+<p>发送消息</p>
+<p>发送消息有以下几种,最后都会走到enqueueMessage</p>
+<p><img alt="91c28f332cd14c808b02dd3ca8b0395e" src="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler.assets/91c28f332cd14c808b02dd3ca8b0395e.png" /></p>
+<p>```java
+  private boolean enqueueMessage(@NonNull MessageQueue queue, @NonNull Message msg,
+            long uptimeMillis) {
+        msg.target = this;
+        msg.workSourceUid = ThreadLocalWorkSource.getUid();</p>
+<pre><code>    if (mAsynchronous) {
+        msg.setAsynchronous(true);
+    }
+    return queue.enqueueMessage(msg, uptimeMillis);
+}
+</code></pre>
+<p>```</p>
+<p>获取当前线程Uid,hanler对象赋值给msg.target,然后讲消息加入到消息队列。</p>
+</li>
+<li>
+<p>处理消息</p>
+<p>在loop()循环时，会将轮到的消息分发给各个Handler,然后Handler进行处理</p>
+<p><code>java
+  public void dispatchMessage(@NonNull Message msg) {
+        if (msg.callback != null) {
+            handleCallback(msg);
+        } else {
+            if (mCallback != null) {
+                if (mCallback.handleMessage(msg)) {
+                    return;
+                }
+            }
+            handleMessage(msg);
+        }
+    }
+//Looper#loop()
+ msg.target.dispatchMessage(msg);</code></p>
+<p>由源码可知，实际上回调有三种方法，message的callback,handler的Callback,handleMessage(msg),实际上我们常用的只是最后一种</p>
+</li>
+<li>
+<p>封装消息</p>
+<p><code>Handler</code> 封装了一系列的 <code>obtainMessage</code> 工具方法，方便我们拿到 <code>Message</code> 对象。</p>
+</li>
+<li>
+<p>移除消息</p>
+<p><code>Handler</code> 封装了 removeXXX 方法，内部委托给 <code>MessageQueue</code> 对象去做真正的工作，实际上就是在消息队列中移除消息对象。</p>
+</li>
+<li>
+<p>Looper 作为消息机制中的核心，提供了循环的流程</p>
+</li>
+<li>
+<p>Looper.prepare()和Looper.prepareMainLooper()的区别</p>
+<p><code>java
+//prepare创建了一个Looper对象，并创建了消息队列，获取当前线、将其放入 ThreadLocal&lt;Looper&gt;对象中
+public static void prepare() {
+        prepare(true);
+    }
+private static void prepare(boolean quitAllowed) {
+  if (sThreadLocal.get() != null) {
+    throw new RuntimeException("Only one Looper may be created per thread");
+  }
+  sThreadLocal.set(new Looper(quitAllowed));
+}
+private Looper(boolean quitAllowed) {
+        mQueue = new MessageQueue(quitAllowed);
+        mThread = Thread.currentThread();
+    }
+//prepareMainLooper 也创建了Looper对象，但是quitAllowed=false，不允许退出消息循环
+public static void prepareMainLooper() {
+        prepare(false);
+        synchronized (Looper.class) {
+            if (sMainLooper != null) {
+                throw new IllegalStateException("The main Looper has already been prepared.");
+            }
+            sMainLooper = myLooper();
+        }
+    }</code></p>
+<p>Looper.prepare()创建的Looper是允许loop()退出循环，允许消息队列为空</p>
+<p>Looper.prepareMainLooper()创建的Looper是不允许loop()退出循环的</p>
+</li>
+<li>
+<p>Looper.quit()和Looper.quitSafely()的区别</p>
+<p>这两个方法实际上是调用了MessageQueue的quit(boolean safe)</p>
+<p>Looper.quit()中safe= false,设置退出标志位，并移除所有的消息</p>
+<p>Looper.quit()中safe= true,设置退出标志位，移除所有需要延时处理的消息</p>
+<p>```java
+ void quit(boolean safe) {
+        if (!mQuitAllowed) {
+            throw new IllegalStateException("Main thread not allowed to quit.");
+        }</p>
+<pre><code>    synchronized (this) {
+        if (mQuitting) {
+            return;
+        }
+        mQuitting = true;
+
+        if (safe) {
+            removeAllFutureMessagesLocked();
+        } else {
+            removeAllMessagesLocked();
+        }
+
+        // We can assume mPtr != 0 because mQuitting was previously false.
+        nativeWake(mPtr);
+    }
+}
+</code></pre>
+<p>```</p>
+</li>
+</ul>
+<h2 id="5">5.消息屏障</h2>
+<blockquote>
+<p>主要是通过MessageQueue#postSyncBarrier(long when)和MessageQueue#removeSyncBarrier(int token)来产生消息屏障和消除消息屏障。</p>
+</blockquote>
+<p>消息屏障的作用是:先处理异步消息，起了过滤和提升优先级的作用，具体处理在MessageQueue#next()中，标志是有一个target为null的message在消息队列中，起到消息屏障的作用。</p>
+<pre><code class="language-java"> @UnsupportedAppUsage
+    Message next() {
+        ...
+        for (;;) {
+        ...
+            synchronized (this) {
+                // Try to retrieve the next message.  Return if found.
+                final long now = SystemClock.uptimeMillis();
+                Message prevMsg = null;
+                Message msg = mMessages;
+          //这里 targat == null说明有消息屏障
+                if (msg != null &amp;&amp; msg.target == null) {
+                    // Stalled by a barrier.  Find the next asynchronous message in the queue.
+                    do {
+                        prevMsg = msg;
+                        msg = msg.next;
+                    } while (msg != null &amp;&amp; !msg.isAsynchronous());
+                }
+                if (msg != null) {
+                  ...
+                    }
+                } else {
+                    // No more messages.
+                    nextPollTimeoutMillis = -1;
+                }
+                        ...
+            }
+                        ...
+        }
+    }
+</code></pre>
+<pre><code class="language-java">//同步的消息为s 异步的消息为a,消息屏障为b
+s1-&gt;b-&gt;s2-&gt;a1-&gt;s3-&gt;a2-&gt;s4
+</code></pre>
+<p>执行顺序为s1-&gt;a1-&gt;a2,当移除消息屏障后，才会执行s2-&gt;s3-&gt;s4.</p>
+<p><a href="https://cloud.tencent.com/developer/article/1685247">“终于懂了” 系列：Android屏幕刷新机制—VSync、Choreographer 全面理解！</a></p>
+<h2 id="6handler">6.Handler使用的注意要点</h2>
+<ul>
+<li>message的生成</li>
+</ul>
+<blockquote>
+<p>Message中会有一个大小为50的消息池，使用Message.obtain()可以复用这个消息池中的消息，降低了开销</p>
+</blockquote>
+<ul>
+<li>内存泄漏</li>
+</ul>
+<blockquote>
+<p>因为Handler可以发送延迟消息，并且内部类会持有外部类的引用，因此在Activity中创建Handler时容易造成内存泄漏。</p>
+</blockquote>
+<h2 id="7handler-native">7.<a href="http://gityuan.com/2015/12/27/handler-message-native/#nativepollonce">Handler Native</a></h2>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

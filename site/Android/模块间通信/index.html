@@ -1,0 +1,1530 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>模块间通信 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              模块间通信
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">模块间通信</h1>
+<h1 id="1">1、组件化和模块化的区别</h1>
+<p>组件化：基于可重用为目的，将一个大的软件系统按照分离关注点的形式，拆分多个独立的组件，减少耦合，即同一个组件可以被多个业务使用。</p>
+<p>模块化：将业务拆分，分成相互独立的业务，以便于每个模块只包含与其自身业务相关的内容，即它是独立的业务。</p>
+<p>本质上，组件化针对的是功能(有粒度区分)，模块化针对的是业务。即假如一个工程存在订单模块和用户模块，而它们同时需要一个支付的组件来帮它们完成具体的业务实现。</p>
+<h1 id="2arouter">2、ARouter的使用</h1>
+<p>官方介绍：我们所使用的原生路由方案一般是通过显式intent和隐式intent两种方式实现的（这里主要是指跳转Activity or Fragment）。在显式intent的情况下，因为会存在直接的类依赖的问题，导致耦合非常严重；而在隐式intent情况下，则会出现规则集中式管理，导致协作变得非常困难。一般而言配置规则都是在Manifest中的，这就导致了扩展性较差。除此之外，使用原生的路由方案会出现跳转过程无法控制的问题，因为一旦使用了StartActivity()就无法插手其中任何环节了，只能交给系统管理，这就导致了在跳转失败的情况下无法降级，而是会直接抛出运营级的异常。这时候如果考虑使用自定义的路由组件就可以解决以上问题，比如通过URL索引就可以解决类依赖的问题；通过分布式管理页面配置可以解决隐式intent中集中式管理Path的问题；自己实现整个路由过程也可以拥有良好的扩展性，还可以通过AOP的方式解决跳转过程无法控制的问题，与此同时也能够提供非常灵活的降级方式。</p>
+<p>使用的原因；</p>
+<p>​        1、使用URL 解决跨模块类依赖的问题</p>
+<p>​       2、分布式管理页面配置可以解决隐式intent中集中式管理Path的问题</p>
+<p>​       3、通过AOP的方式控制跳转过程</p>
+<p>​       4、自己实现路由过程，方便自己扩展</p>
+<h2 id="21">2.1 使用方法</h2>
+<p><a href="https://github.com/alibaba/ARouter">ARouter官方地址</a></p>
+<h3 id="211">2.1.1 正常使用</h3>
+<ol>
+<li>添加依赖</li>
+</ol>
+<p>```java
+   android {
+       defaultConfig {
+           ...
+           javaCompileOptions {
+               annotationProcessorOptions {
+                   arguments = [AROUTER_MODULE_NAME: project.getName()]
+               }
+           }
+       }
+   }</p>
+<p>dependencies {
+       // 替换成最新版本, 需要注意的是api
+       // 要与compiler匹配使用，均使用最新版可以保证兼容
+       implementation 'com.alibaba:arouter-api:x.x.x'
+       annotationProcessor 'com.alibaba:arouter-compiler:x.x.x'
+       ...
+   }
+   ```</p>
+<ol>
+<li>初始化</li>
+</ol>
+<p>在Application中进行初始化</p>
+<p>```java
+    //ARouter 开关
+       private boolean isDebugARouter = true;</p>
+<pre><code>   @Override
+   public void onCreate() {
+       super.onCreate();
+       // init ARouter SDK
+       if (isDebugARouter) {
+           ARouter.openLog();
+           ARouter.openDebug();
+       }
+       ARouter.init(HomeApplication.this);
+   }
+
+   @Override
+   public void onTrimMemory(int level) {
+       super.onTrimMemory(level);
+       //ARoutter注销
+       ARouter.getInstance().destroy();
+   }
+</code></pre>
+<p>```</p>
+<ol>
+<li>创建Activity,添加注解,注解必须“/XX/XX”，必须有两个及以上<code>/</code></li>
+</ol>
+<p>```java
+   @Route(path = "/test/my")
+   public class MyActivity extends AppCompatActivity {</p>
+<p>}
+   ```</p>
+<ol>
+<li>添加注入</li>
+</ol>
+<p><code>java
+   //注入后，可以使用Autowired注解
+   ARouter.getInstance().inject(this);</code></p>
+<ol>
+<li>跳转</li>
+</ol>
+<pre><code class="language-java">//无参数跳转
+ARouter.getInstance().build(&quot;/test/my&quot;).navigation();
+
+//有参数跳转
+ARouter.getInstance().build(&quot;/test/my&quot;)
+                .withString(&quot;name&quot;,&quot;android&quot;)
+                .withInt(&quot;age&quot;,3)
+                .navigation();
+//自定义group跳转
+@Route(path = &quot;/module/2&quot;, group = &quot;m2&quot;)
+ ARouter.getInstance().build(&quot;/module/2&quot;, &quot;m2&quot;).navigation();
+</code></pre>
+<h3 id="212">2.1.2 自动注入</h3>
+<p>​   首先在需要注入的Activity中添加：</p>
+<pre><code class="language-java"> ARouter.getInstance().inject(this);
+</code></pre>
+<p>​    其次在注入的Activity中使用<code>@Autowired</code>关键字</p>
+<pre><code>@Autowired
+String url;
+</code></pre>
+<p>最后使用ARouter  API 添加需要传递的值，该值会自动注入到你输入的值中。</p>
+<pre><code class="language-java">ARouter.getInstance().build(&quot;/test/activity1&quot;)
+  .withString(&quot;name&quot;, &quot;老王&quot;)
+  .withInt(&quot;age&quot;, 18)
+  .withBoolean(&quot;boy&quot;, true)
+  .withLong(&quot;high&quot;, 180)
+  .withString(&quot;url&quot;, &quot;https://a.b.c&quot;)
+  .withSerializable(&quot;ser&quot;, testSerializable)
+  .withParcelable(&quot;pac&quot;, testParcelable)
+  .withObject(&quot;obj&quot;, testObj)
+  .withObject(&quot;objList&quot;, objList)
+  .withObject(&quot;map&quot;, map)
+  .navigation();
+</code></pre>
+<ul>
+<li>单值的传递</li>
+</ul>
+<p>保证传递的参数类型和参数名称相同即可</p>
+<ul>
+<li>Serializable的传递</li>
+</ul>
+<p>```java
+  //新建Serializable
+  public class TestSerializable implements Serializable {
+      public String name;
+      public int id;</p>
+<pre><code>  public TestSerializable() {
+  }
+
+  public TestSerializable(String name, int id) {
+      this.name = name;
+      this.id = id;
+  }
+</code></pre>
+<p>}
+  //传递
+   TestSerializable testSerializable = new TestSerializable("serializable",1);
+  .withParcelable("pac", testParcelable)
+  //接收
+    @Autowired
+    TestSerializable ser;
+  ```</p>
+<ul>
+<li>Parcelable 的传递: Android独有的序列化方式，推荐使用</li>
+</ul>
+<p>```java
+  //新建Parcelable
+  public class TestParcelable  implements Parcelable {
+      public  String  name;
+      public  int     id;
+      //非基本数据类型</p>
+<pre><code>  public TestParcelable(String name,int id){//构造函数
+      this.name = name;
+      this.id   = id;
+  }
+
+  protected TestParcelable(Parcel in) {//对象反序列化读取数据
+      this.name = in.readString();
+      this.id   = in.readInt();
+  }
+
+  @Override
+  public int describeContents() { //内容接口描述，默认返回0
+      return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {//将对象序列化一个Parcel对象，将对象存入Parcel中
+      dest.writeString(name);
+      dest.writeInt(id);
+  }
+  public static final Creator&lt;TestParcelable&gt; CREATOR = new Creator&lt;TestParcelable&gt;() {//实现生成接口
+      @Override
+      public TestParcelable createFromParcel(Parcel in) {// 从Parcel中读取数据
+          return new TestParcelable(in);
+      }
+
+      @Override
+      public TestParcelable[] newArray(int size) { //供外部类反序列化本类数组使用
+          return new TestParcelable[size];
+      }
+  };
+</code></pre>
+<p>}
+  //传递
+   TestParcelable testParcelable = new TestParcelable("parcelable",2);
+   .withParcelable("par",testParcelable)
+  //接收
+   @Autowired
+   TestParcelable par;
+  ```</p>
+<ul>
+<li>Object 的传递</li>
+</ul>
+<p>首先自定义对象必须实现<code>JsonServiceImpl</code></p>
+<p>```java
+  // 如果需要传递自定义对象，新建一个类（并非自定义对象类），然后实现 SerializationService,并使用@Route注解标注(方便用户自行选择序列化方式)，例如：
+  @Route(path = "/yourservicegroupname/json")
+  public class JsonServiceImpl implements SerializationService {
+      @Override
+      public void init(Context context) {</p>
+<pre><code>  }
+
+  @Override
+  public &lt;T&gt; T json2Object(String text, Class&lt;T&gt; clazz) {
+      return JSON.parseObject(text, clazz);
+  }
+
+  @Override
+  public String object2Json(Object instance) {
+      return JSON.toJSONString(instance);
+  }
+</code></pre>
+<p>}
+  ```</p>
+<p>然后再新建Object,再进行传递和接收</p>
+<p>```java
+  //新建Object
+  public class TestObj {
+      private String name;
+      private int id;</p>
+<pre><code>  public TestObj() {
+  }
+
+  public TestObj(String name, int id) {
+      this.name = name;
+      this.id = id;
+  }
+
+  public String getName() {
+      return name;
+  }
+
+  public void setName(String name) {
+      this.name = name;
+  }
+
+  public int getId() {
+      return id;
+  }
+
+  public void setId(int id) {
+      this.id = id;
+  }
+</code></pre>
+<p>}
+  //传递
+  TestObj testObj = new TestObj("Rose", 777);
+  .withObject("obj",testObj) 
+    //接收
+    @Autowired
+    TestObj obj;<br />
+  ```</p>
+<ul>
+<li>List的传递</li>
+</ul>
+<p>和自定义对象的类似，只要将Object,换成List即可</p>
+<ul>
+<li>Map的传递</li>
+</ul>
+<p>和自定义对象的类似，只要将Object,换成List即可</p>
+<h3 id="213-forresult">2.1.3 forResult</h3>
+<p>​     相当于使用startActivityForsult()</p>
+<pre><code class="language-java">//activity A 跳转
+ ARouter.getInstance().build(&quot;/test/activity2&quot;).navigation(this, 666);
+//Activity B 返回
+setResult(999);
+//Activity A接收
+ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 666:
+                Log.e(&quot;activityResult&quot;, String.valueOf(resultCode));
+                break;
+            default:
+                break;
+        }
+    }
+
+</code></pre>
+<h3 id="214-fragment">2.1.4 跳转到Fragment</h3>
+<pre><code class="language-java">Fragment fragment = (Fragment) ARouter.getInstance().build(&quot;/test/fragment&quot;).navigation();
+</code></pre>
+<h3 id="215-urlurlwebview">2.1.5 通过URL跳转，将url传递到下个界面，然后使用WebView加载链接界面</h3>
+<pre><code class="language-java">ARouter.getInstance()
+  .build(&quot;/test/webview&quot;)
+  .withString(&quot;url&quot;, &quot;file:///android_asset/scheme-test.html&quot;)
+  .navigation();
+webview = (WebView) findViewById(R.id.webview);
+webview.loadUrl(getIntent().getStringExtra(&quot;url&quot;));
+</code></pre>
+<h3 id="216">2.1.6 拦截跳转过程</h3>
+<p>体现了面向切面编程的思想，实现了对跳转过程的处理。</p>
+<pre><code class="language-java">@Interceptor(priority = 7)
+public class Test1Interceptor implements IInterceptor {
+    @Override
+    public void process(final Postcard postcard, final InterceptorCallback callback) {
+        if (&quot;/test/my&quot;.equals(postcard.getPath())) {
+           // 根据路由确定要拦截的跳转，在此进行拦截的处理，最后通过以下方法，继续跳转过程
+            callback.onContinue(postcard);
+        }
+    }
+
+    // 拦截器的初始化，会在sdk初始化的时候调用该方法，仅会调用一次
+    @Override
+    public void init(Context context) {
+        Log.e(&quot;testService&quot;, Test1Interceptor.class.getName() + &quot; has init.&quot;);
+    }
+}
+</code></pre>
+<ul>
+<li>绿色通道（跳过所有的拦截器）</li>
+</ul>
+<pre><code class="language-java">// 使用绿色通道(跳过所有的拦截器)
+ARouter.getInstance().build(&quot;/home/main&quot;).greenChannel().navigation();
+</code></pre>
+<h3 id="217-navigationcallback">2.1.7 使用<code>NavigationCallback</code>实现对跳转结果的处理</h3>
+<pre><code class="language-java">    ARouter.getInstance().build(&quot;/two/two&quot;).navigation(this, new NavigationCallback() {
+            @Override
+            public void onFound(Postcard postcard) {
+                        //找到路由界面
+            }
+
+            @Override
+            public void onLost(Postcard postcard) {
+                        //未找到路由界面
+            }
+
+            @Override
+            public void onArrival(Postcard postcard) {
+                        //跳转成功
+            }
+
+            @Override
+            public void onInterrupt(Postcard postcard) {
+                        //跳转进程被中断
+            }
+        });
+</code></pre>
+<h3 id="218">2.1.8  为目标页面实现更多的信息（还不知道它的作用是什么）</h3>
+<pre><code class="language-java">// 我们经常需要在目标页面中配置一些属性，比方说&quot;是否需要登陆&quot;之类的
+// 可以通过 Route 注解中的 extras 属性进行扩展，这个属性是一个 int值，换句话说，单个int有4字节，也就是32位，可以配置32个开关
+// 剩下的可以自行发挥，通过字节操作可以标识32个开关，通过开关标记目标页面的一些属性，在拦截器中可以拿到这个标记进行业务逻辑判断
+@Route(path = &quot;/test/activity&quot;, extras = Consts.XXXX)
+</code></pre>
+<h3 id="219">2.1.9 服务的创建和发现</h3>
+<p>服务是指：可以所有模块使用的服务，每一个服务可以实现一个功能，体现了现在微服务的思想。</p>
+<ul>
+<li>创建服务</li>
+</ul>
+<p>```java
+  //HelloService
+  public interface HelloService extends IProvider {
+      void sayHello(String name);
+  }
+  //HelloServiceImpl
+  @Route(path = "/yourservicegroupname/hello" name = "暴露服务")
+  public class HelloServiceImpl implements HelloService {
+      Context mContext;</p>
+<pre><code>  @Override
+  public void sayHello(String name) {
+      Toast.makeText(mContext, "Hello " + name, Toast.LENGTH_SHORT).show();
+  }
+
+  /**
+   * Do your init work in this method, it well be call when processor has been load.
+   *
+   * @param context ctx
+   */
+  @Override
+  public void init(Context context) {
+      mContext = context;
+      Log.e("testService", HelloService.class.getName() + " has init.");
+  }
+</code></pre>
+<p>}
+  //除此之外，还可以直接使用类来暴露服务
+  @Route(path = "/yourservicegroupname/single")
+  public class SingleService implements IProvider {</p>
+<pre><code>  Context mContext;
+
+  public void sayHello(String name) {
+      Toast.makeText(mContext, "Hello " + name, Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
+  public void init(Context context) {
+      mContext = context;
+  }
+</code></pre>
+<p>}</p>
+<p>```</p>
+<ul>
+<li>
+<p>发现服务</p>
+</li>
+<li>
+<p>依赖注入发现（Autowired）</p>
+<p><code>java
+//发现服务
+@Autowired
+HelloService helloService1;
+ @Autowired(name = "/yourservicegroupname/hello")//这里的name是指path
+HelloService helloService2;
+//使用服务
+helloService1.sayHello("zhangsan");</code></p>
+</li>
+<li>
+<p>使用依赖查找的方式发现服务，主动去发现服务并使用</p>
+<p><code>java
+//发现服务
+//Byname  通过路径名称,这里的name是指path
+HelloService helloService3 =(HelloService)ARouter.getInstance().build("/yourservicegroupname/hello").navigation()
+//ByType 通过类名
+  HelloService helloService4 = HelloService helloService4 = (HelloService) ARouter.getInstance().navigation(HelloService.class);
+//使用服务
+helloService1.sayHello("zhangsan");</code></p>
+</li>
+</ul>
+<h3 id="2110">2.1.10 预处理服务</h3>
+<p>在服务发生时，可以进行预处理，返回false，需要预处理，返回true,不需要预处理。</p>
+<pre><code class="language-java">// 实现 PretreatmentService 接口，并加上一个Path内容任意的注解即可
+@Route(path = &quot;/xxx/xxx&quot;)
+public class PretreatmentServiceImpl implements PretreatmentService {
+    @Override
+    public boolean onPretreatment(Context context, Postcard postcard) {
+        // 跳转前预处理，如果需要自行处理跳转，该方法返回 false 即可
+    }
+
+    @Override
+    public void init(Context context) {
+
+    }
+}
+</code></pre>
+<h3 id="2111">2.1.11 降级策略</h3>
+<p>​       当进行页面跳转出现问题的时候，我们可以通过降级策略去加载一个H5页面或者跳转到一个提醒页面，这样对用户来说体验就非常好了。</p>
+<p>​        单独降级和全局降级不能同时使用，如果同时使用，单独降级会覆盖全局降级。</p>
+<ul>
+<li>单独降级</li>
+</ul>
+<p>单独降级时，会回调到onLost方法，在onLast方法中实现降级策略</p>
+<p>```java
+  ARouter.getInstance().build("/test/test").navigation(this, new NavigationCallback() {
+                  @Override
+                  public void onFound(Postcard postcard) {
+                      Log.d(TAG, "onFound: 找到了");
+                  }</p>
+<pre><code>              /**
+               * 出现问题会回调该方法
+               * 也就是我们降级策略的处理回调
+               * @param postcard
+               */
+              @Override
+              public void onLost(Postcard postcard) {
+                  Log.d(TAG, "onLost: 没有找到哟");
+              }
+
+              @Override
+              public void onArrival(Postcard postcard) {
+                  Log.d(TAG, "onArrival: 跳转完事了");
+              }
+
+              @Override
+              public void onInterrupt(Postcard postcard) {
+                  Log.d(TAG, "onInterrupt: 被拦截了");
+              }
+          });
+</code></pre>
+<p>```</p>
+<ul>
+<li>全局降级</li>
+</ul>
+<p>通过实现DegradeService来全局降级,任何一个页面跳转出现问题都会执行全局降级。</p>
+<p>```java
+  // 声明一个降级策略服务类 实现了 DegradeService
+  // 使用注解Route 标识这个 Provider类型(Path内容任意的注解即可)
+  @Route(path = "/degrade/test")
+  public class MyDegradeService implements DegradeService {</p>
+<pre><code>  private static final String TAG = "MyDegradeService";
+  @Override
+  public void onLost(Context context, Postcard postcard) {
+      Log.d(TAG, "onLost: ");
+  }
+
+  @Override
+  public void init(Context context) {
+      Log.d(TAG, "init: ");
+  }
+</code></pre>
+<p>}
+  ```</p>
+<h3 id="2112">2.1.12 动态路由</h3>
+<p>适用于部分插件化架构的App以及需要动态注册路由信息的场景，可以通过 ARouter 提供的接口实现动态注册。</p>
+<p>在这种情况下，路由信息，目标页面和服务可以不标注</p>
+<ul>
+<li>
+<p>动态注册路由</p>
+</li>
+<li>
+<p>首先新建Activtity</p>
+</li>
+<li>
+<p>注册路由</p>
+<p>注意：同一批次的动态注册路由，Group必须相同。</p>
+<p><code>java
+ARouter.getInstance().addRouteGroup(new IRouteGroup() {
+  @Override
+  public void loadInto(Map&lt;String, RouteMeta&gt; atlas) {
+    atlas.put("/dynamic/activity",      // path
+              RouteMeta.build(
+                RouteType.ACTIVITY,         // 路由信息
+                TestDynamicActivity.class,  // 目标的 Class
+                "/dynamic/activity",        // Path
+                "dynamic",                  // Group, 尽量保持和 path 的第一段相同
+                0,                          // 优先级，暂未使用
+                0                           // Extra，用于给页面打标
+              )
+             );
+  }
+});</code></p>
+</li>
+</ul>
+<h2 id="22">2.2 实现组件间跳转的过程</h2>
+<p>1、新建一个模块test</p>
+<ul>
+<li>
+<p>导入ARouter的依赖</p>
+</li>
+<li>
+<p>新建Activity，添加注解</p>
+</li>
+</ul>
+<p><code>java
+  @Route(path = "/my/mytest")</code></p>
+<ul>
+<li>
+<p>在主模块app中，添加按钮进行导航。</p>
+</li>
+<li>
+<p>分清主次模块</p>
+</li>
+</ul>
+<p><code>//主模块
+  apply plugin: ‘com.android.application’
+  //依赖模块
+  apply plugin: ‘com.android.library’</code></p>
+<p>通过代码动态实现，组件模式和集成模式的转换</p>
+<p><code>java
+  //在根目录中的gradle.properties
+  isTestModule = false
+  //在需要配置的模块中build.gradle中
+  if(isTestModule.toBoolean()){//如果是组件模式---可以单独运行
+      apply plugin: 'com.android.application'
+  }else {//集成模式，不能单独运行
+      apply plugin: 'com.android.library'
+  }</code></p>
+<p>在依赖模块中，必须取消applicationId，否则会报错。</p>
+<ul>
+<li>在依赖模块中build.gradle添加ARouter的依赖</li>
+</ul>
+<p>```java
+  android {
+      defaultConfig {
+          ...
+          javaCompileOptions {
+              annotationProcessorOptions {
+                  arguments = [AROUTER_MODULE_NAME: project.getName()]
+              }
+          }
+      }
+  }</p>
+<p>dependencies {
+      // 替换成最新版本, 需要注意的是api
+      // 要与compiler匹配使用，均使用最新版可以保证兼容
+      compile 'com.alibaba:arouter-api:x.x.x'
+      annotationProcessor 'com.alibaba:arouter-compiler:x.x.x'
+      ...
+  }
+  ```</p>
+<ul>
+<li>在主模块中添加对各个依赖模块的依赖</li>
+</ul>
+<p><code>java
+  implementation project(':arouter_test1')
+  implementation project(':arouter_test2')</code></p>
+<p>此时，可实现所有模块间的跳转和通信。</p>
+<h2 id="23">2.3 路由跳转的原理(拦截、降级)</h2>
+<p>原理中遇到的关键类说明：</p>
+<p><strong>Postcard</strong>：A container that contains the roadmap.一个包含路线的容器。</p>
+<p><strong>RouteMeta</strong>： 路径元，加载路由信息的基本单位</p>
+<p><strong>ARouter、_ARouter</strong>：ARouter是一个与用户接触的类，是对_ARouter的一个装饰。_ARouter对用户是不可见的。主要功能还是_ARouter实现。</p>
+<p><strong>Warehouse</strong>：存储router路径、分组等信息。如页面跳转，将路由信息保存到内存中。</p>
+<p><strong>LogisticsCenter</strong>：初始化将路由信息load到内存中，即以上的Warehouse仓库中。另外，负责创建postcard，完善postcard信息等。</p>
+<p><strong>InterceptorService</strong>：拦截器服务的接口</p>
+<p><strong>PretreatmentService</strong>：预处理服务的接口</p>
+<p><strong>PretreatmentService</strong>：全局降级的接口</p>
+<p>ARouter路由实现的大致流程（自己总结）</p>
+<p>​        在编译器，通过APT和javapoet，处理@Route注解，将class文件和path使用map 一一映射，并生成java文件，已供运行期加载。</p>
+<p>​       在运行期，通过加载编译期生成的java文件，将其读到内存里使用map保存，当需要跳转时，通过在自己存储的路由表中搜索传入的路由地址，找到相应的.class文件，并可以传参，然后内部调用startActivity进行跳转，这样便实现了路由跳转。</p>
+<ul>
+<li>编译期</li>
+</ul>
+<p>ARouter的路由、参数、拦截器都是用注解标注的，而注解可以分为<code>编译时注解</code>和<code>运行时注解</code>，而在运行时处理注解会使用大量的反射，因此ARouter处理注解时是在编译期，负责<code>生成路由表</code>的是 <code>RouteProcessor</code>，分别会生成Root、Providers和Group。负责<code>生成拦截器</code>的是 <code>InterceptorProcessor</code>，生成<code>Interceptors</code>，如下图所示：</p>
+<p><img src="模块间通信.assets/image-20211202163905924.png" alt="image-20211202163905924" style="zoom:50%;" /></p>
+<p>生成的java文件展示：</p>
+<p><img alt="image-20211202164116269" src="../%E6%A8%A1%E5%9D%97%E9%97%B4%E9%80%9A%E4%BF%A1.assets/image-20211202164116269.png" /></p>
+<p>重点讲解<code>RouteProcessor</code>处理器如生成Java文件的。</p>
+<p>1、获取@Route注解</p>
+<p><code>java
+  Set&lt;? extends Element&gt; routeElements = roundEnv.getElementsAnnotatedWith(Route.class);</code></p>
+<p>2、处理@Route注解</p>
+<p><code>java
+  this.parseRoutes(routeElements);</code></p>
+<p>3、根据注解生成RouteMeta</p>
+<p><img alt="image-20211220001334925" src="../%E6%A8%A1%E5%9D%97%E9%97%B4%E9%80%9A%E4%BF%A1.assets/image-20211220001334925.png" /></p>
+<p>```java
+  for (Element element : routeElements) {
+    TypeMirror tm = element.asType();
+    Route route = element.getAnnotation(Route.class);
+    RouteMeta routeMeta;</p>
+<pre><code>// Activity or Fragment
+if (types.isSubtype(tm, type_Activity) || types.isSubtype(tm, fragmentTm) || types.isSubtype(tm, fragmentTmV4)) {
+  // Get all fields annotation by @Autowired
+  Map&lt;String, Integer&gt; paramsType = new HashMap&lt;&gt;();
+  Map&lt;String, Autowired&gt; injectConfig = new HashMap&lt;&gt;();
+  injectParamCollector(element, paramsType, injectConfig);
+
+  if (types.isSubtype(tm, type_Activity)) {
+    // Activity
+    logger.info("&gt;&gt;&gt; Found activity route: " + tm.toString() + " &lt;&lt;&lt;");
+    routeMeta = new RouteMeta(route, element, RouteType.ACTIVITY, paramsType);
+  } else {
+    // Fragment
+    logger.info("&gt;&gt;&gt; Found fragment route: " + tm.toString() + " &lt;&lt;&lt;");
+    routeMeta = new RouteMeta(route, element, RouteType.parse(FRAGMENT), paramsType);
+  }
+
+  routeMeta.setInjectConfig(injectConfig);
+} else if (types.isSubtype(tm, iProvider)) {         // IProvider
+  logger.info("&gt;&gt;&gt; Found provider route: " + tm.toString() + " &lt;&lt;&lt;");
+  routeMeta = new RouteMeta(route, element, RouteType.PROVIDER, null);
+} else if (types.isSubtype(tm, type_Service)) {           // Service
+  logger.info("&gt;&gt;&gt; Found service route: " + tm.toString() + " &lt;&lt;&lt;");
+  routeMeta = new RouteMeta(route, element, RouteType.parse(SERVICE), null);
+} else {
+  throw new RuntimeException("The @Route is marked on unsupported class, look at [" + tm.toString() + "].");
+}
+//按照分组进行排序
+categories(routeMeta);
+</code></pre>
+<p>}
+  ```</p>
+<p>4、把路由元进行分组</p>
+<p>在 RouteProcessor 中有一个 groupMap，在 RouteMeta 创建好后，RouteProcessor 会把不同的 RouteMeta 进行分组，放入到 groupMap 中。</p>
+<p>5、生成路由文件</p>
+<ul>
+<li>生成路线组路由文件</li>
+<li>生成Provider路由文件</li>
+<li>生成根路由文件</li>
+</ul>
+<p>​          就会用 JavaPoet 生成 Group、Provider 和 Root 路由文件，路由表就是由这些文件组成的，JavaPoet 是 Square 开源的代码生成框架。生成的路由文件会存放在disk，以供运行的时候进行加载，物流中心 LogisticsCenter 需要用这些文件来填充仓库 Warehouse 中的 routes 和 providerIndex 等索引，然后在跳转时根据 routes 和索引来跳转。</p>
+<ul>
+<li>
+<p>运行期</p>
+</li>
+<li>
+<p>初始化加载</p>
+<p>在生成的路由文件的基础上，在ARouter的初始化时，<code>LogisticsCenter</code>会将所有编译期自动生成的路由文件class加载到RouteMap。</p>
+<p><code>java
+ routerMap = ClassUtils.getFileNameByPackageName(mContext, ROUTE_ROOT_PAKCAGE);</code></p>
+<p>将class按照分类（Root，Interceptors， Providers）进行处理，并把该class关联到WareHouse中，这样就会将所有的映射关系存储在内存中，便于后续的路由查找和跳转。</p>
+<p><code>java
+for (String className : routerMap) {
+  if (className.startsWith(ROUTE_ROOT_PAKCAGE + DOT + SDK_NAME + SEPARATOR + SUFFIX_ROOT)) {
+    // This one of root elements, load root.
+    ((IRouteRoot) (Class.forName(className).getConstructor().newInstance())).loadInto(Warehouse.groupsIndex);
+  } else if (className.startsWith(ROUTE_ROOT_PAKCAGE + DOT + SDK_NAME + SEPARATOR + SUFFIX_INTERCEPTORS)) {
+    // Load interceptorMeta
+    ((IInterceptorGroup) (Class.forName(className).getConstructor().newInstance())).loadInto(Warehouse.interceptorsIndex);
+  } else if (className.startsWith(ROUTE_ROOT_PAKCAGE + DOT + SDK_NAME + SEPARATOR + SUFFIX_PROVIDERS)) {
+    // Load providerIndex
+    ((IProviderGroup) (Class.forName(className).getConstructor().newInstance())).loadInto(Warehouse.providersIndex);
+  }
+}</code></p>
+<p>这时只加载了Root，Interceptors， Providers，而没有加载Group，是因为ARouter的加载理念：分组管理，按需加载。</p>
+<p>​        假如App的页面过于多的时候，一次性加载完所有文件的路由，既消耗时间又没有必要，因此Arouter提出了分组的概念，允许一个模块下有多个分组，所有的分组都会有一个Root节点管理，每个root结点都会管理整个模块中的group节点，每个group结点则包含了该分组下的所有页面，每个模块中都会有一个拦截器节点就是Interceptor结点，除此之外每个模块还会有控制拦截反转的provider结点。</p>
+<p><img alt="image-20211205222027675" src="../%E6%A8%A1%E5%9D%97%E9%97%B4%E9%80%9A%E4%BF%A1.assets/image-20211205222027675.png" /></p>
+<p>什么时候加载Group节点？</p>
+<p>​        当某一个分组下的某一个页面第一次被访问的时候，整个分组的全部页面都会被加载进去，这就是ARouter的按需加载。通过分组管理，按需加载，极大的减轻了内存压力。</p>
+<p><code>java
+//源码分析
+//第一次加载
+if (null == routeMeta) {
+  // Maybe its does't exist, or didn't load
+  addRouteGroupDynamic(postcard.getGroup(), null);
+  ···
+    completion(postcard);   // Reload
+}
+public synchronized static void addRouteGroupDynamic(String groupName, IRouteGroup group) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+  if (Warehouse.groupsIndex.containsKey(groupName)){
+    //当分组在groupsIndex时，说明未加载该分组
+    //加载这个分组，将其从groupsIndex中删除
+ Warehouse.groupsIndex.get(groupName).getConstructor().newInstance().loadInto(Warehouse.routes);
+    Warehouse.groupsIndex.remove(groupName);
+  }
+  ...
+}</code></p>
+</li>
+<li>
+<p>路由跳转</p>
+<p>当路由文件生成并加载时，就可以进行路由跳转了，关键跳转语句如下：</p>
+<p><code>java
+ ARouter.getInstance().build("/test/my").navigation();</code></p>
+<p>PostCard:A container that contains the roadmap.一个包含路线的容器，是路由信息的承载类。</p>
+<p>由源码可知<code>ARouter.getInstance().build("/test/my")</code>，返回了一个包含<code>path</code>和<code>group</code>的PostCard.</p>
+<p><code>java
+protected Postcard build(String path, String group, Boolean afterReplace) {
+        if (TextUtils.isEmpty(path) || TextUtils.isEmpty(group)) {
+            throw new HandlerException(Consts.TAG + "Parameter is invalid!");
+        } else {
+            if (!afterReplace) {
+              //PathReplaceService是修改path,当指定group name时，会使用
+                PathReplaceService pService = ARouter.getInstance().navigation(PathReplaceService.class);
+                if (null != pService) {
+                    path = pService.forString(path);
+                }
+            }
+            return new Postcard(path, group);
+        }
+    }</code></p>
+<ul>
+<li>Postcard.navigation() -&gt;_Arouter.navigation()</li>
+</ul>
+<p><img src="模块间通信.assets/image-20211202201757743.png" alt="image-20211202201757743" style="zoom:50%;" /></p>
+<p>1、预处理服务</p>
+<p>预处理服务的实现见：<a href="#2.1.10 预处理服务">见2.1.10</a></p>
+<p>​     预处理服务可以让我们在 ARouter 进行路由跳转前，根据 PostCard 的内容判断是否要独立地对这次跳转进行处理，是的话则在 onPretreatment() 中返回 false 即可,返回true则说明不需要预处理服务。比如，在分享之前判断用户是否已经登录，登录就可以分享，未登录就可以不分享</p>
+<p><code>java
+  PretreatmentService pretreatmentService = ARouter.getInstance().navigation(PretreatmentService.class);
+  if (null != pretreatmentService &amp;&amp; !pretreatmentService.onPretreatment(context, postcard)) {
+    // Pretreatment failed, navigation canceled.
+    return null;
+  }</code></p>
+<p>2、完善Postcard</p>
+<p>​    完善Postcard,使用的是<code>LogisticsCenter</code>的completion()方法，在该方法中，会加载RouteMeta的信息，并将Provider的和Frament的路由设置为绿色通道。</p>
+<p><img src="模块间通信.assets/image-20211202204829447.png" alt="image-20211202204829447" style="zoom:50%;" /></p>
+<p>3、降级策略</p>
+<p>降级策略的实现见 2.1.11</p>
+<p><img src="模块间通信.assets/image-20211202205454783.png" alt="image-20211202205454783" style="zoom:50%;" /></p>
+<p><code>java
+  if (null != callback) {
+    callback.onLost(postcard);
+  } else {
+    // No callback for this invoke, then we use the global degrade service.
+    DegradeService degradeService = ARouter.getInstance().navigation(DegradeService.class);
+    if (null != degradeService) {
+      degradeService.onLost(context, postcard);
+    }
+  }</code></p>
+<p>由源码可知，完善Postcard失败，会执行回调onLost()，成功会执行onFound()。</p>
+<p>4、拦截器链</p>
+<p>拦截器的实现见：2.1.6</p>
+<p><img src="模块间通信.assets/image-20211202210327361.png" alt="image-20211202210327361" style="zoom:50%;" /></p>
+<p><code>java
+  if (!postcard.isGreenChannel()) {   // It must be run in async thread, maybe interceptor cost too mush time made ANR.
+    interceptorService.doInterceptions(postcard, new InterceptorCallback() {
+      @Override
+      public void onContinue(Postcard postcard) {
+        _navigation(postcard, requestCode, callback);
+      }
+      //进程中断，跳转失败
+      @Override
+      public void onInterrupt(Throwable exception) {
+        if (null != callback) {
+          callback.onInterrupt(postcard);
+        }
+      }
+    });
+  } else {
+    return _navigation(postcard, requestCode, callback);
+  }</code></p>
+<p>由源码可知，跳转进程被中断，会回调onInterrupt()。</p>
+<p>5、按类型跳转</p>
+</li>
+</ul>
+<p>​          <img alt="image-20211202212511413" src="../%E6%A8%A1%E5%9D%97%E9%97%B4%E9%80%9A%E4%BF%A1.assets/image-20211202212511413.png" /></p>
+<pre><code class="language-java">switch (postcard.getType()) {
+  case ACTIVITY:
+    // Build intent
+    final Intent intent = new Intent(currentContext, postcard.getDestination());
+    intent.putExtras(postcard.getExtras());
+    // Set flags.
+    int flags = postcard.getFlags();
+    if (0 != flags) {
+      intent.setFlags(flags);
+    }
+    // Non activity, need FLAG_ACTIVITY_NEW_TASK
+    if (!(currentContext instanceof Activity)) {
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+    // Set Actions
+    String action = postcard.getAction();
+    if (!TextUtils.isEmpty(action)) {
+      intent.setAction(action);
+    }
+    // Navigation in main looper.
+    runInMainThread(new Runnable() {
+      @Override
+      public void run() {
+        startActivity(requestCode, currentContext, intent, postcard, callback);
+      }
+    });
+    break;
+  case PROVIDER:
+    return postcard.getProvider();
+  case BOARDCAST:
+  case CONTENT_PROVIDER:
+  case FRAGMENT:
+    Class&lt;?&gt; fragmentMeta = postcard.getDestination();
+    try {
+      Object instance = fragmentMeta.getConstructor().newInstance();
+      if (instance instanceof Fragment) {
+        ((Fragment) instance).setArguments(postcard.getExtras());
+      } else if (instance instanceof android.support.v4.app.Fragment) {
+        ((android.support.v4.app.Fragment) instance).setArguments(postcard.getExtras());
+      }
+
+      return instance;
+    } catch (Exception ex) {
+      logger.error(Consts.TAG, &quot;Fetch fragment instance error, &quot; + TextUtils.formatStackTrace(ex.getStackTrace()));
+    }
+  case METHOD:
+  case SERVICE:
+  default:
+    return null;
+}
+
+</code></pre>
+<p>到此，Arouter的跳转结束，并回调onArrival()。</p>
+<h2 id="24-212">2.4 自动注入的原理（使用见2.1.2）</h2>
+<ul>
+<li>在通信界面使用<code>with</code>来传递数据。</li>
+</ul>
+<p><code>java
+  //Bundle.putString
+  public Postcard withString(@Nullable String key, 
+                             @Nullable String value) {
+    mBundle.putString(key, value);
+    return this;
+  }
+  //Object是使用Json字符串实现的
+  public Postcard withObject(@Nullable String key, 
+                             @Nullable Object value) {
+    serializationService = ARouter.getInstance().
+      navigation(SerializationService.class);
+    mBundle.putString(key, serializationService.object2Json(value));
+    return this;
+  }</code></p>
+<p>注：特殊的是<code>withObject()</code>,需要实现<code>serializationService</code>,来完成json和Object之间的转换。</p>
+<p>原理：</p>
+<p>Bundle.putString(key,value)</p>
+<p>intent.putString(key,value)</p>
+<ul>
+<li>注入界面(接收信息界面)</li>
+</ul>
+<p>1、在初始化的地方添加<code>inject</code>:</p>
+<p><code>java
+   //ARouter 注入,注入后，可以使用Autowired注解
+  ARouter.getInstance().inject(this);</code></p>
+<p>​       原理是：在该方法中调用了<code>@Autowired</code>注解在编译器生成的类的<code>inject()</code>方法。</p>
+<p>​       由源码分析可知：ARouter.inject() -&gt; _ARouter.inject() -&gt; AutowiredServiceImpl.autowire()-&gt;AutowiredServiceImpl.doInject(instance, null)；<code>instance</code>指添加注入的界面。</p>
+<p><img alt="图片1" src="../%E6%A8%A1%E5%9D%97%E9%97%B4%E9%80%9A%E4%BF%A1.assets/%E5%9B%BE%E7%89%871.png" /></p>
+<pre><code class="language-java"> private void doInject(Object instance, Class&lt;?&gt; parent) {
+        Class&lt;?&gt; clazz = null == parent ? instance.getClass() : parent;
+
+            //获取根据Autowired生成的类
+        ISyringe syringe = getSyringe(clazz);
+        if (null != syringe) {
+         //调用inject()方法
+          syringe.inject(instance);
+        }
+
+        Class&lt;?&gt; superClazz = clazz.getSuperclass();
+        // 
+        if (null != superClazz &amp;&amp; !superClazz.getName().startsWith(&quot;android&quot;)) {
+            //如果还有父类，会调用父类的inject()方法
+            doInject(instance, superClazz);
+        }
+    }
+private ISyringe getSyringe(Class&lt;?&gt; clazz) {
+  String className = clazz.getName();
+
+  try {
+    if (!blackList.contains(className)) {
+      //内存中是否该类已经加载过
+      ISyringe syringeHelper = classCache.get(className);
+      if (null == syringeHelper) {  // No cache.
+        //没有的话，加载到内存
+        syringeHelper = (ISyringe) Class.forName(clazz.getName() + SUFFIX_AUTOWIRED).getConstructor().newInstance();
+      }
+      classCache.put(className, syringeHelper);
+      return syringeHelper;
+    }
+  } catch (Exception e) {
+    blackList.add(className);    // This instance need not autowired.
+  }
+
+  return null;
+}
+</code></pre>
+<p>​   2、添加@Autowired注解</p>
+<p>看一下Autowired注解的构成：</p>
+<pre><code class="language-java">public @interface Autowired {
+
+    // Mark param's name or service name.
+    String name() default &quot;&quot;;
+
+    // If required, app will be crash when value is null.
+    // Primitive type wont be check!
+    boolean required() default false;
+
+    // Description of the field
+    String desc() default &quot;&quot;;
+}
+</code></pre>
+<p>有三个属性：name、required、desc。</p>
+<pre><code class="language-java">@Autowired
+String name;
+</code></pre>
+<p>​     原理： 添加<code>@Autowired</code>注解后，ARouter会在编译器使用<code>AutowiredProcess</code>注解处理器生成class:<code>ActivityName$$ARouter$$Autowired</code></p>
+<p>AutowiredProcess做了什么：</p>
+<ul>
+<li>获取所有的Arouter注解，并分类</li>
+</ul>
+<p><code>java
+  if (CollectionUtils.isNotEmpty(elements)) {
+    for (Element element : elements) {
+      //注解分类，指Activity或Fragment
+      TypeElement enclosingElement = (TypeElement) element.getEnclosingElement();
+      //@Autowired不能使用private注解
+      if (element.getModifiers().contains(Modifier.PRIVATE)) {
+        throw new IllegalAccessException("The inject fields CAN NOT BE 'private'!!! please check field ["
+                                         + element.getSimpleName() + "] in class [" + enclosingElement.getQualifiedName() + "]");
+      }
+      //按照注解所在的Activity、Fragment、class分类
+      if (parentAndChild.containsKey(enclosingElement)) { // Has categries
+        parentAndChild.get(enclosingElement).add(element);
+      } else {
+        List&lt;Element&gt; childs = new ArrayList&lt;&gt;();
+        childs.add(element);
+        parentAndChild.put(enclosingElement, childs);
+      }
+    }</code></p>
+<ul>
+<li>
+<p>根据注解生成类:<code>ActivityName$$ARouter$$Autowired</code></p>
+</li>
+<li>
+<p>生成定义的类结构和<code>inject()</code>方法</p>
+<p>```java
+// inject参数
+ParameterSpec objectParamSpec = ParameterSpec.builder(TypeName.OBJECT, "target").build();
+//构造inject方法
+MethodSpec.Builder injectMethodBuilder = MethodSpec.methodBuilder(METHOD_INJECT)
+  .addAnnotation(Override.class)
+  .addModifiers(PUBLIC)
+  .addParameter(objectParamSpec);</p>
+<p>TypeElement parent = entry.getKey();
+List<Element> childs = entry.getValue();</p>
+<p>//获取类所在包名
+String qualifiedName = parent.getQualifiedName().toString();
+String packageName = qualifiedName.substring(0, qualifiedName.lastIndexOf("."));
+//获取生成的Java文件名
+String fileName = parent.getSimpleName() + NAME_OF_AUTOWIRED;</p>
+<p>logger.info("&gt;&gt;&gt; Start process " + childs.size() + " field in " + parent.getSimpleName() + " ... &lt;&lt;&lt;");</p>
+<p>//构建Java类
+TypeSpec.Builder helper = TypeSpec.classBuilder(fileName)
+  .addJavadoc(WARNING_TIPS)
+  .addSuperinterface(ClassName.get(type_ISyringe))
+  .addModifiers(PUBLIC);
+//构建SerializationService属性
+FieldSpec jsonServiceField = FieldSpec.builder(TypeName.get(type_JsonService.asType()), "serializationService", Modifier.PRIVATE).build();
+helper.addField(jsonServiceField);</p>
+<p>//构建injcet()中：
+//serializationService = ARouter.getInstance().navigation(SerializationService.class);
+//类名 substitute = (类名)target;
+injectMethodBuilder.addStatement("serializationService = $T.getInstance().navigation($T.class)", ARouterClass, ClassName.get(type_JsonService));
+injectMethodBuilder.addStatement("$T substitute = ($T)target", ClassName.get(parent), ClassName.get(parent));
+```</p>
+<p>以上生成的文件如下：</p>
+<p>```java
+// 定义的类
+package packageName;</p>
+<p>import com.alibaba.android.arouter.facade.service.SerializationService;</p>
+<p>public class 类名$$ARouter$$Autowired implement ISyringe {
+    private SerializationService serializationService;
+}</p>
+<p>// 定义的方法
+@Override
+public void inject(Object target) {
+    serializationService = ARouter.getInstance().navigation(SerializationService.class);
+    类名 substitute = (类名)target;
+}
+```</p>
+</li>
+<li>
+<p>生成<code>inject()</code>的主体</p>
+<p><img alt="inject" src="../%E6%A8%A1%E5%9D%97%E9%97%B4%E9%80%9A%E4%BF%A1.assets/inject.png" /></p>
+<ul>
+<li>生成Provider的成员属性</li>
+</ul>
+<p>```java
+  if ("".equals(fieldConfig.name())) {    // User has not set service path, then use byType.</p>
+<pre><code>// Getter
+injectMethodBuilder.addStatement(
+  "substitute." + fieldName + " = $T.getInstance().navigation($T.class)",
+  ARouterClass,
+  ClassName.get(element.asType())
+);
+</code></pre>
+<p>} else {    // use byName
+    // Getter
+    injectMethodBuilder.addStatement(
+      "substitute." + fieldName + " = ($T)$T.getInstance().build($S).navigation()",
+      ClassName.get(element.asType()),
+      ARouterClass,
+      fieldConfig.name()
+    );
+  }</p>
+<p>// Validator
+  if (fieldConfig.required()) {
+    injectMethodBuilder.beginControlFlow("if (substitute." + fieldName + " == null)");
+    injectMethodBuilder.addStatement(
+      "throw new RuntimeException(\"The field '" + fieldName + "' is null, in class '\" + $T.class.getName() + \"!\")", ClassName.get(parent));
+    injectMethodBuilder.endControlFlow();
+  }
+  ```</p>
+<p>以上代码生成以下两种结果：</p>
+<p><code>java
+  //ByType
+  substitute.helloService = ARouter.getInstance().navigation(HelloService.class);
+  //ByName
+  substitute.helloService2 =(HelloService)ARouter.getInstance().build("/yourservicegroupname/hello").navigation();</code></p>
+<p>除此之外，会判断是否是必须的，即<code>required()</code>是不是为true,若为True，会判断是否为null。</p>
+<ul>
+<li>生成普通类型的成员属性</li>
+</ul>
+<p><code>java
+  String originalValue = "substitute." + fieldName;
+  String statement = "substitute." + fieldName + " = " + buildCastCode(element) + "substitute.";
+  boolean isActivity = false;
+  if (types.isSubtype(parent.asType(), activityTm)) {  // Activity, then use getIntent()
+    isActivity = true;
+    statement += "getIntent().";
+  } else if (types.isSubtype(parent.asType(), fragmentTm) || types.isSubtype(parent.asType(), fragmentTmV4)) {   // Fragment, then use getArguments()
+    statement += "getArguments().";
+  } else {
+    throw new IllegalAccessException("The field [" + fieldName + "] need autowired from intent, its parent must be activity or fragment!");
+  }</code></p>
+<p>判断类型：</p>
+<p>如果是<code>Activity</code>,使用<code>getIntent()</code>;如果是<code>Fragment</code>,使用<code>getArguments</code>。</p>
+<ul>
+<li>
+<p>基本数据类型、String、Serializabl、Parcelable，直接使用以下方法：</p>
+<p><code>java
+  getBooleanExtra()
+  getByteExtra()
+  getShortExtra()
+  getIntExtra()
+  getLongExtra()
+  getCharExtra()
+  getFloatExtra()
+  getDoubleExtra()
+  getString()
+  getSerializableExtra()
+  getParcelableExtra()</code></p>
+</li>
+<li>
+<p>如果是Object</p>
+<p>会将其转换为json转换为object.</p>
+<p><code>java
+if (null != serializationService) {
+  substitute.obj = serializationService.parseObject(substitute.getIntent().getStringExtra("obj"), new com.alibaba.android.arouter.facade.model.TypeWrapper&lt;TestObj&gt;(){}.getType());
+} else {
+  Log.e("ARouter::", "You want automatic inject the field 'obj' in class 'Test1Activity' , then you should implement 'SerializationService' to support object auto inject!");
+}</code></p>
+</li>
+<li>
+<p>判断<code>required</code>是不是为true,若为true，会判断是否为null.</p>
+<p><code>java
+if (fieldConfig.required() &amp;&amp; !element.asType().getKind().isPrimitive()) {  // Primitive wont be check.
+  injectMethodBuilder.beginControlFlow("if (null == substitute." + fieldName + ")");
+  injectMethodBuilder.addStatement(
+    "$T.e(\"" + Consts.TAG + "\", \"The field '" + fieldName + "' is null, in class '\" + $T.class.getName() + \"!\")", AndroidLog, ClassName.get(parent));
+  injectMethodBuilder.endControlFlow();
+}</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>最后生成类似如下的Java类</p>
+<p>```java
+/*<em>
+ * DO NOT EDIT THIS FILE!!! IT WAS GENERATED BY AROUTER. </em>/
+public class Test1Activity$$ARouter$$Autowired implements ISyringe {
+  private SerializationService serializationService;</p>
+<p>@Override
+  public void inject(Object target) {
+    serializationService = ARouter.getInstance().navigation(SerializationService.class);
+    Test1Activity substitute = (Test1Activity)target;
+    substitute.age = substitute.getIntent().getIntExtra("age", substitute.age);
+    substitute.height = substitute.getIntent().getIntExtra("height", substitute.height);
+    substitute.girl = substitute.getIntent().getBooleanExtra("boy", substitute.girl);
+    substitute.ch = substitute.getIntent().getCharExtra("ch", substitute.ch);
+    substitute.fl = substitute.getIntent().getFloatExtra("fl", substitute.fl);
+    substitute.dou = substitute.getIntent().getDoubleExtra("dou", substitute.dou);
+    substitute.ser = (com.alibaba.android.arouter.demo.service.model.TestSerializable) substitute.getIntent().getSerializableExtra("ser");
+    substitute.pac = substitute.getIntent().getParcelableExtra("pac");
+    if (null != serializationService) {
+      substitute.obj = serializationService.parseObject(substitute.getIntent().getStringExtra("obj"), new com.alibaba.android.arouter.facade.model.TypeWrapper<TestObj>(){}.getType());
+    } else {
+      Log.e("ARouter::", "You want automatic inject the field 'obj' in class 'Test1Activity' , then you should implement 'SerializationService' to support object auto inject!");
+    }
+    if (null != serializationService) {
+      substitute.objList = serializationService.parseObject(substitute.getIntent().getStringExtra("objList"), new com.alibaba.android.arouter.facade.model.TypeWrapper<List\<TestObj>>(){}.getType());
+    } else {
+      Log.e("ARouter::", "You want automatic inject the field 'objList' in class 'Test1Activity' , then you should implement 'SerializationService' to support object auto inject!");
+    }
+    if (null != serializationService) {
+      substitute.map = serializationService.parseObject(substitute.getIntent().getStringExtra("map"), new com.alibaba.android.arouter.facade.model.TypeWrapper<Map\<String, List\<TestObj>>>(){}.getType());
+    } else {
+      Log.e("ARouter::", "You want automatic inject the field 'map' in class 'Test1Activity' , then you should implement 'SerializationService' to support object auto inject!");
+    }
+    substitute.url = substitute.getIntent().getExtras() == null ? substitute.url : substitute.getIntent().getExtras().getString("url", substitute.url);
+    substitute.helloService = ARouter.getInstance().navigation(HelloService.class);
+    substitute.helloService2 = (HelloService)ARouter.getInstance().build("/yourservicegroupname/hello").navigation();
+  }
+}</p>
+<p>```</p>
+</li>
+<li>
+<p>最后生成的Java文件会在初始化时<code>ARouter.getInstance().inject(this)</code>进行调用</p>
+</li>
+</ul>
+<p>总结以上的流程：</p>
+<p><img alt="2773309-475ebcd8732f42cc" src="../%E6%A8%A1%E5%9D%97%E9%97%B4%E9%80%9A%E4%BF%A1.assets/2773309-475ebcd8732f42cc.png" /></p>
+<h2 id="25">2.5 路由名称重复的问题</h2>
+<ul>
+<li>相同模块下，Activity/Fragment路由名称相同，后者会覆盖前者</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

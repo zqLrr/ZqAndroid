@@ -1,0 +1,37 @@
+site_name: ZqAndroid
+site_url: 
+repo_url: 
+edit_uri: -/blob/master/
+site_description: 个人技术wiki
+site_author: Zq
+
+
+theme:
+  name: material
+  language: zh
+  font:
+    text: Roboto
+  features:
+    - navigation.footer
+    - navigation.indexes
+
+nav:
+  - Home: 'index.md'
+  - Android:
+    - Android 初识: 'Android/1安卓学习.md'
+    - Android 大纲: 'Android/2Android大纲.md'
+
+
+plugins:
+- search:
+    lang:
+      - zh
+      - en
+
+
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - footnotes
+  

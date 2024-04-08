@@ -1,0 +1,1057 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>6、Android Lint ——代码优化的扫描工具 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6android-lint" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6、Android Lint ——代码优化的扫描工具
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    原理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lint-to-suppress-warning" class="md-nav__link">
+    配置Lint to  Suppress warning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradle-lint" class="md-nav__link">
+    通过Gradle 配置Lint 选项
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warnings-baseline" class="md-nav__link">
+    创建warnings baseLine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-ide" class="md-nav__link">
+    AS IDE的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    命令行使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lint" class="md-nav__link">
+    忽略检查Lint
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lint_1" class="md-nav__link">
+    自定义Lint规则
+  </a>
+  
+    <nav class="md-nav" aria-label="自定义Lint规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-api" class="md-nav__link">
+    Client API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detector-api" class="md-nav__link">
+    Detector API
+  </a>
+  
+    <nav class="md-nav" aria-label="Detector API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detector" class="md-nav__link">
+    Detector
+  </a>
+  
+    <nav class="md-nav" aria-label="Detector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xmlscanner" class="md-nav__link">
+    XmlScanner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sourcecodescanner" class="md-nav__link">
+    SourceCodeScanner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classscanner" class="md-nav__link">
+    ClassScanner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scnner" class="md-nav__link">
+    Scnner顺序
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issue" class="md-nav__link">
+    ISSUE的建立
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issue_1" class="md-nav__link">
+    注册ISSUE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    报告错误
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detector_1" class="md-nav__link">
+    Detector 使用简单实例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="6android-lint">6、Android Lint ——代码优化的扫描工具</h1>
+<h2 id="_1">概述</h2>
+<p><a href="https://googlesamples.github.io/android-custom-lint-rules/">官方文档</a></p>
+<p><a href="https://googlesamples.github.io/android-custom-lint-rules/user-guide.md.html">Android 用户使用文档</a></p>
+<pre><code>Android Studio 提供了一个名为 lint 的代码扫描工具，可帮助您发现并更正代码结构质量的问题，而无需您实际执行应用，也不必编写测试用例。系统会报告该工具检测到的每个问题并提供问题的描述消息和严重级别，以便您可以快速确定需要优先进行的关键改进。此外，您还可以降低问题的严重级别以忽略与项目无关的问题，或者提高严重级别以突出特定问题。
+</code></pre>
+<h2 id="_2">原理</h2>
+<p><img alt="image-20220221171259364" src="../6Android%20Lint%20%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E7%9A%84%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7.assets/image-20220221171259364.png" /></p>
+<ul>
+<li>App Source files</li>
+</ul>
+<p><code>源文件包含组成 Android 项目的文件，包括 Java、Kotlin 和 XML 文件、图标以及 ProGuard 配置文件。</code></p>
+<ul>
+<li>lint.xml</li>
+</ul>
+<p><code>一个配置文件，可用于指定要排除的任何 lint 检查以及自定义问题严重级别。</code></p>
+<ul>
+<li>Lint Tool</li>
+</ul>
+<p><code>一个静态代码扫描工具，您可以从命令行或在 Android Studio 中对 Android 项目运行该工具。lint 工具检查可能会影响 Android 应用的质量和性能的代码结构问题。强烈建议您先更正 lint 检测到的所有错误，然后再发布您的应用。</code></p>
+<ul>
+<li>lint output</li>
+</ul>
+<p><code>您可以在控制台或 Android Studio 的 Inspection Results 窗口中查看 lint 检查结果</code></p>
+<ul>
+<li>
+<p>运行Android Lint </p>
+</li>
+<li>
+<p><a href="https://developer.android.google.cn/studio/write/lint#manuallyRunInspections">Android Studio 运行</a>:在Android Studio中自带Lint工具</p>
+<p><strong>Analyze &gt; Inspect Code</strong></p>
+<ul>
+<li>设置检查范围和配置文件</li>
+<li>创建和使用自定义范围</li>
+<li>默认的自定义范围<ul>
+<li><strong>Project Files</strong>：当前项目中的所有文件。</li>
+<li><strong>Project Production Files</strong>：仅限当前项目中的生产文件。</li>
+<li><strong>Project Test Files</strong>：仅限当前项目中的测试文件。请参阅<a href="https://developer.android.google.cn/studio/test#test_types_and_location">测试类型和位置</a>。</li>
+<li><strong>Open Files</strong>：仅限当前项目中已打开的文件。</li>
+<li><strong>Module <your-module></strong>：仅限当前项目中对应模块文件夹中的文件。</li>
+<li><strong>Current File</strong>：仅限当前项目中的当前文件。在您选择文件或文件夹后显示。</li>
+<li><strong>Class Hierarchy</strong>：如果您选择此选项并点击 <strong>OK</strong>，会出现一个对话框，其中显示当前项目中的所有类。您可以使用此对话框中的 <strong>Search by Name</strong> 字段过滤并选择要检查的类。如果未过滤类列表，代码检查将检查所有类。</li>
+</ul>
+</li>
+<li>创建步骤：看https://developer.android.google.cn/studio/write/lint#crcs</li>
+</ul>
+</li>
+<li>
+<p>命令行运行</p>
+<p><code>bash
+./gradlew lint</code></p>
+</li>
+</ul>
+<h2 id="lint-to-suppress-warning">配置Lint to  Suppress warning</h2>
+<p>以下操作只是用来区分哪些需要Lint需要检查，哪些不需要检查</p>
+<ul>
+<li>
+<p>使用AS IDE配置Lint</p>
+</li>
+<li>
+<p>依次选择 <strong>Analyze &gt; Inspect Code</strong>。</p>
+</li>
+<li>在 <strong>Specify Scope</strong> 对话框的 <strong>Inspection Profile</strong> 下，点击 <strong>More</strong>。</li>
+</ul>
+<p>具体配置规则看：https://developer.android.google.cn/studio/write/lint#cis</p>
+<ul>
+<li>可以自定义查询模块</li>
+<li>
+<p>可以自定义查询的类型</p>
+</li>
+<li>
+<p>使用lint文件<strong>(需要重点看一下)</strong></p>
+</li>
+</ul>
+<p>您可以通过在 <code>&lt;issue&gt;</code> 标记中设置严重性级别属性来更改某个问题的严重性级别或对该问题停用 lint 检查。</p>
+<p>```java
+  //举例如下：如何使用？/
+  <?xml version="1.0" encoding="UTF-8"?></p>
+<pre><code>  &lt;lint&gt;
+      &lt;!-- list of issues to configure --&gt;
+</code></pre>
+<p></lint>
+  ```</p>
+<ul>
+<li>在源文件中配置lint </li>
+</ul>
+<p>注意：可以通过IDE 配置</p>
+<ul>
+<li>
+<p>Java 源文件</p>
+<p>添加注解<code>@SuppressLint</code></p>
+</li>
+<li>
+<p>xml 源文件</p>
+<p><code>xml
+//添加
+namespace xmlns:tools="http://schemas.android.com/tools"</code></p>
+</li>
+</ul>
+<h2 id="gradle-lint">通过Gradle 配置Lint 选项</h2>
+<p>该功能同上，只是配置写在 <code>build.gradle</code> 文件。</p>
+<p>在模块下的 <code>build.gradle</code> 文件中的 <a href="https://developer.android.google.cn/reference/tools/gradle-api/7.0/com/android/build/api/dsl/LintOptions"><code>lint{}</code></a> 代码块配置某些 lint 选项。</p>
+<pre><code class="language-groovy">  lint {
+        // Turns off checks for the issue IDs you specify.
+        disable 'TypographyFractions','TypographyQuotes'
+        // Turns on checks for the issue IDs you specify. These checks are in
+        // addition to the default lint checks.
+        enable 'RtlHardcoded','RtlCompat', 'RtlEnabled'
+        // To enable checks for only a subset of issue IDs and ignore all others,
+        // list the issue IDs with the 'check' property instead. This property overrides
+        // any issue IDs you enable or disable using the properties above.
+        checkOnly 'NewApi', 'InlinedApi'
+        // If set to true, turns off analysis progress reporting by lint.
+        quiet true
+        // If set to true (default), stops the build if errors are found.
+        abortOnError false
+        // If true, only report errors.
+        ignoreWarnings true
+        // If true, lint also checks all dependencies as part of its analysis. Recommended for
+        // projects consisting of an app with library dependencies.
+        checkDependencies true
+    }
+</code></pre>
+<h2 id="warnings-baseline">创建warnings baseLine</h2>
+<p>您可以为项目的当前警告集创建快照，然后将该快照用作将来运行检查的基准，以便只报告新问题。有了基准快照，您便可开始使用 lint 让构建失败，而不必先返回并解决所有现有问题。</p>
+<ul>
+<li>自定义warnings baseLine</li>
+</ul>
+<p>修改项目的<code>build.gradle</code>文件，此时是将所有的检查结果都放在了基准里面</p>
+<p><code>groovy
+  android {
+      lintOptions {
+          baseline file("lint-baseline.xml")
+      }
+  }</code></p>
+<p>首次添加此代码行时，系统会创建 <code>lint-baseline.xml</code> 文件以建立基准。此后，lint 工具仅通过读取该文件来确定基准。如果要创建新基准，请手动删除该文件并再次运行 lint 以重新创建此文件。</p>
+<p>自定义为只检查这些问题</p>
+<p><code>groovy
+  android {
+      lintOptions {
+          checkOnly 'NewApi', 'HandlerLeak'
+          baseline file("lint-baseline.xml")
+      }
+  }</code></p>
+<ul>
+<li>baseLine warnings</li>
+</ul>
+<p>实行基准时，您会收到一条信息性警告，告知您一个或多个问题已被过滤掉，因为它们已在基准中列出。之所以发出这条警告，是为了帮您记住您配置了基准，因为在理想情况下，您会希望在某个时刻解决所有问题。</p>
+<h2 id="as-ide">AS IDE的使用</h2>
+<p>1、Reports unnecessary cast expressions.  清除所有的转换</p>
+<p>AS-&gt;Analyze-&gt;Code Cleanup...-&gt;可以自定义选择清除的范围,然后点击OK，即可清除所有如下的情形：</p>
+<pre><code class="language-java">Button bt_testNew = (Button) findViewById(R.id.bt_testNewIntent);
+//修改为
+Button bt_testNew = findViewById(R.id.bt_testNewIntent);
+</code></pre>
+<h2 id="_3">命令行使用</h2>
+<p>命令行的使用会生成相应的html文件和xml文件。</p>
+<ul>
+<li>./gradlew lintDebug 只展示打开的包</li>
+<li>./gradlew :app:lint --rerun-tasks 重新检查</li>
+</ul>
+<h2 id="lint">忽略检查Lint</h2>
+<p>1.Code源文件</p>
+<p>With a <code>@SuppressLint</code> annotation in the Java code</p>
+<p>2.xml文件</p>
+<p>With a <code>tools:ignore</code> attribute in the XML file</p>
+<p>3.build.gradle</p>
+<pre><code class="language-groovy">android {
+    lintOptions {
+        disable 'TypographyFractions','TypographyQuotes'
+    }
+}
+</code></pre>
+<p>3.统一配置</p>
+<p>With a <code>lint.xml</code> configuration file in the project</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;lint&gt;
+    &lt;!-- Ignore everything in the test source set --&gt;
+    &lt;issue id=&quot;all&quot;&gt;
+        &lt;ignore path=&quot;\*/test/\*&quot; /&gt;
+    &lt;/issue&gt;
+
+    &lt;!-- Disable this given check in this project --&gt;
+    &lt;issue id=&quot;IconMissingDensityFolder&quot; severity=&quot;ignore&quot; /&gt;
+
+    &lt;!-- Ignore the ObsoleteLayoutParam issue in the given files --&gt;
+    &lt;issue id=&quot;ObsoleteLayoutParam&quot;&gt;
+        &lt;ignore path=&quot;res/layout/activation.xml&quot; /&gt;
+        &lt;ignore path=&quot;res/layout-xlarge/activation.xml&quot; /&gt;
+        &lt;ignore regexp=&quot;(foo|bar)\.java&quot; /&gt;
+    &lt;/issue&gt;
+
+    &lt;!-- Ignore the UselessLeaf issue in the given file --&gt;
+    &lt;issue id=&quot;UselessLeaf&quot;&gt;
+        &lt;ignore path=&quot;res/layout/main.xml&quot; /&gt;
+    &lt;/issue&gt;
+
+    &lt;!-- Change the severity of hardcoded strings to &quot;error&quot; --&gt;
+    &lt;issue id=&quot;HardcodedText&quot; severity=&quot;error&quot; /&gt;
+&lt;/lint&gt;
+</code></pre>
+<ol>
+<li>Lint 命令行</li>
+</ol>
+<pre><code class="language-java">lint --ignore UnusedResources,UselessLeaf /my/project/path
+</code></pre>
+<h2 id="lint_1">自定义Lint规则</h2>
+<p><a href="https://googlesamples.github.io/android-custom-lint-rules/api-guide.html">Lint官方Api</a></p>
+<h3 id="client-api">Client API</h3>
+<blockquote>
+<p>用来决定查询哪些问题，查询哪些作用域的API </p>
+</blockquote>
+<h3 id="detector-api"><strong>Detector API</strong></h3>
+<p>查询的原则：</p>
+<p>1.以自己要查的关键AST为中心，往上查通过resolve，往下查通过建立新的Visitor。</p>
+<blockquote>
+<p>分析源码和报告某一类问题的API,主要学习这个API 。</p>
+</blockquote>
+<p>AST:</p>
+<blockquote>
+<p>语法树，也写作UAST(Universal Abstract Syntax Tree),检查源代码时会将源代码转换成AST的格式去检查，也是我们在使用Lint分析时的主要对象。</p>
+<p>In UAST, each element is called a <strong><code>UElement</code></strong>, and there are a number of subclasses — <code>UFile</code> for the compilation unit, <code>UClass</code> for a class, <code>UMethod</code> for a method, <code>UExpression</code> for an expression, <code>UIfExpression</code> for an <code>if</code>-expression, and so on.</p>
+</blockquote>
+<p><img alt="image-20230423165442130" src="../6Android%20Lint%20%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E7%9A%84%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7.assets/image-20230423165442130.png" /></p>
+<p>PSI </p>
+<blockquote>
+<p>Program Structure Interface ,是语法树的抽象使用，Java和Kotlin有自己的PSI，但是可以通过AST获取PSI.</p>
+</blockquote>
+<p>需要使用PSI的地方：</p>
+<ul>
+<li>需要调用该节点的PSI名称，例如，UMethod.resolve（）返回一个PsiMethod。</li>
+<li>您可能需要使用PSI的第二种情况是，您必须做一些UAST中没有表示的特定语言的事情。例如，如果您试图查找参数的名称或默认值，或者给定的类是否是伴随对象，那么您将需要查询Kotlin PSI。 Java因为没有默认参数值，所以不用考虑PSI</li>
+</ul>
+<p>Resolving:获取调用方法或者属性的方法 </p>
+<blockquote>
+<p>call <code>.resolve()</code></p>
+</blockquote>
+<h4 id="detector">Detector</h4>
+<blockquote>
+<p>是DetectorAPI的重要类，是用来检查源码中的问题</p>
+</blockquote>
+<p>Detector扫描文件的类型</p>
+<table>
+<thead>
+<tr>
+<th>Scanner 类型</th>
+<th>Desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UastScanner/SourceCodeScanner</td>
+<td>扫描 Java、Kotlin 源文件</td>
+</tr>
+<tr>
+<td>XmlScanner</td>
+<td>扫描 XML 文件</td>
+</tr>
+<tr>
+<td>ResourceFolderScanner</td>
+<td>扫描资源文件夹</td>
+</tr>
+<tr>
+<td>ClassScanner</td>
+<td>扫描 Class 文件</td>
+</tr>
+<tr>
+<td>BinaryResourceScanner</td>
+<td>扫描二进制资源文件</td>
+</tr>
+<tr>
+<td>GradleScanner</td>
+<td>扫描Gradle脚本</td>
+</tr>
+</tbody>
+</table>
+<p>Detector的回调函数</p>
+<h5 id="xmlscanner">XmlScanner</h5>
+<ul>
+<li>visitElement： 对XMLTag标签进行声明</li>
+<li>visitAttribute ：对XML属性 进行声明</li>
+<li>visitDocument：对文档进行遍历</li>
+</ul>
+<h5 id="sourcecodescanner">SourceCodeScanner</h5>
+<ul>
+<li>getApplicableMethodNames &amp;&amp; visitMethodCall</li>
+</ul>
+<blockquote>
+<p>当一个方法被调用</p>
+</blockquote>
+<ul>
+<li>getApplicableConstructorTypes &amp;&amp; visitConstructor</li>
+</ul>
+<blockquote>
+<p>当一个给定类型的Class进行初始化构造</p>
+</blockquote>
+<ul>
+<li>applicableSuperClasses &amp;&amp; visitClass</li>
+</ul>
+<blockquote>
+<p>当指定父类和接口实现的类创建时</p>
+</blockquote>
+<ul>
+<li>applicableAnnotations &amp;&amp; visitAnnotationUsage</li>
+</ul>
+<blockquote>
+<p>当使用指定的注解时</p>
+</blockquote>
+<ul>
+<li>getApplicableUastTypes &amp;&amp; createUastHandler</li>
+</ul>
+<blockquote>
+<p>当被指定的语法树节点出现时</p>
+</blockquote>
+<h5 id="classscanner">ClassScanner</h5>
+<ul>
+<li>getApplicableCallOwners &amp;&amp; checkCall</li>
+</ul>
+<blockquote>
+<p>当特定的所有者调用的方法时</p>
+</blockquote>
+<ul>
+<li>getApplicableAsmNodeTypes &amp;&amp; checkInstruction</li>
+</ul>
+<blockquote>
+<p>当一个给定的字节指令出现时</p>
+</blockquote>
+<ul>
+<li>checkClass</li>
+</ul>
+<blockquote>
+<p>类似XmlScanner#visitDocument，对 ASM字节遍历</p>
+</blockquote>
+<h2 id="scnner">Scnner顺序</h2>
+<ol>
+<li>Android Manifest</li>
+<li>Android resources XML files (alphabetical by folder type, so for example layouts are processed before value files like translations)</li>
+<li>Kotlin and Java files</li>
+<li>Bytecode (local <code>.class</code> files and library <code>.jar</code> files)</li>
+<li>Gradle files</li>
+<li>Other files</li>
+<li>ProGuard files</li>
+<li>Property Files</li>
+</ol>
+<h2 id="issue">ISSUE的建立</h2>
+<blockquote>
+<p>ISSUE 是每一个Lint检查的唯一标识，ISSUE中确立了检查错误的详细信息。</p>
+</blockquote>
+<ul>
+<li>id  ISSUE的id </li>
+<li>briefDescription 简短的描述，是Lint报告中的标题</li>
+<li>explanation  详细的修正描述，是Lint报告中的EXPLAIN</li>
+<li>moreInfo 更多的详细介绍，可以用网址介绍</li>
+<li>category  检查的分组</li>
+<li>severity  检查的状态，如Error,</li>
+<li>androidSpecific 是否只检查Android</li>
+<li>implementation 检查的范围</li>
+</ul>
+<pre><code class="language-kotlin"> companion object Issues {
+        @JvmField
+        val ISSUE = Issue.create(
+            id = &quot;SdCardPath&quot;,
+            briefDescription = &quot;Hardcoded reference to `/sdcard`&quot;,
+            explanation = &quot;&quot;&quot;
+                Your code should not reference the `/sdcard` path directly; \
+                instead use `Environment.getExternalStorageDirectory().getPath()`.
+
+                Similarly, do not reference the `/data/data/` path directly; it \
+                can vary in multi-user scenarios. Instead, use \
+                `Context.getFilesDir().getPath()`.
+                &quot;&quot;&quot;,
+            moreInfo = &quot;https://developer.android.com/training/data-storage#filesExternal&quot;,
+            category = Category.CORRECTNESS,
+            severity = Severity.WARNING,
+            androidSpecific = true,
+            implementation = Implementation(
+                SdCardDetector::class.java,
+                Scope.JAVA_FILE_SCOPE
+            )
+        )
+ }
+</code></pre>
+<h2 id="issue_1">注册ISSUE</h2>
+<p>在IssueRegistry中注册ISSUE_ID</p>
+<pre><code class="language-kotlin">class SampleIssueRegistry : IssueRegistry() {
+    override val issues = listOf(SdCardDetector.ISSUE) //添加自定义的ISSUE
+
+    override val api: Int
+        get() = CURRENT_API
+
+    // works with Studio 4.1 or later; see
+    // com.android.tools.lint.detector.api.Api / ApiKt
+    override val minApi: Int
+        get() = 8
+
+    // Requires lint API 30.0+; if you're still building for something
+    // older, just remove this property.
+    override val vendor: Vendor = Vendor(
+        vendorName = &quot;Android Open Source Project&quot;,
+        feedbackUrl = &quot;https://com.example.lint.blah.blah&quot;,
+        contact = &quot;author@com.example.lint&quot;
+    )
+}
+</code></pre>
+<h2 id="_4">报告错误</h2>
+<p>使用Incident来报告错误，重点是以下内容：</p>
+<ul>
+<li>ISSUE </li>
+<li>message 检查的信息</li>
+<li>fix 修复方案</li>
+<li>Location 位置 一般为当前AST</li>
+</ul>
+<pre><code class="language-kotlin"> val  incident = Incident(context, ISSUE)
+                .message(&quot;请勿直接使用android.util.Log&quot;)
+                .fix(fix().name(&quot;将Log 替换成 LogUtil&quot;).replace().with(&quot;LogUtil&quot;).build())
+                .at(node)
+            context.report(incident)
+</code></pre>
+<h2 id="detector_1">Detector 使用简单实例</h2>
+<blockquote>
+<p>实现对android.util.log的检测，改为LogUtil</p>
+</blockquote>
+<p>1.创建一个ISSUE</p>
+<pre><code class="language-kotlin">class LogDetector : Detector(), Detector.UastScanner {
+
+    companion object {
+        private  const val ISSUE_ID = &quot;LogUsage&quot;
+        val  ISSUE = Issue.create(
+            ISSUE_ID,
+            &quot;避免调用android.util.log&quot;,
+            &quot;请勿直接使用android.util.Log,应该使用统一Log工具类&quot;,
+            category = Category.SECURITY,
+            priority = 9,
+            severity = Severity.ERROR,
+            implementation = Implementation(LogDetector::class.java, Scope.JAVA_FILE_SCOPE)
+        )
+    }
+}
+</code></pre>
+<p>2.创建Dector</p>
+<pre><code class="language-kotlin">
+class LogDetector : Detector(), Detector.UastScanner {
+
+  //要查询的方法
+   override fun getApplicableMethodNames(): List&lt;String&gt; {
+        return listOf(&quot;v&quot;,&quot;d&quot;,&quot;i&quot;,&quot;w&quot;,&quot;e&quot;);
+    }
+
+
+    override fun visitMethodCall(context: JavaContext, node: UCallExpression, method: PsiMethod) {
+        if(context.evaluator.isMemberInClass(method,&quot;android.util.Log&quot;)){
+            val  incident = Incident(context, ISSUE)
+                .message(&quot;请勿直接使用android.util.Log&quot;)
+                .fix(fix().name(&quot;将Log 替换成 LogUtil&quot;).replace().with(&quot;LogUtil&quot;).build())
+                .at(node)
+            context.report(incident)
+        }
+    }
+}
+
+</code></pre>
+<p>3.实现IssueRegistry</p>
+<pre><code class="language-kotlin">class MyCustomIssueRegistry : IssueRegistry() {
+
+    init {
+        println(&quot;MyCustomIssueRegistry start run&quot;)
+    }
+
+    override val issues: List&lt;Issue&gt;
+        get() = listOf(LogDetector.ISSUE)
+
+    override val minApi: Int
+        get() = 8;
+
+    override val api: Int
+        get() = CURRENT_API
+
+    override val vendor: Vendor = Vendor(
+        vendorName = &quot;Android Open Source Test Demo  Project&quot;,
+        feedbackUrl = &quot;https://com.example.lint.blah.blah&quot;,
+        contact = &quot;azhang20@com.example.lint&quot;
+    )
+}
+</code></pre>
+<p>4.在build.gradlew实现注册</p>
+<pre><code class="language-kotlin">dependencies {
+    compileOnly &quot;com.android.tools.lint:lint-api:30.0.0-alpha10&quot;
+    compileOnly &quot;com.android.tools.lint:lint-checks:30.0.0-alpha10&quot;
+    testImplementation &quot;com.android.tools.lint:lint-tests:30.0.0-alpha10&quot;
+}
+
+jar {
+    manifest {
+        // Only use the &quot;-v2&quot; key here if your checks have been updated to the
+        // new 3.0 APIs (including UAST)
+        attributes('Lint-Registry-v2': 'com.example.lintjsonreader.MyCustomIssueRegistry')
+    }
+}
+</code></pre>
+<p>5.引入到使用的地方</p>
+<pre><code class="language-kotlin">lintChecks project(&quot;:lintMoudle&quot;)
+</code></pre>
+<p>6.Lint检查</p>
+<pre><code class="language-groovy"> ./gradlew :app:lint
+</code></pre>
+<h2 id="_5"></h2>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>
