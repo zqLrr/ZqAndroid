@@ -1,0 +1,1704 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>17 Jetpacket基础学习 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#17-jetpacket" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              17 Jetpacket基础学习
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2jetpacket" class="md-nav__link">
+    2.JetPacket库技术整理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3lifecycle-" class="md-nav__link">
+    3.LifeCycle --使用生命周期感知型组件处理生命周期
+  </a>
+  
+    <nav class="md-nav" aria-label="3.LifeCycle --使用生命周期感知型组件处理生命周期">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    1.概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.声明依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3lifecycle" class="md-nav__link">
+    3.LifeCycle中的类
+  </a>
+  
+    <nav class="md-nav" aria-label="3.LifeCycle中的类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#liyecycle" class="md-nav__link">
+    LiyeCycle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultlifecycleobserver" class="md-nav__link">
+    DefaultLifecycleObserver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifecycleowner" class="md-nav__link">
+    LifecycleOwner
+  </a>
+  
+    <nav class="md-nav" aria-label="LifecycleOwner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lifecycleowner_1" class="md-nav__link">
+    Lifecycleowner允许查询当前的生命周期状态
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifecycleowner_2" class="md-nav__link">
+    实现自定义Lifecycleowner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processlifecycleowner" class="md-nav__link">
+    ProcessLifecycleOwner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4navigation" class="md-nav__link">
+    4.Navigation
+  </a>
+  
+    <nav class="md-nav" aria-label="4.Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    优势
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    关键部分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    实例实现
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5workmanager" class="md-nav__link">
+    5.WorkManager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6datastore" class="md-nav__link">
+    6.DataStore
+  </a>
+  
+    <nav class="md-nav" aria-label="6.DataStore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    名词解释
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datastore" class="md-nav__link">
+    DataStore 类型
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7appsearch" class="md-nav__link">
+    7.AppSearch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8room" class="md-nav__link">
+    8.Room
+  </a>
+  
+    <nav class="md-nav" aria-label="8.Room">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    主要组件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    配置编译器选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    实例实现步骤
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9textclassifier" class="md-nav__link">
+    9.TextClassifier
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10jankstats" class="md-nav__link">
+    10.JankStats——卡顿
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11privacysandbox" class="md-nav__link">
+    11.privacysandbox
+  </a>
+  
+    <nav class="md-nav" aria-label="11.privacysandbox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    SDK 运行时开发者指南
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12benchmark" class="md-nav__link">
+    12.benchmark
+  </a>
+  
+    <nav class="md-nav" aria-label="12.benchmark">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    基准文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microbenchmark" class="md-nav__link">
+    Microbenchmark(微基准)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macrobenchmark" class="md-nav__link">
+    Macrobenchmark(宏基准)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="17-jetpacket">17 Jetpacket基础学习</h1>
+<h2 id="1">1.概述</h2>
+<blockquote>
+<p>Jetpack 是一个由多个库组成的套件，可帮助开发者遵循最佳做法、减少样板代码并编写可在各种 Android 版本和设备中一致运行的代码，让开发者可将精力集中于真正重要的编码工作。</p>
+<p>由于Jetpack 库在 <code>androidx</code> 命名空间中发布，因此只要使用了Androidx,就可以直接使用Androidx.</p>
+</blockquote>
+<p><img alt="image-20230104204654811" src="../17%20Jetpacket%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/image-20230104204654811.png" /></p>
+<h2 id="2jetpacket">2.JetPacket库技术整理</h2>
+<table>
+<thead>
+<tr>
+<th>库名</th>
+<th>作用</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/libraries/architecture/workmanager">WorkManager</a></td>
+<td>满足您的后台调度需求。(更新)</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/libraries/architecture/room">Room</a></td>
+<td>实现数据存储持久性。(更新)</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/navigation/navigation-getting-started">Navigation</a></td>
+<td>管理应用导航流程。主要适合Frament之间的切换,底部导航栏，抽屉导航栏</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/training/camerax">CameraX</a></td>
+<td>满足相机应用需求</td>
+<td>相机组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/libraries/architecture/datastore">DataStore</a></td>
+<td>以异步、一致的事务方式存储数据，克服了 SharedPreferences 的一些缺点</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td>Lifecycle</td>
+<td>生命周期的管理</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/libraries/architecture/livedata#work_livedata">LiveData</a></td>
+<td>具有生命周期感知能力的数据存储器类，需要结合ViewModel一起使用</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/libraries/architecture/viewmodel">ViewModel</a></td>
+<td>ViewModel是一种<a href="https://developer.android.google.cn/topic/architecture/ui-layer/stateholders">业务逻辑或屏幕级状态容器</a>，它的主要优点是，它可以缓存状态，并可在配置更改后持久保留相应状态。</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/libraries/data-binding">Data Binding</a></td>
+<td>数据绑定库是一种支持库，借助该库，您可以使用声明性格式（而非程序化地）将布局中的界面组件绑定到应用中的数据源。需要结合ViewModel一起使用</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/paging">Paging</a></td>
+<td><a href="https://developer.android.google.cn/reference/androidx/recyclerview/widget/RecyclerView">RecyclerView</a> 中逐步妥善地加载数据(更新)，分页</td>
+<td>架构组件(界面层库)</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/performance/benchmarking/microbenchmark-overview">Macrobenchmark</a></td>
+<td>优化启动时间</td>
+<td>性能组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/performance/jankstats?hl=zh-cn">JankStats</a></td>
+<td>分析应用界面的性能问题，其中包括报告丢失渲染帧——通常被称为 "卡顿 (jank)"</td>
+<td>性能组件</td>
+</tr>
+<tr>
+<td>SlidingPaneLayout</td>
+<td>更新为使用 WindowManager 的智能布局 API，以避免内容被放置于被遮挡区域 (例如跨越物理铰链区域)，抽屉导航栏，实现滑动窗格界面模式</td>
+<td>UI组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/draganddrop?hl=en">DragAndDrop</a></td>
+<td>实现拖放操作，移动至其他应用或者同一个应用的其他位置</td>
+<td>UI组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/design-for-safety/privacy-sandbox/fledge">Ads</a></td>
+<td>广告相关的,需要google play service</td>
+<td>广告相关</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/studio/build/multidex?hl=zh_cn">Multidex</a></td>
+<td>解决apk可以有多个dex,API21以后默认启用</td>
+<td>基础组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/appcompat">appcompt</a></td>
+<td>让您可以在平台的旧版 API 上访问新 API（很多都符合 Material Design 准则</td>
+<td>UI组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/develop/ui/views/search/appsearch#sample-set-schema">AppSearch</a></td>
+<td>提供了一种新的在App应用内搜索的方式，提供了新的存储方式，搜索快，多语言支持</td>
+<td>数据库</td>
+</tr>
+<tr>
+<td>arch.core</td>
+<td>其他架构依赖项的帮助程序，包括可与 LiveData 配合使用的 JUnit 测试规则。</td>
+<td>架构组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/asynclayoutinflater">Asynclayoutinflater</a></td>
+<td>异步渲染布局以避免界面出现卡顿</td>
+<td>UI组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/topics/text/autofill">Autofill</a></td>
+<td>自动填充框架</td>
+<td>UI组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/training/sign-in/biometric-auth">Biometric</a></td>
+<td>通过生物识别特征或设备凭据进行身份验证，以及执行加密操作</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.chrome.com/docs/android/custom-tabs/">Browser</a></td>
+<td>在用户的默认浏览器中显示网页。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/cardview">Cardview</a></td>
+<td>实现卡片式View</td>
+<td>UI组件</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/collection">Collection</a></td>
+<td>集合框架库</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/constraintlayout">Constraintlayout</a></td>
+<td>相对布局</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/concurrent">Concurrent</a></td>
+<td>使用协程将任务移出主线程，并充分利用 ListenableFuture。</td>
+<td></td>
+</tr>
+<tr>
+<td>Coordinatorlayout</td>
+<td>协调布局</td>
+<td></td>
+</tr>
+<tr>
+<td>Contentpager</td>
+<td>在后台线程中加载 ContentProvider 数据并进行分页。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/cursoradapter">Cursoradapter</a></td>
+<td>Cursoradapter一种可以提供标题名的Adapter</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/topics/providers/document-provider">Documentfile</a></td>
+<td><a href="https://developer.android.google.cn/reference/android/provider/DocumentsProvider">DocumentsProvider</a>访问程序中的文档，可让存储服务（如 Google 云端硬盘）提供其管理的文件</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/navigation/navigation-ui#add_a_navigation_drawer">Drawerlayout</a></td>
+<td>添加抽屉式导航栏</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/topics/graphics/spring-animation">Dynamicanimation</a></td>
+<td>基于物理特性的动画，可以自定义弹簧的刚度、阻尼以及最终位置</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/topics/ui/look-and-feel/emoji-compat">Emoji2</a></td>
+<td>在Android 设备上支持表情符号</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/work/overview">Enterprise</a></td>
+<td>创建企业专用应用。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/exifinterface">Exifinterface</a></td>
+<td>读取和写入图片文件 EXIF标记。（EXIF加入了拍摄参数）</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/games/agdk/download">Android Games</a></td>
+<td>可以帮助快速开发Android 游戏</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/jetpack/androidx/releases/glance">Glance</a></td>
+<td>使用 <code>Compose</code> 风格的API为小部件构建布局。</td>
+<td></td>
+</tr>
+<tr>
+<td>graphics</td>
+<td>利用多个 Android 平台版本中的图形工具</td>
+<td></td>
+</tr>
+<tr>
+<td>Health&amp;&amp;Health Connect</td>
+<td>通过平台无关的方式构建高性能健康应用。</td>
+<td></td>
+</tr>
+<tr>
+<td>Heifwriter</td>
+<td>使用 Android 设备上可用的编解码器，以 HEIF 格式对图像或图像集进行编码。(HEIF不仅可以存储静态图像和EXIF信息元数据等，还可以存储动画、图像序列甚至视频、音频等等)</td>
+<td></td>
+</tr>
+<tr>
+<td>Hilt</td>
+<td>提供了自动创建依赖注入项的功能，是Dagger的扩展版，适配了Androidx</td>
+<td></td>
+</tr>
+<tr>
+<td>Input</td>
+<td>通过预测未来的 MotionEvent 缩短输入互动的延迟时间（找不到相关的开发文档）</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/topics/graphics/prop-animation#interpolators">Interpolator</a></td>
+<td>动画的插值器</td>
+<td></td>
+</tr>
+<tr>
+<td>JavascriptEngine</td>
+<td>Android App优化JavaScript</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/components/loaders">Loader</a></td>
+<td>加载配置发生变更的数据，API28弃用，建议使用 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/ViewModel"><code>ViewModels</code></a> 和 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/LiveData"><code>LiveData</code></a> 的组合来处理加载数据</td>
+<td></td>
+</tr>
+<tr>
+<td>Localbroadcastmanager</td>
+<td>本地广播，建议使用LiveData</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/topics/media-apps/media-apps-overview">Media2</a></td>
+<td>多媒体应用框架</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/topics/media/media3">Media3</a></td>
+<td>多媒体应用框架 beta版本</td>
+<td></td>
+</tr>
+<tr>
+<td>Mediarouter</td>
+<td>远程控制接收端设备上显示和播放媒体内容</td>
+<td></td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>跟踪和报告应用的各种运行时指标</td>
+<td></td>
+</tr>
+<tr>
+<td>Palette</td>
+<td>可以从传入的Bitmap提取出主题颜色，是一个类似调色板的工具类</td>
+<td></td>
+</tr>
+<tr>
+<td>Preference</td>
+<td>适合构建设置页，提供了界面和存储的实现</td>
+<td></td>
+</tr>
+<tr>
+<td>Print</td>
+<td>通过您的应用打印照片、文档和其他图形及图片。</td>
+<td></td>
+</tr>
+<tr>
+<td>privacysandbox-tools</td>
+<td>用于治理隐私合规的功能库，主要是针对于SDK的权限和广告，不知国内厂商是否有</td>
+<td></td>
+</tr>
+<tr>
+<td>ProfileInstaller</td>
+<td>库和应用定义“配置文件规则”并将 ART 配置文件信息与一个 APK 捆绑起来，此库将在应用启动后安装这些配置文件。该库可用于提升应用性能。Gradle 7.0之后才能用</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/guide/topics/ui/layout/recyclerview">Recyclerview</a></td>
+<td>在您的界面中显示大量数据，同时最大限度减少内存用量</td>
+<td></td>
+</tr>
+<tr>
+<td>Remotecallback</td>
+<td>创建一个封装容器，以便开发者更轻松地提供 PendingIntent。</td>
+<td></td>
+</tr>
+<tr>
+<td>ResourceInspection</td>
+<td>在 Android Studio 的实时布局检查器中显示自定义视图的属性。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/libraries/architecture/viewmodel-savedstate">Savedstate</a></td>
+<td>编写可插入组件，以在进程终止时保存界面状态，并在进程重启时恢复界面状态。类似onSaveInstanceState(),结合ViewModel使用</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/security/data">security.crypto</a></td>
+<td>使用密钥对文件和sharedpreferences进行加密。</td>
+<td></td>
+</tr>
+<tr>
+<td>ShareTarget</td>
+<td>提供了ShortCuts作为shareTarget向后兼容的能力</td>
+<td></td>
+</tr>
+<tr>
+<td>Slice</td>
+<td>在应用外显示模板化界面元素,一种界面模版</td>
+<td></td>
+</tr>
+<tr>
+<td>Startup</td>
+<td>在应用启动时，更加高效地初始化组件</td>
+<td></td>
+</tr>
+<tr>
+<td>Swiperefreshlayout</td>
+<td>google推荐的下拉刷新控件</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/training/testing">Test</a></td>
+<td>Android 测试</td>
+<td></td>
+</tr>
+<tr>
+<td>test.Uiautomator</td>
+<td>适用于跨应用功能界面测试的框架</td>
+<td></td>
+</tr>
+<tr>
+<td>Textclassifier</td>
+<td>文本分类器，通过文本匹配从而自定义分类器</td>
+<td></td>
+</tr>
+<tr>
+<td>Tracing</td>
+<td>是一个可帮助将跟踪事件写入系统跟踪缓冲区的库。可通过 Systrace 和 Perfetto 等工具直观呈现</td>
+<td></td>
+</tr>
+<tr>
+<td>Transition</td>
+<td>为View的动作添加动画效果</td>
+<td></td>
+</tr>
+<tr>
+<td>Vectordrawable</td>
+<td>渲染矢量图形，使用xml文件绘制</td>
+<td></td>
+</tr>
+<tr>
+<td>Versionedparcelable</td>
+<td>提供稳定且紧凑的二进制序列化格式，该格式可跨进程传递或安全保留。</td>
+<td></td>
+</tr>
+<tr>
+<td>ViewPager2</td>
+<td>可滑动的格式显示视图或 Fragment。</td>
+<td></td>
+</tr>
+<tr>
+<td>Webkit</td>
+<td>Android 5 及更高版本上使用新式 WebView API。</td>
+<td></td>
+</tr>
+<tr>
+<td>WindowManager</td>
+<td>初始为可折叠设备设计，未来还将支持更多屏幕类型和窗口功能</td>
+<td></td>
+</tr>
+<tr>
+<td>Jetifier</td>
+<td>一款独立工具，可将某个库中对已弃用支持库的依赖项迁移到等效的 AndroidX 依赖项。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>可以使用的:</p>
+<table>
+<thead>
+<tr>
+<th>库名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="">benchmark</a></td>
+<td>用于基准测试。</td>
+</tr>
+<tr>
+<td><a href="https://developer.android.google.cn/topic/performance/jankstats?hl=zh-cn">JankStats</a></td>
+<td>分析应用界面的性能问题，其中包括报告丢失渲染帧——通常被称为 "卡顿 (jank)"</td>
+</tr>
+<tr>
+<td>privacysandbox-tools</td>
+<td>运行时SDk</td>
+</tr>
+<tr>
+<td>Textclassifier</td>
+<td>文本分类器，通过文本匹配从而自定义分类器</td>
+</tr>
+</tbody>
+</table>
+<p>AppSearch</p>
+<h2 id="3lifecycle-">3.LifeCycle --使用生命周期感知型组件处理生命周期</h2>
+<p><a href="https://developer.android.google.cn/jetpack/androidx/releases/lifecycle">官方文档</a></p>
+<p><a href="https://developer.android.google.cn/topic/libraries/architecture/lifecycle">用户指南</a></p>
+<h3 id="1_1">1.概述</h3>
+<blockquote>
+<p>在Android 9之后，我们开始使用androidx，该命名空间下包含了 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fdeveloper.android.google.cn%2Fjetpack">Android Jetpack</a> 库，AppCompatActivity已经实现了LifeCycleOwner,意味着我们可以直接使用LifeCycle管理Activity和Fragment的生命周期</p>
+</blockquote>
+<h3 id="2">2.声明依赖</h3>
+<h3 id="3lifecycle">3.LifeCycle中的类</h3>
+<ul>
+<li>Lifecycle</li>
+<li>DefaultLifecycleObserver</li>
+<li>LifecycleOwner</li>
+</ul>
+<h4 id="liyecycle">LiyeCycle</h4>
+<blockquote>
+<p><a href="https://developer.android.google.cn/reference/androidx/lifecycle/Lifecycle"><code>Lifecycle</code></a> 是一个类，用于存储有关组件（如 Activity 或 Fragment）的生命周期状态的信息，并允许其他对象观察此状态。</p>
+</blockquote>
+<p><img alt="image-20220728211849509" src="/Users/zhangqian20/Library/Application Support/typora-user-images/image-20220728211849509.png" /></p>
+<h4 id="defaultlifecycleobserver">DefaultLifecycleObserver</h4>
+<blockquote>
+<p>类可以通过实现 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/DefaultLifecycleObserver"><code>DefaultLifecycleObserver</code></a> 并替换相应的方法（如 <code>onCreate</code> 和 <code>onStart</code> 等）来监控组件的生命周期状态。然后，您可以通过调用 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/Lifecycle"><code>Lifecycle</code></a> 类的 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/Lifecycle#addObserver(androidx.lifecycle.LifecycleObserver)"><code>addObserver()</code></a> 方法并传递观察器的实例来添加观察器。</p>
+</blockquote>
+<pre><code class="language-java">//code example
+public class MyObserver implements DefaultLifecycleObserver {
+    @Override
+    public void onResume(LifecycleOwner owner) {
+        connect()
+    }
+
+    @Override
+    public void onPause(LifecycleOwner owner) {
+        disconnect()
+    }
+}
+
+myLifecycleOwner.getLifecycle().addObserver(new MyObserver());
+</code></pre>
+<h4 id="lifecycleowner">LifecycleOwner</h4>
+<blockquote>
+<p><a href="https://developer.android.google.cn/reference/androidx/lifecycle/LifecycleOwner"><code>LifecycleOwner</code></a> 是单一方法接口，表示类具有 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/Lifecycle"><code>Lifecycle</code></a>。它具有一种方法（即 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/LifecycleOwner#getLifecycle()"><code>getLifecycle()</code></a>）,此接口从各个类（如 <code>Fragment</code> 和 <code>AppCompatActivity</code>）抽象化 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/Lifecycle"><code>Lifecycle</code></a> 的所有权，并允许编写与这些类搭配使用的组件。任何自定义应用类均可实现 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/LifecycleOwner"><code>LifecycleOwner</code></a> 接口。</p>
+</blockquote>
+<h5 id="lifecycleowner_1">Lifecycleowner允许查询当前的生命周期状态</h5>
+<pre><code class="language-java">class MyLocationListener implements DefaultLifecycleObserver {
+    private boolean enabled = false;
+    public MyLocationListener(Context context, Lifecycle lifecycle, Callback callback) {
+       ...
+    }
+
+    @Override
+    public void onStart(LifecycleOwner owner) {
+        if (enabled) {
+           // connect
+        }
+    }
+
+    public void enable() {
+        enabled = true;
+        if (lifecycle.getCurrentState().isAtLeast(STARTED)) {
+            // connect if not connected
+        }
+    }
+
+    @Override
+    public void onStop(LifecycleOwner owner) {
+        // disconnect if connected
+    }
+}
+</code></pre>
+<h5 id="lifecycleowner_2">实现自定义Lifecycleowner</h5>
+<p>需要使用 <a href="https://developer.android.google.cn/reference/androidx/lifecycle/LifecycleRegistry">LifecycleRegistry</a> 类，但需要将事件转发到该类。</p>
+<pre><code class="language-java">public class MyActivity extends Activity implements LifecycleOwner {
+    private LifecycleRegistry lifecycleRegistry;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        lifecycleRegistry = new LifecycleRegistry(this);
+        lifecycleRegistry.setCurrentState(Lifecycle.State.CREATED);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        lifecycleRegistry.setCurrentState(Lifecycle.State.STARTED);
+    }
+
+    @NonNull
+    @Override
+    public Lifecycle getLifecycle() {
+        return lifecycleRegistry;
+    }
+}
+</code></pre>
+<h4 id="processlifecycleowner">ProcessLifecycleOwner</h4>
+<blockquote>
+<p>管理整个应用进程的生命周期</p>
+</blockquote>
+<h2 id="4navigation">4.Navigation</h2>
+<blockquote>
+<p>导航组件是指支持用户导航、进入和退出应用中不同内容片段的交互。</p>
+</blockquote>
+<h3 id="_1">优势</h3>
+<ul>
+<li>处理 Fragment 事务。</li>
+<li>默认情况下，正确处理往返操作。</li>
+<li>为动画和转换提供标准化资源。</li>
+<li>实现和处理深层链接。</li>
+<li>包括导航界面模式（例如抽屉式导航栏和底部导航），用户只需完成极少的额外工作。</li>
+<li><a href="https://developer.android.google.cn/guide/navigation/navigation-pass-data#Safe-args">Safe Args</a> - 可在目标之间导航和传递数据时提供类型安全的 Gradle 插件。</li>
+<li><code>ViewModel</code> 支持 - 您可以将 <code>ViewModel</code> 的范围限定为导航图，以在图表的目标之间共享与界面相关的数据。</li>
+</ul>
+<h3 id="_2">关键部分</h3>
+<ul>
+<li>导航图：在一个集中位置包含所有导航相关信息的 XML 资源。这包括应用内所有单个内容区域（称为<em>目标</em>）以及用户可以通过应用获取的可能路径。</li>
+<li><code>NavHost</code>：显示导航图中目标的空白容器。导航组件包含一个默认 <code>NavHost</code> 实现 (<a href="https://developer.android.google.cn/reference/androidx/navigation/fragment/NavHostFragment"><code>NavHostFragment</code></a>)，可显示 Fragment 目标。</li>
+<li><code>NavController</code>：在 <code>NavHost</code> 中管理应用导航的对象。当用户在整个应用中移动时，<code>NavController</code> 会安排 <code>NavHost</code> 中目标内容的交换。</li>
+</ul>
+<h3 id="_3">实例实现</h3>
+<p>1.建立nav xml</p>
+<p>在res目录下新建Android Resources file,</p>
+<p>【File Name】:nav_splash_navigation</p>
+<p>【Resource Name】:Navigation</p>
+<p><img alt="image-20230104165344712" src="../17%20Jetpacket%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/image-20230104165344712.png" /></p>
+<p>点击确定则会新建。</p>
+<p>2.建立NavHostFragment</p>
+<pre><code class="language-xml">  &lt;fragment
+        android:id=&quot;@+id/welcome_fragment&quot;
+        android:name=&quot;androidx.navigation.fragment.NavHostFragment&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        app:defaultNavHost=&quot;true&quot;
+        app:navGraph=&quot;@navigation/nav_splash_navigation&quot;/&gt;
+</code></pre>
+<ul>
+<li><code>android:name</code> 属性包含 <code>NavHost</code> 实现的类名称。</li>
+<li><code>app:navGraph</code> 属性将 <code>NavHostFragment</code> 与导航图相关联。导航图会在此 <code>NavHostFragment</code> 中指定用户可以导航到的所有目的地。</li>
+<li><code>app:defaultNavHost="true"</code> 属性确保您的 <code>NavHostFragment</code> 会拦截系统返回按钮。请注意，只能有一个默认 <code>NavHost</code>。如果同一布局（例如，双窗格布局）中有多个宿主，请务必仅指定一个默认 <code>NavHost</code>。</li>
+</ul>
+<p>3.建立Destination</p>
+<pre><code class="language-xml">&lt;navigation xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/nav_splash_navigation&quot;
+    app:startDestination=&quot;@id/welcomeFragment&quot;&gt;
+    &lt;fragment
+        android:id=&quot;@+id/loginFragment&quot;
+        android:name=&quot;com.example.testjetpack.LoginFragment&quot;
+        android:label=&quot;fragment_login&quot;
+        tools:layout=&quot;@layout/fragment_login&quot; &gt;
+    &lt;/fragment&gt;
+    &lt;fragment
+        android:id=&quot;@+id/registerFragment&quot;
+        android:name=&quot;com.example.testjetpack.RegisterFragment&quot;
+        android:label=&quot;fragment_register&quot;
+        tools:layout=&quot;@layout/fragment_register&quot; &gt;
+        &lt;action
+            android:id=&quot;@+id/action_registerFragment_to_loginFragment&quot;
+            app:destination=&quot;@id/loginFragment&quot; /&gt;
+    &lt;/fragment&gt;
+    &lt;fragment
+        android:id=&quot;@+id/welcomeFragment&quot;
+        android:name=&quot;com.example.testjetpack.WelcomeFragment&quot;
+        android:label=&quot;fragment_welcome&quot;
+        tools:layout=&quot;@layout/fragment_welcome&quot; &gt;
+        &lt;action
+            android:id=&quot;@+id/action_welcomeFragment_to_registerFragment&quot;
+            app:destination=&quot;@id/registerFragment&quot; /&gt;
+        &lt;action
+            android:id=&quot;@+id/action_welcomeFragment_to_loginFragment&quot;
+            app:destination=&quot;@id/loginFragment&quot; /&gt;
+    &lt;/fragment&gt;
+
+&lt;/navigation&gt;
+</code></pre>
+<ul>
+<li>app:startDestination ：指首个导航的目的地</li>
+</ul>
+<p>通过图形化界面，手动链接即可生成此代码。</p>
+<p><img alt="image-20230104165627507" src="../17%20Jetpacket%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/image-20230104165627507.png" /></p>
+<p>4.使用NavigationController实现跳转。</p>
+<pre><code class="language-java"> Button button = view.findViewById(R.id.bt_navlogin);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_welcomeFragment_to_loginFragment);
+            }
+        });
+</code></pre>
+<h2 id="5workmanager">5.WorkManager</h2>
+<blockquote>
+<p><a href="https://developer.android.google.cn/reference/androidx/work/WorkManager">WorkManager</a> 是适合用于持久性工作的推荐解决方案。如果工作始终要通过应用重启和系统重新启动来调度，便是持久性的工作。由于大多数后台处理操作都是通过持久性工作完成的，因此 WorkManager 是适用于后台处理操作的主要推荐 API。</p>
+</blockquote>
+<p>被系统条件触发的我们可以使用workManager.</p>
+<h2 id="6datastore">6.DataStore</h2>
+<h3 id="_4">名词解释</h3>
+<p><code>Protocol buffers</code>:是google 无关语言，无关平台，更小，更快，更简单的用来序列化结构数据的可扩展机制——Think XML。</p>
+<p><code>协程</code>：是一种并发设计模式，简化了异步执行的代码。</p>
+<ul>
+<li>处理耗时任务 (<code>Long running tasks</code>)，这种任务常常会阻塞住主线程；</li>
+<li>保证主线程安全 (<code>Main-safety</code>) ，即确保安全地从主线程调用任何 suspend 函数。</li>
+</ul>
+<h3 id="datastore">DataStore 类型</h3>
+<h2 id="7appsearch">7.AppSearch</h2>
+<p>AppSearch框架</p>
+<p><img alt="Diagram outline of a client application and its interactions with the following AppSearch concepts: AppSearch database, schema, schema types, documents, session, and search." src="../17%20Jetpacket%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0.assets/appsearch_overview_diagram-3503390.png" /></p>
+<p>AppSearch实例</p>
+<pre><code class="language-java">//create document entity
+
+//openSechema
+//set a scheme
+//put a document
+//search
+//remove a document
+//presist a disk
+</code></pre>
+<p>需要compileSdk = 33</p>
+<h2 id="8room">8.Room</h2>
+<h3 id="_5">主要组件</h3>
+<ul>
+<li><a href="https://developer.android.google.cn/reference/kotlin/androidx/room/Database">数据库类</a>，用于保存数据库并作为应用持久性数据底层连接的主要访问点。</li>
+<li><a href="https://developer.android.google.cn/training/data-storage/room/defining-data">数据实体</a>，用于表示应用的数据库中的表。</li>
+<li><a href="https://developer.android.google.cn/training/data-storage/room/accessing-data">数据访问对象 (DAO)</a>，提供您的应用可用于查询、更新、插入和删除数据库中的数据的方法。</li>
+</ul>
+<p>数据库类为应用提供与该数据库关联的 DAO 的实例。反过来，应用可以使用 DAO 从数据库中检索数据，作为关联的数据实体对象的实例。此外，应用还可以使用定义的数据实体更新相应表中的行，或者创建新行供插入。</p>
+<h3 id="_6">配置编译器选项</h3>
+<pre><code class="language-java">android {
+    ...
+    defaultConfig {
+        ...
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                    &quot;room.schemaLocation&quot;:&quot;$projectDir/schemas&quot;.toString(),
+                    &quot;room.incremental&quot;:&quot;true&quot;,
+                    &quot;room.expandProjection&quot;:&quot;true&quot;]
+            }
+        }
+    }
+}
+</code></pre>
+<ul>
+<li>room.schemaLocation 导出数据库结构到json文件中（必须填写，否则exportSchema需要设置为false）</li>
+<li>room.schemaLocation 是否增量编译</li>
+</ul>
+<h3 id="_7">实例实现步骤</h3>
+<p>1.<a href="https://developer.android.google.cn/training/data-storage/room/defining-data">建立数据表的实体</a></p>
+<pre><code class="language-java">/**
+ * 建立数据表的实体
+ */
+@Fts4
+@Entity(tableName = &quot;users&quot;,indices = {@Index(value = {&quot;first_name&quot;,&quot;last_name&quot;},unique = true)})
+public class User {
+    @PrimaryKey
+    public int id;
+    @ColumnInfo(name = &quot;first_name&quot;)
+    public String firstName;
+    @ColumnInfo(name = &quot;last_name&quot;)
+    public String lastName;
+    @ColumnInfo(name = &quot;user_address&quot;)
+    public String address;
+    @ColumnInfo(name = &quot;user_age&quot;)
+    public int age;
+}
+</code></pre>
+<p>2.<a href="https://developer.android.google.cn/training/data-storage/room/accessing-data">建立数据访问对象Dao</a></p>
+<pre><code class="language-java">@Dao
+public interface UserDao {
+    @Insert
+    void insertAll(User ...users);
+    @Delete
+    void delete(User user);
+    @Update
+    void update(User ...users);
+    @Query(&quot;SELECT * FROM users&quot;)
+    List&lt;User&gt; queryAll();
+}
+
+</code></pre>
+<p>3.建立数据库</p>
+<pre><code class="language-java">@Database(entities = {User.class},version = 1)
+public abstract class AppDataBase extends RoomDatabase {
+    public abstract  UserDao userDao();
+}
+
+</code></pre>
+<p>4.实现对数据库表的增删改查</p>
+<pre><code class="language-java">//需要在异步中进行
+mdb = Room.databaseBuilder(getApplicationContext(),AppDataBase.class,&quot;database-name&quot;).build();
+        if (mdb != null) {
+            mdao = mdb.userDao();
+        }
+mdao.insertAll(new User(&quot;ZHANG&quot;,&quot;Robin&quot;,&quot;北京&quot;,15));
+</code></pre>
+<p>遇到的问题</p>
+<p>1.Schema export directory is not provided to the annotation processor so we cannot export the schema. You can either provide <code>room.schemaLocation</code> annotation processor argument OR set exportSchema to false.</p>
+<p>问题原因：Room会导出数据库的架构到json文件中</p>
+<p>解决方案：</p>
+<p>1.增加编译器选项</p>
+<pre><code class="language-groovy">javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                    &quot;room.schemaLocation&quot;:&quot;$projectDir/schemas&quot;.toString(),//导出数据库架构的地址
+                   ...
+            }
+        }
+</code></pre>
+<p>2.数据库添加注解属性 exportSchema = false.</p>
+<pre><code class="language-java">@Database(entities = {User.class},version = 1,exportSchema = false)
+public abstract class AppDataBase extends RoomDatabase {
+    public abstract  UserDao userDao();
+}
+</code></pre>
+<h2 id="9textclassifier">9.TextClassifier</h2>
+<blockquote>
+<p>注意：2022年3月份androidx.TextClassification已全部被弃用，改用<a href="https://developer.android.google.cn/reference/android/view/textclassifier/TextClassification.html">android.view.textclassifier.TextClassification</a></p>
+</blockquote>
+<p>文本分类器。</p>
+<p>功能介绍：</p>
+<p>通过厂商提前准备好的机器学习模型，可以匹配需要用到的文本，提供相应的功能，比如发邮件，打开链接。</p>
+<p>可以实现的场景：</p>
+<p>TextView,WebView,自定义View</p>
+<p><a href="https://cloud.tencent.com/developer/article/1381580">具体使用场景</a>,等有空整理</p>
+<p>1.TextView中使用</p>
+<pre><code class="language-java">public class TextClassifierActivity extends AppCompatActivity {
+
+    private static final String TAG = &quot;TextClassifierActivity_test&quot;;
+
+    private String emailText = &quot;dummy@email.com&quot;;
+    private String urlText = &quot;https://blog.stylingandroid.com&quot;;
+    private String  hybridText = &quot;Email:&quot;+emailText;
+
+    private TextClassificationManager manager;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_text_classifier);
+        classfier();
+    }
+
+    private void classfier(){
+        ThreadHelper.getThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                manager = (TextClassificationManager) getSystemService(Context.TEXT_CLASSIFICATION_SERVICE);
+                TextClassifier classifier = manager.getTextClassifier();
+                TextClassification emailClassfication = classifier.classifyText(emailText,0,emailText.length(), LocaleList.getDefault());
+                Log.d(TAG, &quot;run: &quot;+ emailClassfication);
+                TextClassification urlClassfication = classifier.classifyText(urlText,0,urlText.length(), LocaleList.getDefault());
+                Log.d(TAG, &quot;run: &quot;+ urlClassfication);
+                TextSelection suggestions = classifier.suggestSelection(hybridText,10,11, LocaleList.getDefault());
+                Log.d(TAG, &quot;run: &quot;+ suggestions);
+            }
+        });
+    }
+  //xml注意这个属性
+   android:textIsSelectable=&quot;true&quot;
+</code></pre>
+<p>2.自定义TextClassifier</p>
+<h2 id="10jankstats">10.JankStats——卡顿</h2>
+<p>https://developer.android.google.cn/studio/profile/jankstats?hl=zh_cn</p>
+<p>需要compile sdk = 32</p>
+<ul>
+<li><code>JankStats</code> 库提供了在运行时您的应用中检测和接收回调的功能，这有助于发现实际性能问题。</li>
+<li><code>JankStats</code> 与 API 结合使用，使您能够轻松注入有关界面状态的信息，并跟踪和报告每帧性能，让开发者了解的不是应用是否存在性能问题，而是发生性能问题的时间和原因。</li>
+</ul>
+<p>主要两个功能作为优势：</p>
+<p>1.卡顿判断：默认情况下，系统会将卡顿定义为呈现帧的用时为当前刷新率两倍的情况，使用 <code>jankHeuristicMultiplier</code> 属性切换卡顿算法。</p>
+<p>2.界面状态：需要手动添加metricsStateHolder来显示界面状态。</p>
+<p>监测后主要的返回信息：</p>
+<ul>
+<li>帧开始时间</li>
+<li>时长值</li>
+<li>帧是否应被视为卡顿</li>
+<li>一组字符串对，其中包含呈现帧期间应用状态的相关信息</li>
+</ul>
+<p>使用案例</p>
+<pre><code class="language-java"> //定义JankStats
+private JankStats jankStats;
+
+//设置回调
+    private JankStats.OnFrameListener  mFrameListener = new JankStats.OnFrameListener() {
+        @Override
+        public void onFrame(@NonNull FrameData frameData) {
+            Log.d(TAG, &quot;onFrame: &quot;+ frameData.toString());
+        }
+    };
+void onCreate(Bundle savedInstanceState){
+  //创建JankStatsd对象
+  jankStats = JankStats.createAndTrack(getWindow(), mFrameListener);
+}
+
+//metricsStateHolder添加界面状态
+mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+  @Override
+  public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+    super.onScrollStateChanged(recyclerView, newState);
+    PerformanceMetricsState.Holder metricsStateHolder =  PerformanceMetricsState.getHolderForHierarchy(recyclerView);
+    metricsStateHolder.getState().putState(&quot;onScrollStateChanged&quot;,&quot;RecyclerView:&quot;+newState);
+  }
+
+  @Override
+  public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+    super.onScrolled(recyclerView, dx, dy);
+    PerformanceMetricsState.Holder metricsStateHolder =  PerformanceMetricsState.getHolderForHierarchy(recyclerView);
+    metricsStateHolder.getState().putState(&quot;onScrolled&quot;,&quot;RecyclerView&quot;);
+  }
+});
+
+void onResume(){
+  if (jankStats != null) {
+    //开启
+    jankStats.setTrackingEnabled(true);
+  }
+}
+void onPause(){
+  if (jankStats != null) {
+    //关闭
+    jankStats.setTrackingEnabled(false);
+  }
+}
+</code></pre>
+<h2 id="11privacysandbox">11.privacysandbox</h2>
+<p>设计文档:https://developer.android.google.cn/design-for-safety/privacy-sandbox/attribution</p>
+<p>提供了以下三个库：</p>
+<ul>
+<li>privacysandbox ads</li>
+<li>privacysandbox sdkruntime</li>
+<li>privacysandbox-tools</li>
+</ul>
+<p>主要功能:主要是针对于广告的用户隐私方案。</p>
+<ul>
+<li>SDK运行时:为SDK明确定义的权限和数据访问权，不适合需要与主应用进行实时通信或高吞吐量通信的 SDK。</li>
+<li>隐私保护API:都是针对广告用户业务的隐私来的。暂时使用不到</li>
+<li>Topics:引入了一种根据应用开发者定义的“自定义受众群体”以及应用内的互动来展示广告的新方式。该解决方案会将这些信息和关联的广告存储在本地，并提供一个框架来编排广告选择工作流。</li>
+<li>FLEDGeD on Android：引入了一种根据应用开发者定义的“自定义受众群体”以及应用内的互动来展示广告的新方式。该解决方案会将这些信息和关联的广告存储在本地，并提供一个框架来编排广告选择工作流。</li>
+<li><a href="https://developer.android.google.cn/design-for-safety/privacy-sandbox/attribution">Attribution Reporting</a> 支持转化衡量、机器学习优化用例（例如预测转化率模型构建）和无效活动检测，优化广告的展示此事次数和无效广告的展示次数。</li>
+</ul>
+<h3 id="sdk"><a href="https://developer.android.google.cn/design-for-safety/privacy-sandbox/guides/sdk-runtime">SDK 运行时开发者指南</a></h3>
+<ul>
+<li>环境准备</li>
+</ul>
+<p>需要使用最新版本的 <a href="https://developer.android.google.cn/studio/preview">Canary 版 Android Studio</a>,设置<a href="https://developer.android.google.cn/design-for-safety/privacy-sandbox/download#emulator">设置支持 Privacy Sandbox on Android 的模拟器</a>。</p>
+<ul>
+<li>
+<p>创建SDK</p>
+</li>
+<li>
+<p>权限</p>
+<p>提供一些默认的权限，而不是使用App的权限。</p>
+</li>
+<li>
+<p>通信</p>
+<ul>
+<li>从应用到Sdk</li>
+<li>从Sdk到Sdk</li>
+</ul>
+</li>
+<li>
+<p>存储空间</p>
+<p>使用SDK内部存储空间，不能使用应用的内部存储空间，SDK存储空间将持久保留。</p>
+<p>不支持使用外部存储空间，</p>
+</li>
+<li>
+<p>只能读取SharedPreference，不能写入</p>
+</li>
+</ul>
+<h2 id="12benchmark">12.<a href="https://developer.android.google.cn/topic/performance/benchmarking/microbenchmark-overview">benchmark</a></h2>
+<blockquote>
+<p>可以使用Android Studio对Android原生代码进行基准测试，测量代码性能.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Macrobenchmark</th>
+<th>Microbenchmark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数</td>
+<td>测量高级别入口点或交互（例如，activity 启动或列表滚动）</td>
+<td>测量各个函数</td>
+</tr>
+<tr>
+<td>范围</td>
+<td>对整个应用进行进程外测试</td>
+<td>对 CPU 工作情况进行进程内测试</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>迭代速度中等（可能超过 1 分钟）</td>
+<td>迭代速度较快（通常不到 10 秒）</td>
+</tr>
+<tr>
+<td>跟踪</td>
+<td>结果包含性能分析轨迹</td>
+<td>可选的方法采样和跟踪</td>
+</tr>
+<tr>
+<td>最低 API 版本</td>
+<td>23</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">基准文件</h3>
+<blockquote>
+<p>基准配置文件可以避免对包含的代码路径执行解译和<a href="https://developer.android.google.cn/about/versions/nougat/android-7.0#jit_aot">即时 (JIT)</a> 编译步骤，从而让代码执行速度从首次启动开始提高约 30%。</p>
+</blockquote>
+<h3 id="microbenchmark">Microbenchmark(微基准)</h3>
+<blockquote>
+<p>Microbenchmark 最适用于应用中频繁运行的 CPU 工作（也称为热代码路径），典型例子包括一次显示一项的 <code>RecyclerView</code> 滚动、数据转换/处理以及反复使用的代码。</p>
+</blockquote>
+<p>基准分析的主要目标：</p>
+<ul>
+<li>MethodTracing</li>
+</ul>
+<p>方法跟踪，每种方法进入和退出的开销</p>
+<ul>
+<li>StackSampling</li>
+</ul>
+<p>堆栈采样</p>
+<p>编写基准</p>
+<blockquote>
+<p>这个需要手动去写每个方法的基准，如需创建基准，请使用基准库提供的 <a href="https://developer.android.google.cn/guide/topics/manifest/application-element#debug"><code>BenchmarkRule</code></a> 类。如需对 Activity 进行基准化分析，请使用 <a href="https://developer.android.google.cn/reference/androidx/test/rule/ActivityTestRule"><code>ActivityTestRule</code></a> 或 <a href="https://developer.android.google.cn/reference/androidx/test/ext/junit/rules/ActivityScenarioRule"><code>ActivityScenarioRule</code></a>。如需对界面代码进行基准化分析，请使用 <a href="https://developer.android.google.cn/reference/androidx/test/annotation/UiThreadTest"><code>@UiThreadTest</code></a>。</p>
+</blockquote>
+<p>1.<a href="https://developer.android.google.cn/topic/performance/benchmarking/microbenchmark-write#full-setup">设置Microbenchmark模块</a></p>
+<p>2.更改Microbenchmark模块 <code>build.gradle</code></p>
+<pre><code class="language-groovy">dependencies {
+    // modulename 是指你要测试方法的模块
+    androidTestImplementation project(':benchmarkable')
+}
+</code></pre>
+<p>3.创建Microbenchmark基准类</p>
+<pre><code class="language-java">@RunWith(AndroidJUnit4.class)
+class SampleBenchmark {
+    @Rule
+    public BenchmarkRule benchmarkRule = new BenchmarkRule();
+
+    @Test
+    public void benchmarkSomeWork() {
+        final BenchmarkState state = benchmarkRule.getState();
+        while (state.keepRunning()) {
+            doSomeWork();
+        }
+    }
+}
+</code></pre>
+<p>4.运行基准，查看结果</p>
+<h3 id="macrobenchmark">Macrobenchmark(宏基准)</h3>
+<blockquote>
+<p>Macrobenchmark 库适用于测试应用的较大用例，包括应用启动和复杂的界面操作。</p>
+</blockquote>
+<p>基准主要指标:</p>
+<ul>
+<li>StartupTimingMetric: 启动时间指标</li>
+<li>FrameTimingMetric:帧的指标，主要是帧生成的时间，帧的使用时间</li>
+<li>TraceSectionMetric:输出Trace所花费的时间</li>
+<li>Powermetic :耗电量和能量变化</li>
+</ul>
+<p>编写基准</p>
+<p>1.<a href="https://developer.android.google.cn/topic/performance/benchmarking/macrobenchmark-overview">设置 Macrobenchmark 模块</a></p>
+<p>2.设置应用</p>
+<ul>
+<li>修改build.gradlew</li>
+</ul>
+<p>```groovy
+  buildTypes {
+      release {
+          minifyEnabled true
+          shrinkResources true
+          proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      }</p>
+<pre><code>  benchmark {
+      initWith buildTypes.release
+      signingConfig signingConfigs.debug
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'benchmark-rules.pro'
+  }
+</code></pre>
+<p>}
+  ```</p>
+<ul>
+<li>打开左侧的 <strong>Build Variants</strong> 面板，选择应用和 Macrobenchmark 模块的要进行基准测试的变体</li>
+</ul>
+<p>3.设置多模块(可选)</p>
+<p>4.设置多个Variants(可选)</p>
+<p>5.编写Macrobenchmark 类</p>
+<pre><code class="language-java">@LargeTest
+@RunWith(AndroidJUnit4.class)
+public class SampleStartupBenchmark {
+    @Rule
+    public MacrobenchmarkRule benchmarkRule = new MacrobenchmarkRule();
+
+    @Test
+    public void startup() {
+        benchmarkRule.measureRepeated(
+            /* packageName */ TARGET_PACKAGE,
+            /* metrics */ Arrays.asList(new StartupTimingMetric()),
+            /* iterations */ 5,
+            /* measureBlock */ scope -&gt; {
+                // starts default launch activity
+                scope.startActivityAndWait();
+                return Unit.INSTANCE;
+            }
+        );
+    }
+}
+</code></pre>
+<p>6.运行基准，查看结果</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

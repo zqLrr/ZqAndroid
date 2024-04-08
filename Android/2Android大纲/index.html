@@ -1,0 +1,3955 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+        <link rel="prev" href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Android 大纲 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Android 大纲
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    四大组件
+  </a>
+  
+    <nav class="md-nav" aria-label="四大组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1activity" class="md-nav__link">
+    1、Activity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2boradcast-receiver" class="md-nav__link">
+    2、Boradcast Receiver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3application" class="md-nav__link">
+    3、Application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4service" class="md-nav__link">
+    4、Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5contentprovider" class="md-nav__link">
+    5、ContentProvider
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6context" class="md-nav__link">
+    6、Context对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7intent" class="md-nav__link">
+    7、Intent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8buddle" class="md-nav__link">
+    8、Buddle的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9onsaveinstancestateonrestoreinstancestate" class="md-nav__link">
+    9、OnSaveInstanceState()&amp;&amp;OnRestoreInstanceState()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10onnewintent-activity" class="md-nav__link">
+    10.onNewIntent()  ——Activity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11onacitivityresult-activityfragment" class="md-nav__link">
+    11.onAcitivityResult --Activity&amp;&amp;Fragment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    UI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1fragement" class="md-nav__link">
+    1、Fragement 生命周期
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2view" class="md-nav__link">
+    2、View
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3xmlns" class="md-nav__link">
+    3、xmlns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4android-values" class="md-nav__link">
+    4、Android Values文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    事件机制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1、事件分发
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2handler" class="md-nav__link">
+    2、Handler消息传递机制
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    数据存储
+  </a>
+  
+    <nav class="md-nav" aria-label="数据存储">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1sharepreference" class="md-nav__link">
+    1、Sharepreference
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2、文件读写和存储
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3sqlite" class="md-nav__link">
+    3、SQLite数据库的使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    框架
+  </a>
+  
+    <nav class="md-nav" aria-label="框架">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1mvcmvpmvvm" class="md-nav__link">
+    1、mvc、mvp和mvvm的区别
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    内存
+  </a>
+  
+    <nav class="md-nav" aria-label="内存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    1、内存泄漏
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    2、内存溢出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3android" class="md-nav__link">
+    3、Android进程间通信
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    动画
+  </a>
+  
+    <nav class="md-nav" aria-label="动画">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    1、动画概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2tween" class="md-nav__link">
+    2、补间(Tween)动画
+  </a>
+  
+    <nav class="md-nav" aria-label="2、补间(Tween)动画">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#animation" class="md-nav__link">
+    Animation子类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#translateanimation" class="md-nav__link">
+    TranslateAnimation   平移动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alphaanimation" class="md-nav__link">
+    AlphaAnimation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaleanimation" class="md-nav__link">
+    ScaleAnimation 缩放动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotateanimation" class="md-nav__link">
+    RotateAnimation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#animationset" class="md-nav__link">
+    AnimationSet  联合动画
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3frame" class="md-nav__link">
+    3、逐帧(Frame)动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4、插值器简介和应用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intdef" class="md-nav__link">
+    @IntDef 注解，减缓枚举的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android" class="md-nav__link">
+    Android 网络
+  </a>
+  
+    <nav class="md-nav" aria-label="Android 网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1tcp" class="md-nav__link">
+    1、TCP 连接
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2httpurlconnection" class="md-nav__link">
+    2、网络请求之——HttpUrlConnection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    四大组件
+  </a>
+  
+    <nav class="md-nav" aria-label="四大组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1activity" class="md-nav__link">
+    1、Activity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2boradcast-receiver" class="md-nav__link">
+    2、Boradcast Receiver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3application" class="md-nav__link">
+    3、Application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4service" class="md-nav__link">
+    4、Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5contentprovider" class="md-nav__link">
+    5、ContentProvider
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6context" class="md-nav__link">
+    6、Context对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7intent" class="md-nav__link">
+    7、Intent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8buddle" class="md-nav__link">
+    8、Buddle的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9onsaveinstancestateonrestoreinstancestate" class="md-nav__link">
+    9、OnSaveInstanceState()&amp;&amp;OnRestoreInstanceState()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10onnewintent-activity" class="md-nav__link">
+    10.onNewIntent()  ——Activity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11onacitivityresult-activityfragment" class="md-nav__link">
+    11.onAcitivityResult --Activity&amp;&amp;Fragment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    UI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1fragement" class="md-nav__link">
+    1、Fragement 生命周期
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2view" class="md-nav__link">
+    2、View
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3xmlns" class="md-nav__link">
+    3、xmlns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4android-values" class="md-nav__link">
+    4、Android Values文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    事件机制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1、事件分发
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2handler" class="md-nav__link">
+    2、Handler消息传递机制
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    数据存储
+  </a>
+  
+    <nav class="md-nav" aria-label="数据存储">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1sharepreference" class="md-nav__link">
+    1、Sharepreference
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2、文件读写和存储
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3sqlite" class="md-nav__link">
+    3、SQLite数据库的使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    框架
+  </a>
+  
+    <nav class="md-nav" aria-label="框架">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1mvcmvpmvvm" class="md-nav__link">
+    1、mvc、mvp和mvvm的区别
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    内存
+  </a>
+  
+    <nav class="md-nav" aria-label="内存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    1、内存泄漏
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    2、内存溢出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3android" class="md-nav__link">
+    3、Android进程间通信
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    动画
+  </a>
+  
+    <nav class="md-nav" aria-label="动画">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    1、动画概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2tween" class="md-nav__link">
+    2、补间(Tween)动画
+  </a>
+  
+    <nav class="md-nav" aria-label="2、补间(Tween)动画">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#animation" class="md-nav__link">
+    Animation子类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#translateanimation" class="md-nav__link">
+    TranslateAnimation   平移动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alphaanimation" class="md-nav__link">
+    AlphaAnimation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaleanimation" class="md-nav__link">
+    ScaleAnimation 缩放动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotateanimation" class="md-nav__link">
+    RotateAnimation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#animationset" class="md-nav__link">
+    AnimationSet  联合动画
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3frame" class="md-nav__link">
+    3、逐帧(Frame)动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4、插值器简介和应用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intdef" class="md-nav__link">
+    @IntDef 注解，减缓枚举的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android" class="md-nav__link">
+    Android 网络
+  </a>
+  
+    <nav class="md-nav" aria-label="Android 网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1tcp" class="md-nav__link">
+    1、TCP 连接
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2httpurlconnection" class="md-nav__link">
+    2、网络请求之——HttpUrlConnection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<p>这是我结合博客和《疯狂的Android讲义》所做的学习笔记，大家可以做个资料查询，这里面只是普识性的，对于每一个点会在别的笔记中，做详细的学习。</p>
+<h2 id="_1">四大组件</h2>
+<h3 id="1activity">1、Activity</h3>
+<ul>
+<li>
+<p>一个Activity通常就是一个单独的屏幕（窗口）。</p>
+</li>
+<li>
+<p>Activity之间通过Intent进行通信。</p>
+</li>
+<li>
+<p>android应用中每一个Activity都必须要在AndroidManifest.xml配置文件中声明，否则系统将不识别也不执行该Activity。</p>
+</li>
+<li>
+<p>生命周期</p>
+</li>
+</ul>
+<p><img alt="img" src="../2Android%E5%A4%A7%E7%BA%B2.assets/watermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1MzE0MDkyNzA2%2Csize_16%2Ccolor_FFFFFF%2Ct_70.png" /></p>
+<ul>
+<li>
+<p>OnCreate()</p>
+<p>在第一次创建活动时调用 这是你应该完成所有常规静态设置的位置：创建视图，将数据绑定到列表等。此方法还会为你提供一个包含Activity先前保存页面状态的Bundle对象（如果有的话），后面总是跟着onStart（）方法。</p>
+</li>
+<li>
+<p>onStart()</p>
+<p>当Activity对用户变得可见的时候调用。如果活动进入前台，则跟随执行onResume（）方法，如果隐藏，则执行onStop（）。
+此时，Activity实际上就已经可见了，但是还没有出现在前台，无法和用户进行交互。</p>
+</li>
+<li>
+<p>onResume()</p>
+<p>此时，Activity已经可见，并且出现在前台并开始活动。</p>
+</li>
+<li>
+<p>onPause()</p>
+<p>该方法后处于后台运行，可以对未保存的数据进行保存，停止消耗资源的行为，对用户部分可见。</p>
+<p>onPause()方法在系统即将开始显示之前的界面时调用。 这通常用于将未保存的更改进行保存，并保存为持久化数据，并且会执行例如停止动画和其他可能消耗CPU的内容等。此方法的实现必须非常快速，因为在此方法返回之前，下一个界面不会显示。
+如果界面返回到前台，则跟随onResume（）;如果对用户不可见，则使用onStop（）。</p>
+</li>
+<li>
+<p>onStop()</p>
+<p>onStop()方法会在当界面对用户不再可见时调用，因为另一项界面正在显示并要去覆盖这个界面。 这可能是因为一项新的界面正在开始，其他的界面会被显示为前台界面，或者这个界面正在被摧毁。如果这个界面快速的回显与用户交互紧接着onRestart（）会被执行，否则，这个界面会调用销毁onDestroy（）方法会被执行。</p>
+</li>
+<li>
+<p>onDestory()</p>
+<p>在你的界面被销毁前最后调用的方法。 这可能是因为界面正在结束（有人在其中调用finish（）方法因为系统会暂时销毁此Activity界面的实例以节省空间，你可以使用isFinishing（）方法区分内存空间是否节省资源的这两种情况）。</p>
+</li>
+<li>
+<p>onRestart()</p>
+<p>在你的界面停止后调用，然后再次启动。 后面总是跟着onStart（）</p>
+<p>onCreat和onDestroy 分别表示Activity的创建和销毁,只会调用一次.
+onStart和onStop 表示Activity是否可见,此时是后台可见;可以调用很多次,随着用户操控屏幕点亮熄灭会被调用;
+onResume 和onPause 表示Activity是否位于前台 可以调用很多次</p>
+<p>注意：横屏和竖屏切换时会先销毁再重建</p>
+</li>
+<li>
+<p>OnSaveInstanceState() 方法是为了当用户暂时从您的应用切换到其他应用，并在稍后返回您的应用，他们希望界面状态保持不变。当Activity因系统限制而被销毁时，该方法和ViewModel()方法来保留用户的瞬时界面状态。</p>
+</li>
+<li>
+<p>启动模式</p>
+</li>
+<li>
+<p>standard:标准模式</p>
+<ul>
+<li>会创建新的Activity实例，并将该实例添加到当前Task内。</li>
+</ul>
+</li>
+<li>singleTop:Task栈顶单例模式<ul>
+<li>若要启动的Activity实例，已经位于栈顶，将不会创建</li>
+<li>若要启动的Activity实例，没有位于栈顶，将会创建新的实例，并把它加载到栈顶</li>
+</ul>
+</li>
+<li>singleTask:Task内单例模式<ul>
+<li>若要启动的Activity不存在，则会在新的Task中创建新的Activity实例，并将它放入栈顶</li>
+<li>若要启动的Activity存在且在栈顶，则不会创建</li>
+<li>若要启动的Activity存在且不在栈顶，则会将之上的Activity清除，使其位于栈顶</li>
+</ul>
+</li>
+<li>
+<p>singleInstance：全局单例模式</p>
+<ul>
+<li>若要启动的Activity不存在，则会在新的Task创建新的Activity实例，并将它放入栈顶</li>
+<li>若要启动的Activity存在，则会直接把Activity转到栈顶，且该Task只会有这个Activity。</li>
+</ul>
+</li>
+<li>
+<p>Activity 属性</p>
+</li>
+<li>
+<p>WindowSoftInputMode ：软键盘的输入</p>
+<ul>
+<li>两类属性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>Value值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显示与隐藏</td>
+<td>stateUnspecified</td>
+<td>软键盘的状态并没有指定，系统将选择一个合适的状态或依赖于主题的设置</td>
+</tr>
+<tr>
+<td></td>
+<td>stateUnchanged</td>
+<td>当这个activity出现时，软键盘将一直保持在上一个activity里的状态，无论是隐藏还是显示</td>
+</tr>
+<tr>
+<td></td>
+<td>stateHidden</td>
+<td>用户选择activity时，软键盘总是被隐藏</td>
+</tr>
+<tr>
+<td></td>
+<td>stateAlwaysHidden</td>
+<td>当该Activity主窗口获取焦点时，软键盘也总是被隐藏的</td>
+</tr>
+<tr>
+<td></td>
+<td>stateVisible</td>
+<td>软键盘通常是可见的</td>
+</tr>
+<tr>
+<td>调整屏幕</td>
+<td>adjustUnspecified</td>
+<td>默认设置，通常由系统自行决定是隐藏还是显示</td>
+</tr>
+<tr>
+<td></td>
+<td>adjustResize</td>
+<td>该Activity总是调整屏幕的大小以便留出软键盘的空间</td>
+</tr>
+<tr>
+<td></td>
+<td>adjustPan</td>
+<td>当前窗口的内容将自动移动以便当前焦点从不被键盘覆盖和用户能总是看到输入内容的部分</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>configChanges</p>
+<p>这个属性可以接受一系列的配置值，用来告诉系统在特定配置发生变化时，不要销毁和重新创建当前活动，而是由应用程序自己来处理这些变化。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>orientation</td>
+<td>屏幕方向改变，比如从竖屏切换到横屏或者反之</td>
+</tr>
+<tr>
+<td>keyboardHidden</td>
+<td>键盘的可见性改变，比如键盘弹出或收起</td>
+</tr>
+<tr>
+<td>screenSize</td>
+<td>屏幕尺寸改变，比如平板电脑或手机横竖屏之间的切换</td>
+</tr>
+<tr>
+<td>smallestScreenSize</td>
+<td>最小屏幕尺寸改变，指的是屏幕的可用最小尺寸，例如在多窗口模式下调整窗口大小</td>
+</tr>
+<tr>
+<td>screenLayout</td>
+<td>屏幕布局改变，比如屏幕大小、分辨率等变化</td>
+</tr>
+<tr>
+<td>uiMode</td>
+<td>UI 模式改变，比如夜间模式切换</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>生命周期变化</p>
+</li>
+<li>
+<p>场景一：界面A 新开一个界面，然后返回到原来的界面A</p>
+<p><code>java
+//新开
+A onPause()
+//关闭
+A onResume()</code></p>
+</li>
+<li>
+<p>onCreateView()方法</p>
+</li>
+</ul>
+<p>会在onCreate()时去渲染每个view,每个view完成后会进行这个方法的回调</p>
+<h3 id="2boradcast-receiver">2、Boradcast Receiver</h3>
+<p>1、定义:</p>
+<p>即广播接收器，用于监听/接收Android应用分发的各类广播并做出相应的响应。</p>
+<p>2、应用场景</p>
+<ol>
+<li>监听系统事件：如开机广播，网络连接与断开，屏幕开启与关闭等</li>
+<li>不同组件间通信（多个Activity/service，包括不同应用间）</li>
+<li>多线程通信</li>
+</ol>
+<p>3、广播类型：无序广播、有序广播和粘性广播（超出10s）</p>
+<p>4、生命周期：从调用开始到onReceiver()方法执行完毕结束。（一般不超过10s,会出现ANR）</p>
+<p>5、实现原理：观察者模式（基于<strong>消息发布/订阅模式的事件驱动模型</strong>）</p>
+<p>​   广播模型中包含三个角色：</p>
+<ol>
+<li>消息发布者（广播发布者）</li>
+<li>消息中心（AMS，即Activity Manager Service）</li>
+<li>消息订阅者（广播接收者）</li>
+</ol>
+<p>流程：</p>
+<p>1.广播接受者通过Binder机制在AMS中注册监听</p>
+<p>2.广播发布者通过Binder机制向AMS发送广播
+3.AMS根据发送者的需求，在已注册表中获取到合适的广播接受者（根据Intent-filter，Permission）
+4.AMS将广播发送给合适的广播接受者的消息循环队列中
+5.广播接受者通过消息循环获取到广播并回调onReceive()</p>
+<p>6、使用流程</p>
+<ul>
+<li>
+<p>接收广播 （注册广播接收者）</p>
+</li>
+<li>
+<p>静态注册</p>
+<ul>
+<li>新建一个Broadcast Receiver子类，修改其函数</li>
+<li>在AndroidManifest.xml中通过<receive>标签进行申明</li>
+</ul>
+</li>
+<li>
+<p>动态注册</p>
+<ul>
+<li>在代码中通过registerReceiver(BroadcastReceiver receiver, IntentFilter filter)来动态注册广播</li>
+</ul>
+</li>
+<li>
+<p>接受特定的广播</p>
+<ul>
+<li>首先，在AndroidManifest.xml中定义新的权限SEND_XXX，例如：</li>
+</ul>
+<p><code>xml
+  &lt;permission android:name="com.android.SEND_XXX"
+              android:protectionLevel="normal"/&gt; 
+  //定义权限规则：权限的名称必须遵循 包名+.+字符串 的规则，详细属性见下图</code></p>
+<p><img alt="在这里插入图片描述" src="../2Android%E5%A4%A7%E7%BA%B2.assets/watermark%2Ctype_d3F5LXplbmhlaQ%2Cshadow_50%2Ctext_Q1NETiBASGVpa28tQW5kcm9pZA%3D%3D%2Csize_20%2Ccolor_FFFFFF%2Ct_70%2Cg_se%2Cx_16.png" /></p>
+<p>然后，在接受者app的Androidmanifest.xml中的<receiver> tag里添加权限SEND_XXX的声明</p>
+<p>```xml
+  <!-- 声明自定义权限 -->
+  <uses-permission android:name="com.android.permission.SEND_XXX" /></p>
+<p><receiver android:name=".MyBroadcastReceiver" <br />           android:permission="com.android.permission.SEND_XXX"> <br />
+     <intent-filter><br />
+          <action android:name="com.android.XXX_ACTION" /> <br />
+     </intent-filter><br />
+  </receiver> 
+  ```</p>
+<p>发送者也在Androidmanifest.xml中声明权限。</p>
+</li>
+<li>
+<p>发送广播 （广播发布者）</p>
+</li>
+<li>
+<p>sendBroadcast(),sendOrderedBroadcast()和sendStickyBroadcast()</p>
+<p><code>java
+Intent intent = new Intent();  
+intent.setAction("com.itlao5.broadcast");  
+intent.putExtra("data", "data");  
+sendBroadcast(intent);</code></p>
+</li>
+<li>
+<p>发送给特定的广播</p>
+<p>在AndroidManifest.xml中，我们可以配置</p>
+<p><permission android:name = "com.android.permission.XXX"/> 
+然后在发送广播时</p>
+<p>sendBroadcast("com.android.XXX_ACTION", "com.android.permission.XXX");<br />
+此时，就只有在广播接收的应用中在AndroidManifest.xml中添加对应的XXX权限，才能正常接收到该广播。</p>
+<p><uses-permission android:name="com.android.permission.XXX">&gt;</uses-permission>  </p>
+</li>
+</ul>
+<p>7、注意事项：</p>
+<ul>
+<li>动态注册的广播在不需要时，必须销毁，一般在活动销毁时进行</li>
+<li>不要在广播接收者中进行耗时操作</li>
+<li>不要在广播接收器onReceiver中开启异步任务</li>
+</ul>
+<p>8、广播接收者动态注册和静态注册的区别</p>
+<table>
+<thead>
+<tr>
+<th>动态注册</th>
+<th>静态注册</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在程序中进行</td>
+<td>在AndroidManifest.xml中定义</td>
+</tr>
+<tr>
+<td>活动销毁时，广播接收器也要unRegisterReceiver()</td>
+<td>为常驻广播，即使应用处于非运行状态，也可接收</td>
+</tr>
+<tr>
+<td>优先级较高，且可以控制注册与注销，开销更小，生命周期可控</td>
+<td>生命周期不易控制</td>
+</tr>
+<tr>
+<td>支持隐式intent和显式intent</td>
+<td>Android 8 之后隐式intent不支持sendboardCast,支持显式intent</td>
+</tr>
+</tbody>
+</table>
+<p>9、显式广播和隐式广播</p>
+<p>动态注册支持隐式和显式，没有什么区别</p>
+<p>静态注册Android8 之后不支持隐式，若要支持隐式需要+Flag,或者加上包名</p>
+<pre><code class="language-java">public static final int FLAG_RECEIVER_INCLUDE_BACKGROUND = 0x01000000;
+intent.addFlags(0x01000000);
+intent.setPackage(getPackageName());
+</code></pre>
+<pre><code class="language-java">//静态注册
+//显式广播
+try {
+  Intent intent = new Intent(MainActivity.this, Class.forName(&quot;com.example.androiddemo.BroadcastReceiver.testReceiver&quot;));
+  //intent.setAction(&quot;staticFilter&quot;);
+  intent.putExtra(&quot;data&quot;, &quot;test BoardCast&quot;);
+  sendBroadcast(intent);
+} catch (ClassNotFoundException e){
+  e.printStackTrace();
+}
+//隐式广播
+Intent intent = new Intent();
+intent.setAction(&quot;staticFilter&quot;);
+intent.putExtra(&quot;data&quot;, &quot;test BoardCast&quot;);
+intent.addFlags(0x01000000);
+sendBroadcast(intent)；
+</code></pre>
+<p>10、onReceive 参数  context</p>
+<p>如果是静态注册的Broadcast，context.toString()输出为：android.app.ReceiverRestrictedContext@e5d8f65</p>
+<p>如果是动态注册的Broadcast，context.toString()输出为：com.example.test.MainActivity@84dfef5</p>
+<p>静态与动态注册的的Broadcast，context.getPackageName()输出都为：com.example.test</p>
+<p>无论静态还是动态注册的Broadcast，都跑在广播所在app的进程</p>
+<p>11、广播的优先级</p>
+<ul>
+<li>添加方式</li>
+</ul>
+<p><code>java
+  //静态注册
+   &lt;intent-filter android:priority="1000"&gt;&lt;/intent-filter&gt;
+  //动态注册
+   intentFilter.setPriority(10);</code></p>
+<p>Android 对于广播的优先级定义为优先级数值越大，则优先级越高，实际上有以下效果，使用优先级一般是有序广播，有序广播是同步进行的。</p>
+<ul>
+<li>发送有序广播</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>广播注册类型</th>
+<th>实际效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全部是静态注册广播</td>
+<td>数值越大，优先级越低</td>
+</tr>
+<tr>
+<td>全部是动态注册广播</td>
+<td>数值越大，优先级越高，优先级相同的已先注册的优先</td>
+</tr>
+<tr>
+<td>既有动态注册广播又有静态注册广播</td>
+<td>当只有一个动态注册的广播时，动态注册的广播优先级永远高于静态注册的广播，且静态注册的广播是数值越大，优先级越高<br />当有多个动态注册的广播时，应该是有算法进行整合，保证了静态和动态都有一个数值最大的为第一第二位</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>发送无序广播</li>
+</ul>
+<p>广播是无序的，是不考虑优先级的，因为执行顺序不确定，也无法使用setResult系列、getResult系列及abort（中止）系列API。</p>
+<p>12.未启动的App如何收到广播</p>
+<blockquote>
+<p>Android 3.1以后新增Stopped机制，如果App未启动在系统中记录为以下形式，是Stopped状态</p>
+<p><pkg name="com.example.test" stopped="true" /></p>
+<p>系统广播中添加了FLAG_EXCLUDE_STOPPED_PACKAGES，因此在stopped状态下无法收到广播。</p>
+</blockquote>
+<p>看一下这两个Flag:</p>
+<pre><code class="language-java">/**
+ * If set, this intent will not match any components in packages that
+ * are currently stopped.  If this is not set, then the default behavior
+ * is to include such applications in the result.
+ */
+public static final int FLAG_EXCLUDE_STOPPED_PACKAGES = 0x00000010;
+/**
+ * If set, this intent will always match any components in packages that
+ * are currently stopped.  This is the default behavior when
+ * {@link #FLAG_EXCLUDE_STOPPED_PACKAGES} is not set.  If both of these
+ * flags are set, this one wins (it allows overriding of exclude for
+ * places where the framework may automatically set the exclude flag).
+ */
+public static final int FLAG_INCLUDE_STOPPED_PACKAGES = 0x00000020;
+</code></pre>
+<p>简单地说，带有<code>FLAG_EXCLUDE_STOPPED_PACKAGES</code>的广播不会被发送给stopped状态的app，而两者都有的情况下以<code>FLAG_INCLUDE_STOPPED_PACKAGES</code>为准。这就是stopped机制，能在一定程度上防范流氓软件恶意监听系统广播，而<code>FLAG_INCLUDE_STOPPED_PACKAGES</code>则相当于留给开发者用于自定义广播的后门了。</p>
+<p>因此，发送广播时，应加上FLAG_INCLUDE_STOPPED_PACKAGES</p>
+<pre><code class="language-java">// By default broadcasts do not go to stopped apps.
+intent.addFlags(Intent.FLAG_EXCLUDE_STOPPED_PACKAGES);
+</code></pre>
+<h3 id="3application">3、Application</h3>
+<p>1、定义</p>
+<pre><code>   Application和Activity,Service一样,是android框架的一个系统组件，当android程序启动时系统会创建一个 application对象，用来存储系统的一些信息。通常我们是不需要指定一个Application的，这时系统会自动帮我们创建，如果需要创建自己 的Application，也很简单创建一个类继承 Application并在manifest的application标签中进行注册(只需要给Application标签增加个name属性把自己的 Application的名字定入即可)。
+</code></pre>
+<p>2、作用</p>
+<ul>
+<li>
+<p>定义全局变量</p>
+</li>
+<li>
+<p>通过Application传递数据</p>
+</li>
+<li>Application数据缓存</li>
+<li>pitfalls</li>
+<li>MemoryLeak</li>
+</ul>
+<p>3、生命周期</p>
+<ul>
+<li>
+<p>Application的onCreate()是App的第一个入口</p>
+</li>
+<li>
+<p><img alt="img" src="https://img-blog.csdn.net/20180716122506349?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hvdHR5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" /></p>
+</li>
+<li>
+<p>onCreate() :Application创建的时候调用</p>
+<ul>
+<li>简单初始化，不要执行耗时操作，否则会拖慢APP启动速度</li>
+<li>定义全局常量或变量，要避免内存泄漏（可以用普通单例实现来代替）</li>
+<li>定义全局静态方法（可以用普通类实现来代替）</li>
+</ul>
+</li>
+<li>
+<p>onConfigurationChanged():当配置信息改变的时候会调用，如屏幕旋转、语言切换等。</p>
+</li>
+<li>
+<p>onLowMemory():当内存较低时，清理内存或提醒用户，来保证内存足够使用</p>
+</li>
+<li>
+<p>onTrimMemory():用于取代onLowmemory();</p>
+</li>
+<li>
+<p>onTerminate():Application结束的时候会调用，由系统决定调用的时机。</p>
+<p>Application 被杀死的情况分析：
+为了决定在内存较低的时候杀掉哪个进程, Android会根据运行在这些进程内的组件及他们的状态把进程划分成一个”重要程度层次”. 其重要的程度按以下规则排序:</p>
+<p><img alt="img" src="https://img-blog.csdn.net/20180716122447230?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hvdHR5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" /></p>
+<p>Activity Process
+活动进程，也叫前台进程。Android会尝试通过回收各种资源来保证其运行状态。此类进程数量少，通常是最后被结束掉的。活动进程包含下面几种情况：
+— 进程持有一个正在与用户交互的Activity(这个Activity的onResume()方法被调用)。
+— 进程持有一个Service，这个Service处于这几种状态:①Service与用户正在交互的Activity绑定。②Service是在前台运行的，即它调用了 startForeground()。③Service正在执行它的生命周期回调函数（onCreate(), onStart(), or onDestroy()）。
+— 进程持有一个BroadcastReceiver，这个BroadcastReceiver正在执行它的 onReceive() 方法。</p>
+<p>Visible Process
+可见进程，如果一个进程不含有任何前台活动的组件，不可与用户交互，但仍在屏幕上可见。可见进程包含下面几种情况：
+—进程持有一个Activity，这个Activity不在前台，但是仍然被用户可见（处于onPause()调用后又没有调用onStop()的状态）。
+—进程持有一个Service，这个Service和一个可见的或者活动的Activity绑定。</p>
+<p>Started Service Process
+启动后的服务进程，该服务进程在没有可视化界面的情况下持续运行时。</p>
+<p>Background Process
+后台进程，持有一个用户不可见的Activity（Activity的onStop()被调用，但是onDestroy()没有调用）的状态。通常有很多后台进程在运行。它们被保存在一个LRU(最近最少使用)列表中来确保拥有最近刚被看到的Activity的进程最后被杀死。</p>
+<p>Empty Process
+空进程，不拥有入何活动组件的进程。为了改善整个系统的性能，Android会在内存中保留已经结束生命周期的应用程序，以便这些App能够快速启动。</p>
+</li>
+</ul>
+<h3 id="4service">4、Service</h3>
+<p>1、定义  Android的组件，分为本地服务和远端服务，是一种机制，运行在main线程上。</p>
+<p>2、创建配置Service</p>
+<p>和Activity的创建和配置一样</p>
+<p>3、启动和停止Service</p>
+<ul>
+<li>Service.startService(Intent intent) 通过intent指定Service</li>
+</ul>
+<p>会调用Service的onCreate()和onStartCommend()</p>
+<ul>
+<li>Service.stopService(Intent intent) 通过intent指定Service</li>
+</ul>
+<p>会调用Service的onDestory()</p>
+<p>4、绑定Service</p>
+<ul>
+<li>
+<p>Service.bindService(Intent,ServiceConnection,flags)</p>
+</li>
+<li>
+<p>intent  指定Service</p>
+</li>
+<li>用于监听访问者与Service之间的连接情况，正常解绑不会通知<ul>
+<li>onServiceConnected     通知连接</li>
+<li>onServiceDisconnected  通知断开</li>
+</ul>
+</li>
+<li>flags<ul>
+<li>0   不自动创建</li>
+<li>BIND_AUTO_CREATE  自动创建</li>
+</ul>
+</li>
+</ul>
+<p>会调用onCreate()  onBind()</p>
+<ul>
+<li>Service.unbindService(ServiceConnection)</li>
+</ul>
+<p>会调用unBind()、onDestory()</p>
+<ul>
+<li>Service类提供IBinder onBinder()提供Binder对象，在ServiceConnection中获取Binder，访问者通过Binder和Service进行通信。</li>
+</ul>
+<p>5、生命周期</p>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/4625401-756d89b600d55081.png?imageMogr2/auto-orient/strip|imageView2/2/w/404/format/webp" /></p>
+<p>6、IntentService</p>
+<p>定义：由于Service不会专门启动一个单独的线程，依赖于main线程，因此不应该在Service中直接处理耗时的任务。</p>
+<p>特征：</p>
+<ul>
+<li>IntentService会创建单独的worker线程来处理所有的Intent请求。</li>
+<li>IntentService会创建单独的worder线程来处理onHandleIntent()方法实现的代码。</li>
+<li>IntentService会将Intent请求添加到队列中，worker线程依次处理。</li>
+<li>当所有请求处理完成后，IntentService会自动停止，无需开发者调用方法来停止Service。</li>
+<li>为Service的onBind()、onStartComment()提供了默认的实现，无需重写。</li>
+</ul>
+<p>7、启动另一个App中的Service</p>
+<p>必须保证另一个App是启动的。</p>
+<ul>
+<li>打开另一个App源码</li>
+</ul>
+<pre><code class="language-java"> Intent it =  getBaseContext().getPackageManager().getLaunchIntentForPackage(&quot;另一个App包名&quot;);
+        if(it !=null) {
+            it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getBaseContext().startActivity(it);
+        }
+</code></pre>
+<ul>
+<li>
+<p>打开另一App中服务的源码（显式启动）</p>
+</li>
+<li>
+<p>通过包名和全路径名</p>
+</li>
+</ul>
+<p><code>java
+  Intent i  = new Intent();
+  i.setClassName("com.example.firstservice","com.example.firstservice.MyService");
+  startService(i);</code></p>
+<p>设置service的Android:exported="true";</p>
+<ul>
+<li>
+<p>通过ComponentName类</p>
+</li>
+<li>
+<p>启动、停止、绑定和解绑的方式一样，通过Intent显式调用另一个app的Service</p>
+</li>
+</ul>
+<p>8、通过AIDL进行进程间的通信</p>
+<ul>
+<li>
+<p>AIDL中可以定义接口，在IAppServiceRemoteBinder.Stub()类中进行实现。</p>
+</li>
+<li>
+<p>在onServiceConnected()中进行对Service中数据和操作进行绑定</p>
+</li>
+</ul>
+<p><code>java
+   public void onServiceConnected(ComponentName name, IBinder service) {
+              System.out.println("Connected Success");
+              System.out.println(service);
+              //获取远程Servise的onBind()所返回对象的代理
+              IBinder = IAppServiceRemoteBinder.Stub.asInterface(service);//虽然类名相同，但不是同一个类，因此需要这样转换
+          }</code></p>
+<ul>
+<li>通过AIDL定义的接口</li>
+</ul>
+<p><code>java
+  private IAppServiceRemoteBinder IBinder = null;</code></p>
+<p>即可实现在服务与访问者之间进行通信。</p>
+<h3 id="5contentprovider">5、ContentProvider</h3>
+<p>1.定义   数据共享标准，Android四大组件之一</p>
+<p>2.ContentProvider注册</p>
+<ul>
+<li>新建ContentProvider子类</li>
+<li>在Android中注册ContentProvider</li>
+<li>authorities  相当于ContentProvider的域名</li>
+<li>name 实现类的类名</li>
+<li>exported:是否被允许被其他应用调用</li>
+<li>readPermission:指定读取该ContentProvider的权限。</li>
+<li>writePermission:指定写入该ContentProvider的权限。</li>
+<li>permission：配置了读取和写入的权限</li>
+</ul>
+<p>3.ContentProvider方法</p>
+<ul>
+<li>
+<p>```java
+  &lt;-- 4个核心方法 --&gt;
+    public Uri insert(Uri uri, ContentValues values) 
+    // 外部进程向 ContentProvider 中添加数据</p>
+<p>public int delete(Uri uri, String selection, String[] selectionArgs) 
+// 外部进程 删除 ContentProvider 中的数据</p>
+<p>public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
+// 外部进程更新 ContentProvider 中的数据</p>
+<p>public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,  String sortOrder)　 
+// 外部应用 获取 ContentProvider 中的数据</p>
+</li>
+</ul>
+<p>// 注：
+    // 1. 上述4个方法由外部进程回调，并运行在ContentProvider进程的Binder线程池中（不是主线程）
+   // 2. 存在多线程并发访问，需要实现线程同步
+     // a. 若ContentProvider的数据存储方式是使用SQLite &amp; 一个，则不需要，因为SQLite内部实现好了线程同步，若是多个SQLite则需要，因为SQL对象之间无法进行线程同步
+    // b. 若ContentProvider的数据存储方式是内存，则需要自己实现线程同步</p>
+<p>&lt;-- 2个其他方法 --&gt;
+  public boolean onCreate() 
+  // ContentProvider创建后 或 打开系统后其它进程第一次访问该ContentProvider时 由系统进行调用
+  // 注：运行在ContentProvider进程的主线程，故不能做耗时操作</p>
+<p>public String getType(Uri uri)
+  // 得到数据类型，即返回当前 Url 所代表数据的MIME类型
+  //模糊查询时，将'%'放到参数里，而不是放在Where中
+  ```</p>
+<p>4.Uri</p>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/944365-96019a2054eb27cf.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" /></p>
+<ul>
+<li>
+<p>协议名： content://</p>
+</li>
+<li>
+<p>ContentProvider的authorities</p>
+</li>
+<li>
+<p>资源部分：/User/1</p>
+</li>
+</ul>
+<p>由于数据可以来源于表格、xml、网格等，所以资源部分写法不统一</p>
+<p>5.ContentResolve</p>
+<p>ContentResolve是操纵数据的，而ContentProvider是负责接收处理数据的，因而两者方法相同。</p>
+<ul>
+<li>getContextResolve() 获取ContextResolve的对象</li>
+<li>insert(Uri,ContentValues)</li>
+<li>delete(Uri,String where,String[] selectionArgs)</li>
+<li>update(Uri,ContentValues values,String Where,String[] selectionArgs)</li>
+<li>query()</li>
+</ul>
+<p>6.ContentProvider、ContentResolve和Uri的关系和使用规则</p>
+<p><img alt="image-20210708213559737" src="Android 基础.assets\image-20210708213559737.png" /></p>
+<p>因此，ContentResolve根据Uri间接调用ContenProvider.</p>
+<p>7.UriMatcher工具类</p>
+<ul>
+<li>void addURI(String authority,string path,int code) 给UriMatcher注册标识码</li>
+<li>int match(Uri uri)  返回标识码</li>
+</ul>
+<p>8.ContentUris工具类</p>
+<ul>
+<li>withAppendedId(uri,id):用于为路径加上id部分</li>
+<li>parseId(uri):用于从指定Uri中解析出所包含的ID值</li>
+</ul>
+<p>9.ContentObserver类</p>
+<p>当<code>ContentProvider</code> 中的数据发生变化（增、删 &amp; 改）时，就会触发该 <code>ContentObserver</code>类</p>
+<p>10、MIME数据类型</p>
+<p>作用：指定某个扩展名的文件用某种应用程序来打开</p>
+<p>MIME有两种形式</p>
+<pre><code class="language-cpp">// 形式1：单条记录  
+vnd.android.cursor.item/自定义
+// 形式2：多条记录（集合）
+vnd.android.cursor.dir/自定义 
+</code></pre>
+<p>11、ContentProvider的启动流程</p>
+<p><img alt="ContentProvider的启动源码流程" src="../Android%20%E5%9F%BA%E7%A1%80.assets/d125lt.png" /></p>
+<p>12、ContentProvider 请求流程</p>
+<p>主要分三级：本地-》AMS-》含有该ContentProvider的进程</p>
+<p><img alt="ContentProvider的请求源码流程" src="/Users/zhangqian20/File/Android  Learning/Android 基础.assets/d14kb6.png" /></p>
+<h3 id="6context">6、Context对象</h3>
+<p>8.1 定义：上下文</p>
+<p><img alt="img" src="https://img-blog.csdn.net/20151022212109519?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" /></p>
+<ul>
+<li>它描述的是一个应用程序环境的信息，即上下文。</li>
+<li>该类是一个抽象(abstract class)类，Android提供了该抽象类的具体实现类(后面我们会讲到是ContextIml类)。</li>
+<li>ContextWrapper Context封装类 ContextImpl  Context实现类</li>
+<li>由继承结构可知:Context分为三类：Application、Service和Activity</li>
+<li>Context数量:Service数量+Activity数量+1；</li>
+<li>通过它我们可以获取应用程序的资源和类，也包括一些应用级别操作，例如：启动一个Activity，发送广播，接受Intent</li>
+</ul>
+<p>信息等。</p>
+<p>8.2 一些方法</p>
+<p>分析源码：</p>
+<p>ContextWraaper使用的对象mBase是一个ContextImpl对象，因此：</p>
+<p><img alt="img" src="https://img-blog.csdn.net/20151108174114045?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" /></p>
+<p>要先 Create()，才能使用ContextWraaper的方法.</p>
+<p>8.3 具体创建Application的时机</p>
+<p>每个应用程序在第一次启动时，都会首先创建Application对象。如果对应用程序启动一个Activity(startActivity)流程比较清楚的话，创建Application的时机在创建handleBindApplication()方法中，该函数位于 ActivityThread.java类中 
+8.4 创建Activity对象的时机</p>
+<p>通过startActivity()或startActivityForResult()请求启动一个Activity时，如果系统检测需要新建一个Activity对象时，就会回调handleLaunchActivity()方法，该方法继而调用performLaunchActivity()方法，去创建一个Activity实例，并且回调onCreate()，onStart()方法等， 函数都位于 ActivityThread.java类。</p>
+<p>8.5 具体创建 Service对象的时机</p>
+<p>通过startService或者bindService时，如果系统检测到需要新创建一个Service实例，就会回调handleCreateService()方法，完成相关数据操作。handleCreateService()函数位于 ActivityThread.java类</p>
+<h3 id="7intent">7、Intent</h3>
+<p>1、定义</p>
+<p>​       Android的应用程序包含的三种组件：Acitivity、Boradcast Receiver和Service，都可以通过Intent启动，同时也可以利用Intent进行进程间的通信。</p>
+<ul>
+<li>构造函数：</li>
+</ul>
+<p>Intent(String action)</p>
+<p>Intent(String action, Uri uri)</p>
+<p>Intent(Context packageContext, Class&lt;?&gt; cls)</p>
+<p>Intent(String action, Uri uri,Context packageContext, Class&lt;?&gt; cls) </p>
+<p>2、属性</p>
+<ul>
+<li>
+<p>Component属性及其配置</p>
+</li>
+<li>
+<p>构造函数</p>
+<ul>
+<li>ComponentName(String pkg,String cls)：创建pkg包下的cls类所对应的组件</li>
+<li>ComponentName(Context pkg,String cls):创建pkg所对应的包下cls类所对用应的组件。</li>
+<li>ComponentName(Context pkg,Class&lt;?&gt; cls):创建pkg所对应的包下cls类所对用应的组件</li>
+</ul>
+</li>
+<li>方法<ul>
+<li>setClass(Context packageContext,Class&lt;?&gt; cls):设置该Intent将要启动的组件所对应的类名</li>
+<li>setClassName(Context packageContext,string className):设置该Intent将要启动的组件所对应的类名</li>
+<li>setClassName(String packageContext,string className):设置该Intent将要启动的组件所对应的类名</li>
+</ul>
+</li>
+<li>几乎不需要Intent-filter的配置</li>
+<li>
+<p>setClassName()和ComPonentName的源码是一样的。</p>
+</li>
+<li>
+<p>Action Category属性及其配置</p>
+</li>
+<li>
+<p>Action 代表Intent所对要完成的一个抽象动作，Category是为Action增加额外的附加类别信息。</p>
+</li>
+<li>
+<p><intent - filter>可以有0-N个Action和Category,但是Intent对象最多只能有一个action,Category仍然可以有多个</p>
+</li>
+<li>
+<p>是一个字符串，指定anroid:name属性即可</p>
+</li>
+<li>
+<p>Action和category属性提供了大量标准的常量，方便我们打开一些数据和执行一些操作，具体的可以在官网上查。</p>
+<ul>
+<li>标准的常量方便我们直接访问一些手机内的设置信息</li>
+</ul>
+<p>```java
+  //查询联系人方式的demo
+  Intent intent = new Intent();
+  intent.setAction(Intent.ACTION_PICK);  //Pick an item from the data, returning what was selected.
+  intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);//联系人类型</p>
+<p>```</p>
+</li>
+<li>
+<p>Data Type 属性及配置</p>
+</li>
+<li>Data 和Type属性会相互覆盖，后设置的会覆盖前设置的，若想两者都设置setDataAndType()方法。</li>
+<li>Date属性接受一个Uri对象。Type属性用于指定Data属性所对应的MIME类型。</li>
+<li>在interfilter中一般有0-1个Data属性。</li>
+<li>Data支持的属性<ul>
+<li>mimeType Data的Type属性</li>
+<li>scheme</li>
+<li>host</li>
+<li>port</li>
+<li>path </li>
+<li>pathPrefix   path前缀</li>
+<li>pathPattern path字符串模板</li>
+</ul>
+</li>
+<li>Data的匹配规则（port和path可有可无，因此匹配时注意）<ul>
+<li>Type属性和mimiType一致才能启动</li>
+<li>若只指定了scheme,Data的数据scheme保持一致即可启动</li>
+<li>若只指定了scheme、host,Data的数据scheme、host保持一致即可启动</li>
+<li>若只指定了scheme、host、port,Data的数据scheme、host、port保持一致即可启动</li>
+<li>若只指定了scheme、host、path,Data的数据scheme、host、path保持一致即可启动</li>
+<li>若只指定了scheme、host、port、path,Data的数据scheme、host、port、path保持一致即可启动</li>
+</ul>
+</li>
+<li>Extra属性   是一个Bundle对象</li>
+<li>
+<p>Flag属性  具有独特功能  查看文档</p>
+</li>
+<li>
+<p>呼起另一个App</p>
+</li>
+<li>
+<p>通过包名和类名</p>
+<p><code>java
+Intent intent = new Intent();
+ComponentName cn = new 
+  //packageName className 
+ ComponentName("com.example.moudlesipc","com.example.moudlesipc.MainActivity");
+intent.setComponent(cn);
+intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(intent);</code></p>
+</li>
+<li>
+<p>通过Activon</p>
+<p><code>java
+Intent intent = new Intent();
+//自定义com.example.moudle
+intent.setAction("com.example.moudle");
+intent.addCategory(Intent.CATEGORY_DEFAULT);
+intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(intent);</code></p>
+<p>注:自定义Action和<code>android.intent.action.VIEW</code>，不能一起使用，不支持，原因未知</p>
+</li>
+<li>
+<p>通过Scheme</p>
+<p><code>java
+Intent intent = new Intent();
+intent.setData(Uri.parse("arouter://m.aliyun.com"));
+intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(intent);</code></p>
+<p>注：呼起Scheme 需要<code>android.intent.action.VIEW</code>，否则不支持展示。</p>
+</li>
+<li>
+<p>组件暴露属性：<code>android:exported</code></p>
+<ul>
+<li>定义：当前组件能否被其他应用程序组件调用或跟它交互。四大组间皆有该属性</li>
+<li>True：可以被其他应用程序组件调用或跟它交互。</li>
+<li>
+<p>false:只有同一个应用程序的组件或带有相同用户ID的应用程序才能启动或绑定该服务。</p>
+</li>
+<li>
+<p><strong>Activity、Service、Boardcast Receiver</strong>:</p>
+</li>
+<li>
+<p>无intent filter:默认False;</p>
+</li>
+<li>
+<p>至少一个intent filter: 默认true</p>
+</li>
+<li>
+<p>可以使用permission来限制外部实体唤醒当前组件</p>
+<p><code>xml
+android:permission="@string/app_name"</code></p>
+</li>
+<li>
+<p><strong>Content Provider</strong>:</p>
+</li>
+<li>
+<p>Android sdk &gt; 16 默认false</p>
+</li>
+<li>Android sdk &lt;= 16 默认true</li>
+<li>可以使用permission来限制外部实体唤醒当前Provider</li>
+</ul>
+</li>
+</ul>
+<h3 id="8buddle">8、Buddle的使用</h3>
+<h3 id="9onsaveinstancestateonrestoreinstancestate">9、OnSaveInstanceState()&amp;&amp;OnRestoreInstanceState()</h3>
+<blockquote>
+<p>当一个Activity被kill之前，会调用onSaveInstanceState()来保存当前activity的状态数据。然后Activity重新打开时，用来保存状态信息的Bundle会同时传给两个方法,即onRestoreInstanceState() and onCreate()。</p>
+</blockquote>
+<ul>
+<li>一般时机为系统异常退出时，会调用onSaveInstanceState()。</li>
+<li>资源相关的系统配置发生改变导致Activity被杀死并重新构建</li>
+<li>因为系统内存不足杀死某些低优先级的Activity而后重新构建</li>
+<li>网上说时机有：横竖屏切换、Home键、跳转到第三方应用时，会调用，但是我暂时没验证出来。</li>
+</ul>
+<p>onSavedInstanceState()就是系统会默认为我们保存当前Activity的视图结构，如文本框用户输入的数据，ListView滚动的位置等，这些View相关的状态都会为我们保存，其中的数据以Bundle数据形式进行存储，调用时机在onStop()之前。</p>
+<p>OnRestoreInstanceState() 和 OnSaveInstanceState()并不在生命周期中。
+OnRestoreInstanceState()在onStart()方法只有调用，将OnSaveInstanceState保存的数据恢复。</p>
+<p><img alt="image-20221128165024975" src="../2Android%E5%A4%A7%E7%BA%B2.assets/image-20221128165024975.png" /></p>
+<p>Activity中:OnSaveInstanceState保存的数据会在onCreate()中获取，在onCreate()中获取需要判断Bundle是否为空。</p>
+<p>Fragment中：没有OnRestoreInstanceState方法，保存数据仍然在OnSaveInstanceState(),因此恢复数据应该放在onCreateView()和onActivityCreated()中。</p>
+<p>但是有一种情况是不会走到OnSaveInstanceState()中，FragmentA 打开，然后打开FragmentB，接着返回A。</p>
+<p>因此可以使用Fragment#arguments()在OnDestoryView中去保存数据。</p>
+<h3 id="10onnewintent-activity">10.onNewIntent()  ——Activity</h3>
+<blockquote>
+<p>如果在 AndroidManifest.xml 中，将 Activity 的 launchMode 设置成了 "singleTop" 模式，或者在调用 startActivity(Intent) 时，设置了FLAG_ACTIVITY_SINGLE_TOP 标识，那么，当该 Activity 再次被启动时，如果它依然存在于 Activity 栈中，并且刚好处于栈的最顶层时，那么它将不会被重新创建，而是直接使用原来的实例.</p>
+</blockquote>
+<p>具体和启动模式的关系如下：</p>
+<ul>
+<li>SingleTop</li>
+</ul>
+<p>如果当前任务的顶部已存在 Activity 的实例，则系统会通过调用其 <code>onNewIntent()</code> 方法来将 intent 转送给该实例，而不是创建 Activity 的新实例。</p>
+<ul>
+<li>SingleTask</li>
+</ul>
+<p>如果另外的任务中已存在该 Activity 的实例，则系统会通过调用其 <code>onNewIntent()</code> 方法将 intent 转送到该现有实例，而不是创建新实例。Activity 一次只能有一个实例存在。</p>
+<ul>
+<li>SingleInstance</li>
+</ul>
+<p>和SingleTask相似。</p>
+<p>其次在使用StartActivity()中Intent.addFlags(FLAG_ACTIVITY_SINGLE_TOP),会调用onNewIntent()方法。</p>
+<p>在TabActivity+Activity +Fragment中，onRestrat()方法每次热启动都会走到，但是onNewIntent()没有走到,即热启动不会走onNewIntent()。</p>
+<p>在TabActivity + Fragment中，onRestrat()方法每次热启动都会走到，但是onNewIntent()没有走到,即热启动不会走onNewIntent()。</p>
+<h3 id="11onacitivityresult-activityfragment">11.onAcitivityResult --Activity&amp;&amp;Fragment</h3>
+<p>1.Activity和Fragment StartActvityResult()后，是分开的，结果如下：</p>
+<p>Fragment.startActivityResult(intent,requestCode), Fragment#onAcitivityResult()会收到正确的requestcode,而Activity会收到RequestCode，但是结果不对。</p>
+<p>Activity.startActivityResult(intent,requestCode), Activity#onAcitivityResult()会收到正确的requestcode,而Fragment不会收到RequestCode。</p>
+<h3 id="ui">UI</h3>
+<h3 id="1fragement">1、Fragement 生命周期</h3>
+<p><img alt="img" src="https://img-blog.csdn.net/20140719225005356?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG1qNjIzNTY1Nzkx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" /></p>
+<p>由于Fragement 是嵌入在Activity当中的UI片段，其生命周期和Activity非常相似，但是又复杂。</p>
+<ul>
+<li>onAttach() Frement和Activity相关联时调用，可以通过该方法获取Activity引用，还可以通过getArguments()获取参数。</li>
+<li>onCreate():Frement被创建时调用。</li>
+<li>onCreateView():创建Fragment的布局。</li>
+<li>onActivtyCreated():当Activity完成创建时调用。</li>
+<li>onStart():当Fragment可见时调用。</li>
+<li>onResume():当Fragment可交互时调用。</li>
+<li>onPause():当Fragment不可交互但可见时调用。</li>
+<li>onStop():当Fragment不可见时调用</li>
+<li>onDestoryView():当Fragment的UI从视图结构中移除时调用。</li>
+<li>onDestory():当Fragment销毁时调用</li>
+<li>onDetah():当Fragment和Activity接触关系时调用。</li>
+</ul>
+<p>当一个fragment被创建的时候，需调用以下生命周期方法：onAttach(),  onCreate(),  onCreateView(),  onActivityCreated()</p>
+<p>当这个fragment对用户可见的时候，需调用：onStart() ,onResume()</p>
+<p>当这个fragment进入后台模式需调用：onPause(),onStop()</p>
+<p>当这个fragment被销毁或者是持有它的Activity被销毁了，调用：onPause() ,onStop(), onDestroyView(),  onDestroy() onDetach()</p>
+<p>将Fragment添加到Activity的两种方式：</p>
+<p>1、静态添加：以<Fragment>标签的形式添加到Activity的布局中。</p>
+<p>2、动态添加：</p>
+<p>FragmentManager：用来管理Activity中的fragment,app包中使用getFragmentManager()   v4包中getSupportFragmentManager</p>
+<p>FragmentTransaction:事务,用来添加，移除，替换fragment,FragmentTransaction transaction = fm.benginTransatcion();//开启一个事务</p>
+<p>transaction.add() :往Activity中添加一个Fragment</p>
+<p>transaction.remove() :从Activity中移除一个Fragment，如果被移除的Fragment没有添加到回退栈，这个Fragment实例将会被销毁。</p>
+<p>transaction.replace():使用另一个Fragment替换当前的，实际上就是remove()然后add()的合体~</p>
+<p>transaction.hide()：隐藏当前的Fragment，仅仅是设为不可见，并不会销毁</p>
+<p>transaction.show()：显示之前隐藏的Fragment</p>
+<p>transaction.commit():提交一个事务</p>
+<p>detach()：会将view从UI中移除,和remove()不同,此时fragment的状态依然由FragmentManager维护。</p>
+<p>注意：在用fragment的时候，可能会经常遇到这样Activity状态不一致：State loss这样的错误。主要是因为：commit方法一定要在Activity.onSaveInstance()之前调用。</p>
+<p>上述，基本是操作Fragment的所有的方式了，在一个事务开启到提交可以进行多个的添加、移除、替换等操作。</p>
+<p>值得注意的是：如果你喜欢使用Fragment，一定要清楚这些方法，哪个会销毁视图，哪个会销毁实例，哪个仅仅只是隐藏，这样才能更好的使用它们。</p>
+<p>Fragment的生命周期和Activity的生命周期的联系，此时是加了addToBackStack()</p>
+<p>第一次启动：</p>
+<p>A：onCreate()</p>
+<p>F1:onAttach()</p>
+<p>F1:onCreate()</p>
+<p>F1:onCreateView()</p>
+<p>F1:onActivityCreated()</p>
+<p>F1:onStart()</p>
+<p>A:onStart()</p>
+<p>A:onResume()</p>
+<p>F1:onResume()</p>
+<p>替换片段：</p>
+<p>F2:onAttach（）</p>
+<p>F2:onCreate（）</p>
+<p>F1:onPause()</p>
+<p>F1:onStop（）</p>
+<p>F1：onDestoryView()</p>
+<p>F2:onCreateview()</p>
+<p>F2：onActivityCreated()</p>
+<p>F2:onStart()</p>
+<p>F2:onResume()</p>
+<p>按返回键：</p>
+<p>F2:onPause()</p>
+<p>F2:onStop()</p>
+<p>F2:onDestoryView()</p>
+<p>F2:onDestory()</p>
+<p>F2:onDetach()</p>
+<p>F1:CreateView()</p>
+<p>F1:onActivityCreated()</p>
+<p>F1:onStart（）</p>
+<p>F1：onResume()</p>
+<p>退到后台：</p>
+<p>A:onPause（）</p>
+<p>F1：onPause()</p>
+<p>A:onStop()</p>
+<p>F1:onStop()</p>
+<p>重新启动：</p>
+<p>A:Restart()</p>
+<p>F1:onStart()</p>
+<p>A:onStart()</p>
+<p>A:onResume()</p>
+<p>F1:onResume()</p>
+<p>联系与区别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Activity</th>
+<th>Fragment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联系：</td>
+<td>都有OnCreate到OnDestory的活动状态</td>
+<td></td>
+</tr>
+<tr>
+<td>区别：</td>
+<td>Create时只有OnCreate</td>
+<td>Create时有：onAttach()、onCreate()、onCreateView()、onActivityCreated()</td>
+</tr>
+<tr>
+<td></td>
+<td>Destory时只有onDestory</td>
+<td>Destory时有：onDestoryView()、onDestory()、onDetach()</td>
+</tr>
+<tr>
+<td></td>
+<td>存在onRestart()</td>
+<td>没有onRestart(),在Activity Restart后直接onStart()</td>
+</tr>
+<tr>
+<td></td>
+<td>Activtity  onCreate()是最早的</td>
+<td>其次onAttach()、onCreate()、onCreateView()、onActivityCreated()</td>
+</tr>
+<tr>
+<td></td>
+<td>Fragement的onStart活动在ActivityOnStart()之前</td>
+<td>Fragement的onResume、onPause、onStop活动在Activity之后</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2view">2、View</h3>
+<p>1、定义</p>
+<p>具体表现为显示在屏幕上的各种视图控件，如TextView、LinearLayout等</p>
+<p>2、视图结构</p>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/944365-4c99a1e4db841957.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" /></p>
+<p>自上而下，树形递归</p>
+<p>3、绘制流程</p>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/2397836-f1f6a200704884a2.png?imageMogr2/auto-orient/strip|imageView2/2/w/1130/format/webp" /></p>
+<blockquote>
+<p>activity界面显示流程:activity启动后，不会立马去显示界面上的view，而是等到onResume的时候才会真正显示view的时机，首先会触发windowManager.addView方法，在该方法中触发代理对象WindowManagerGlobal的addView方法，代理对象的addView方法中创建了viewRootImpl，将setContentView中创建的decorView通过viewRootImpl的setView方法放到了viewRootImpl中，最终经过viewRootImpl一系列的方法最终调用performTraversals方法。</p>
+</blockquote>
+<p>Activity中包含了一个Window，Window是一个抽象类，Phonewindow是window的实现，PhoneWindow对应一个DecorView和ViewRootImpl，DecorView是一个应用窗口的根容器，它本质上是一个FrameLayout,是最顶层的View，包含两个子元素，TitleView和ContentView。</p>
+<ul>
+<li>
+<p>View绘制的起点：View的绘制是由ViewRoot来负责的。每个应用程序窗口的decorView都有一个与之关联的ViewRoot对象，这种关联关系是由WindowManager来维护的。</p>
+</li>
+<li>
+<p>绘制的三个阶段：</p>
+</li>
+<li>
+<p>measure: 判断是否需要重新计算View的大小，需要的话则计算；</p>
+</li>
+<li>
+<p>layout: 判断是否需要重新计算View的位置，需要的话则计算；</p>
+</li>
+<li>
+<p>draw: 判断是否需要重新绘制View，需要的话则重绘制。</p>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/2397836-19c08de6439514a7.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" /></p>
+<p><strong>measure</strong>阶段：计算出控件树中的各个控件要显示其内容的话，需要的尺寸。</p>
+<p>​       measurespeac：MeasureSpec 封装了从父View 传递给到子View的布局需求。每个MeasureSpec代表宽度或高度的要求。每个MeasureSpec都包含了size（大小）和mode（模式）。</p>
+<p>​        Mode的取值为以下三种：</p>
+<p>​           EXACTLY: 对子View提出了一个确切的建议尺寸（SpecSize）；</p>
+<p>​           AT_MOST: 子View的大小不得超过SpecSize；</p>
+<p>​           UNSPECIFIED: 对子View的尺寸不作限制，通常用于系统内部。</p>
+<p>View 的 MeasureSpec 并不是父 View 独自决定，它是根据父 view 的MeasureSpec加上子 View 的自己的 LayoutParams，通过相应的规则转化。</p>
+<p>​    onMeasure方法是Measure阶段最主要的方法，其流程是：先调用measureChildWithMargins()方法对所有子View进行了一遍测量，并计算出所有子View的最大宽度和最大高度。而后将得到的最大高度和宽度加上padding，这里的padding包括了父View的padding和前景区域的padding。然后会检查是否设置了最小宽高，并与其比较，将两者中较大的设为最终的最大宽高。最后，若设置了前景图像，我们还要检查前景图像的最小宽高。</p>
+<p><strong>layout阶段</strong>：基本思想也是由根View开始，递归地完成整个控件树的布局（layout）工作，主要是Viewgroup.onlayout()方法</p>
+<p>其流程是：首先setFrame()会判断子View的位置是否发生变化，若变化了，确定View的位置，使用for循环完成布局。主要就是根据上一阶段得到的View的测量宽高来确定View的最终显示位置。</p>
+<p><strong>Draw阶段</strong>：</p>
+<p><img alt="img" src="https://img-blog.csdn.net/20180329195003291?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2luYXRfMjcxNTQ1MDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" /></p>
+<p>第一步：drawBackground(canvas)： 作用就是绘制 View 的背景。</p>
+<p>第二步：onDraw(canvas) ：绘制 View 的内容。View 的内容是根据自己需求自己绘制的，所以方法是一个空方法，View的继承类自己复写实现绘制内容。</p>
+<p>第三步：dispatchDraw（canvas）：遍历子View进行绘制内容。在 View 里面是一个空实现，ViewGroup 里面才会有实现。在自定义 ViewGroup 一般不用复写这个方法，因为它在里面的实现帮我们实现了子 View 的绘制过程，基本满足需求。</p>
+<p>第四步：onDrawForeground(canvas)：对前景色跟滚动条进行绘制。</p>
+<p>第五步：drawDefaultFocusHighlight(canvas)：绘制默认焦点高亮</p>
+</li>
+</ul>
+<p>4.requestLayout 和 Invalidate的区别</p>
+<p>大部分情况下，两者都要一起使用。</p>
+<p>requestLayout会直接递归调用父窗口的requestLayout，直到ViewRootImpl,然后触发peformTraversals，由于mLayoutRequested为true，会导致onMeasure和onLayout被调用。不一定会触发OnDraw
+requestLayout触发onDraw可能是因为在在layout过程中发现l,t,r,b和以前不一样，那就会触发一次invalidate，所以触发了onDraw，也可能是因为别的原因导致mDirty非空（比如在跑动画）
+view的invalidate不会导致ViewRootImpl的invalidate被调用，而是递归调用父view的invalidateChildInParent，直到ViewRootImpl的invalidateChildInParent，然后触发peformTraversals，会导致当前view被重绘，由于mLayoutRequested为false，不会导致onMeasure和onLayout被调用，而OnDraw会被调用
+当宽高发生改变的时候调用requestLayout()</p>
+<p>4、坐标系</p>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/944365-1281053d1ac659ba.png?imageMogr2/auto-orient/strip|imageView2/2/w/686/format/webp" /></p>
+<p>视图的位置是相对于父控件而言的，四个顶点的位置描述分别由四个与父控件相关的值决定：</p>
+<ul>
+<li>顶部(Top)：视图上边界到父控件上边界的距离；</li>
+<li>左边(Left)：视图左边界到父控件左边界的距离；</li>
+<li>右边(Right)：视图右边界到父控件左边界的距离；</li>
+<li>底部(Bottom)：视图下边界到父控件上边界的距离。</li>
+</ul>
+<p>获取坐标描述的方式：</p>
+<ul>
+<li>View.get (Top、Left、Right、Bottom)</li>
+<li>与MotionEvent中 <code>get()</code>和<code>getRaw()</code>的区别</li>
+</ul>
+<pre><code class="language-csharp">//get() ：触摸点相对于其所在组件坐标系的坐标
+ event.getX();       
+ event.getY();
+
+//getRaw() ：触摸点相对于屏幕默认坐标系的坐标
+ event.getRawX();    
+ event.getRawY();
+</code></pre>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/944365-e50a2705cdd632d3.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" /></p>
+<h3 id="3xmlns">3、xmlns</h3>
+<p><a href="https://link.jianshu.com/?t=https://www.w3.org/TR/REC-xml-names/"> XML namespace</a></p>
+<p>XML 命名空间定义语法为<code>xmlns:namespace-prefix="namespaceURI"</code>，一共分为三个部分：</p>
+<ul>
+<li><code>xmlns</code>：声明命名空间的保留字，其实就是XML中元素的一个属性；</li>
+<li><code>namespace-prefix</code>：命名空间的前缀，这个前缀与某个命名空间相关联；</li>
+<li><code>namespaceURI</code>：命名空间的唯一标识符，一般就是一个URI引用。</li>
+</ul>
+<p>是为了解决命名冲突而设置的。</p>
+<p>Android 中常见的三种xmlns:</p>
+<pre><code class="language-xml">xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+</code></pre>
+<ul>
+<li>android</li>
+</ul>
+<p>命名空间<code>android</code>用于 Android 系统定义的一些属性。</p>
+<ul>
+<li>app</li>
+</ul>
+<p>命名空间<code>app</code>用于我们应用自定义的一些属性，这个与<a href="https://link.jianshu.com/?t=http://blog.csdn.net/caesardadi/article/details/20387645"> Android 自定义属性和系统控件扩展</a>应该有关系，大家可以再继续研究一下。</p>
+<ul>
+<li>tools</li>
+</ul>
+<p>根据官方定义，<code>tools</code>命名空间用于在 XML 文档记录，当应用打包的时候，会把这部分信息给过滤掉，不会增加应用的 size，说直白点，这些属性是为IDE提供相关信息。</p>
+<h3 id="4android-values">4、Android Values文件</h3>
+<ul>
+<li>
+<p>Dimes.xml  屏幕适配</p>
+</li>
+<li>
+<p>thems.xml Andriod样式和主题</p>
+</li>
+<li>
+<p>是一个包含一种 或者 多种格式化 属性 的集合  ，并且 style和theme都是资源，存放在res/values 文件夹下 </p>
+</li>
+<li>
+<p>Style 在Activity中布局使用</p>
+</li>
+<li>
+<p>Theme 应用级别，在AndroidManifest.xml中<application><Activity>中使用。</p>
+</li>
+<li>
+<p>“@ ”|| “?” 的区别</p>
+<ul>
+<li>“@ ” 表明 我们引用的资源是前边定义过的(或者在前一个项目中或者在Android 框架中)</li>
+</ul>
+<p>@定义的颜色是不变的</p>
+<ul>
+<li>“?” 表明 我们引用的资源的值在 当前的 主题当中定义过   </li>
+</ul>
+<p>？ 是会随着主题的颜色改变的，比如深色主题</p>
+<p><code>java
+  ?attr/...    是指自己定义的主题的样式
+  ?android:attr/..   是Android定义的主题的样式</code></p>
+</li>
+<li>
+<p>主题颜色和属性</p>
+<ul>
+<li>colorPrimary  ActionBar的颜色，通常也是主题颜色</li>
+<li>colorPrimaryDark  状态栏背景色</li>
+<li>colorAccent  选中状态或获取焦点状态</li>
+<li>CheckBox：checked 状态</li>
+<li>RadioButton：checked 状态</li>
+<li>SwitchCompat：checked 状态</li>
+<li>EditText：获取焦点时的 underline 和 cursor 颜色</li>
+<li>TextInputLayout：悬浮 label 字体颜色</li>
+<li>android:navigationBarColor  navigation bar 背景色</li>
+<li>colorControlNormal    某些 Views “normal” 状态下的颜色，常见如：unselected CheckBox 和 RadioButton，失去焦点时的 EditText，Toolbar 溢出按钮颜色，等等</li>
+<li>colorControlActivated  某种程度上，是 colorAccent 的替代者，比如对于 CheckBox 和 RadioButton 的 checked 状态，colorControlActivated 属性会覆盖 colorAccent 属性的对应颜色。</li>
+<li>colorControlHighlight 所有可点击 Views 触摸状态下的 Ripple（涟漪）效果。仅作用于 Lollipop 及更高版本。</li>
+<li>colorButtonNormal.  Button normal 状态下的背景色。注意，这种设置与 Button 的 android:background 属性改变背景色不同的是，前者在 Lollipop 及更高版本上会让 Button 依旧保持阴影和 Ripple 触摸效果。</li>
+<li>android:windowBackground 窗口背景色，诸如此类的还有：android:background，android:colorBackground 等。</li>
+<li>android:textColorPrimary</li>
+<li>navigationIcon</li>
+</ul>
+</li>
+</ul>
+<p><img alt="20190120135807885" src="../Android%20%E5%9F%BA%E7%A1%80.assets/20190120135807885.jpg" /></p>
+<ul>
+<li>
+<p>常见的主题风格：</p>
+<ul>
+<li>android:theme="@android:style/Theme.Dialog"   将一个Activity显示为能话框模式<br />
+  android:theme="@android:style/Theme.NoTitleBar"  不显示应用程序标题栏<br />
+  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"  不显示应用程序标题栏，并全屏<br />
+  android:theme="Theme.Light"  背景为白色<br />
+  android:theme="Theme.Light.NoTitleBar"  白色背景并无标题栏 <br />
+  android:theme="Theme.Light.NoTitleBar.Fullscreen"  白色背景，无标题栏，全屏<br />
+  android:theme="Theme.Black"  背景黑色<br />
+  android:theme="Theme.Black.NoTitleBar"  黑色背景并无标题栏<br />
+  android:theme="Theme.Black.NoTitleBar.Fullscreen"    黑色背景，无标题栏，全屏<br />
+  android:theme="Theme.Wallpaper"  用系统桌面为应用程序背景<br />
+  android:theme="Theme.Wallpaper.NoTitleBar"  用系统桌面为应用程序背景，且无标题栏<br />
+  android:theme="Theme.Wallpaper.NoTitleBar.Fullscreen"  用系统桌面为应用程序背景，无标题栏，全屏<br />
+  android:theme="Translucent"  半透明<br />
+  android:theme="Theme.Translucent.NoTitleBar" 半透明、无标题栏<br />
+  android:theme="Theme.Translucent.NoTitleBar.Fullscreen" 半透明、无标题栏、全屏<br />
+  android:theme="Theme.Panel"<br />
+  android:theme="Theme.Light.Panel"  </li>
+</ul>
+</li>
+<li>
+<p>ThemeOverlay  继承全局样式，但可以修改自己的样式</p>
+</li>
+<li>
+<p>自定义样式</p>
+<ul>
+<li>首先在attrs.xml 定义属性名称</li>
+</ul>
+<p>```xml</p>
+<p>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+  <resources>
+      <declare-styleable name="AppTheme.NoActionBar">
+          <attr name="baseTitleTextColor" format="reference|color" />
+          <attr name="titleDividerColor" format="reference|color" />
+          <attr name="titleDividerLine" format="dimension" /> 
+      </declare-styleable>
+  </resources>
+  ```</p>
+<ul>
+<li>在style.xml中使用自定义的属性</li>
+</ul>
+<p><code>xml
+  &lt;style name="AppTheme.NoActionBar"&gt;
+          &lt;item name="windowActionBar"&gt;false&lt;/item&gt;
+          &lt;item name="windowNoTitle"&gt;true&lt;/item&gt;
+          &lt;item name="baseTitleTextColor"&gt;#2a2a2a&lt;/item&gt;
+          &lt;item name="titleDividerLine"&gt;1dp&lt;/item&gt;
+          &lt;item name="titleDividerColor"&gt;@android:color/transparent&lt;/item&gt;
+  &lt;/style&gt;</code></p>
+<ul>
+<li>在布局中引用样式</li>
+</ul>
+<p><code>xml
+  &lt;View
+              android:id="@+id/view_divider"
+              android:layout_width="match_parent"
+              android:layout_height="?attr/titleDividerLine"
+              android:background="?attr/titleDividerColor"/&gt;</code></p>
+</li>
+</ul>
+<h3 id="_2">事件机制</h3>
+<h3 id="1">1、事件分发</h3>
+<p>1、定义：将点击事件传递到某个具体的View和处理的过程。</p>
+<p>​               由哪个对象发出，经过哪些对象和最终达到的对象和处理</p>
+<p>为什么会有事件分发这个处理？</p>
+<p>原因：1.View要处理的Touch事件比较多，比如Touch事件,长按事件和点击事件 </p>
+<p>​             2.View是树型结构的</p>
+<p>2、事件分发顺序：Activity-&gt;ViewGroup-&gt;View</p>
+<p>3、事件分发机制：</p>
+<ul>
+<li>Activity</li>
+</ul>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/944365-fbf47bbac698759e.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" /></p>
+<p>首先会调用Activity#dispatchTouchEvent(),进行事件分发，由Activity的结构可知，会有一个Window，实际上就是PhoneWindow,调用Window#superDispatch，通过源码可知调用的是DecorView.superDispatchTouchEvent(),DecorView是Activity中的第一个ViewGroup，它的父类是ViewGroup，将Activity的事件传递到ViewGroup。若传递后被消费，则结束，若未被消费，会调用Activity#onTouchEvent()方法，当前Activity进行消费，会有一个判断是否在边界内，若在，不被消费，若不在被消费。</p>
+<ul>
+<li>GroupView</li>
+</ul>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/944365-74008ffc11f4f3dd.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" /></p>
+<p>事件分发到GroupView的DispatchTouchEvent()方法，通过InterceptTonchEvent()方法判断是否被拦截，若未被拦截，执行for循环查找要分发的view，若查到，执行view的dispatchTouchEvent()方法，若未查到，则到View的DispatchTouchEvent()方法，和被拦截的处理方式一样，执行GroupView的onTouch()方法、onTouchevent()、onPerformClick()、onClick()自己进行处理。</p>
+<ul>
+<li>View</li>
+</ul>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/944365-ba4e3c87a3563122.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp" /></p>
+<p>事件分发到View的DispatchTouch()方法，判断该View是否被监听、是否Enable、是否onTouch()返回True，若是，则被消费掉。若不同时满足，交给View的OnTouchEvent()方法解决，判断是否是点击和长按，若是消耗掉。</p>
+<p><strong>事件分发的主要方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dispatchTouchEvent()</td>
+<td>分发点击事件</td>
+</tr>
+<tr>
+<td>onTouchEvent()</td>
+<td>点击事件</td>
+</tr>
+<tr>
+<td>onInterceptTouchEvent()</td>
+<td>拦截事件（只在GroupView）</td>
+</tr>
+<tr>
+<td>onTouch()</td>
+<td>View中OnTouchListener接口中定义的方法(GroupView和View)</td>
+</tr>
+</tbody>
+</table>
+<p>注意：<strong>子View中的监听事件优先级： OnTouchListener----&gt;OnTouchEvent----&gt;OnCLickListener</strong></p>
+<h3 id="2handler">2、Handler消息传递机制</h3>
+<p>1、handler机制的作用：为了解决Android的多线程问题——Android只允许UI线程修改Activity的UI组件。主线程通常被称作UI线程。</p>
+<p>2、Handler类的主要作用有两个：</p>
+<ul>
+<li>在新启动的线程中发送信息</li>
+<li>在主线程中获取、处理信息</li>
+</ul>
+<p>3、handler机制的工作原理核心部分：handler、Message、MessageQueue、Looper</p>
+<p>4、Message</p>
+<ul>
+<li>
+<p>Message.class位于android.os.包中。Message的构造函数为无参构造方法，且只有一个构造方法；</p>
+</li>
+<li>
+<p>Message有8个静态方法可以创建Message实例
+  Message有两个重要的成员变量，分别为target 和callback，一个是Handler，一个是Runnable。
+  Message有4个公开变量what、arg1、arg2、obj 可以存储消息进行传递
+  Message还有一个包间成员变量next，它是Message类型，后面会使用到，知道有这个next就行</p>
+</li>
+</ul>
+<p>5、Handler类</p>
+<ul>
+<li>
+<p>handleMessage(Message msg):处理消息的方法</p>
+</li>
+<li>
+<p>hasMessage(int what):检查消息队列中是否有What的消息</p>
+</li>
+<li>
+<p>hasMessage(int What,Object object):检查消息队列中是否有What且是object 的消息</p>
+</li>
+<li>
+<p>多个重载的obtainMessage():获取消息</p>
+</li>
+<li>
+<p>sendEmptyMessage(int what):发送空消息。</p>
+</li>
+<li>
+<p>sendEmptyMessageDelayd(int what,long delayMillis):指定多少ms后发送消息</p>
+</li>
+<li>
+<p>sendMessageDelayed(Message msg ,long delayMillis):指定多少ms后发送消息</p>
+</li>
+</ul>
+<p><img alt="img" src="https://img-blog.csdnimg.cn/2019011615052238.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1b3lpbmd4aW5n,size_16,color_FFFFFF,t_70" /></p>
+<p>Handler dispatchMessage（）方法:消息分发</p>
+<p>1、首先会判断Message的callback是否为空，此处的callback就是前面我们在Message中说到的，在静态方法创建Message时，可以指定的callback，若不为空，则将结果回调到callback中；
+  2、若Handler的mCallback 不为空，也一样的道理。
+  3、平时我们都没有传入这个callback，而是直接实现handleMessage（）这个方法，在这个方法中处理更新UI任务。</p>
+<p>6、MessageQueue</p>
+<p>消息队列，采用先进先出的方式来管理Message，是由looper负责管理的，Looper创建时会创建消息队列。</p>
+<p>7、Looper</p>
+<p>每个线程都可以且只能绑定一个Looper,线程创建时必须先初始化Looper()。</p>
+<p>使用loop()方法循环读取MessageQueue中的消息，然后分发。</p>
+<ul>
+<li>主线程（UI线程），系统已经初始化了一个Looper，可以直接创建handler</li>
+<li>新线程需要自己创建Looper，通过Looper的prepare()的方法。</li>
+</ul>
+<h2 id="_3">数据存储</h2>
+<h3 id="1sharepreference">1、Sharepreference</h3>
+<p>8.1 Android数据存储的方式</p>
+<ol>
+<li>
+<p>SharedPreferences：以Map形式存放简单的配置参数；</p>
+</li>
+<li>
+<p>ContentProvider：将应用的私有数据提供给其他应用使用；</p>
+</li>
+<li>文件存储：以IO流形式存放，可分为手机内部和手机外部（sd卡等）存储，可存放较大数据；</li>
+<li>SQLite：轻量级、跨平台数据库，将所有数据都是存放在手机上的单一文件内，占用内存小；</li>
+<li>网络存储 ：数据存储在服务器上，通过连接网络获取数据；</li>
+</ol>
+<p>8.2 获取Shareprefreference的方法</p>
+<p>​       1. context.getSharedPreferences()方法 </p>
+<ul>
+<li>
+<p>String  name ;   文件名称</p>
+</li>
+<li>
+<p>int Mode; 执行类型</p>
+</li>
+</ul>
+<p><code>Context.MODE_PRIVATE: 指定该SharedPreferences数据只能被本应用程序读、写；
+  Context.MODE_WORLD_READABLE:  指定该SharedPreferences数据能被其他应用程序读，但不能写；
+  Context.MODE_WORLD_WRITEABLE:  指定该SharedPreferences数据能被其他应用程序读；
+  Context.MODE_APPEND：该模式会检查文件是否存在，存在就往文件追加内容，否则就创建新文件；</code></p>
+<ol>
+<li>Activity类中的getPreferences()方法<ul>
+<li>Mode 参数；文件名以当前活动的类名为默认文件名</li>
+</ul>
+</li>
+<li>PreferenceManager 类中的 getDefaultSharedPreferences()方法<ul>
+<li>Context参数；文件名以当前的包名为文件名</li>
+</ul>
+</li>
+</ol>
+<p>8.3 读取数据的方法</p>
+<p>​   SharedPreference接口是主要负责读取sp数据的主要接口，数据主要为key-value；</p>
+<ul>
+<li>
+<p>boolean contains(String key)</p>
+</li>
+<li>
+<p>Map<String,?>getAll()  获取所有数据</p>
+</li>
+<li>
+<p>getXxx(String key,xxx defValue );获取基本类型的数据，没有则返回默认值defValue。</p>
+</li>
+</ul>
+<p><code>java
+    SharedPreferences Pref = getSharedPreferences("data",MODE_PRIVATE);
+                  String Name = Pref.getString("name",""); //Key值 找不到时的返回值
+                  int Age = Pref.getInt("age",-1);
+                  boolean sex = Pref.getBoolean("sex",false);</code></p>
+<p>8.4 写入数据的方法</p>
+<p>SharedPreference.Editor负责写入sp数据。</p>
+<ul>
+<li>
+<p>clear()    清除所有数据</p>
+</li>
+<li>
+<p>putXxx(key,Value) 插入</p>
+</li>
+<li>
+<p>remove(key) 删除</p>
+</li>
+<li>
+<p>apply()提交修改，在后台异步进行</p>
+</li>
+</ul>
+<p><code>java
+     SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+                  editor.putString("name","Tome");
+                  editor.putInt("age",26);
+                  editor.putBoolean("sex",true);
+                  editor.apply();</code></p>
+<p>8.5 commit() 和apply()的区别</p>
+<table>
+<thead>
+<tr>
+<th>Commit()</th>
+<th>apply()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有返回值，知道是否提交成功</td>
+<td>无返回值，不知道是否提交成功</td>
+</tr>
+<tr>
+<td>直接提交到硬盘</td>
+<td>先缓存，再异步后台提交</td>
+</tr>
+<tr>
+<td>同步写入操作，要考虑ANR</td>
+<td>异步写入操作</td>
+</tr>
+</tbody>
+</table>
+<p>8.7 注意事项</p>
+<ol>
+<li>在UI线程中调用getXXX可能会导致ANR。</li>
+<li>我们在初始化SharedPreferencesImpl对象时会加SharedPreferencesImpl对应的xml文件中的所有数据都加载到内存中，如果xml文件很大，将会占用大量的内存，我们只想读取xml文件中某个key的值，但我们获取它的时候是会加载整个文件。</li>
+<li>每添加一个键值对，都会重新写入整个文件的数据，不是增量写入；</li>
+</ol>
+<p>8.6 查看xml文件的方法</p>
+<p>获取root权限后，在data中查看</p>
+<h3 id="2">2、文件读写和存储</h3>
+<ul>
+<li>存储在相对路径下，使用FileOutputStream类获取文件，BufferedWriter类写入。（以销毁时存户数据为例）</li>
+</ul>
+<p><code>Java
+  private void save(String str) {
+      FileOutputStream out = null;
+      BufferedWriter writer = null;
+      try {
+          out = openFileOutput("data", Context.MODE_PRIVATE);
+          writer = new BufferedWriter(new OutputStreamWriter(out));
+          writer.write(str);
+      } catch (IOException e) {
+          e.printStackTrace();
+      } finally {
+          try {
+              if (writer != null) {
+                  writer.close();
+              }
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }</code></p>
+<p>​       </p>
+<ul>
+<li>读取相对路径下的数据，使用FileInputStream类获取文件，BufferedReader读取文件。</li>
+</ul>
+<p><code>java
+   private String LoadData(){
+          FileInputStream in = null;
+          BufferedReader reader = null;
+          StringBuilder content = new StringBuilder();
+          try {
+              in = openFileInput("data");
+              reader =  new BufferedReader(new InputStreamReader(in));
+              String line = "";
+              //读取每一行
+              while((line = reader.readLine())!=null)
+              {
+                    content.append(line);
+              }
+          }catch (IOException e){
+              e.printStackTrace();
+          }
+          finally {
+              try{
+                  if(reader != null)
+                  {
+                      reader.close();
+                  }
+              }
+              catch (IOException e)
+              {
+                  e.printStackTrace();
+              }
+          }
+          return content.toString();
+      }</code></p>
+<ul>
+<li>文件目录</li>
+</ul>
+<p><img alt="img" src="../2Android%E5%A4%A7%E7%BA%B2.assets/312618d73ed9cdd1368de634fde27518.png" /></p>
+<p><img alt="image-20220125113008059" src="2Android大纲1.assets/image-20220125113008059.png" /></p>
+<ul>
+<li>
+<p>App公共目录：即所有App都可以共享的文件</p>
+<p>正常的使用：<code>Environment.getExternalStorageDirectory()</code>,然后自己命名子目录.已过期</p>
+<p><code>java
+File sdCard = Environment.getExternalStorageDirectory();
+File directory_pictures = new File(sdCard, "Pictures");
+Log.i(TAG,"publicfile: "+directory_pictures.getpath());
+//publicfile: /storage/emulated/0/Pictures</code></p>
+<p>也可以使用App独立文件中提供的已有目录:<code>Environment.getExternalStoragePublicDirectory()</code></p>
+<p><code>java
+File publicfile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+Log.d(TAG, "publicfile: "+ publicfile.getPath());
+//publicfile: /storage/emulated/0/Pictures</code></p>
+<p>实际路径为：/sdcard/Pictures</p>
+<p>但是以上已经过时，不能使用文件路径读取共有目录，建议采用ContentProvider+ContentResolver+uri</p>
+<p>Media和SAF(Storage Access Framework)获取Uri,然后写入文件。</p>
+<p><code>java
+//通过Uri获取文件输入流、输出流的方式
+ OutputStream fs = getContentResolver().openOutputStream(uri);
+ InputStream is = getContentResolver().inputStream(uri);</code></p>
+<ul>
+<li>系统的共有目录：建议采用MediaStore提供的Uri来实现</li>
+</ul>
+<p>系统共有目录的访问权限：读写共享目录自己创建的文件时不需要权限</p>
+<table>
+<thead>
+<tr>
+<th>Uri类型</th>
+<th>无权限</th>
+<th>READ_EXTERNAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audio</td>
+<td>可读写APP自己创建的文件，但不可直接使用路径访问</td>
+<td>可以读取其他APP创建的媒体类文件，删除和修改操作需要用户授权。</td>
+</tr>
+<tr>
+<td>Image</td>
+<td>可读写APP自己创建的文件，但不可直接使用路径访问</td>
+<td>可以读其他APP创建的媒体类文件，删改操作需要用户授权</td>
+</tr>
+<tr>
+<td>File</td>
+<td>可读写APP自己创建的文件，但不可直接使用路径访问</td>
+<td>不可读写其他APP创建的非媒体类文件</td>
+</tr>
+<tr>
+<td>Downloads</td>
+<td>可读写APP自己创建的文件，但不可直接使用路径访问</td>
+<td>不可读写其他APP创建的非媒体类文件</td>
+</tr>
+</tbody>
+</table>
+<p>uri由MeidaStore 提供，因为是系统原有的目录，因而已经有现成的Uri使用,以下为几个现成的例子。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>MediaStore API</th>
+<th>Uri</th>
+<th>目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audio</td>
+<td>MediaStore.Audio.Media.EXTERNAL_CONTENT_URI</td>
+<td>content://media/external/Audio/media</td>
+<td>Music</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>MediaStore.Images.Media.EXTERNAL_CONTENT_URI</td>
+<td>content://media/external/images/media</td>
+<td>Pictures</td>
+</tr>
+<tr>
+<td>Vedio</td>
+<td>MediaStore.Video.Media.EXTERNAL_CONTENT_URI</td>
+<td>content://media/external/Vedio/media</td>
+<td>Movies</td>
+</tr>
+<tr>
+<td>Downloads</td>
+<td>MediaStore.Downloads.EXTERNAL_CONTENT_URI</td>
+<td>content://media/external/downloads</td>
+<td>Download</td>
+</tr>
+</tbody>
+</table>
+<p>在系统原有的目录下新建Demo，可以采用在ContentValues中，添加相对路径</p>
+<p><code>java
+//保证根目录和Uri一致即可
+contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + File.separator + "demo");</code></p>
+<ul>
+<li>其他应用创建的共有目录：建议采用<code>Storage Access Framework</code>，原因：MediaStore没有提供现成的Uri</li>
+</ul>
+<p>Uri 和 path的转换</p>
+<ul>
+<li>Uri转Path</li>
+</ul>
+<p>1.MediaStore提供的Uri,以Host为<code>content:</code>,都存在数据库，可以通过查询数据库存储的文件路径</p>
+<p><code>java
+  public void getFilePathFromUri() {
+          Cursor cur = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, MediaStore.Images.ImageColumns.DISPLAY_NAME + " = ?", new String[]{picname+".jpg"}, null);
+          int i = cur.getCount();
+          if(cur.moveToFirst()){
+              int index = cur.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+              String filepath = cur.getString(index);
+          }
+      }</code></p>
+<ol>
+<li>File uri 是文件生成的Uri ,以Host为<code>file:</code></li>
+</ol>
+<p><code>java
+  //生成方式
+  Uri uri = Uri.fromFile(File file)
+  //Uri转path
+  String filepath = Uri.getpath();</code></p>
+<ul>
+<li>
+<p>Path 转 Uri</p>
+</li>
+<li>
+<p>File Path To Media Uri</p>
+<p><code>java
+ //一般不会用到
+ 先获取Media Uri,再根据filepath获取Media._ID,最后拼接起来的Uri.</code></p>
+</li>
+<li>
+<p>File Path To Uri</p>
+</li>
+</ul>
+<p><code>java
+  Uri uri = Uri.fromFile(File file）</code></p>
+</li>
+<li>
+<p>App专属文件(私有目录)：只有该App可以读取的文件</p>
+<p>Android 10之后，读写App专属文件将不再需要权限，但是无法访问和修改其他App的私有目录。</p>
+<ul>
+<li>Internal Storage</li>
+</ul>
+<p><code>java
+  //在Activity或Fragment中
+  File priinnerfile = getFilesDir();
+  Log.d(TAG, "private internal file:"+priinnerfile.getPath());
+  //除此之外 还有Api:
+  //getDataDir()
+  //getCacheDir()
+  //getDir(String,int)</code></p>
+<p><code>java
+  //Android 路径
+  private internal file:/data/user/0/com.example.androiddemo/files
+    //实际路径
+   /data/data/包名/files</code></p>
+<ul>
+<li>External Storage</li>
+</ul>
+<p><code>xml
+  #权限添加 该权限在Android 10已过时，使用以下方法可以不用申请权限
+  &lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;
+  #可以读取别的应用保存在共有目录的文件
+  &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/&gt;</code></p>
+<ul>
+<li>
+<p>getExternalFilesDir(String type)</p>
+<ul>
+<li>Type= null ,指默认路径files文件夹</li>
+</ul>
+<p><code>java
+String privatefile = getExternalFilesDir(null).toString();
+Log.d(TAG, "private External file: "+privatefile);</code></p>
+<p><code>java
+ private External file: /storage/emulated/0/Android/data/com.example.androiddemo/files
+   //实际路径
+   /sdcard/Android/data/包名/files</code></p>
+<ul>
+<li>Type 可以指定files的子文件夹，如<code>Caches</code></li>
+</ul>
+<p><code>java
+String privatefile = getExternalFilesDir("Caches").toString();
+Log.d(TAG, "private External file: "+privatefile);</code></p>
+<p><code>java
+ private External file: /storage/emulated/0/Android/data/com.example.androiddemo/files/Caches
+   //实际路径
+/sdcard/Android/data/包名/files/Caches</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Android10,之后，为了避免应用在共享目录中任意乱写文件，于是提出了<code>Scoped Storage</code>，即作用域存储、分区存储或沙盒存储，基本原则如下：</p>
+<ol>
+<li>App私有文件不需要任何权限</li>
+<li>共有目录,即App独立文件无法通过路径直接访问，不能新建、删除和修改目录/文件等</li>
+<li>共有目录，即App独立文件的访问，需要通过Uri访问</li>
+</ol>
+<pre><code class="language-xml">//在Application中添加以下属性可以紧致分区存储，但Android 11会强制开启
+android:requestLegacyExternalStorage=&quot;true&quot; 
+</code></pre>
+<ul>
+<li>Android 11 为什么只能通过Uri,而不能通过文件路径访问</li>
+<li>文件的存储和读取,主要是通过<code>FileInputStream</code>和<code>FileOutputStream</code>来实现的，看其文件存储的源码可知,在构建<code>FileDescriptor fd = IoBridge.open(name, O_RDONLY)</code>时,抛出了权限异常</li>
+<li>而通过Uri构造的InputStream则可以构<code>FileDescriptor</code>,因此适用于Uri读取文件</li>
+</ul>
+<p>注：Devices file explorer刷新需要通过刷新手机列表</p>
+<ul>
+<li>权限总结</li>
+</ul>
+<p>App读写自己新建的文件时，不需要任何权限</p>
+<p>App读写他人新建的文件时，权限区分如下：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internal Storage</td>
+<td>不可访问</td>
+</tr>
+<tr>
+<td>External Storage</td>
+<td>需要授权才可以访问,可以采用File Provider</td>
+</tr>
+<tr>
+<td>系统共有目录</td>
+<td>可访问媒体文件，但修改需要授权，非媒体文件不可访问，不可授权</td>
+</tr>
+<tr>
+<td>应用在sdcard新建的其他文件</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3sqlite">3、SQLite数据库的使用</h3>
+<ul>
+<li>
+<p>SQLite是一个轻量级的数据库。</p>
+</li>
+<li>
+<p>内置的SQLiteOpenHelper类是一个抽象类，若想使用它，必须继承使用它，借助这个类可以对数据库进行创建</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法或实例</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DatabaseHelper（）</td>
+<td>构造函数。四个参数(Context context, String name, CursorFactory factory, int version）</td>
+</tr>
+<tr>
+<td>onCreate()</td>
+<td>创建数据库</td>
+</tr>
+<tr>
+<td>onUpgrade()</td>
+<td>升级数据库</td>
+</tr>
+<tr>
+<td>getReadableDatabase()</td>
+<td>创建或打开一个已有的数据库，返回对数据库的操作对象SQLiteDatabase，磁盘满时，返回只读</td>
+</tr>
+<tr>
+<td>getWritableDatabase()</td>
+<td>创建或打开一个已有的数据库，返回对数据库的操作对象，磁盘满时，出现异常</td>
+</tr>
+</tbody>
+</table>
+<p>可视化数据库插件名称：Database Navigator</p>
+<p><code>java
+    DBhelper =new MyDataOpenHelper(this,"Library.dp",null,1);
+    DBhelper.getWritableDatabase();</code></p>
+<ul>
+<li>SQlitedatabse对象的方法</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>参数</th>
+<th>方法说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>insert()</td>
+<td>(Table，null,ContentValue)</td>
+<td>添加数据</td>
+</tr>
+<tr>
+<td>update()</td>
+<td>(Table,ContentValue,WhereClause)</td>
+<td>修改数据</td>
+</tr>
+<tr>
+<td>delete()</td>
+<td>(Table,WhereClause)</td>
+<td>删除数据</td>
+</tr>
+<tr>
+<td>query()</td>
+<td>(Table,columns,selection,selection Args,Group By，having,order by)</td>
+<td>查询数据</td>
+</tr>
+</tbody>
+</table>
+<p><code>java
+  //insert  SQLiteDatabse操作
+  SQLiteDatabase database =   DBhelper.getReadableDatabase();
+  ContentValues values = new ContentValues();
+  //开始添加一组数据
+  values.put("name","Android Base");
+  values.put("author","Harry");
+  values.put("pages",123);
+  values.put("price",16.32);
+  database.insert("Book",null,values);
+  values.clear();
+  values.put("name","Base Android ");
+  values.put("author","Harry");
+  values.put("pages",123);
+  values.put("price",16.32);
+  database.insert("Book",null,values);
+  //SQLiteOpenHelper
+  db.execSQL("insert into person (name,number) values(?,?)",new Object[]{name,number});</code></p>
+<p>```java
+  //修改数据   SQLiteDatabase 操作
+  SQLiteDatabase database = DBhelper.getReadableDatabase();
+                  ContentValues values = new ContentValues();
+                  values.put("price",10.00);
+                  database.update("Book",values,"id =?",new String[]{"1"});
+  //SQLiteOpenHelper</p>
+<p>```</p>
+<p>```java
+  //修改数据
+   SQLiteDatabase database = DBhelper.getWritableDatabase();
+                  database.delete("Book","id=?",new String[]{"2"});
+                  database.close();</p>
+<p>```</p>
+<p><code>java
+   //查询数据
+   SQLiteDatabase database = DBhelper.getWritableDatabase();
+                  Cursor  cursor = database.query("Book",null,null,null,null,null,null);
+                  if(cursor.moveToFirst()){
+                      do{
+                          String name =  cursor.getString(cursor.getColumnIndex("name"));
+                          Log.d(TAG, "Name is "+name);
+                      }while (cursor.moveToNext());
+                  }</code></p>
+<h2 id="_4">框架</h2>
+<h3 id="1mvcmvpmvvm">1、mvc、mvp和mvvm的区别</h3>
+<p>1、MVC</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/20200322100458933.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxNnlsZzA4,size_16,color_FFFFFF,t_70" /></p>
+<p>Model：代表我们的数据模型，管理数据状态，比如Android项目中Java Bean。
+View：视图，即呈现给用户的UI，比如Android项目中的layout.xml文件、Activity和Fragment。
+Controller：控制者，负责处理用户与app之间的交互，包含业务逻辑。所以Controller是Model与View的中介，比如Android项目中Activity和Fragment。</p>
+<p>缺点：</p>
+<p>1.View与Model之间还存在依赖关系，Controller很重很复杂。</p>
+<p>2.在Android中Activity即是View又是Controller，所以会很复杂。</p>
+<p>2、MVP</p>
+<p>Model：代表我们的数据模型，管理数据状态。
+View：视图，即呈现给用户的UI，并且负责与客户进行交互。比如我们的XML/Activity/Fragment。
+Presenter：主持者，Presenter通过View接收用户的输入，然后在Model的帮助下处理用户的数据并将结果传递回View。Presenter通过接口与View进行通信。接口在presenter类中定义，它传递所需的数据。Activity/Fragment 及其他View视图组件实现此接口获得他们想要的数据并呈现数据。优点：</p>
+<ol>
+<li>将View与Model解耦，方便进行单元测试。</li>
+<li>Presenter层可通过实现接口与View层通信从而避免Presenter层与View层耦合。</li>
+<li>activity和fragment不再是controller层，而是纯粹的view层。</li>
+</ol>
+<p>3、MVVM</p>
+<p><img alt="img" src="https://img-blog.csdnimg.cn/20200322101245723.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxNnlsZzA4,size_16,color_FFFFFF,t_70" /></p>
+<p>Model：代表我们的数据模型，管理数据状态。
+View：视图，即呈现给用户的UI，并且负责与客户进行交互。比如我们的XML/Activity/Fragment。
+ViewModel：如上图所示，ViewModel与Presenter的区别，在MVVM中，View引用持有ViewModel，但ViewModel得不到任何关于View的信息。所以View与ViewModel之间存在着一对多的关系，一个View可以持有多个ViewModel。</p>
+<h2 id="_5">内存</h2>
+<h3 id="1_1">1、内存泄漏</h3>
+<p>1、定义</p>
+<p>用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元。直到程序结束。即所谓的内存泄漏。
+<code>其实说白了就是该内存空间使用完毕之后未回收</code></p>
+<p>2、造成内存泄露的原因及解决方案</p>
+<ul>
+<li>
+<p><strong>Handler 引起的内存泄漏</strong></p>
+</li>
+<li>
+<p>Handler、Message、MessageQueue是相互关联在一起的，Handler通过发送消息Message与主线程进行交互，如果Handler发送的消息Message尚未被处理，该Message及发送它的Handler对象将被MessageQueue一直持有，这样就可能会导致Handler无法被回收。</p>
+<p><img alt="img" src="https://images2015.cnblogs.com/blog/1090298/201702/1090298-20170225093236648-1021418775.jpg" /></p>
+<p><code>SecondActivity代码中有一个延迟1秒执行的消息Message，当界面从SecondActivity跳转到ThirdActivity时，SecondActivity自动进入后台，此时如果系统资源紧张（或者打开设置里面的“不保留活动”选项），SecondActivity将会被finish。但问题来了，由于SecondActivity的Handler对象mHandler为非静态匿名内部类对象，它会自动持有外部类SecondActivity的引用，从而导致SecondActivity无法被回收，造成内存泄漏。</code></p>
+</li>
+<li>
+<p>解决方案：将Handler声明为静态内部类，就不会持有外部类SecondActivity的引用，其生命周期就和外部类无关，如果Handler里面需要context的话，可以通过弱引用方式引用外部类。（参考如下），若还有未处理的信息，在Activity的onDestory()方法中</p>
+<p>移除消息队列中的待处理消息。</p>
+<p><img alt="img" src="https://images2015.cnblogs.com/blog/1090298/201702/1090298-20170225093250429-309870636.jpg" /></p>
+<p><img alt="img" src="https://images2015.cnblogs.com/blog/1090298/201702/1090298-20170225093301491-1583623279.jpg" /></p>
+</li>
+<li>
+<p><strong>单例模式引起的泄漏</strong></p>
+</li>
+<li>
+<p>单例的生命周期长于Activity，如果使用不当，将导致Activity无法回收，造成内存泄漏。</p>
+<p><img alt="img" src="https://images2015.cnblogs.com/blog/1090298/201702/1090298-20170225093310726-390209816.jpg" /></p>
+<p>由图中可知，传入的Context如果是Activity,于Context会被创建的实例一直持有，当Activity进入后台或者开启设置里面的不保留活动时，Activity会被销毁，但是单例持有它的Context引用，Activity又没法销毁，导致了内存泄漏</p>
+</li>
+<li>
+<p>解决方案：不持有Activity的引用，而是持有Application的Context引用。</p>
+<p><img alt="img" src="https://img-blog.csdn.net/20160627170356784" /></p>
+</li>
+<li>
+<p><strong>非静态内部类创建静态实例引起的内存泄漏</strong></p>
+</li>
+<li>
+<p>非静态内部类创建静态实例后会持有外部类的引用，由于静态实例的生命周期和app一样，因此造成外部类无法回收。</p>
+<p><img alt="img" src="https://images2015.cnblogs.com/blog/1090298/201702/1090298-20170225093357116-589723458.jpg" /></p>
+<p><code>SecondActivity2包含一个内部类InnerClass，并且在onCreate代码中创建了InnerClass的静态实例mInner，该实例和app的生命周期是一致的。在某些场景，如Activity需要频繁切换，需要不断加载大量图片的场合，是会出现上述代码的，每次Activity启动之后都会使用该单例，避免重复一些有压力的操作。但是这样会引起内存泄漏，因为非静态的内部类InnerClass会自动持有外部类SecondActivity2的引用，创建的静态实例mInner就会一直持有SecondActivity2的引用，导致SecondActivity2需要销毁的时候没法正常销毁。</code></p>
+</li>
+<li>
+<p>解决方案，将内部类修改为静态的可以避免内部泄漏，或者将其写成单例模式完成同样的功能。</p>
+</li>
+<li>
+<p><strong>非静态匿名内部类引起的内存泄漏</strong></p>
+</li>
+<li>
+<p>匿名内部类被异步线程使用，可能会引起内存泄漏。</p>
+<p><img alt="img" src="https://images2015.cnblogs.com/blog/1090298/201702/1090298-20170225093431851-2005216076.jpg" /></p>
+<p><code>mRunnable 是非静态匿名内部类，会自动持有外部类SecondActivity3的引用，但是mRunnable被异步线程Thread使用，这样就会导致SecondActivity3在销毁的时候没法正常销毁，从而引起内存泄漏。</code></p>
+</li>
+<li>
+<p>解决方案：将匿名内部类设置成静态的。</p>
+</li>
+<li>
+<p><strong>注册/反注册未成对使用引起的内存泄漏</strong></p>
+</li>
+<li>
+<p>我们经常会在Activity的onCreate中注册广播接受器、EventBus等，如果忘记成对的使用反注册，可能会引起内存泄漏。</p>
+</li>
+<li>
+<p>解决方案：要记得相应的在onDestroy或onPause中反注册。</p>
+</li>
+<li>
+<p><strong>资源对象没有关闭引起的内存泄漏</strong></p>
+</li>
+<li>
+<p>源性对象比如Cursor、File、Bitmap、视频等，系统都用了一些缓冲技术，在使用这些资源的时候，如果我们确保自己不再使用这些资源了，要及时关闭，否则可能引起内存泄漏。</p>
+</li>
+<li>
+<p>解决方案：使用完后记得及时关闭这些资源。</p>
+</li>
+<li>
+<p><strong>集合对象没有及时清理引起的内存泄漏</strong></p>
+</li>
+<li>
+<p>如果集合是static、不断的往里面添加东西、又忘记去清理，肯定会引起内存泄漏。</p>
+</li>
+<li>
+<p>解决方案：当不使用的时候一定要记得及时清理集合，让相关对象不再被引用。</p>
+</li>
+<li>
+<p>哈希值修改内存泄漏</p>
+</li>
+<li>
+<p>属性动画</p>
+</li>
+<li>
+<p>as y ncTask</p>
+</li>
+<li>
+<p>finalize</p>
+</li>
+<li>
+<p>Wevview </p>
+</li>
+</ul>
+<p>3、检查Android泄露的工具LeakCanary</p>
+<p>4、总结预防内存泄漏</p>
+<pre><code>1、Handler持有的引用最好使用弱引用，在Activity被释放的时候要记得清空Message，取消Handler对象的Runnable；
+2、非静态内部类、非静态匿名内部类会自动持有外部类的引用，为避免内存泄露，可以考虑把内部类声明为静态的；
+3、对于生命周期比Activity长的对象，要避免直接引用Activity的context，可以考虑使用ApplicationContext；
+4、广播接收器、EventBus等的使用过程中，注册/反注册应该成对使用；
+5、不再使用的资源对象Cursor、File、Bitmap等要记住正确关闭；
+6、集合里面的东西、有加入就应该对应有相应的删除。
+</code></pre>
+<h3 id="2_1">2、内存溢出</h3>
+<p>1、定义：系统会给每个APP分配内存也就是Heap Size值。当APP占用的内存加上我们申请的内存资源超过了Dalvik虚拟机的最大内存时就会抛出的Out Of Memory异常。</p>
+<p>2、造成内存溢出的原因：</p>
+<ul>
+<li>内存泄漏导致</li>
+<li>占用内存较多的对象</li>
+</ul>
+<p>3、相关概念</p>
+<ul>
+<li>
+<p>栈(stack)：是简单的数据结构，程序运行时系统自动分配，使用完毕后自动释放。优点：速度快。</p>
+</li>
+<li>
+<p>堆(heap)：用于存放由new创建的对象和数组。在堆中分配的内存，一方面由java虚拟机自动垃圾回收器来管理，另一方面还需要程序员提供回收，防止内存泄露问题。</p>
+</li>
+<li>
+<p>方法区(method)：又叫静态区，跟堆一样，被所有的线程共享。方法区包含所有的class和static变量。</p>
+</li>
+<li>内存抖动：内存抖动是指在短时间内有大量的对象被创建或者被回收的现象，主要是循环中大量创建、回收对象。这种情况应当尽量避免。
+   它们三者的重要等级分别：内存溢出 &gt; 内存泄露 &gt; 内存抖动。
+   内存溢出对我们的App来说，影响是非常大的。有可能导致程序闪退，无响应等现象，因此，我们一定要优先解决OOM的问题。</li>
+<li>强引用：强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝不会回收它。 当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。</li>
+<li>软引用：如果一个对象只具有软引用，但内存空间足够时，垃圾回收器就不会回收它;直到虚拟机报告内存不够时才会回收， 只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。 软引用可以和一个引用队列(ReferenceQueue)联合使用，如果软引用所引用的对象被垃圾回收器回收，Java虚拟机就会把这个软引用加入到与之关联的引用队列中。</li>
+<li>弱引用：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间是否足够，都会回收它的内存。 不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。 弱引用可以和一个引用队列(ReferenceQueue)联合使用，如果弱引用所引用的对象被垃圾回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中。</li>
+<li>虚引用：虚引用可以理解为虚设的引用，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。 虚引用主要用来跟踪对象被垃圾回收器回收的活动。
+   虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列 (ReferenceQueue)联合使用。 当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之 关联的引用队列中。 程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。 如果程序发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。</li>
+</ul>
+<p>4、内存溢出的预防</p>
+<ul>
+<li>图片</li>
+<li>内存中加载图片直接在内存中做处理（如边界压缩）</li>
+<li>减少Bitmap对象的内存占用</li>
+<li>临时Bitmap的及时回收</li>
+<li>对象</li>
+<li>动态回收内存</li>
+<li>内存引用上做一些处理</li>
+<li>注意对象的复用</li>
+<li>注意单例模式的不合理持有</li>
+<li>注意监听器及时注销</li>
+<li>避免使用枚举</li>
+<li>使用更加轻量的数据结构</li>
+<li>页面</li>
+<li>优化布局层次，减少开销</li>
+<li>Activity避免被强引用</li>
+<li>Webview的泄漏</li>
+<li>系统</li>
+<li>自定义堆内存大小</li>
+<li>优化Delivk虚拟机的堆内存分配</li>
+<li>申请大内存large heap</li>
+<li>Services 用完及时停止</li>
+<li>谨慎使用多进程</li>
+</ul>
+<h3 id="3android">3、Android进程间通信</h3>
+<p>分几个大类</p>
+<p>1.进程共享 开启:process=remote，使得所有进程都可以访问这个进程</p>
+<p>2.广播</p>
+<p>3.Binder机制： AIDL,intent,Messager</p>
+<p>4.Socket</p>
+<p>5.共享内存 ContentProvider file </p>
+<ul>
+<li>Intent </li>
+<li>
+<p>Activity，Service，Receiver 都支持在 Intent 中传递 Bundle 数据，而 Bundle 实现了 Parcelable 接口，可以在不同的进程间进行传输。</p>
+</li>
+<li>
+<p>文件共享</p>
+</li>
+<li>
+<p>Android 基于Linux，可以并发读取文件</p>
+</li>
+<li>
+<p>sharedPreference是个特例，系统对它的读写有一定的缓存策略。IPC不考虑它</p>
+</li>
+<li>
+<p>Messenger</p>
+</li>
+<li>
+<p>Messenger 是一种轻量级的 IPC 方案，它的底层实现是 AIDL ，可以在不同进程中传递 Message 对象，它一次只处理一个请求，在服务端不需要考虑线程同步的问题，服务端不存在并发执行的情形。</p>
+</li>
+<li>
+<p>服务端进程：服务端创建一个 Service 来处理客户端请求，同时通过一个 Handler 对象来实例化一个 Messenger 对象，然后在 Service 的 onBind 中返回这个 Messenger 对象底层的 Binder 即可。</p>
+</li>
+<li>
+<p>客户端进程：首先绑定服务端 Service ，绑定成功之后用服务端的 IBinder 对象创建一个 Messenger ，通过这个 Messenger 就可以向服务端发送消息了，消息类型是 Message 。如果需要服务端响应，则需要创建一个 Handler 并通过它来创建一个 Messenger（和服务端一样），并通过 Message 的 replyTo 参数传递给服务端。服务端通过 Message 的 replyTo 参数就可以回应客户端了。</p>
+</li>
+<li>
+<p>客户端和服务端是通过拿到对方的 Messenger 来发送 Message 的。只不过客户端通过 bindService onServiceConnected 而服务端通过 message.replyTo 来获得对方的 Messenger 。Messenger 中有一个 Hanlder 以串行的方式处理队列中的消息。不存在并发执行，因此我们不用考虑线程同步的问题。</p>
+</li>
+<li>
+<p>AIDL</p>
+</li>
+<li>
+<p>Messenger 是以串行的方式处理客户端发来的消息，如果大量消息同时发送到服务端，服务端只能一个一个处理，所以大量并发请求就不适合用 Messenger ，而且 Messenger 只适合传递消息，不能跨进程调用服务端的方法。AIDL 可以解决并发和跨进程调用方法的问题，要知道 Messenger 本质上也是 AIDL ，只不过系统做了封装方便上层的调用而已。</p>
+</li>
+<li>支持的基本类型：String、List、Map、CharSequence</li>
+<li>服务端创建一个 Service 用来监听客户端的连接请求，然后创建一个 AIDL 文件，将暴露给客户端的接口在这个 AIDL 文件中声明，最后在 Service 中实现这个 AIDL 接口即可。'</li>
+<li>
+<p>客户端 绑定服务端的 Service ，绑定成功后，将服务端返回的 Binder 对象转成 AIDL 接口所属的类型，然后就可以调用 AIDL 中的方法了。客户端调用远程服务的方法，被调用的方法运行在服务端的 Binder 线程池中，同时客户端的线程会被挂起，如果服务端方法执行比较耗时，就会导致客户端线程长时间阻塞，导致 ANR 。客户端的 onServiceConnected 和 onServiceDisconnected 方法都在 UI 线程中。</p>
+</li>
+<li>
+<p>ContentProvider</p>
+</li>
+<li>
+<p>用于不同应用间数据共享，和 Messenger 底层实现同样是 Binder 和 AIDL，系统做了封装，使用简单。 系统预置了许多 ContentProvider ，如通讯录、日程表，需要跨进程访问。</p>
+</li>
+<li>使用方法：继承 ContentProvider 类实现 6 个抽象方法，这六个方法均运行在 ContentProvider 进程中，除 onCreate 运行在主线程里，其他五个方法均由外界回调运行在 Binder 线程池中。</li>
+<li>
+<p>ContentProvider 的底层数据，可以是 SQLite 数据库，可以是文件，也可以是内存中的数据。</p>
+</li>
+<li>
+<p>socket</p>
+</li>
+<li>
+<p>Socket起源于 Unix，可以用“打开 open –读写 write/read –关闭 close ”模式来操作。</p>
+</li>
+<li>
+<p>类型</p>
+<ul>
+<li>流式Soceket(SOCK_STREAM)   面向连接的Socket</li>
+<li>数据报式(SOCK_DGRAM)   面向无连接的</li>
+</ul>
+</li>
+<li>
+<p>Binder</p>
+</li>
+<li>
+<p>一次拷贝</p>
+</li>
+<li>分配pid  安全性高</li>
+<li>采用C/S的通信模式</li>
+<li>广播</li>
+</ul>
+<h2 id="_6">动画</h2>
+<h3 id="1_2">1、动画概念</h3>
+<ul>
+<li>属性动画资源(Property)</li>
+<li>Animator是一个抽象类，子类实现类为AnimatorSet、ValueAnimator、ObjectAnimator、TimeAnimator<ul>
+<li><set../>                                  是父元素，包含以下的，所对应的类是AnimatorSet</li>
+<li><objectAnimator.../>           用于定义ObjectAnimator</li>
+<li><animator.../>                      用于定义ValueAnimator</li>
+</ul>
+</li>
+<li>动画模式</li>
+<li>补间(Tween)动画</li>
+<li>逐帧(Frame)动画<ul>
+<li>在<animation-list .../>元素中使用<item.../>子元素定义动画的全部帧，并指定帧的事件</li>
+<li>使用AnimationDrawable类来获取动画，默认是不播放的</li>
+<li>strat(): 开始动画</li>
+<li>stop(): 停止动画</li>
+</ul>
+</li>
+<li>Animator框架</li>
+<li>提供的关键接口<ul>
+<li>ofFloat()</li>
+</ul>
+</li>
+<li>Animotion 概述和执行原理</li>
+<li>Animotion 执行方法</li>
+<li>代码类</li>
+<li>xml文件  利用 AnimationUtils loadAnimation（）加载xml文件，可以解析生成对应动画。</li>
+<li>xml 属性</li>
+<li>fillAfter     显示最终的动画形式</li>
+<li>fillBefore</li>
+</ul>
+<h3 id="2tween">2、补间(Tween)动画</h3>
+<p><strong>确定了view的开始的视图样式和结束的视图样式，动画过程中系统会补全变化中的状态，最终就实现了动画效果。</strong></p>
+<h4 id="animation">Animation子类</h4>
+<ul>
+<li>translate (平移动画) — TranslateAnimation</li>
+<li>alpha （ 透明度动画） — AlphaAnimation 类</li>
+<li>scale (缩放动画) — ScaleAnimation</li>
+<li>rotate （旋转动画） — RotateAnimation类</li>
+</ul>
+<h4 id="translateanimation">TranslateAnimation   平移动画</h4>
+<ul>
+<li>构造函数</li>
+</ul>
+<p><code>java
+  TranslateAnimation(Context context, AttributeSet attrs) //使用xml文件        
+  TranslateAnimation(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta)
+  TranslateAnimation(int fromXType, float fromXValue, int toXType, float toXValue, int fromYType, float fromYValue, int toYType, float toYValue)</code></p>
+<ul>
+<li>函数参数说明</li>
+</ul>
+<p><img alt="img" src="../Android%20%E5%9F%BA%E7%A1%80.assets/20181227194408495.png" /></p>
+<ul>
+<li>
+<p>Type类型</p>
+<ul>
+<li>ABSOLUT E                  具体值                 0</li>
+<li>RELATIVE_TO_SELF    相对于自己          0%</li>
+<li>RELATIVE_TO_PARENT 相对于父布局   0%p</li>
+</ul>
+</li>
+<li>
+<p>动画坐标的原点都是View的左上角(0,0)，因此若为负，则出现在其左上角</p>
+</li>
+<li>
+<p>demo 练习</p>
+</li>
+</ul>
+<p><code>java
+  //Java 类实现
+  TranslateAnimation translateAnimation = new TranslateAnimation(0, 400, 0, 200);
+  translateAnimation.setDuration(3000);
+  translateAnimation.setFillAfter(true);
+  mTVDemo.startAnimation(translateAnimation);</code></p>
+<p><code>xml
+  //0 xml实现
+  ?xml version="1.0" encoding="utf-8"?&gt;
+  &lt;translate xmlns:android="http://schemas.android.com/apk/res/android"
+      android:fromXDelta="0"
+      android:toXDelta="400"
+      android:fromYDelta="0"
+      android:toYDelta="200"
+      android:duration="3000"
+      android:fillAfter="true"&gt;
+  &lt;/translate&gt;
+  // 0% xml实现
+  ?xml version="1.0" encoding="utf-8"?&gt;
+  &lt;translate xmlns:android="http://schemas.android.com/apk/res/android"
+      android:fromXDelta="0"
+      android:toXDelta="100%"
+      android:fromYDelta="0"
+      android:toYDelta="100%"
+      android:duration="3000"
+      android:fillAfter="true"&gt;
+  &lt;/translate&gt;
+  //0%p xml实现
+  &lt;translate xmlns:android="http://schemas.android.com/apk/res/android"
+      android:fromXDelta="0"
+      android:toXDelta="50%p"
+      android:fromYDelta="0"
+      android:toYDelta="50%p"
+      android:duration="3000"
+      android:fillAfter="true"&gt;
+  &lt;/translate&gt;
+  //java 代码
+  mTVDemo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.half_view_enter_bottom));</code></p>
+<h4 id="alphaanimation">AlphaAnimation</h4>
+<ul>
+<li>构造参数</li>
+</ul>
+<p>AlphaAnimation(Context context, AttributeSet attrs)       //读取xml文件生成
+  AlphaAnimation(float fromAlpha, float toAlpha)    </p>
+<ul>
+<li>参数说明</li>
+</ul>
+<p><code>fromAlpha: Starting alpha value for the animation, where 1.0 means fully opaque and 0.0 means fully transparent. //开始时的透明度
+  toAlpha:  Ending alpha value for the animation.//简单时的透明度</code></p>
+<ul>
+<li>demo练习</li>
+</ul>
+<p><code>Java
+  //Java实现
+  AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
+  alphaAnimation.setDuration(3000);
+  alphaAnimation.setFillBefore(true);
+  mTVDemo.startAnimation(alphaAnimation);</code></p>
+<p>```xml
+  <?xml version="1.0" encoding="utf-8"?></p>
+<p><alpha xmlns:android="http://schemas.android.com/apk/res/android"
+      android:fromAlpha="0.1"
+      android:toAlpha="1.0"
+      android:duration="3000"
+      android:fillBefore="true">
+  </alpha>
+  mTVDemo.startAnimation(AnimationUtils.loadAnimation(this, Animal的xml文件ID));
+  ```</p>
+<h4 id="scaleanimation">ScaleAnimation 缩放动画</h4>
+<ul>
+<li>构造函数</li>
+</ul>
+<pre><code class="language-java">ScaleAnimation(Context context, AttributeSet attrs)//利用xml文件生成对象
+ScaleAnimation(float fromX, float toX, float fromY, float toY)
+ScaleAnimation(float fromX, float toX, float fromY, float toY, float pivotX, float pivotY)
+ScaleAnimation(float fromX, float toX, float fromY, float toY, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)
+</code></pre>
+<ul>
+<li>参数介绍</li>
+<li>privotXType为缩放原点的X轴坐标，相对于X轴的方向的偏移量</li>
+<li>privotYType为缩放原点的X轴坐标，相对于Y轴的方向的偏移量</li>
+</ul>
+<p><img alt="image-20210906195558782" src="../Android%20%E5%9F%BA%E7%A1%80.assets/image-20210906195558782.png" /></p>
+<ul>
+<li>demo练习</li>
+</ul>
+<p><code>java
+  caleAnimation scaleAnimation = new ScaleAnimation(0.0f, 2.0f, 0.0f, 2.0f);
+  scaleAnimation.setDuration(3000);
+  scaleAnimation.setFillAfter(true);
+  mTVDemo.startAnimation(scaleAnimation);</code></p>
+<pre><code class="language-java">//xml实现
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;scale xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:fromXScale=&quot;0.0&quot;
+    android:toXScale=&quot;2.0&quot;
+    android:fromYScale=&quot;0.0&quot;
+    android:toYScale=&quot;2.0&quot;
+    android:pivotX=&quot;50%p&quot;
+    android:pivotY=&quot;50%p&quot;
+    android:duration=&quot;3000&quot;
+    android:fillAfter=&quot;true&quot;/&gt;
+      mTVDemo.startAnimation(AnimationUtils.loadAnimation(this, Animal的xml文件ID));//Java
+</code></pre>
+<h4 id="rotateanimation">RotateAnimation</h4>
+<ul>
+<li>构造函数</li>
+</ul>
+<p><code>java
+  RotateAnimation(Context context, AttributeSet attrs)
+  RotateAnimation(float fromDegrees, float toDegrees)
+  RotateAnimation(float fromDegrees, float toDegrees, float pivotX, float pivotY)
+  RotateAnimation(float fromDegrees, float toDegrees, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</code></p>
+<ul>
+<li>参数说明</li>
+</ul>
+<p><img alt="image-20210906201020136" src="../Android%20%E5%9F%BA%E7%A1%80.assets/image-20210906201020136.png" /></p>
+<ul>
+<li>Demo练习</li>
+</ul>
+<p><code>java
+  //Java 实现 绕View中心旋转270度
+  RotateAnimation rotateAnimation = new RotateAnimation(0.0f, 270f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+  rotateAnimation.setDuration(3000);
+  rotateAnimation.setFillAfter(true);
+  mTVDemo.startAnimation(rotateAnimation);</code></p>
+<p>```xml
+  <?xml version="1.0" encoding="utf-8"?></p>
+<p><rotate xmlns:android="http://schemas.android.com/apk/res/android"
+      android:fromDegrees="0"
+      android:toDegrees="270"
+      android:pivotX="50%"
+      android:pivotY="50%"
+      android:duration="3000"
+      android:fillAfter="true">
+  </rotate>
+   mTVDemo.startAnimation(AnimationUtils.loadAnimation(this, Animal的xml文件ID));//Java
+  ```</p>
+<h4 id="animationset">AnimationSet  联合动画</h4>
+<p>注：适合单个View 同时实现多个动画</p>
+<p>animationSet继承自Animation没有自己的属性完全继承父类，但是有些属性对它无效，但有些属性也只有它可以用，和Animation使用属性的区别</p>
+<ol>
+<li>
+<p>duration, repeatMode, fillBefore, fillAfter: 这些属性设置给了AnimationSet会作用于它内部的Animation对象.</p>
+</li>
+<li>
+<p>repeatCount, fillEnabled: 这些属性对AnimationSet无效，将被忽略.</p>
+</li>
+<li>
+<p>startOffset, shareInterpolator: 这些属性只作用于AnimationSet.</p>
+</li>
+<li>
+<p>构造函数</p>
+</li>
+</ol>
+<pre><code class="language-java">AnimationSet(Context context, AttributeSet attrs)
+AnimationSet(boolean shareInterpolator) 
+</code></pre>
+<ul>
+<li>参数介绍</li>
+</ul>
+<p>shareInterpolator :shareInterpolator取值为true时，指在AnimationSet中定义一个插值器（interpolater），它下面的所有动画共同使用，为false，则各自定义插值器。</p>
+<ul>
+<li>常用方法</li>
+</ul>
+<p>public void addAnimation (Animation a)  添加动画</p>
+<ul>
+<li>Demo实现</li>
+</ul>
+<p><code>java
+  //Java 实现
+  AnimationSet animationSet = new AnimationSet(true);
+  animationSet.addAnimation(alphaAnimation);
+  animationSet.addAnimation(scaleAnimation);
+  animationSet.addAnimation(rotateAnimation);
+  mTVDemo.startAnimation(animationSet);</code></p>
+<p>```xml
+  <set xmlns:android="http://schemas.android.com/apk/res/android"
+      android:duration="3000"
+      android:fillAfter="true">
+      <translate
+          android:fromXDelta="0"
+          android:fromYDelta="0"
+          android:toXDelta="100"
+          android:toYDelta="100" />
+      <alpha
+          android:fromAlpha="0.5"
+          android:toAlpha="1.0" /></p>
+<pre><code>  &lt;scale
+      android:fromXScale="0.0"
+      android:fromYScale="0.0"
+      android:pivotX="50%"
+      android:pivotY="50%"
+      android:toXScale="2.0"
+      android:toYScale="2.0" /&gt;
+  &lt;rotate
+      android:fromDegrees="0"
+      android:pivotX="50%"
+      android:pivotY="50%"
+      android:toDegrees="-270" /&gt;
+</code></pre>
+<p></set>
+  ```</p>
+<h3 id="3frame">3、逐帧(Frame)动画</h3>
+<p><strong>逐帧动画的原理是一张一张的播放图片资源（drawable资源），然后出现动画效果。</strong></p>
+<ul>
+<li><strong>AnimationDrawable</strong></li>
+</ul>
+<p>把逐帧动画作为view的背景，然后获取动画，开启动画。</p>
+<ul>
+<li>构造函数</li>
+</ul>
+<p>AnimationDrawable()</p>
+<ul>
+<li>
+<p>常用属性说明</p>
+</li>
+<li>
+<p>oneshot:是否只播放一次，取值true，false，默认为false，用于animation-list</p>
+</li>
+<li>duration：每个item（每一帧动画）播放时长</li>
+<li>drawable: 每一帧的drawable资源</li>
+<li>visible:drawable资源是否可见，默认不可见</li>
+<li>
+<p>variablePadding:如果是True,drawable资源的Padding会随着当前的状态发生改变</p>
+</li>
+<li>
+<p>主要函数说明</p>
+</li>
+<li>
+<p>addFrame(Drawable frame, int duration)添加drawable</p>
+</li>
+<li>frame:每一帧的图片资源</li>
+<li>duration：每一帧的持续动画</li>
+<li>start()：开始动画</li>
+<li>stop(): 结束动画</li>
+<li>isRunning()：是否正在执行</li>
+<li>setOneShot(boolean oneShot)：设置是否只播放一次</li>
+<li>
+<p>getNumberOfFrames() ：获取帧的动画数</p>
+</li>
+<li>
+<p>使用方式</p>
+</li>
+<li>
+<p>单帧实现</p>
+<p><code>java
+//java 代码实现
+AnimationDrawable animationDrawable = new AnimationDrawable();
+animationDrawable.setOneShot(false);
+animationDrawable.addFrame(getResources().getDrawable(R.drawable.compositedst1),1000);
+animationDrawable.addFrame(getResources().getDrawable(R.drawable.compositedst2),1000);
+animationDrawable.addFrame(getResources().getDrawable(R.drawable.compositedst3),1000);
+animationDrawable.addFrame(getResources().getDrawable(R.drawable.compositedst4),1000);
+imageView.setImageDrawable(animationDrawable);
+animationDrawable.start();</code></p>
+</li>
+<li>
+<p>多帧实现 \<animation-list></p>
+<p><code>xml
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"&gt;
+&lt;item android:drawable="@drawable/compositedst1" android:duration="500"&gt;&lt;/item&gt;
+&lt;item android:drawable="@drawable/compositedst2" android:duration="500"&gt;&lt;/item&gt;
+&lt;item android:drawable="@drawable/compositedst3" android:duration="500"&gt;&lt;/item&gt;
+&lt;item android:drawable="@drawable/compositedst4" android:duration="500"&gt;&lt;/item&gt;
+&lt;/animation-list&gt;</code></p>
+<p><code>java
+imageView = findViewById(R.id.imageview);
+imageView.setImageResource(R.drawable.animationlist);
+AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();
+animationDrawable.start();</code></p>
+</li>
+<li>
+<p>设置动画的方式</p>
+<ul>
+<li>给View设置动画</li>
+</ul>
+<p><code>java
+  // 设置动画
+  imageView.setImageResource(R.drawable.frameanimation);
+  // 获取动画对象
+  animationDrawable = (AnimationDrawable)imageView.getDrawable();
+  animationDrawable.start();</code></p>
+<ul>
+<li>给View 背景设置动画</li>
+</ul>
+<p><code>java
+  imageView.setBackgroundResource(R.drawable.frameanimation);
+  animationDrawable = (AnimationDrawable) imageView.getBackground();
+  animationDrawable.start();</code></p>
+<ul>
+<li>View直接获取动画</li>
+</ul>
+<p><code>java
+  animationDrawable = (AnimationDrawable) getResources().getDrawable(
+  R.drawable.frameanimation);
+  imageView.setBackground(animationDrawable)</code></p>
+</li>
+</ul>
+<h3 id="4">4、插值器简介和应用</h3>
+<p>插值器（Interpolator）是设置动画运行过程中的变化规律，类似匀速变化，加速变化，回弹等。实际使用动画过程中，有时可能不完全都是要求动画匀速运动，类似加速运动，仿抛物线运动等，都需要插值器的配合。</p>
+<ul>
+<li>设置插值器的两个函数</li>
+</ul>
+<p>public void setInterpolator(Context context, @AnimRes @InterpolatorRes int resID) ；
+  public void setInterpolator(Interpolator i) ；</p>
+<ul>
+<li>xml属性配置</li>
+</ul>
+<p>android:interpolator="@android:anim/linear_interpolator"</p>
+<ul>
+<li>
+<p>系统提供的默认插值器（10种）</p>
+</li>
+<li>
+<p>@android:anim/linear_interpolator 对应 LinearInterpolator</p>
+<p>作用：匀速动画</p>
+</li>
+<li>
+<p>@android:anim/decelerate_interpolator 对应 DecelerateInterpolator</p>
+<p>作用：加速度变小的运动</p>
+</li>
+<li>
+<p>@android:anim/accelerate_interpolator 对应 AccelerateInterpolator</p>
+<p>作用：加速度变大的运动</p>
+</li>
+<li>
+<p>@android:anim/accelerate_decelerate_interpolator 对应AccelerateDecelerateInterpolator</p>
+<p>作用：先从0 加速到一个最大值，然后从最大值减速到0</p>
+</li>
+<li>
+<p>@android:anim/anticipate_interpolator 对应 AnticipateInterpolator</p>
+<p>作用：先后退再加速，类似投掷标枪，先往后蓄力再加速向前</p>
+</li>
+<li>
+<p>@android:anim/anticipate_overshoot_interpolator 对应AnticipateOvershootInterpolator</p>
+<p>作用：先后退再加速到超过终点，再返回终点</p>
+</li>
+<li>
+<p>@android:anim/bounce_interpolator 对应 BounceInterpolator</p>
+<p>作用：最后阶段弹球效果，就是会在到达终点后，类似弹球回弹几次。</p>
+</li>
+<li>
+<p>@android:anim/cycle_interpolator 对应CycleInterpolator</p>
+<p>作用：周期运动，参数为Float ,1.0f为从原始状态到最终状态，若为0.Xf状态，则最后为中间状态，可以设置为多次</p>
+</li>
+<li>
+<p>@android:anim/overshoot_interpolator 对应 OvershootInterpolator</p>
+<p>作用：快速完成动画，会超出一点然后再回到终点</p>
+</li>
+<li>
+<p>android:anim/path_interpolator 对应 PathInterpolator</p>
+<p>作用：根据路径来控制动画的执行快慢，路径可以是贝塞尔曲线，也可以是普通Path。</p>
+</li>
+</ul>
+<p>利用贝塞尔曲线描述运动过程的三个新的插值器</p>
+<ul>
+<li>
+<p>FastOutLinearInInterpolator</p>
+<p>作用：加速度变大的运动，和AccelerateInterpolator类似，但是刚开始的加速度更大</p>
+</li>
+<li>
+<p>FastOutSlowInInterpolator</p>
+<p>作用：先加速后减速运动，和AccelerateDecelerateInterpolator类似，但是前期初始速度更大</p>
+</li>
+<li>
+<p>LinearOutSlowInInterpolator</p>
+<p>作用：加速度变小的运动，和DecelerateInterpolator效果类似</p>
+</li>
+<li>
+<p>插值器使用Demo</p>
+</li>
+</ul>
+<p>```xml
+  //xml使用demo
+  <?xml version="1.0" encoding="utf-8"?></p>
+<p><linearInterpolator 
+      xmlns:android="http://schemas.android.com/apk/res/android">
+  </linearInterpolator>
+  ```</p>
+<p><code>java
+  //Java代码使用
+  mTranslateAnimation.setInterpolator(new AccelerateInterpolator());//这里添加各个插值器
+                  imageView.startAnimation(mTranslateAnimation);</code></p>
+<ul>
+<li>路径插值器详解</li>
+</ul>
+<p>普通路径举例</p>
+<p><code>java
+    Path path = new Path();
+          path.lineTo(0.25f, 0.25f);//终点形状
+          path.moveTo(0.25f, 0.5f);//开始形状
+          path.lineTo(1f, 1f);//终点形状</code></p>
+<p>加载动画曲线：</p>
+<p><img alt="image-20210907142900465" src="../Android%20%E5%9F%BA%E7%A1%80.assets/image-20210907142900465.png" /></p>
+<p>贝塞尔路径，为默认的路径曲线，通过PathInterpolator的构造函数实现：</p>
+<p><code>java
+  PathInterpolator pathInterpolator = new PathInterpolator(0.9f, 0.1f);
+  mTranslateAnimation.setInterpolator(pathInterpolator);
+  imageView.startAnimation(mTranslateAnimation);</code></p>
+<p>加载动画曲线：</p>
+<p><img alt="image-20210907143127907" src="../Android%20%E5%9F%BA%E7%A1%80.assets/image-20210907143127907.png" /></p>
+<h1 id="intdef">@IntDef 注解，减缓枚举的使用</h1>
+<ul>
+<li>
+<p>枚举在性能上，会消耗更大的内存，会更耗时，原因是：枚举在经过编译器之后，变成了一个抽象类，它继承了 <code>java.lang.Enum</code>，为其定义的枚举常量则会变成相应的内部类。</p>
+</li>
+<li>
+<p>而使用静态变量实现方式更轻级，并且Android提供了注释<code>@IntDef</code>（实现 String 类型的效果时用 <code>@StringDef</code>，还有 <code>LongDef</code> ）</p>
+</li>
+<li>
+<p>flag    : 定义常量是否可用作标志，或仅用作枚举（默认）：大概是可以通过 ｜ &amp; 等操作对常量进行组合</p>
+</li>
+<li>open: 是否允许任何其他值。通常情况并非如此，但这允许您指定一组预期的常量，这有助于 IDE 中的代码完成和文档生成等，但如果指定了其他值，则不会标记编译警告。</li>
+<li>
+<p>value: 定义此元素允许的常量。</p>
+</li>
+<li>
+<p>使用方式：</p>
+</li>
+</ul>
+<p><code>java
+   @Retention(SOURCE)//指定注解的保留策略，RetentionPolicy.SOURCE表示只保留源码中，编译时删除。还有CLASS和RUNTIME
+     @IntDef({NAVIGATION_MODE_STANDARD, NAVIGATION_MODE_LIST, NAVIGATION_MODE_TABS})//以注解的将几个整形值集合起来，转换为类似枚举的东西，flag默认为false
+     public @interface NavigationMode {} //声明自己创建的注解名
+     //静态变量
+     public static final int NAVIGATION_MODE_STANDARD = 0;
+     public static final int NAVIGATION_MODE_LIST = 1;
+     public static final int NAVIGATION_MODE_TABS = 2;</code></p>
+<h1 id="android">Android 网络</h1>
+<h2 id="1tcp">1、TCP 连接</h2>
+<ul>
+<li>三次握手</li>
+</ul>
+<p><img alt="image-20210922205440387" src="../Android%20%E5%9F%BA%E7%A1%80.assets/image-20210922205440387.png" /></p>
+<ul>
+<li>四次挥手</li>
+</ul>
+<p><img alt="361632315212_.pic_副本" src="../Android%20%E5%9F%BA%E7%A1%80.assets/361632315212_.pic_%E5%89%AF%E6%9C%AC.png" /></p>
+<ul>
+<li>TLS\SSL 加密过程</li>
+</ul>
+<p>加密类型：</p>
+<ul>
+<li>对称加密：加密解密使用相同的密钥</li>
+<li>非对称加密：加密解密使用不同的密钥，比如用公钥加密，使用私钥解密</li>
+</ul>
+<p>TLS/SSL同时使用了非对称加密和对称加密，原因是对称加密有利于获得较优的通话性能，而非对称加密提供了更好的密钥传输方法。</p>
+<ul>
+<li>TLS/SSL加密过程的通俗理解<ul>
+<li>1、当浏览器向服务器请求一个安全的网页(通常是 https://)，顺便发送可以使用的加密协议</li>
+<li>2、服务器就把它的证书和公钥发回来，以及选择你可以使用的加密协议A</li>
+<li>3、浏览器检查证书是不是由信赖的机构颁发的，确认证书有效和此证书是此网站的</li>
+<li>4、使用公钥加密了一个随机对称密钥，包括加密的Url一起发送给服务器</li>
+<li>5、服务器用自己的私钥解密了你发送的密钥，并用这个随机对成的密钥给浏览器请求的Url解密</li>
+<li>6、然后服务器用浏览器发的对称密钥给浏览器请求的网页加密发送给浏览器</li>
+<li>7、浏览器用对称密钥进行解密阅读，之后都用对称密钥加解密</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>浏览器</strong></th>
+<th></th>
+<th><strong>服务器</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发起</td>
+<td>—&gt; 1.浏览器通知服务器浏览器所支持的加密协议</td>
+<td>接收</td>
+</tr>
+<tr>
+<td>接收</td>
+<td>&lt;— 2.服务器通知浏览器从1中选用的加密协议,并给予证书</td>
+<td>发起</td>
+</tr>
+<tr>
+<td>3.用CA的公钥鉴别服务器的证书是否有效,有效则生成一个随机数(秘密数),秘密数加上2确定的加密协议产生会话密钥</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>发起</td>
+<td>—&gt; 4.浏览器用服务器的公钥加密秘密数发给服务器</td>
+<td>接收</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>5.服务器用私钥对4解密获得秘密数再加上2确定的加密协议产生会话密钥</td>
+</tr>
+<tr>
+<td></td>
+<td>&lt;— 握手结束,使用相同的会话密钥加密传输的数据(对称加密) —&gt;</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Socket通信</li>
+</ul>
+<p><a href="https://blog.csdn.net/qq_32035241/article/details/120364967?spm=1001.2014.3001.5501">Socket Java实现通信</a></p>
+<h2 id="2httpurlconnection">2、网络请求之——HttpUrlConnection</h2>
+<p>HttpURLconnection是基于http协议的，支持get，post，put，delete等各种请求方式，是标准的java接口。</p>
+<ul>
+<li>请求方法     setRequestMethod(Method)</li>
+<li>GET</li>
+<li>POST</li>
+<li>
+<p>延迟时间    setConnectTimeout(mills)</p>
+</li>
+<li>
+<p>请求头参数 等同于Http的<a href="https://www.cnblogs.com/lauhp/p/8979393.html">请求参数</a>，这里只记录主要的请求参数和主要调用方法</p>
+</li>
+</ul>
+<p>请求头参数一律使用setRequestProperty(Key,Value)</p>
+<ul>
+<li>
+<p>User-Agent：产生请求的浏览器类型。</p>
+<p><code>xml
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0</code></p>
+</li>
+<li>
+<p>Accept：客户端可识别的内容类型列表。</p>
+<p><code>xml
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</code></p>
+</li>
+<li>
+<p>accept-language：可以识别的语言</p>
+<p><code>xml
+Accept-Language: zh-cn,zh;q=0.5</code></p>
+</li>
+<li>
+<p>Content-Type：内容类型</p>
+<p><code>xml
+Content-Type: application/x-www-form-urlencoded; charset=utf-8</code></p>
+</li>
+<li>
+<p>请求</p>
+</li>
+</ul>
+<p><code>java
+  //1、创建URl 对象
+  URL url = new URL(furl);
+  //2、创建httpUrlConnection
+  HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+  //3、设置请求头
+  connection.setRequestMethod("POST");
+  connection.setConnectTimeout(6 * 1000);
+  connection.setRequestProperty("Accept-Language", "zh-CN,zh;q=0.8");
+  connection.setRequestProperty("Accept", "*/*");
+  connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+  //4、连接
+  connection.connect();
+  //5、设置响应
+  if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+    result = strread(connection.getInputStream());
+  }
+  //6、关闭连接
+  connection.disconnect();</code></p>
+<ul>
+<li>读取响应的结果</li>
+</ul>
+<p>```java
+  //解析inputStream
+  private static String strread(InputStream inputStream) throws IOException {
+    StringBuilder builder = new StringBuilder();
+    byte[] buffer = new byte[1024];
+    int len = 0;
+    while ((len = inputStream.read(buffer)) != -1) {
+      builder.append(new String(buffer, 0, len, "UTF-8"));
+    }
+    inputStream.close();
+    return builder.toString();
+  }</p>
+<p>//可以用来解析图片等资源
+  private static byte[] byteread(InputStream inputStream) throws IOException {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    byte[] buffer = new byte[1024];
+    int len = 0;
+    while ((len = inputStream.read(buffer)) != -1) {
+      outputStream.write(buffer, 0, len);
+    }
+    inputStream.close();
+    return outputStream.toByteArray();
+  }
+  ```</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Android 初识">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Android 初识
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

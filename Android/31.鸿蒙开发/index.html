@@ -1,0 +1,686 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>31.鸿蒙开发 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#31" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              31.鸿蒙开发
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="31">31.鸿蒙开发</h1>
+<p>1.鸿蒙进化史</p>
+<p>2012-&gt;2016-&gt;2019-&gt;2020</p>
+<p>2.ArkTS的使用</p>
+<p>3.openHo</p>
+<ul>
+<li>网络引擎：Axios</li>
+<li>数据持久化：</li>
+</ul>
+<h1 id="_1"><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V4/project-structure-0000001546098578-V4">鸿蒙工程结构</a></h1>
+<blockquote>
+<p>主要记录Stage模型</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>AppScope &gt; app.json5</strong>：应用的全局配置信息。</p>
+</li>
+<li>
+<p>entry：</p>
+</li>
+</ul>
+<p>应用/服务模块，编译构建生成一个HAP。</p>
+<ul>
+<li>
+<p><strong>src &gt; main &gt; ets</strong>：用于存放ArkTS源码。</p>
+</li>
+<li>
+<p><strong>src &gt; main &gt; ets &gt; entryability</strong>：应用/服务的入口。</p>
+</li>
+<li>
+<p><strong>src &gt; main &gt; ets &gt; pages</strong>：应用/服务包含的页面。</p>
+</li>
+<li>
+<p>src &gt; main &gt; resources：</p>
+<p>用于存放应用/服务模块所用到的资源文件，如图形、多媒体、字符串、布局文件等。关于资源文件的详细说明请参考</p>
+<p>资源文件的分类</p>
+<p>。</p>
+<table>
+<thead>
+<tr>
+<th>资源目录</th>
+<th>资源文件说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>base&gt;element</td>
+<td>包括字符串、整型、颜色、样式等资源的json文件。每个资源均由json格式进行定义，例如：boolean.json：布尔型color.json：颜色float.json：浮点型intarray.json：整型数组integer.json：整型pattern.json：样式plural.json：复数形式strarray.json：字符串数组string.json：字符串值</td>
+</tr>
+<tr>
+<td>base&gt;media</td>
+<td>多媒体文件，如图形、视频、音频等文件，支持的文件格式包括：<strong>.png</strong>、<strong>.gif</strong>、<strong>.mp3</strong>、<strong>.mp4</strong>等。</td>
+</tr>
+<tr>
+<td>rawfile</td>
+<td>用于存储任意格式的原始资源文件。rawfile不会根据设备的状态去匹配不同的资源，需要指定文件路径和文件名进行引用。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>src &gt; main &gt; module.json5</strong>：Stage模型模块配置文件，主要包含HAP的配置信息、应用在具体设备上的配置信息以及应用的全局配置信息。</p>
+</li>
+<li>
+<p><strong>build-profile.json5：</strong>当前的模块信息、编译信息配置项，包括buildOption、targets配置等。</p>
+</li>
+<li>
+<p><strong>hvigorfile.ts</strong>：模块级编译构建任务脚本。</p>
+</li>
+<li>
+<p><strong>oh-package.json5</strong>：配置三方包声明文件的入口及包名。</p>
+</li>
+<li>
+<p><strong>oh_modules</strong>：用于存放三方库依赖信息，包含应用/服务所依赖的第三方库文件。关于原npm工程适配ohpm操作，请参考<a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V4/ohpm-historical-project-migration-0000001559935894-V4">历史工程适配OHPM包管理</a>。</p>
+</li>
+<li>
+<p><strong>build-profile.json5：</strong>应用级配置信息，包括签名、产品配置等。</p>
+</li>
+<li>
+<p><strong>hvigorfile.ts：</strong>应用级编译构建任务脚本。</p>
+</li>
+</ul>
+<h1 id="arkts">ArkTs语法学习</h1>
+<p><img alt="img" src="../31.%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91.assets/0260086000103404958.20221102104418.97167608875006783664909326988909%3A50001231000000%3A2800%3AB0A2A3474E494DE620CBF58C0DBB2F835EBDAC07C87E2376865D3CA5ED979896.png" /></p>
+<h2 id="_2">状态管理</h2>
+<p>用来装饰类、结构体、方法以及变量，赋予其特殊的含义，如上述示例中 @Entry 、 @Component 、 @State 都是装饰器。具体而言， @Component 表示这是个自定义组件； @Entry 则表示这是个入口组件； @State 表示组件中的状态变量，此状态变化会引起 UI 变更。</p>
+<p>@State</p>
+<h2 id="_3"><strong>自定义组件</strong></h2>
+<p>可复用的 UI 单元，可组合其它组件，如上述被 @Component 装饰的 struct Hello。</p>
+<ul>
+<li>
+<p>可组合：允许开发者组合使用系统组件、及其属性和方法。    </p>
+</li>
+<li>
+<p>可重用：自定义组件可以被其他组件重用，并作为不同的实例在不同的父组件或容器中使用。</p>
+</li>
+<li>
+<p>数据驱动UI更新：通过状态变量的改变，来驱动UI的刷新。</p>
+</li>
+</ul>
+<p>成员函数/变量</p>
+<ul>
+<li>不支持静态函数。</li>
+<li>成员函数的访问始终是私有的。</li>
+</ul>
+<p>Build()函数</p>
+<ul>
+<li>@Entry装饰的自定义组件，其build()函数下的根节点唯一且必要，且必须为容器组件，其中ForEach禁止作为根节点。</li>
+</ul>
+<p>@Component装饰的自定义组件，其build()函数下的根节点唯一且必要，可以为非容器组件，其中ForEach禁止作为根节点。</p>
+<ul>
+<li>不允许声明本地变量</li>
+<li>
+<p>不允许在UI描述里直接使用console.info，但允许在方法或者函数里使用，</p>
+</li>
+<li>
+<p>不允许创建本地的作用域</p>
+</li>
+<li>
+<p>不允许调用除了被@Builder装饰以外的方法，允许系统组件的参数是TS方法的返回值。</p>
+</li>
+</ul>
+<p>```typescript
+  @Component
+  struct ParentComponent {
+    doSomeCalculations() {
+    }</p>
+<pre><code>calcTextValue(): string {
+  return 'Hello World';
+}
+
+@Builder doSomeRender() {
+  Text(`Hello World`)
+}
+
+build() {
+  Column() {
+    // 反例：不能调用没有用@Builder装饰的方法
+    this.doSomeCalculations();
+    // 正例：可以调用
+    this.doSomeRender();
+    // 正例：参数可以为调用TS方法的返回值
+    Text(this.calcTextValue())
+  }
+}
+</code></pre>
+<p>}
+  ```</p>
+<ul>
+<li>
+<p>不允许switch语法，如果需要使用条件判断，请使用if。</p>
+</li>
+<li>
+<p>不允许使用表达式</p>
+</li>
+</ul>
+<p><code>typescript
+  build() {
+    Column() {
+      // 反例：不允许使用表达式
+      (this.aVar &gt; 10) ? Text('...') : Image('...')
+    }
+  }</code></p>
+<h2 id="_4">页面和自定义组件生命周期</h2>
+<p>页面生命周期，即被@Entry装饰的组件生命周期，提供以下生命周期接口：</p>
+<ul>
+<li><a href="https://developer.huawei.com/consumer/cn/doc/development/harmonyos-references-V3/arkts-custom-component-lifecycle-0000001482395076-V3#ZH-CN_TOPIC_0000001523488850__onpageshow">onPageShow</a>：页面每次显示时触发。</li>
+<li><a href="https://developer.huawei.com/consumer/cn/doc/development/harmonyos-references-V3/arkts-custom-component-lifecycle-0000001482395076-V3#ZH-CN_TOPIC_0000001523488850__onpagehide">onPageHide</a>：页面每次隐藏时触发一次。</li>
+<li><a href="https://developer.huawei.com/consumer/cn/doc/development/harmonyos-references-V3/arkts-custom-component-lifecycle-0000001482395076-V3#ZH-CN_TOPIC_0000001523488850__onbackpress">onBackPress</a>：当用户点击返回按钮时触发。</li>
+</ul>
+<p>组件生命周期，即一般用@Component装饰的自定义组件的生命周期，提供以下生命周期接口：</p>
+<ul>
+<li><a href="https://developer.huawei.com/consumer/cn/doc/development/harmonyos-references-V3/arkts-custom-component-lifecycle-0000001482395076-V3#ZH-CN_TOPIC_0000001523488850__abouttoappear">aboutToAppear</a>：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。</li>
+<li><a href="https://developer.huawei.com/consumer/cn/doc/development/harmonyos-references-V3/arkts-custom-component-lifecycle-0000001482395076-V3#ZH-CN_TOPIC_0000001523488850__abouttodisappear">aboutToDisappear</a>：在自定义组件即将析构销毁时执行。</li>
+</ul>
+<p><img alt="img" src="../31.%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91.assets/0000000000011111111.20231009185422.91195565828411922612844199587821%3A50001231000000%3A2800%3A08C8DF0F805C9517F7BD9C3A894364ECDD4502C0370D4FFF062236D3A74B3F51.png" /></p>
+<h2 id="_5">自定义组件的创建和渲染流程</h2>
+<ol>
+<li>自定义组件的创建：自定义组件的实例由ArkUI框架创建。</li>
+<li>初始化自定义组件的成员变量：通过本地默认值或者构造方法传递参数来初始化自定义组件的成员变量，初始化顺序为成员变量的定义顺序。</li>
+<li>如果开发者定义了aboutToAppear，则执行aboutToAppear方法。</li>
+<li>在首次渲染的时候，执行build方法渲染系统组件，如果子组件为自定义组件，则创建自定义组件的实例。在执行build()函数的过程中，框架会观察每个状态变量的读取状态，将保存两个map：</li>
+<li>状态变量 -&gt; UI组件（包括ForEach和if）。</li>
+<li>UI组件 -&gt; 此组件的更新函数，即一个lambda方法，作为build()函数的子集，创建对应的UI组件并执行其属性方法，示意如下。</li>
+<li>当状态变量或者LocalStorage / AppStorage中的属性更改时，会重新渲染</li>
+<li>自定义组件在渲染时会自动删除，因此不要在aboutToDisapper中做异步等待(asyc wait)操作。</li>
+</ol>
+<h2 id="builder">@Builder</h2>
+<blockquote>
+<p>自定义构造函数</p>
+</blockquote>
+<p>适用于在组件的build()方法和其他自定义构建函数中。</p>
+<p>自定义构造函数的参数分为引用传递和值传递。</p>
+<ul>
+<li>全局自定义构造函数</li>
+</ul>
+<p>定义的语法：</p>
+<p><code>@Builder function MyGlobalBuilderFunction({ ... })</code></p>
+<p>使用方法：</p>
+<p><code>MyGlobalBuilderFunction()</code></p>
+<ul>
+<li>全局的自定义构建函数可以被整个应用获取，不允许使用this和bind方法。</li>
+<li>
+<p>如果不涉及组件状态变化，建议使用全局的自定义构建方法。</p>
+</li>
+<li>
+<p>组件自定义构造函数</p>
+</li>
+</ul>
+<p>定义的语法：</p>
+<p><code>@Builder MyBuilderFunction({ ... })</code></p>
+<p>使用方法：</p>
+<p><code>this.MyBuilderFunction({ ... })</code></p>
+<ul>
+<li>允许在自定义组件内定义一个或多个自定义构建函数，该函数被认为是该组件的私有、特殊类型的成员函数。</li>
+<li>自定义构建函数可以在所属组件的build方法和其他自定义构建函数中调用，但不允许在组件外调用。</li>
+<li>在自定义函数体中，this指代当前所属组件，组件的状态变量可以在自定义构建函数内访问。建议通过this访问自定义组件的状态变量而不是参数传递。</li>
+</ul>
+<h2 id="builderparam">@BuilderParam</h2>
+<blockquote>
+<p>当开发者创建了自定义组件，并想对该组件添加特定功能时，例如在自定义组件中添加一个点击跳转操作。若直接在组件内嵌入事件方法，将会导致所有引入该自定义组件的地方均增加了该功能。为解决此问题，ArkUI引入了@BuilderParam装饰器，@BuilderParam用来装饰指向@Builder方法的变量，开发者可在初始化自定义组件时对此属性进行赋值，为自定义组件增加特定的功能。该装饰器用于声明任意UI描述的一个元素，类似slot占位符。</p>
+</blockquote>
+<p>主要使用场景：</p>
+<ul>
+<li>参数初始化组件</li>
+</ul>
+<blockquote>
+<p>保证@BuilderParam装饰器 装饰的变量参数和@Builder的自定义构造函数变量是相对应的</p>
+</blockquote>
+<ul>
+<li>尾随闭包初始化组件</li>
+</ul>
+<blockquote>
+<p>如下代码可看出，尾随闭包的代码可以当作自定义构造函数传递给BuilderParam的变量</p>
+</blockquote>
+<pre><code class="language-typescript">// xxx.ets
+@Component
+struct CustomContainer {
+  @Prop header: string;
+  @BuilderParam closer: () =&gt; void
+
+  build() {
+    Column() {
+      Text(this.header)
+        .fontSize(30)
+      this.closer()
+    }
+  }
+}
+
+@Builder function specificParam(label1: string, label2: string) {
+  Column() {
+    Text(label1)
+      .fontSize(30)
+    Text(label2)
+      .fontSize(30)
+  }
+}
+
+@Entry
+@Component
+struct CustomContainerUser {
+  @State text: string = 'header';
+
+  build() {
+    Column() {
+      // 创建CustomContainer，在创建CustomContainer时，通过其后紧跟一个大括号“{}”形成尾随闭包
+      // 作为传递给子组件CustomContainer @BuilderParam closer: () =&gt; void的参数
+      CustomContainer({ header: this.text }) {
+        Column() {
+          specificParam('testA', 'testB')
+        }.backgroundColor(Color.Yellow)
+        .onClick(() =&gt; {
+          this.text = 'changeHeader';
+        })
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="styles">@Styles装饰器</h2>
+<blockquote>
+<p>定义组件重用样式</p>
+</blockquote>
+<h2 id="extend">@Extend装饰器</h2>
+<blockquote>
+<p>扩展组件样式</p>
+</blockquote>
+<p>@StateStyle:</p>
+<blockquote>
+<p>多态样式</p>
+</blockquote>
+<ul>
+<li><strong>UI 描述</strong></li>
+</ul>
+<p>声明式的方式来描述 UI 的结构，如上述 build() 方法内部的代码块。</p>
+<ul>
+<li><strong>内置组件</strong></li>
+</ul>
+<p>框架中默认内置的基础和布局组件，可直接被开发者调用，比如示例中的 Column、Text、Divider、Button。</p>
+<ul>
+<li><strong>事件方法</strong></li>
+</ul>
+<p>用于添加组件对事件的响应逻辑，统一通过事件方法进行设置，如跟随在Button后面的onClick()。</p>
+<ul>
+<li><strong>属性方法</strong></li>
+</ul>
+<p>用于组件属性的配置，统一通过属性方法进行设置，如fontSize()、width()、height()、color() 等，可通过链式调用的方式设置多项属性。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

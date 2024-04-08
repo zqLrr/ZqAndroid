@@ -1,0 +1,651 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Android 删除无用资源 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#android" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Android 删除无用资源
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#res" class="md-nav__link">
+    Res资源类型整理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asset" class="md-nav__link">
+    Asset资源
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    方案原理
+  </a>
+  
+    <nav class="md-nav" aria-label="方案原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_rtxt" class="md-nav__link">
+    所有资源的索引文件_R.txt：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processres-task-ap_" class="md-nav__link">
+    processRes Task 的产物AP_ 文件:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hookgetresourcesgetidentifier" class="md-nav__link">
+    通过插桩hookgetResources().getIdentifier()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    方案
+  </a>
+  
+    <nav class="md-nav" aria-label="方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    方案流程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    方案使用方式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="android">Android 删除无用资源</h1>
+<h2 id="res">Res资源类型整理</h2>
+<table>
+<thead>
+<tr>
+<th>资源</th>
+<th>type</th>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anim</td>
+<td>anim</td>
+<td>res/anim/.xml</td>
+<td>补间动画</td>
+</tr>
+<tr>
+<td>animator</td>
+<td>animator</td>
+<td>res/animator/.xml</td>
+<td>属性动画</td>
+</tr>
+<tr>
+<td>color</td>
+<td>color</td>
+<td>res/color/.xml</td>
+<td><a href="https://developer.android.com/guide/topics/resources/color-list-resource?hl=zh-cn">颜色状态列表</a></td>
+</tr>
+<tr>
+<td>drawable</td>
+<td>drawable</td>
+<td>res/drawable/</td>
+<td><a href="https://developer.android.com/guide/topics/resources/drawable-resource?hl=zh-cn">位图文件</a></td>
+</tr>
+<tr>
+<td>drawablecolor</td>
+<td>drawable</td>
+<td>res/values/color.xml</td>
+<td>使用drawable生成的color文件，是可绘制资源的一种，专门抽出是因为Reasource有单独处理</td>
+</tr>
+<tr>
+<td>mipmap</td>
+<td>mipmap</td>
+<td>res/mipmap</td>
+<td>适用于不同启动器图标密度的可绘制对象文</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>layout</td>
+<td>res/layout/.xml</td>
+<td>定义界面布局</td>
+</tr>
+<tr>
+<td>menu</td>
+<td>menu</td>
+<td>res/menu/.xml</td>
+<td>用于定义应用菜单的xml文件</td>
+</tr>
+<tr>
+<td>raw</td>
+<td>raw</td>
+<td>res/raw</td>
+<td>需以原始形式保存的任意文件 比如.mp4</td>
+</tr>
+<tr>
+<td>array</td>
+<td>array</td>
+<td>res/value/arrays.xml</td>
+<td>用于资源数组（<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#TypedArray">类型化数组</a>）</td>
+</tr>
+<tr>
+<td>color</td>
+<td>color</td>
+<td>res/value/colors.xml</td>
+<td>用于<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#Color">颜色值</a></td>
+</tr>
+<tr>
+<td>dimen</td>
+<td>dimen</td>
+<td>res/value/dimens.xml</td>
+<td><code>dimens.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#Dimension">维度值</a></td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+<td>res/value/strings.xml</td>
+<td><code>strings.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/string-resource?hl=zh-cn">字符串值</a></td>
+</tr>
+<tr>
+<td>style</td>
+<td>style<br/>styleable</td>
+<td>res/value/styles.xml</td>
+<td><code>styles.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/style-resource?hl=zh-cn">样式</a></td>
+</tr>
+<tr>
+<td>xml</td>
+<td>xml</td>
+<td>res/xml/.xml</td>
+<td>可在运行时通过调用 <code>Resources.getXML()</code> 读取的任意 XML 文件。</td>
+</tr>
+<tr>
+<td>font</td>
+<td>font</td>
+<td>res/font</td>
+<td>带有扩展名的字体文件（例如 TTF、OTF 或 TTC）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="asset">Asset资源</h2>
+<blockquote>
+<p>可以拿到原始的资源名称和资源目录</p>
+</blockquote>
+<h2 id="_1">方案原理</h2>
+<h3 id="_rtxt">所有资源的索引文件_R.txt：</h3>
+<pre><code class="language-bash">/app/build/intermediates/runtime_symbol_list/debug/R.txt
+</code></pre>
+<p>格式为：数据类型 资源分类 资源名称 资源id</p>
+<pre><code class="language-xml">&lt;!--举例--&gt;
+int anim abc_fade_in 0x7f010000
+</code></pre>
+<h3 id="processres-task-ap_"><em>processRes Task</em> 的产物AP_ 文件:</h3>
+<blockquote>
+<p>AP_ 文件 是processDResources 命令下的产物</p>
+</blockquote>
+<p>解压后主要有以下三个文件：</p>
+<ol>
+<li><code>AndroidManifest.xml</code>:合并的AndroidManifest文件</li>
+<li><code>res/*</code> ：合并后的所有res文件</li>
+<li><code>resources.arsc</code>:resources.arsc是Android编译后生成的产物，主要是用来建立资源映射关系</li>
+</ol>
+<blockquote>
+<p><a href="https://juejin.cn/post/6844903911602683918">详细介绍</a></p>
+</blockquote>
+<p>merge.xml：</p>
+<pre><code class="language-bash">/intermediates/incremental/debug/mergeDebugResources/merger.xml
+</code></pre>
+<h3 id="hookgetresourcesgetidentifier">通过插桩hookgetResources().getIdentifier()</h3>
+<h2 id="_2">方案</h2>
+<h3 id="_3">方案流程</h3>
+<p>1.通过R.txt文件获取所有的资源</p>
+<p>2.在AndroidManifest.xml查找引用的资源</p>
+<p>3.web.jar 通过R.java文件和resources.arsc 查找到Java文件中引用的资源</p>
+<ul>
+<li>若是layout, array,style等，会接着在xml找使用到的资源</li>
+</ul>
+<p>4.1减去2，3步中使用到的资源，就是无用资源，生成app/build/unuse_res.txt文件中</p>
+<p>5.根据merge.xml拿到各个aar中的res资源，判断res资源是否在无用资源中，最后得到需要删除的无用资源</p>
+<p>6.生成无用资源删除报告</p>
+<p>7.通过python脚本删除扫描出来的无用资源</p>
+<p>8.通过插桩getResources().getIdentifier() ,来hook通过资源name字符串来获取id的情况，上线观察</p>
+<h3 id="_4">方案使用方式</h3>
+<p>下载地址：https://gitlab.weibo.cn/zhangqian20/unres</p>
+<p>CheckResUnuse2File.groovy</p>
+<p>1.脚本使用方式：</p>
+<p>需要groovy运行环境</p>
+<ul>
+<li>首先先在本地切到dev分支编译微博源码</li>
+</ul>
+<p>./gradlew clean app:assembleDebug</p>
+<ul>
+<li>
+<p>修改source_moudle 中添加打开的模块：如: Arrays.asList("allmodules:sdk", "allmodules:main")</p>
+</li>
+<li>
+<p>运行CheckResUnuse2File.groovy</p>
+</li>
+</ul>
+<p>./groovy CheckResUnuse2File.groovy [微博工程目录]  [报告生成文件]</p>
+<p><code>java
+  ./groovy CheckResUnuse2File.groovy Android/Weibo/Weibo_Project  GroovyTest/src/result.html</code></p>
+<p>2.删除脚本使用方式</p>
+<p>需要python运行环境</p>
+<p>python3 -m delete_res_in_weibo.py--file_path /Users/zhangqian20/Project/JAVA/GroovyTest/public/unuseres
+--res_path /Users/zhangqian20/Project/Android/Weibo/Weibo_Project
+--delete true</p>
+<p>3.上线运行</p>
+<p>将删除的资源做一个兜底，然后上线验证是否有通过字符串拼接name获取id。</p>
+<h1 id="_5">注意</h1>
+<p>1.getResources().getIdentifier()  拼接的id,不是name的全名——hook住</p>
+<p>2.layout 中id资源并没有排出—— 编译时可以检查出来</p>
+<p>3.Tool:text 中引用的资源未扫描到 ——不打进包里</p>
+<p>4.Widget中的资源会放在assert的json资源下——不会引起崩溃</p>
+<p>5.ci 自动化测试中需要使用的资源</p>
+<p>6.Assert 中引用的资源，会放在json文件中</p>
+<h1 id="hook">无用资源删除需要Hook的白名单</h1>
+<h2 id="photoalbumextlib_uiwboxgame">photoalbum,extlib_ui,wboxgame误删资源：</h2>
+<p>drawable_weixin_brush_pic</p>
+<p>在这个文件中:Weibo_Project/mediaproducer/assets/photoalbum/local_graffiti.json</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1111 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>11 设计模式 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11 设计模式
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 组合模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 装饰模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.  代理模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 构造者模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 单例模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6. 工厂设计模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    简单工厂模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    工厂方法模式
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="11">11 设计模式</h1>
+<p>设计原则：</p>
+<p>1.开放—封闭原则</p>
+<p>2.单一指责原则</p>
+<blockquote>
+<p>指类，接口，方法</p>
+</blockquote>
+<p>3.里氏替换原则</p>
+<blockquote>
+<p>子类可以扩展父类的功能，但是不能改变父类原有的功能</p>
+<p>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法</p>
+<p>里氏代换原则规定子类不得重写父类的普通方法，只能重写父类的抽象方法，设计继承抽象类，而不要继承普通类。</p>
+</blockquote>
+<p>4.依赖倒置原则</p>
+<blockquote>
+<p>低层模块尽量要有抽象类或接口，即面向接口编程。</p>
+</blockquote>
+<p>5.接口隔离原则</p>
+<blockquote>
+<p>用于恰当的划分角色和接口，具有两种含义：1、用户不应该依赖它不需要的接口；2、类间的依赖关系应该建立在最小的的接口上。</p>
+</blockquote>
+<p>6.迪米特原则</p>
+<blockquote>
+<p>一个类应该对自己需要耦合或者调用的类知道的最少。</p>
+<p>强调类间弱耦合。</p>
+</blockquote>
+<h2 id="1">1. 组合模式</h2>
+<blockquote>
+<p>又称组合整体模式,组合多个对象形成树形结构以表示具有 “整体—部分” 关系的层次结构。组合模式对单个对象（即叶子对象）和组合对象（即容器对象）的使用具有一致性，组合模式又可以称为 “整体—部分”(Part-Whole) 模式，它是一种对象结构型模式。</p>
+</blockquote>
+<p><img alt="image-20220518150246682" src="../11%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.assets/image-20220518150246682.png" /></p>
+<ul>
+<li>Component  抽象构件</li>
+</ul>
+<blockquote>
+<p>它可以是接口或抽象类，为叶子构件和容器构件对象声明接口，在该角色中可以包含所有子类共有行为的声明和实现。在抽象构件中定义了访问及管理它的子构件的方法，如增加子构件、删除子构件、获取子构件等</p>
+</blockquote>
+<ul>
+<li>Leaf              叶子构件</li>
+</ul>
+<blockquote>
+<p>它在组合结构中表示叶子节点对象，叶子节点没有子节点，它实现了在抽象构件中定义的行为。对于那些访问及管理子构件的方法，可以通过异常等方式进行处理。</p>
+</blockquote>
+<ul>
+<li>Composite 容器构件</li>
+</ul>
+<blockquote>
+<p>它在组合结构中表示容器节点对象，容器节点包含子节点，其子节点可以是叶子节点，也可以是容器节点，它提供一个集合用于存储子节点，实现了在抽象构件中定义的行为，包括那些访问及管理子构件的方法，在其业务方法中可以递归调用其子节点的业务方法。</p>
+</blockquote>
+<ul>
+<li>Client 客户端</li>
+</ul>
+<blockquote>
+<p>使用组合模式创建出的对象</p>
+</blockquote>
+<ul>
+<li>实例</li>
+</ul>
+<pre><code class="language-java">
+public abstract class Component {
+    private String name;
+    private String desc;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public Component(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+    }
+
+    public void add(Component component){
+        throw new UnsupportedOperationException();
+    }
+
+    public void remove(Component component){
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract void show();
+}
+//商店
+public class Store extends Component{
+
+    List&lt;Component&gt; componentList = new ArrayList&lt;Component&gt;();
+
+    public Store(String name, String desc){
+        super(name, desc);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public String getDesc() {
+        return super.getDesc();
+    }
+
+    @Override
+    public void add(Component component) {
+        System.out.println(&quot;添加：&quot; + getName());
+        componentList.add(component);
+    }
+
+    @Override
+    public void remove(Component component) {
+        System.out.println(&quot;移除：&quot; + getName());
+        componentList.remove(component);
+    }
+
+    @Override
+    public void show() {
+        for (Component component : componentList) {
+            System.out.println(component.getName());
+            component.show();
+        }
+    }
+}
+//服装专卖店
+public class BrandStore extends Component{
+
+    List&lt;Component&gt; componentList = new ArrayList&lt;Component&gt;();
+
+    public BrandStore(String name, String desc) {
+        super(name, desc);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public String getDesc() {
+        return super.getDesc();
+    }
+
+    @Override
+    public void add(Component component) {
+        componentList.add(component);
+    }
+
+    @Override
+    public void remove(Component component) {
+        componentList.remove(component);
+    }
+
+    @Override
+    public void show() {
+        for (Component component : componentList) {
+            System.out.println(component.getName());
+            component.show();
+        }
+    }
+}
+//运动装
+public class Sportswear extends Component{
+
+    List&lt;Component&gt; componentList = new ArrayList&lt;Component&gt;();
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public String getDesc() {
+        return super.getDesc();
+    }
+
+    public Sportswear(String name, String desc) {
+        super(name, desc);
+    }
+
+    @Override
+    public void add(Component component) {
+        componentList.add(component);
+    }
+
+    @Override
+    public void remove(Component component) {
+        componentList.remove(component);
+    }
+
+    @Override
+    public void show() {
+        for (Component component: componentList) {
+            System.out.println(component.getName());
+        }
+    }
+}
+//Client
+public class Test {
+    public static void main(String[] args) {
+        // 服装店
+        Component store = new Store(&quot;服装店&quot;,&quot;服装店&quot;);
+
+        // 专卖店
+        Component brandStore1 = new BrandStore(&quot;李宁服装专卖店&quot;,&quot;李宁服装专卖店&quot;);
+        Component brandStore2 = new BrandStore(&quot;361服装专卖店&quot;,&quot;361服装专卖店&quot;);
+
+        // 运动装
+        Component sportswear1 = new Sportswear(&quot;运动装&quot;,&quot;运动装&quot;);
+        Component sportswear2 = new Sportswear(&quot;休闲装&quot;,&quot;休闲装&quot;);
+
+        brandStore1.add(sportswear1);
+        brandStore2.add(sportswear2);
+
+        store.add(brandStore1);
+        store.add(brandStore2);
+        store.show();
+    }
+}
+</code></pre>
+<ul>
+<li>
+<p>优缺点</p>
+</li>
+<li>
+<p>优势</p>
+</li>
+</ul>
+<blockquote>
+<p>1.可以无视个体和整体的差异性，一只的处理单个和多个对象</p>
+<p>2.扩展性比较高，可以快速的添加叶子节点和非叶子结点</p>
+</blockquote>
+<ul>
+<li>劣势</li>
+</ul>
+<blockquote>
+<p>各个节点差异很大的话，不适合使用组合模式</p>
+</blockquote>
+<ul>
+<li>适用场景</li>
+<li>处理树形结构，具备统一行为</li>
+<li>体现对象的部分和整体关系时</li>
+</ul>
+<h2 id="2">2. 装饰模式</h2>
+<blockquote>
+<p><strong>装饰模式是在不必改变原类和使用继承的情况下，动态地扩展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。</strong></p>
+<p>装饰模式不使用继承，是横向的扩展</p>
+</blockquote>
+<p><img src="11 设计模式.assets/image-20220518202010404.png" alt="image-20220518202010404" style="zoom:50%;" /></p>
+<ul>
+<li>Component 抽象接口</li>
+</ul>
+<blockquote>
+<p>定义需要实现业务的抽象方法。</p>
+</blockquote>
+<ul>
+<li><strong>ConcreteComponent</strong> 具体构件</li>
+</ul>
+<blockquote>
+<p>实现Component接口，<strong>用于定义具体的构建对象</strong></p>
+</blockquote>
+<ul>
+<li><strong>Decorator（抽象装饰类）</strong></li>
+</ul>
+<blockquote>
+<p>实现Component接口，并创建Component实例对象，用于给具体构件增加职责。</p>
+</blockquote>
+<ul>
+<li><strong>ConcreteDecorator（具体装饰类)</strong></li>
+</ul>
+<blockquote>
+<p><strong><em>*抽象装饰类的子类，负责向具体构件添加具体的职责*</em></strong></p>
+</blockquote>
+<ul>
+<li>实例</li>
+</ul>
+<pre><code class="language-java">//Compont
+interface  food{
+  void Descrition();
+}
+// ConcreteComponent 具体构件
+public class Coffee implements food{
+
+  @Override
+  public void Descrition() {
+    System.out.print(&quot;原始咖啡&quot;);
+  }
+}
+
+public abstract class Decorator implements food{
+
+  private food mfood;
+  public Decorator(food f) {
+    this.mfood = f;
+  }
+
+  @Override
+  public void Descrition() {
+    this.mfood.Descrition();
+  }
+}
+
+public class milkDecorater extends  Decorator{
+
+  public milkDecorater(food f) {
+    super(f);
+  }
+
+  @Override
+  public void Descrition() {
+    super.Descrition();
+    addMilk();
+  }
+
+  public  void addMilk(){
+    System.out.print(&quot;加牛奶&quot;);
+  }
+}
+
+public class suggerDector extends  Decorator{
+
+  public suggerDector(food f) {
+    super(f);
+  }
+
+  @Override
+  public void Descrition() {
+    super.Descrition();
+    addSugger();
+  }
+
+  public void addSugger(){
+    System.out.print(&quot;加糖&quot;);
+  }
+}
+
+public void main() {
+  //原始咖啡
+  food coffee = new Coffee();
+  coffee.Descrition();
+  System.out.println(&quot;&quot;);
+
+  //加牛奶
+  coffee = new milkDecorater(coffee);
+  coffee.Descrition();
+  System.out.println(&quot;&quot;);
+
+  //加牛奶 加糖
+  coffee = new suggerDector(coffee);
+  coffee.Descrition();
+  System.out.println(&quot;&quot;);
+}
+</code></pre>
+<ul>
+<li>
+<p>优缺点</p>
+</li>
+<li>
+<p>优点</p>
+</li>
+</ul>
+<blockquote>
+<p>1.在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责，符合开闭原则
+2.<strong>可以动态地给一个对象增加功能</strong>，这些功能也可以动态地被撤销。</p>
+</blockquote>
+<ul>
+<li>缺点</li>
+</ul>
+<blockquote>
+<p>1.装饰模式会导致设计出大量的ConcreteDecorator类，增加系统的复杂性。</p>
+<p>2.对于多次装饰的对象，一旦出现错误，排错繁琐；</p>
+</blockquote>
+<ul>
+<li>适用场景</li>
+</ul>
+<blockquote>
+<ol>
+<li>当不能采用继承的方式对系统进行扩充或者采用继承不利于系统扩展和维护时。</li>
+<li>需要动态地维护对象的功能</li>
+</ol>
+</blockquote>
+<ul>
+<li>与代理模式的区别</li>
+</ul>
+<p>装饰模式作用范围是类，将原始对象作为一个参数传递给装饰者的构造器，增强类的能力</p>
+<p>代理模式作用范围是行为，在代理类中创建一个被代理类的对象，增强行为动作</p>
+<ul>
+<li>与构造者模式的区别</li>
+</ul>
+<p>建造者模式属于创建型模式，装饰者属于结构性模式。</p>
+<p>建造者模式是对复杂对象整体功能的一个组装，装饰者模式是表面外部的装扮，基础功能还是属于对象本身。</p>
+<h2 id="3">3.  代理模式</h2>
+<blockquote>
+<p><strong>代理模式为一个对象提供一种代理以控制对该对象的访问</strong>，主要是对对象的行为进行了扩展。</p>
+</blockquote>
+<p><img alt="image-20230413152227822" src="../11%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.assets/image-20230413152227822.png" /></p>
+<p>静态代理</p>
+<blockquote>
+<p>开发者指定特定的代理对象。</p>
+</blockquote>
+<p>动态代理</p>
+<blockquote>
+<p>运行时才指定特定的代理对象。</p>
+</blockquote>
+<p>优缺点：</p>
+<ol>
+<li>可以使真实业务角色责任更纯粹，不用包含一些公共业务。</li>
+<li>公共业务交给了代理类，实现了解耦。</li>
+<li>提供了面向切面编程的基础，使一个横向业务更容易编写</li>
+<li>动态代理可以代理多个实现了同一个接口的类。</li>
+</ol>
+<p>适用场景：</p>
+<ol>
+<li>当业务无法直接访问某个类时，需要一个代理类去代理访问。</li>
+<li>当需要横向添加一些功能，比如日志功能时，可以使用代理模式。</li>
+</ol>
+<h2 id="4">4. 构造者模式</h2>
+<blockquote>
+<p>属于创建性模式，将将一个复杂的<strong>对象的构建与表示</strong>分离，使得同样的构建过程可以创建不同的表示。建造者模式隐藏了复杂对象的创建过程，它把复杂对象的创建过程加以抽象，通过子类继承或者重载的方式，动态的创建具有复合属性的对象。</p>
+</blockquote>
+<p><img src="11 设计模式.assets/image-20220522225106668.png" alt="image-20220522225106668" style="zoom:50%;" /></p>
+<p>实例</p>
+<pre><code class="language-java"> PersonBuilder builder = new PersonBuilderImpl();
+
+    public Person  build(int age,String name,String school){
+        return builder.setAge(age)
+                .setName(name)
+                .setSchool(school)
+                .build();
+    }
+
+    //Person
+    public class Person{
+        private int age;
+        private String name;
+        private String School;
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getSchool() {
+            return School;
+        }
+
+        public void setSchool(String school) {
+            School = school;
+        }
+
+        @Override
+        public String toString() {
+            return &quot;Person{&quot; +
+                    &quot;age=&quot; + age +
+                    &quot;, name='&quot; + name + '\'' +
+                    &quot;, School='&quot; + School + '\'' +
+                    '}';
+        }
+    }
+
+
+
+    //Builder
+    interface PersonBuilder{
+        PersonBuilder setAge(int age);
+        PersonBuilder setName(String name);
+        PersonBuilder setSchool(String school);
+        Person build();
+    }
+
+    //ConcreteBulider
+    public class PersonBuilderImpl implements  PersonBuilder{
+
+       public Person person = new Person();
+
+
+        @Override
+        public PersonBuilder setAge(int age) {
+            person.setAge(age);
+            return this;
+        }
+
+        @Override
+        public PersonBuilder setName(String name) {
+            person.setName(name);
+            return this;
+        }
+
+        @Override
+        public PersonBuilder setSchool(String school) {
+            person.setSchool(school);
+            return this;
+        }
+
+        @Override
+        public Person build() {
+            return person;
+        }
+    }
+//也可以直接使用静态内部类来实现builder
+</code></pre>
+<ul>
+<li>
+<p>优缺点</p>
+</li>
+<li>
+<p>优点</p>
+</li>
+</ul>
+<blockquote>
+<p>1.遵循开闭原则。
+2.对象的建造和表示分离，实现了解耦。
+3.隐藏了对象的建造细节，用户只需关心产品的表示，而不需要了解是如何创建产品的。</p>
+</blockquote>
+<ul>
+<li>缺点</li>
+</ul>
+<blockquote>
+<p>1.如果构造者多，会有很多的建造类，难以维护。
+2.产品的组成部分必须相同，这限制了其使用范围。</p>
+</blockquote>
+<ul>
+<li>适用场景</li>
+</ul>
+<blockquote>
+<p>1.隔离复杂对象的创建和使用，相同的方法，<strong>不同执行顺序</strong>，产生不同事件结果
+2.需要生成的产品对象的<strong>属性相互依赖</strong>，<strong>需要指定其生成顺序</strong>。</p>
+</blockquote>
+<h2 id="5">5. 单例模式</h2>
+<ol>
+<li>
+<p>推荐使用单例的方法(Lazy loading、线程安全)</p>
+</li>
+<li>
+<p>双重检查</p>
+<p><code>java
+ public class Singleton(){
+   private static volatile Singleton singleton = null;
+   private Singleton(){}
+   public static Singleton getInstance(){
+     if(singleton == null){
+         synchronized (Singleton.class){
+           if(singleton ==null){
+             singleton = new Singleton();
+           }
+         }
+     }
+     return singleton;
+   }
+ }
+ volatile防止了重排</code></p>
+</li>
+<li>
+<p>静态内部类实现单例</p>
+<p><code>java
+ public class Singleton(){
+   private Singleton(){}
+   private static class SingletonInstance(){
+      private final static Singleton INSTANCE = new Singleton();
+   }
+   public static Singleton getInstance(){
+     return SingletonInstance.INSTANCE;
+   }
+ }</code></p>
+</li>
+<li>
+<p>饿汉式单例</p>
+<p><code>java
+ public class Singleton(){
+   private static volatile Singleton singleton  = new Singleton();
+   private Singleton(){}
+   public static Singleton getInstance(){
+     return singleton;
+   }
+ }
+ //缺点：浪费空间 优点：线程安全</code></p>
+</li>
+<li>
+<p>懒汉式单例</p>
+<p><code>java
+ public class Singleton(){
+   private static volatile Singleton singleton;
+   private Singleton(){}
+   public static Singleton getInstance(){
+     if(singleton = null){
+       singleton  = new Singleton()
+     }
+     return singleton;
+   }
+ }
+ //缺点：线程不安全 优点：延迟加载</code></p>
+</li>
+<li>
+<p>优点：系统内存中该类只存在一个对象，节省了系统资源，对于一些需要频繁创建销毁的对象，使用单例模式可以提高系统性能。</p>
+</li>
+<li>
+<p>缺点：当想实例化一个单例类的时候，必须要记住使用相应的获取对象的方法，而不是使用new，可能会给其他开发人员造成困扰，特别是看不到源码的时候。</p>
+</li>
+<li>
+<p>使用场景：</p>
+</li>
+<li>
+<p>需要频繁的进行创建和销毁的对象</p>
+</li>
+<li>创建对象时耗时过多或耗费资源过多，但又经常用到的对象</li>
+<li>工具类对象</li>
+<li>频繁访问数据库或文件的对象</li>
+</ol>
+<h2 id="6">6. 工厂设计模式</h2>
+<p>简单工厂模式   工厂方法模式 抽象工厂模式</p>
+<ol>
+<li>
+<h2 id="_1">简单工厂模式</h2>
+</li>
+</ol>
+<p><img alt="image-20210901185056250" src="../11%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.assets/image-20210901185056250.png" /></p>
+<p>简单工厂模式可以说是一种编程习惯，即将一些复杂的方法抽到函数或类中，减轻了本身的代码量。</p>
+<ol>
+<li>
+<h2 id="_2">工厂方法模式</h2>
+</li>
+</ol>
+<p><img alt="image-20210901185405903" src="../11%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.assets/image-20210901185405903.png" /></p>
+<p>每一个产品都安排一个工厂去实现</p>
+<p>3、抽象工程模式</p>
+<p><img alt="image-20210901204246565" src="../11%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.assets/image-20210901204246565.png" /></p>
+<p>工厂可以实现多个产品，产品也需要多个抽象类</p>
+<p>7、观察者模式</p>
+<p>8、发布订阅模式</p>
+<blockquote>
+<p>发布-订阅是一种消息范式，消息的发送者（称为发布者）不会将消息直接发送给特定的接收者（称为订阅者）。而是将发布的消息分为不同的类别，无需了解哪些订阅者（如果有的话）可能存在。</p>
+</blockquote>
+<ul>
+<li>
+<p>与观察者模式相同，将消息发给需要收到消息的人</p>
+</li>
+<li>
+<p>与观察者模式的区别</p>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>观察者模式中观察者是知道被观察者(Subject)的，会调用Subject的方法；而发布者-订阅者是相互不知道对方的存在，是通过消息代理进行通信的。</li>
+<li>发布订阅模式，组件是松散耦合的，而观察者模式是耦合在一起的</li>
+<li>观察者模式是同步的，当Subject有变化时，观察者(Observer)是会跟着变化进行同步；而发布-订阅模式是有的时候可以是异步，使用消息队列。</li>
+</ol>
+</blockquote>
+<p>9.享元模式</p>
+<p>10.外观模式</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

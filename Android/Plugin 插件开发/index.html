@@ -1,0 +1,611 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Plugin 插件开发 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plugin" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plugin 插件开发
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.环境配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.插件基本概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3.开发实例
+  </a>
+  
+    <nav class="md-nav" aria-label="3.开发实例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-java" class="md-nav__link">
+    3.1 创建一个JAVA插件
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 创建一个JAVA插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    新建-&gt;项目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gradle-intellij-platform" class="md-nav__link">
+    向导创建的 Gradle IntelliJ Platform 插件结构﻿
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pluginxml" class="md-nav__link">
+    plugin.xml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buildgradlekts" class="md-nav__link">
+    build.gradle.kts 内容简介﻿
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action" class="md-nav__link">
+    新增ACTION
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    运行和调试插件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    打包插件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    验证插件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    发布插件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="plugin">Plugin 插件开发</h1>
+<p>参考文档：https://beansoft.github.io/jetbrains/create-java-plugin-project.html#824922cf_1383</p>
+<p>参考视频：https://www.bilibili.com/video/BV1rv4y147fb/?buvid=XY38DC53CDA2C3ADD8CA81AAB61D16F9B045D&amp;is_story_h5=false&amp;mid=XXE7lA8QElaF0vjTIistSg%3D%3D&amp;p=1&amp;plat_id=168&amp;share_from=ugc&amp;share_medium=android&amp;share_plat=android&amp;share_session_id=9ce85e45-48aa-4c1d-a491-d6bdd8db80dd&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1690984741&amp;unique_k=VPtcLUV&amp;up_id=1794701140</p>
+<h2 id="1">1.环境配置</h2>
+<ul>
+<li>IDEA  （我使用的是2023.2）</li>
+<li>JDK 2023.2需要JDK 17,可以从官网下载，也可以直接使用IDEA下载JDK </li>
+<li>Plugin Devkit 插件，IDEA默认自带</li>
+<li>开发语言：JAVA或者Kotlin</li>
+</ul>
+<h2 id="2">2.插件基本概念</h2>
+<blockquote>
+<p>构建在 IntelliJ Platform 上的产品是可组合的应用程序,平台负责组件的创建,以及将依赖项注入类中. IntelliJ Platform 完全支持插件,JetBrains托管 <a href="https://plugins.jetbrains.com/">JetBrains Marketplace</a> ,可用于分发支持一个或多个产品的插件. 也可以托管自己的存储库,并单独分发插件 <a href="https://beansoft.github.io/jetbrains/custom-plugin-repository.html">Custom Plugin Repository</a>.</p>
+</blockquote>
+<h2 id="3">3.开发实例</h2>
+<h3 id="31-java">3.1 创建一个JAVA插件</h3>
+<h4 id="-">新建-&gt;项目</h4>
+<p><img alt="image-20230803203044144" src="/Users/zhangqian20/Library/Application Support/typora-user-images/image-20230803203044144.png" /></p>
+<h4 id="gradle-intellij-platform">向导创建的 Gradle IntelliJ Platform 插件结构﻿</h4>
+<pre><code class="language-plaintext">my_plugin
+├── .run
+│   └── Run IDE with Plugin.run.xml
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── src
+│   ├── main
+│   │   ├── java
+│   │   └── resources
+│   │       └── META-INF
+│   │           └── plugin.xml
+│   └── test
+│       ├── java
+│       └── resources
+├── .gitignore
+├── build.gradle.kts
+├── gradlew
+├── gradlew.bat
+└── settings.gradle.kts
+</code></pre>
+<ul>
+<li>默认的 IntelliJ Platform <strong>build.gradle.kts</strong> 文件 (参考下节).</li>
+<li><strong>settings.gradle.kts</strong> 设置文件, 包含定义 <code>rootProject.name</code>.</li>
+<li>Gradle Wrapper 文件, 尤其是 <strong>gradle-wrapper.properties</strong> 文件, 指定了构建插件的 Gradle 版本. 首次运行的时候, IntelliJ IDEA Gradle 插件会下载此文件中指定版本的Gradle.</li>
+<li><strong>META-INF</strong> 文件夹位于默认的 <code>main</code> <a href="https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_project_layout">源代码集</a>包含了插件 <a href="https://beansoft.github.io/jetbrains/plugin-configuration-file.html">配置文件</a>.</li>
+<li>Run Plugin <a href="https://www.jetbrains.com/help/idea/run-debug-configuration.html">运行配置</a>.</li>
+</ul>
+<p>主要配置文件</p>
+<h4 id="pluginxml">plugin.xml</h4>
+<blockquote>
+<p>是整个工程的重点，所有的动作都要在此注册</p>
+</blockquote>
+<pre><code class="language-xml">&lt;!-- 插件配置文件. 读取 https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html --&gt;
+&lt;idea-plugin&gt;
+    &lt;!-- 插件唯一ID, 发不同版本时不能修改. 建议用com.xxx.xxx格式 --&gt;
+    &lt;id&gt;com.example.demo1plugin&lt;/id&gt;
+  &lt;!-- 版本号: 主版本号.次版本号.修订号 https://semver.org/lang/zh-CN/ --&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;!-- 插件名字必须用英文且不能有标点, 可有空格和数字如 My Notes, 不能包含 plugin 字样.
+         详细解释: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name --&gt;
+    &lt;name&gt;Demo1plugin&lt;/name&gt;
+
+    &lt;!-- 插件页显示的开发者名称, 邮件和网址(可用GitHub). --&gt;
+    &lt;vendor email=&quot;support@yourcompany.com&quot; url=&quot;https://www.yourcompany.com&quot;&gt;YourCompany&lt;/vendor&gt;
+
+    &lt;!-- 兼容的IDEA版本范围, 发版前请务必测试 --&gt;
+    &lt;idea-version since-build=&quot;213&quot; until-build=&quot;223.*&quot;/&gt;
+
+    &lt;!-- 插件网页和开发工具中的插件描述内容, 只能用简单HTML标记(文本格式, 段落和列表), 不支持CSS和JS, 不支持iframe.
+         必须要有简短的英文描述, 之后可以放中文, 否则会审核不通过.
+         完整内容: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description --&gt;
+    &lt;description&gt;&lt;![CDATA[
+    Enter short description for your theme here.&lt;br&gt;
+    &lt;em&gt;most HTML tags may be used&lt;/em&gt;
+  ]]&gt;&lt;/description&gt;
+
+    &lt;!-- 更改备注, 建议每个版本更新, 支持中英文 --&gt;
+    &lt;change-notes&gt;&lt;![CDATA[
+    Initial release of the theme.
+  ]]&gt;&lt;/change-notes&gt;
+
+    &lt;!-- 产品和插件依赖兼容(这部分比较复杂).
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html --&gt;
+    &lt;depends&gt;com.intellij.modules.platform&lt;/depends&gt;
+
+  &lt;!-- 扩展列表 --&gt;
+    &lt;extensions defaultExtensionNs=&quot;com.intellij&quot;&gt;
+    &lt;/extensions&gt;
+&lt;/idea-plugin&gt;
+</code></pre>
+<h4 id="buildgradlekts">build.gradle.kts 内容简介﻿</h4>
+<blockquote>
+<p>环境配置的主要文件，主要是插件，IDEA 版本 包名，version</p>
+</blockquote>
+<h4 id="action">新增ACTION</h4>
+<p>在文件夹下，打开，新建-》Plugin Devkit -》Action.</p>
+<p><img alt="image-20230803204108052" src="/Users/zhangqian20/Library/Application Support/typora-user-images/image-20230803204108052.png" /></p>
+<p>Action会在Plugin.xml中注册。</p>
+<p><img alt="image-20230803204224843" src="../Plugin%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91.assets/image-20230803204224843.png" /></p>
+<p>在Action中写出你要实现的操作。</p>
+<pre><code class="language-java">  public void actionPerformed(AnActionEvent e) {
+        Messages.showInfoMessage(&quot;Hi 你好 IDEA&quot;, &quot;Title&quot;);
+    }
+</code></pre>
+<h4 id="_1">运行和调试插件</h4>
+<p>点击运行和调试即可</p>
+<h3 id="_2">打包插件</h3>
+<p>Gradle 工具窗口中双击运行 <strong>intellij | buildPlugin</strong></p>
+<h3 id="_3">验证插件</h3>
+<p>Gradle 工具窗口中双击运行 <strong>intellij | runPluginVerifier</strong>, 最终报告位于目录 <strong>build/reports/pluginVerifier</strong>, 确保没有错误信息.</p>
+<h3 id="_4">发布插件</h3>
+<p>暂时不需要，以后再说</p>
+<p>3.2 创建主题插件</p>
+<p>4.UI 检查器的使用</p>
+<p>快捷键：control+option+点击</p>
+<p>需求：</p>
+<p>1.新建case</p>
+<p>2.连续运行多个case 生成一个html</p>
+<p>3.连接IOS 设备，可以进行截图</p>
+<p>4.识别poco组件</p>
+<p>5.定时清理图片和报告</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

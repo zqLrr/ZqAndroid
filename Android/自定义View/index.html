@@ -1,0 +1,1560 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>自定义View - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#view" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              自定义View
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1、基础概念
+  </a>
+  
+    <nav class="md-nav" aria-label="1、基础概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    坐标系
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    获取坐标系的函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view_1" class="md-nav__link">
+    自定义View的类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    构造函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    自定义属性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2view" class="md-nav__link">
+    2、View的绘制流程
+  </a>
+  
+    <nav class="md-nav" aria-label="2、View的绘制流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#onmeasure" class="md-nav__link">
+    onMeasure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onlayout" class="md-nav__link">
+    onLayout()
+  </a>
+  
+    <nav class="md-nav" aria-label="onLayout()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ondraw" class="md-nav__link">
+    onDraw():
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3、自定义组合控件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4、继承系统控件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5view" class="md-nav__link">
+    5、直接继承View
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6viewgroup" class="md-nav__link">
+    6、直接继承ViewGroup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    7、常用的类
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="view">自定义View</h1>
+<h2 id="1">1、基础概念</h2>
+<ul>
+<li>
+<h3 id="_1">坐标系</h3>
+</li>
+</ul>
+<p><img alt="img" src="../%E8%87%AA%E5%AE%9A%E4%B9%89View.assets/webp-20210929113407061-2886451.png" /></p>
+<p>View左上角为原点，往右为x+轴，往下为y+轴。</p>
+<ul>
+<li>
+<h3 id="_2">获取坐标系的函数</h3>
+</li>
+</ul>
+<p><img src="自定义View.assets/webp-20210929113605432-2886567.png" alt="img" style="zoom:30%;" /></p>
+<ul>
+<li>getTop()；获取View到其父布局顶边的距离。</li>
+<li>getLeft()；获取View到其父布局左边的距离。</li>
+<li>getBottom()；获取View到其父布局顶边的距离。</li>
+<li>getRight()；获取View到其父布局左边的距离。</li>
+<li>getX();触摸点在View的X坐标</li>
+<li>getY();;触摸点在View的Y坐标</li>
+<li>getRawX;触摸点在屏幕的X坐标</li>
+<li>
+<p>getRawY;触摸点在屏幕的Y坐标</p>
+</li>
+<li>
+<h3 id="view_1">自定义View的类型</h3>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>定义</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自定义组合控件</td>
+<td>多个控件组合成为一个新的控件，方便多处复用</td>
+<td>如TitleBar</td>
+</tr>
+<tr>
+<td>继承系统View控件</td>
+<td>继承自TextView等系统控件，在系统控件的基础功能上进行扩展</td>
+<td>对常用的系统控件作自定义扩展</td>
+</tr>
+<tr>
+<td>继承系统ViewGroup控件</td>
+<td>继承自LinearLayout等系统控件，在系统控件的基础功能上进行扩展</td>
+<td>对常用布局进行扩展</td>
+</tr>
+<tr>
+<td>直接继承View</td>
+<td>不复用系统控件，继承View进行功能定义</td>
+<td>自定义View</td>
+</tr>
+<tr>
+<td>直接继承ViewGroup</td>
+<td>不复用系统控件，继承ViewGroup进行新的布局</td>
+<td>自定义ViewGroup</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<h3 id="_3">构造函数</h3>
+</li>
+</ul>
+<p><code>java
+  public class TestView extends View {
+      /**
+       * 在java代码里new的时候会用到
+       * @param context
+       */
+      public TestView(Context context) {
+          super(context);
+      }
+      /**
+       * 在xml布局文件中使用时自动调用
+       * @param context
+       */
+      public TestView(Context context, @Nullable AttributeSet attrs) {
+          super(context, attrs);
+      }
+      /**
+       * 不会自动调用，如果有默认style时，在第二个构造函数中调用
+       * @param context
+       * @param attrs
+       * @param defStyleAttr
+       */
+      public TestView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+          super(context, attrs, defStyleAttr);
+      }
+      /**
+       * 只有在API版本&gt;21时才会用到
+       * 不会自动调用，如果有默认style时，在第二个构造函数中调用
+       * @param context
+       * @param attrs
+       * @param defStyleAttr
+       * @param defStyleRes
+       */
+      @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+      public TestView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+          super(context, attrs, defStyleAttr, defStyleRes);
+      }
+  }</code></p>
+<p>在实际开发中，要实现所有的构造函数。</p>
+<ul>
+<li>第一个构造函数：初始化时会自动调用</li>
+<li>第二个构造函数：xml自定义时会调用</li>
+<li>
+<p>第三个、第四个构造函数：不会自动调用，但可以通过第二个构造函数this调用</p>
+</li>
+<li>
+<h3 id="_4">自定义属性</h3>
+</li>
+</ul>
+<p>自定义属性是在自定义View时必须的组成成分，我们平时所写的<code>android:XXXXX</code>是控件自带的系统属性，本质上是系统自定义的属性，如果我们想自己写的自定义View也可以通过这样的形式，添加一些功能公休，自定义属性可以完成这些想法。</p>
+<p>自定义属性实现步骤：</p>
+<ul>
+<li>自定义一个View </li>
+<li>编写values/attrs.xml，在其中编写styleable和item等标签元素</li>
+<li>在View的构造方法中通过TypedArray获取</li>
+<li>在View中处理获取到的自定义属性</li>
+<li>在布局文件中View使用自定义的属性（注意namespace）</li>
+</ul>
+<p>实例说明：</p>
+<ul>
+<li>自定义View</li>
+</ul>
+<p><code>java
+   public class MyTextView extends View</code></p>
+<ul>
+<li>编写attrs.xml文件</li>
+</ul>
+<p>```java
+   <?xml version="1.0" encoding="utf-8"?></p>
+<pre><code>  &lt;resources&gt;
+      &lt;declare-styleable name="test"&gt;
+          &lt;attr name="text" format="string" /&gt;
+          &lt;attr name="testAttr" format="integer" /&gt;
+      &lt;/declare-styleable&gt;
+  &lt;/resources&gt;
+</code></pre>
+<p>```</p>
+<ul>
+<li>在View的构造函数获取并处理</li>
+</ul>
+<p>```java
+  public class MyTextView extends View {
+      private static final String TAG = MyTextView.class.getSimpleName();</p>
+<pre><code>  //在View的构造方法中通过TypedArray获取
+  public MyTextView(Context context, AttributeSet attrs) {
+      super(context, attrs);
+      TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.test);
+      String text = ta.getString(R.styleable.test_testAttr);
+      int textAttr = ta.getInteger(R.styleable.test_text, -1);
+      Log.e(TAG, "text = " + text + " , textAttr = " + textAttr);
+      ta.recycle();
+  }
+</code></pre>
+<p>}
+  ```</p>
+<ul>
+<li>
+<p>在布局中使用</p>
+<ul>
+<li>命名空间的实现</li>
+</ul>
+<p><code>xml
+//1、自定义命名空间（我自己未实现）
+xmlns:XXX="http://schemas.android.com/apk/res/com.example.test"
+//2、自定义命名空间
+xmlns:XXX="http://schemas.android.com/apk/res-auto"
+//二选一即可</code></p>
+</li>
+</ul>
+<p>```xml
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      xmlns:app="http://schemas.android.com/apk/res/com.example.test"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" ></p>
+<pre><code>  &lt;com.example.test.MyTextView
+      android:layout_width="100dp"
+      android:layout_height="200dp"
+      app:testAttr="520"
+      app:text="helloworld" /&gt;
+</code></pre>
+<p></RelativeLayout>
+  ```</p>
+<ul>
+<li>
+<p>常用的自定义属性Format</p>
+<ul>
+<li>
+<p>reference:参考某一属性的ID</p>
+</li>
+<li>
+<p>color:颜色值</p>
+</li>
+<li>
+<p>boolean: bool值</p>
+</li>
+<li>
+<p>dimension：尺寸值</p>
+</li>
+<li>
+<p>float:浮点值</p>
+</li>
+<li>
+<p>Integar:整形值</p>
+</li>
+<li>
+<p>string:字符串</p>
+</li>
+<li>
+<p>fraction：百分数</p>
+</li>
+<li>
+<p>enum:枚举 ：枚举类型只能使用一个，不能同时使用一个</p>
+</li>
+</ul>
+<p>属性定义：</p>
+<p><code>xml
+  &lt;declare-styleable name="名称"&gt;
+      &lt;attr name="orientation"&gt;
+          &lt;enum name="horizontal" value="0" /&gt;
+          &lt;enum name="vertical" value="1" /&gt;
+      &lt;/attr&gt;
+  &lt;/declare-styleable&gt;</code></p>
+<p>属性使用：</p>
+<p><code>xml
+  &lt;LinearLayout  
+      android:orientation = "vertical"&gt;
+  &lt;/LinearLayout&gt;</code></p>
+<ul>
+<li>flag：位或运算 ：可以同时使用多个</li>
+</ul>
+<p>属性定义：</p>
+<p><code>xml
+  &lt;declare-styleable name="名称"&gt;
+      &lt;attr name="gravity"&gt;
+              &lt;flag name="top" value="0x01" /&gt;
+              &lt;flag name="bottom" value="0x02" /&gt;
+              &lt;flag name="left" value="0x04" /&gt;
+              &lt;flag name="right" value="0x08" /&gt;
+              &lt;flag name="center_vertical" value="0x16" /&gt;
+              ...
+      &lt;/attr&gt;
+  &lt;/declare-styleable&gt;</code></p>
+<p>属性使用：</p>
+<p><code>xml
+  &lt;TextView android:gravity="bottom|left"/&gt;</code></p>
+<ul>
+<li>混合类型：属性定义时可以指定多种类型值</li>
+</ul>
+<p>属性定义：</p>
+<p><code>xml
+  &lt;declare-styleable name = "名称"&gt;
+       &lt;attr name = "background" format = "reference|color" /&gt;
+  &lt;/declare-styleable&gt;</code></p>
+<p>属性使用：</p>
+<p><code>xml
+  &lt;ImageView
+  android:background = "@drawable/图片ID" /&gt;
+  或者：
+  &lt;ImageView
+  android:background = "#00FF00" /&gt;</code></p>
+</li>
+</ul>
+<h2 id="2view">2、View的绘制流程</h2>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+<th>相关函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onMeasure()</td>
+<td>测量View的宽高</td>
+<td>setMeasuredDimension()、getDefaultSize()、getSuggestedMinimumHeight()</td>
+</tr>
+<tr>
+<td>onLayout()</td>
+<td>计算当前View以及子View的位置</td>
+<td>layout(),onLayout(),setFrame()</td>
+</tr>
+<tr>
+<td>onDraw()</td>
+<td>视图的绘制工作</td>
+<td>draw()，onDraw()</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="img" src="../%E8%87%AA%E5%AE%9A%E4%B9%89View.assets/webp.png" /></p>
+<ul>
+<li>
+<h3 id="onmeasure">onMeasure</h3>
+</li>
+<li>
+<p>MeasureSpec:是<code>View</code>的内部类，封装了从父布局传给子View的尺寸，在onMeasure()中会根据MeasureSpec的值来确定宽高。</p>
+<p>MeasureSpec是一个Int值(32位)，前两位是模式mode，后面的是大小size。</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EXACTLY</td>
+<td>精准模式，View需要一个精确值，这个值即为MeasureSpec当中的Size</td>
+</tr>
+<tr>
+<td>AT_MOST</td>
+<td>最大模式，View的尺寸有一个最大值，View不可以超过MeasureSpec当中的Size值</td>
+</tr>
+<tr>
+<td>UNSPECIFIED</td>
+<td>无限制，View对尺寸没有任何限制，View设置为多大就应当为多大</td>
+</tr>
+</tbody>
+</table>
+<p>MeasureSpec的使用方式和源码(在ViewGroup#getChildMeasureSpec)</p>
+<p>```java
+public static int getChildMeasureSpec(int spec, int padding, int childDimension) {
+        int specMode = MeasureSpec.getMode(spec);
+        int specSize = MeasureSpec.getSize(spec);</p>
+<pre><code>    int size = Math.max(0, specSize - padding);
+
+    int resultSize = 0;
+    int resultMode = 0;
+
+    switch (specMode) {
+    //当父View要求一个精确值时，为子View赋值
+    case MeasureSpec.EXACTLY:
+        //如果子view有自己的尺寸，则使用自己的尺寸
+        if (childDimension &gt;= 0) {
+            resultSize = childDimension;
+            resultMode = MeasureSpec.EXACTLY;
+            //当子View是match_parent,将父View的大小赋值给子View
+        } else if (childDimension == LayoutParams.MATCH_PARENT) {
+            resultSize = size;
+            resultMode = MeasureSpec.EXACTLY;
+            //如果子View是wrap_content，设置子View的最大尺寸为父View
+        } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+            resultSize = size;
+            resultMode = MeasureSpec.AT_MOST;
+        }
+        break;
+
+    // 父布局给子View了一个最大界限
+    case MeasureSpec.AT_MOST:
+        if (childDimension &gt;= 0) {
+            //如果子view有自己的尺寸，则使用自己的尺寸
+            resultSize = childDimension;
+            resultMode = MeasureSpec.EXACTLY;
+        } else if (childDimension == LayoutParams.MATCH_PARENT) {
+            // 父View的尺寸为子View的最大尺寸
+            resultSize = size;
+            resultMode = MeasureSpec.AT_MOST;
+        } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+            //父View的尺寸为子View的最大尺寸
+            resultSize = size;
+            resultMode = MeasureSpec.AT_MOST;
+        }
+        break;
+
+    // 父布局对子View没有做任何限制
+    case MeasureSpec.UNSPECIFIED:
+        if (childDimension &gt;= 0) {
+        //如果子view有自己的尺寸，则使用自己的尺寸
+            resultSize = childDimension;
+            resultMode = MeasureSpec.EXACTLY;
+        } else if (childDimension == LayoutParams.MATCH_PARENT) {
+            //因父布局没有对子View做出限制，当子View为MATCH_PARENT时则大小为0
+            resultSize = View.sUseZeroUnspecifiedMeasureSpec ? 0 : size;
+            resultMode = MeasureSpec.UNSPECIFIED;
+        } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+            //因父布局没有对子View做出限制，当子View为WRAP_CONTENT时则大小为0
+            resultSize = View.sUseZeroUnspecifiedMeasureSpec ? 0 : size;
+            resultMode = MeasureSpec.UNSPECIFIED;
+        }
+        break;
+    }
+
+    return MeasureSpec.makeMeasureSpec(resultSize, resultMode);
+}
+</code></pre>
+<p>```</p>
+<table>
+<thead>
+<tr>
+<th>父View</th>
+<th>子View</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EXACTLY</td>
+<td>父布局采用精准模式，有确切的大小，如果有大小则直接使用，如果子View没有大小，子View不得超出父view的大小范围</td>
+</tr>
+<tr>
+<td>AT_MOST</td>
+<td>父布局采用最大模式，存在确切的大小，如果有大小则直接使用，如果子View没有大小，子View不得超出父view的大小范围</td>
+</tr>
+<tr>
+<td>UNSPECIFIED</td>
+<td>父布局没有做出限制，子View有自己的尺寸，则使用，如果没有则为0</td>
+</tr>
+</tbody>
+</table>
+<p>View 的 MeasureSpec 并不是父 View 独自决定，它是根据父 view 的MeasureSpec加上子 View 的自己的 LayoutParams，通过相应的规则转化。</p>
+</li>
+<li>
+<p>OnMeasure()源码</p>
+<p>```java
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {</p>
+<pre><code>    setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+            getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
+}
+</code></pre>
+<p>```</p>
+<p>从源码中可以看出，使用了以下三个方法：</p>
+<ul>
+<li>setMeasuredDimension(int measuredWidth, int measuredHeight)</li>
+</ul>
+<p>该方法用来设置View的宽高，在自定义View时会经常用到</p>
+<ul>
+<li>getDefaultSize(int size, int measureSpec)</li>
+</ul>
+<p>该方法用来获取View默认的宽高</p>
+<p><code>``java
+  /**
+  *   有两个参数size和measureSpec
+  *   1、size表示View的默认大小，它的值是通过</code>getSuggestedMinimumWidth()方法来获取的，之后我们再分析。
+  *   2、measureSpec则是我们之前分析的MeasureSpec，里面存储了View的测量值以及测量模式
+  */
+  public static int getDefaultSize(int size, int measureSpec) {
+          int result = size;
+          int specMode = MeasureSpec.getMode(measureSpec);
+          int specSize = MeasureSpec.getSize(measureSpec);</p>
+<pre><code>      //从这里我们看出，对于AT_MOST和EXACTLY在View当中的处理是完全相同的。所以在我们自定义View时要对这两种模式做出处理。
+      switch (specMode) {
+      case MeasureSpec.UNSPECIFIED:
+          result = size;
+          break;
+      case MeasureSpec.AT_MOST:
+      case MeasureSpec.EXACTLY:
+          result = specSize;
+          break;
+      }
+      return result;
+  }
+</code></pre>
+<p>```</p>
+<ul>
+<li>getSuggestedMinimumWidth() 、getSuggestedMinimumHeight()</li>
+</ul>
+<p>该方法获取View 宽和高默认大小的较大值</p>
+<p><code>java
+  //当View没有设置背景时，默认大小就是mMinWidth，这个值对应Android:minWidth属性，如果没有设置时默认为0.
+  //如果有设置背景，则默认大小为mMinWidth和mBackground.getMinimumWidth()当中的较大值。
+  protected int getSuggestedMinimumWidth() {
+          return (mBackground == null) ? mMinWidth : max(mMinWidth, mBackground.getMinimumWidth());
+      }</code></p>
+<p>同时，注意<code>ViewGroup</code>和<code>View</code>的测量有区别，ViewGroup未重写onMeasure()方法：原因：不同的布局有不同的测量子View的方法，无法统一设置。但是它提供了测量子View 的方法<code>measureChildren()</code>和<code>measureChild()</code>方法</p>
+<ul>
+<li>measureChildren(int widthMeasureSpec, int heightMeasureSpec)</li>
+</ul>
+<p>该方法循环测量ViewGroup的子View</p>
+<p><code>java
+   protected void measureChildren(int widthMeasureSpec, int heightMeasureSpec) {
+          final int size = mChildrenCount;
+          final View[] children = mChildren;
+          for (int i = 0; i &lt; size; ++i) {
+              final View child = children[i];
+              //显示的View大小都进行测量
+              if ((child.mViewFlags &amp; VISIBILITY_MASK) != GONE) {
+                  measureChild(child, widthMeasureSpec, heightMeasureSpec);
+              }
+          }
+      }</code></p>
+<ul>
+<li>measureChild(View child, int parentWidthMeasureSpec,int parentHeightMeasureSpec)</li>
+</ul>
+<p>该方法确定View的布局后，获得MeasureSpec,然后调用View的onMeasure()方法。</p>
+<p>```java
+  final LayoutParams lp = child.getLayoutParams();</p>
+<p>final int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,
+                                                        mPaddingLeft + mPaddingRight, lp.width);
+  final int childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,
+                                                         mPaddingTop + mPaddingBottom, lp.height);</p>
+<p>child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+  ```</p>
+<p>OnMeasure与布局的类型有关，ViewGroup具体的OnMeasure方法还要看具体的布局，如LinearLayout</p>
+</li>
+<li>
+<h2 id="onlayout">onLayout()</h2>
+</li>
+</ul>
+<p>对于<code>View</code>来说用来计算<code>View</code>的位置参数,对于<code>ViewGroup</code>来说，除了要测量自身位置，还需要测量子<code>View</code>的位置。</p>
+<ul>
+<li>
+<p>layout()方法：使整个onLayout的入口</p>
+<p>```java
+/*<em>
+*  这里的四个参数l、t、r、b分别代表View的左、上、右、下四个边界相对于其父View的距离。
+*
+</em>/
+public void layout(int l, int t, int r, int b) {
+        if ((mPrivateFlags3 &amp; PFLAG3_MEASURE_NEEDED_BEFORE_LAYOUT) != 0) {
+            onMeasure(mOldWidthMeasureSpec, mOldHeightMeasureSpec);
+            mPrivateFlags3 &amp;= ~PFLAG3_MEASURE_NEEDED_BEFORE_LAYOUT;
+        }</p>
+<pre><code>    int oldL = mLeft;
+    int oldT = mTop;
+    int oldB = mBottom;
+    int oldR = mRight;
+
+    //这里通过setFrame或setOpticalFrame方法确定View在父容器当中的位置。
+    boolean changed = isLayoutModeOptical(mParent) ?
+            setOpticalFrame(l, t, r, b) : setFrame(l, t, r, b);
+
+    //调用onLayout方法。onLayout方法是一个空实现，不同的布局会有不同的实现。
+    if (changed || (mPrivateFlags &amp; PFLAG_LAYOUT_REQUIRED) == PFLAG_LAYOUT_REQUIRED) {
+        onLayout(changed, l, t, r, b);
+                    ...
+    }
+    ...
+
+}
+</code></pre>
+<p>```</p>
+<p>由源码可知：layout是计算自身View位置的方法，而onLayout是ViewGroup计算子View 位置的方法</p>
+</li>
+<li>
+<p>onLayout():被各个布局进行重写,会去对各个子View进行布局</p>
+</li>
+<li>
+<p>setFrame:setFrame()或setOpticalFrame()会判断子View的位置是否发生变化</p>
+</li>
+<li>
+<h3 id="ondraw">onDraw():</h3>
+</li>
+</ul>
+<p>绘制View的内容，根据源码注释，分为七步,但是一般第二步和第五步会被忽略(具体源码看<code>View#draw</code>)</p>
+<ul>
+<li>第一步：绘制背景</li>
+<li>第二步：如有必要，保存画布的图层以准备褪色</li>
+<li>第三步：绘制视图的内容(onDraw())</li>
+<li>第四步：分发给子View,进行绘制</li>
+<li>第五步：如有必要，绘制渐变边缘并恢复图层</li>
+<li>第六步： 绘制装饰（例如滚动条、前景色）</li>
+<li>第七步：如有必要，绘制默认焦点高亮</li>
+</ul>
+<p><img src="自定义View.assets/image-20210927163644404.png" alt="image-20210927163644404" style="zoom:50%;" /></p>
+<ul>
+<li>onDraw() :被各个布局重写</li>
+</ul>
+<h2 id="3">3、自定义组合控件</h2>
+<ul>
+<li>自定义组合控件就是将多个控件组合成为一个新的控件，主要解决多次重复使用同一类型的布局。比如TitleBar。</li>
+</ul>
+<p>接下来以一个Demo讲解对自定义组合控件的使用。</p>
+<p>步骤一：新建一个布局，将想要使用的组合控件写在Xml布局。</p>
+<p>```xml
+  <?xml version="1.0" encoding="utf-8"?></p>
+<p><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/header"
+      android:layout_width="match_parent"
+      android:layout_height="45dp">
+      <Button
+          android:id="@+id/lb"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_alignParentLeft="true" />
+      <TextView
+          android:id="@+id/tv_title"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_centerInParent="true"
+          android:ellipsize="end"
+          android:gravity="center"
+          android:lines="1"
+          android:text="标题"
+          android:textSize="20dp"
+          android:textStyle="bold" />
+      <Button
+          android:id="@+id/rb"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_alignParentRight="true" />
+  </RelativeLayout>
+  ```</p>
+<p>步骤二：新建一个JAVA类，进行自定义组合控件的定义和实现。</p>
+<ul>
+<li>
+<p>继承一个布局，并实现其构造函数</p>
+<p>```java
+public class MyTitleBar extends RelativeLayout {
+    public MyTitleBar(Context context) {
+        super(context);
+    }
+        //xml定义时调用这个构造函数，仿照RelativeLayout的
+    public MyTitleBar(Context context, AttributeSet attrs) {
+        this(context,attrs,0);
+    }</p>
+<pre><code>public MyTitleBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    this(context, attrs,0,0);
+}
+
+public MyTitleBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    super(context, attrs, defStyleAttr, defStyleRes);
+}
+</code></pre>
+<p>}
+```</p>
+</li>
+<li>
+<p>使用LayoutInflater类实现对布局控件的UI，然后将initView()添加在第四个构造函数。</p>
+<p><code>java
+   private void initView(Context context){
+        View view = LayoutInflater.from(context).inflate(R.layout.header_title_view,this,true);
+        bt_left = (Button) view.findViewById(R.id.lb);
+        bt_right = (Button) view.findViewById(R.id.rb);
+        tv_title =(TextView) view.findViewById(R.id.tv_title);
+        layout_root = (RelativeLayout) view.findViewById(R.id.header);
+    }</code></p>
+</li>
+</ul>
+<p>步骤三 ：提供对外的方法，以供使用这个自定义组合控件的值发生变化</p>
+<p><code>java
+      //修改Text
+      public void setTitle(String title){
+          if(!TextUtils.isEmpty(title)){
+              tv_title.setText(title);
+          }
+      }
+        //添加点击监听
+       public void  setLeftListener(OnClickListener onClickListener){
+          bt_left.setOnClickListener(onClickListener);
+       }
+       public void setRightListener(OnClickListener onClickListener){
+          bt_right.setOnClickListener(onClickListener);
+       }</code></p>
+<p>步骤四 ：添加在要使用自定义组合控件的xml中</p>
+<p><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".MainActivity"&gt;
+  &lt;com.example.customview.View.MyTitleBar
+      android:id="@+id/ViewTitle"
+      android:layout_width="match_parent"
+      android:layout_height="45dp"/&gt;
+  &lt;/LinearLayout&gt;</code></p>
+<p>步骤五：在使用自定义组合控件的地方进行自定义值的使用</p>
+<p><code>java
+    titleBar = (MyTitleBar) findViewById(R.id.ViewTitle);
+          titleBar.setTitle("自定义组合控件标题");
+          titleBar.setLeftListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Toast.makeText(MainActivity.this, "点击了left", Toast.LENGTH_SHORT).show();
+              }
+          });
+          titleBar.setRightListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Toast.makeText(MainActivity.this, "点击了Right", Toast.LENGTH_SHORT).show();
+              }
+          });</code></p>
+<ul>
+<li>自定义组合控件还可以通过使用自定义属性的Flag,实现对各个控件的显示和隐藏</li>
+</ul>
+<p>步骤一：新建自定义属性</p>
+<p><code>xml
+      &lt;declare-styleable name="MyTitleBar"&gt;
+          &lt;attr name ="title_text" format="string"/&gt;
+          &lt;attr name = "title_text_color" format="color"/&gt;
+          &lt;attr name="show_view" &gt;
+              &lt;flag name ="left_text" value="0x01"/&gt;
+              &lt;flag name = "left_img" value="0x02"/&gt;
+              &lt;flag name = "right_text" value="0x04"/&gt;
+              &lt;flag name = "right_img" value="0x08"/&gt;
+              &lt;flag name ="text_center" value="0x10"/&gt;
+              &lt;flag name = "center_img" value = "0x20"/&gt;
+          &lt;/attr&gt;
+      &lt;/declare-styleable&gt;</code></p>
+<p>步骤二： 在自定义控件中，获取属性，并对属性进行操作。（最后记得将initAttrs添加到构造函数中）</p>
+<p>```java
+    private void initAttrs(Context context, AttributeSet attrs){
+          TypedArray mTypedArray = context.obtainStyledAttributes(attrs,R.styleable.MyTitleBar);
+          //获取TitleText属性
+          String title = mTypedArray.getString(R.styleable.MyTitleBar_title_text);
+          if(!TextUtils.isEmpty(title)){
+              tv_title.setText(title);
+          }
+          //获取字体颜色
+          tv_title.setTextColor(mTypedArray.getColor(R.styleable.MyTitleBar_title_text_color,Color.BLACK));
+          //获取显示内容
+          showView = mTypedArray.getInt(R.styleable.MyTitleBar_show_view,0x26);
+          mTypedArray.recycle();
+          showView(showView);
+      }</p>
+<pre><code>  private void showView(int showView){
+      //将showView转换为二进制数，根据不同位置上的值
+      long data = Long.valueOf(Integer.toBinaryString(showView));
+      element = String.format("%6d",data);
+      for(int i = 0;i&lt;element.length();i++){
+          if(i == 0);
+          if(i == 1) tv_title.setVisibility(element.substring(i,i+1).equals("1")?View.VISIBLE:View.GONE);
+          if(i == 2) bt_right.setVisibility(element.substring(i,i+1).equals("1")?View.VISIBLE:View.GONE);
+          if(i == 3);
+          if(i == 4) bt_left.setVisibility(element.substring(i,i+1).equals("1")?View.VISIBLE:View.GONE);
+          if(i == 5);
+      }
+  }
+</code></pre>
+<p>```</p>
+<p>步骤三：在使用自定义组合控件的xml中添加自定义属性。</p>
+<p><code>xml
+  &lt;com.example.customview.View.MyTitleBar
+      android:id="@+id/ViewTitle"
+      android:layout_width="match_parent"
+      app:title_text="换一个"
+      app:title_text_color="#FF0000"
+      app:show_view="text_center|left_img"
+      android:layout_height="45dp"/&gt;</code></p>
+<p>注意：flag转换成二进制，再转换成字符串，高位在前面</p>
+<p><img alt="image-20210928175350701" src="../%E8%87%AA%E5%AE%9A%E4%B9%89View.assets/image-20210928175350701.png" /></p>
+<h2 id="4">4、继承系统控件</h2>
+<p>继承系统控件是指继承View子类(如TextView、Button)和继承ViewGroup的子类（如：LinearLayout）,业务需求的不同，实现方式有比较大的差异。</p>
+<ul>
+<li>继承View子类(TextView)</li>
+</ul>
+<p>业务需求：设置方型背景，并在中间加一条横线</p>
+<p>步骤一：构造函数 画笔初始化</p>
+<p>步骤二：绘制自定义图形，注意先绘制自定义，再绘制原有的图形</p>
+<p>```java
+  public class LinearTextView  extends TextView {
+      //step 1: 构造函数 画笔初始化
+      private Paint mPaint;
+      //构造函数
+      public LinearTextView(Context context) {
+          super(context);
+          init();
+      }
+      public LinearTextView(Context context, @Nullable AttributeSet attrs) {
+          this(context, attrs,0);
+      }</p>
+<pre><code>  public LinearTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+      this(context, attrs, defStyleAttr,0);
+  }
+
+  public LinearTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+      super(context, attrs, defStyleAttr, defStyleRes);
+      init();
+  }
+
+  private void init(){
+    //画笔初始化
+     mPaint = new Paint();
+  }
+
+ //step2 绘制自定义图形，注意先绘制自定义，再绘制原有的图形
+  @Override
+  protected void onDraw(Canvas canvas) {
+      int width = getWidth();
+      int height = getHeight();
+      mPaint.setColor(Color.WHITE);
+      //绘制方形背景
+      RectF rectF = new RectF(0,0,width,height);
+      canvas.drawRect(rectF,mPaint);
+      //绘制中心曲线 起点(0,Height/2) 终点（width,height/2）
+      mPaint.setColor(Color.RED);
+      canvas.drawLine(0,height/2,width,height/2,mPaint);
+    //在自定义画完之后，再让父类画，这样不影响TextView字体的显示
+      super.onDraw(canvas);
+  }
+</code></pre>
+<p>}
+  ```</p>
+<p><code>xml
+  &lt;com.example.customview.View.LinearTextView
+      android:layout_width="match_parent"
+      android:gravity="center"
+      android:text="11111111"
+      android:textColor="@color/black"
+      android:layout_height="45dp"/&gt;</code></p>
+<p><img alt="image-20210928175413886" src="../%E8%87%AA%E5%AE%9A%E4%B9%89View.assets/image-20210928175413886.png" /></p>
+<ul>
+<li>继承ViewGroup子类(以后补充)</li>
+</ul>
+<h2 id="5view">5、直接继承View</h2>
+<p>直接继承View时，由于View没有设置AT_MOST和EXACTLY的区别，除了需要重写onDraw()，还需要重写onLayout()方法。</p>
+<p>业务需求：画一个矩形，并设置背景颜色</p>
+<ul>
+<li>步骤一：构造函数 初始化Paint</li>
+<li>步骤二：处理AT_MOST &amp; EXACTLY的区别</li>
+<li>步骤三：绘制矩形 注意考虑Padding,以及padding和绘制坐标系的关系</li>
+</ul>
+<pre><code class="language-java">public class RectView extends View {
+    //Step 1 构造函数 初始化Paint
+    private Paint mPaint;
+    public RectView(Context context) {
+        super(context);
+        init();
+    }
+
+    public RectView(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs,0);
+    }
+
+    public RectView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        this(context, attrs, defStyleAttr,0);
+    }
+
+    public RectView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init();
+    }
+
+    private void init(){
+        mPaint = new Paint();
+    }
+    //Step 2 处理AT_MOST &amp; EXACTLY的区别
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        //由于View 没有处理AT_MOST &amp; EXACATLY的区别，在这里进行处理
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        //处理
+        if(widthMode == MeasureSpec.AT_MOST &amp;&amp; heightMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(300,300);
+        } else if (widthMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(300,heightSize);
+        } else if(heightMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(widthSize,300);
+        }
+    }
+    //Step 3:绘制矩形 注意考虑Padding,以及padding和绘制坐标系的关系
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        //绘制时需要考虑padding
+        int paddingLeft = getPaddingLeft();
+        int paddingRight = getPaddingRight();
+        int paddingTop = getPaddingTop();
+        int paddingBottom = getPaddingBottom();
+        //获取绘制的View宽度
+        int width = getWidth() -paddingLeft - paddingRight;
+        int height = getHeight() -paddingTop - paddingBottom;
+        mPaint.setColor(Color.RED);
+        //考虑画的长方形和坐标系之间的关系
+        RectF rectF = new RectF(0+paddingLeft,0+paddingTop,width+paddingLeft,height+paddingTop);
+        canvas.drawRect(rectF,mPaint);
+    }
+}
+</code></pre>
+<pre><code class="language-xml">   &lt;com.example.customview.View.RectView
+        android:layout_width=&quot;100dp&quot;
+        android:layout_height=&quot;wrap_content&quot;/&gt;
+</code></pre>
+<p><img alt="image-20210928175632256" src="../%E8%87%AA%E5%AE%9A%E4%B9%89View.assets/image-20210928175632256.png" /></p>
+<h2 id="6viewgroup">6、直接继承ViewGroup</h2>
+<p>ViewGroup 的实现要实现对View的测量onMeasure()和对View、子View的布局实现onLayout(),onDraw()一般由子View实现。</p>
+<p>业务需求：实现一个水平滚动的ViewPages。</p>
+<p>步骤一：实现构造函数和初始化</p>
+<p>步骤二：实现onMeasure(),主要是对AT_MOST&amp;EXACTLY的实现，但还需要考虑子View.</p>
+<p>步骤三：实现onLayout(),主要是对子View的onLayout()</p>
+<p>步骤四：则需要考虑点击事件的分发机制</p>
+<pre><code class="language-java">
+</code></pre>
+<h2 id="7">7、常用的类</h2>
+<ul>
+<li>
+<p>Paint 画笔类</p>
+</li>
+<li>
+<p>常用方法</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">函数</th>
+<th style="text-align: center;">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">setColor(int)</td>
+<td style="text-align: center;">设置画笔的颜色</td>
+</tr>
+<tr>
+<td style="text-align: left;">setAlpha(int）</td>
+<td style="text-align: center;">设置画笔的透明度</td>
+</tr>
+<tr>
+<td style="text-align: left;">setARGB(int a, int r, int g, int b)</td>
+<td style="text-align: center;">设置画笔的颜色，<code>a</code>代表透明度，<code>r</code>，<code>g</code>，<code>b</code>代表颜色值</td>
+</tr>
+<tr>
+<td style="text-align: left;">setAntiAlias(boolean)</td>
+<td style="text-align: center;">设置是否使用抗锯齿功能，设置后会平滑一些</td>
+</tr>
+<tr>
+<td style="text-align: left;">setDither(boolean)</td>
+<td style="text-align: center;">设定是否使用图像抖动处理，设置后图像更加清晰</td>
+</tr>
+<tr>
+<td style="text-align: left;">setStyle(Style)</td>
+<td style="text-align: center;">设置画笔的风格<br/>Style.FILL，实心<br/>Style.FILL_AND_STROKE，同时显示实心和空心</br>Style.STROKE，空心</td>
+</tr>
+<tr>
+<td style="text-align: left;">setStrokeWidth(int)</td>
+<td style="text-align: center;">设置线宽</td>
+</tr>
+<tr>
+<td style="text-align: left;">setStrokeCap(Cap)</td>
+<td style="text-align: center;">设置线帽</td>
+</tr>
+<tr>
+<td style="text-align: left;">setStrokeJoin(Join）</td>
+<td style="text-align: center;">设置连接</td>
+</tr>
+<tr>
+<td style="text-align: left;">setTextSize(int)</td>
+<td style="text-align: center;">设置字体大小</td>
+</tr>
+<tr>
+<td style="text-align: left;">setFakeBoldText(boolean)</td>
+<td style="text-align: center;">setFakeBoldText(boolean)</td>
+</tr>
+<tr>
+<td style="text-align: left;">setUnderlineText(boolean)</td>
+<td style="text-align: center;">设置文字的下划线</td>
+</tr>
+<tr>
+<td style="text-align: left;">setTextSkewX(float)</td>
+<td style="text-align: center;">设置斜体字，值为负右倾值为正左倾</td>
+</tr>
+<tr>
+<td style="text-align: left;">setStrikeThruText(boolean)</td>
+<td style="text-align: center;">设置文本删除线</td>
+</tr>
+<tr>
+<td style="text-align: left;">setTextScaleX(float)</td>
+<td style="text-align: center;">文本沿X轴水平缩放，默认值为1</td>
+</tr>
+<tr>
+<td style="text-align: left;">setLetterSpacing(float)</td>
+<td style="text-align: center;">设置行的间距</td>
+</tr>
+<tr>
+<td style="text-align: left;">setShadowLayer(float radius, float dx, float dy, int shadowColor)</td>
+<td style="text-align: center;">设置阴影效果，<code>radius</code>为阴影角度，<code>dx</code>和<code>dy</code>为阴影在x轴和y轴上的距离，<code>color</code>为阴影的颜色</td>
+</tr>
+<tr>
+<td style="text-align: left;">setTypeface(Typeface)</td>
+<td style="text-align: center;">设置文本字体样式</td>
+</tr>
+<tr>
+<td style="text-align: left;">setTextAlign(Paint.Align)</td>
+<td style="text-align: center;">设置字体方向</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Canvas</p>
+</li>
+</ul>
+<p>Canvas绘图有三个基本要素：Canvas、绘图坐标系以及Paint。</p>
+<ul>
+<li>
+<p>坐标系：Canvas绘图中有两种坐标系</p>
+<ul>
+<li>Canvas坐标系</li>
+</ul>
+<p>这个和View的坐标系一样，以View的左上角为原点，往右为X轴，往下为Y轴，且Canvas坐标系只有一个。</p>
+<ul>
+<li>Canvas绘图坐标系</li>
+</ul>
+<p>该坐标系用于Canvas的画图，在drawXXX中绘图是传递的绘图坐标系。</p>
+<p>默认情况下，绘图坐标系等于Canvasz坐标系，但是绘图坐标系可以进行移动(translate)、旋转(rotate)、缩放(scale)，这些操作都是基于当前的绘图坐标系。</p>
+<ul>
+<li>Canvas.translate </li>
+<li>Canvas.rotate</li>
+<li>Canvas.scale  </li>
+</ul>
+</li>
+<li>
+<p>常用方法</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>drawARGB(a,r,g,b)</td>
+<td>绘制画布的背景，a,透明度</td>
+</tr>
+<tr>
+<td>drawText(text,x,y,paint)</td>
+<td>绘制文字，有专门的画笔(TextPoint)</td>
+</tr>
+<tr>
+<td>drawPoint(x,y,paint)</td>
+<td>绘制点</td>
+</tr>
+<tr>
+<td>drawRect</td>
+<td>绘制矩形</td>
+</tr>
+<tr>
+<td>drawCircle</td>
+<td>绘制圆</td>
+</tr>
+<tr>
+<td>drawOval</td>
+<td>绘制椭圆</td>
+</tr>
+<tr>
+<td>drawArc</td>
+<td>绘制弧：弧面和弧线</td>
+</tr>
+<tr>
+<td>drawPath</td>
+<td>绘制path</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>
