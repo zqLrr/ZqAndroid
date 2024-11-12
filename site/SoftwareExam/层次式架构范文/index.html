@@ -1,0 +1,421 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>层次式架构范文 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              层次式架构范文
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    层次式架构范文
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>层次式架构范文</h1>
+
+<h2 id="_1">层次式架构范文</h2>
+<p>1.概要描述你参与管理和开发的软件项目，以及你在其中所承担的主要工作</p>
+<p>2.详细论述基于构件开发的方法的主要过程 </p>
+<p>3.结合你具体参与管理和开发的实际项目，请说明具体实施过程以及碰到的主要问题</p>
+<p>摘要  <strong>项目名称、项目简介、项目金额、项目历时、我的责任</strong></p>
+<p>背景 <strong>为什么要做这个项目、项目功能和技术介绍和回应子题目 并过渡到主体</strong></p>
+<p>摘要：我工作于某互联网公司，面向服务架构的提出，让公司内部出现了大大小小数百个web服务，服务之间为了互相使用，开放了对外的OpenApi,虽然这样大大增加了web服务的利用效率，但是由于需要开发者手动对接和更换OpenApi,增加了开发者开发的琐碎程度，并且当使用的服务发生异常时，也难以及时更换到其他功能相同的web服务。为了解决以上问题，公司领导研究决定成立项目组，任命我为系统架构师，主持设计并开发了一套Web应用与OpenApi对接的自适应模型系统，由于该系统对适配性、可维护性和可移植性要求比较高，因此我选择了层次式架构风格，设计了业务开发层、自适应切换层、自适应对接层和Api模块封装层，通过明确的层次划分，使得开发者只需要按照对业务的理解封装本身的业务属性和Api属性，即可快速对接Web应用的OpenApi。</p>
+<p>Web服务作为SOA的典型应用，其开放的OpenAPI成为Web应用之间进行应用交流和业务拓展的主要方式，不同项目之间会针对用户的需求，如权限管理、用户登录、短信提醒、地图导航、票务结算等，建立对应的web服务。这些web服务已经针对某个需求有了很好的可用性，不需要再进行二次开发；有些web服务具有相同的功能，可以相互替换，多个服务的使用更加保证了应用的可用性。当公司内部有了大量服务积累后，开发者开发一个新的web应用，耗时耗力且不一定能做的比已有的服务较好，并且直接使用一些已有的web服务，也提升了开发者开发的效率。OpenAPI 技术是指通过REST、SOAP、Ajax和其他Web技术使得Web应用相互交互的技术，OpenApi技术让Web应用互相通信和使用其他Web服务的能力实现了可能。使用其他的Web服务，首先需要web应用开发者获取Web服务的Api文档，然后根据文档中的内容和要求，结合自己业务的需要，最后对两者之间的交流进行编码实现。对接流程对于开发者是费时费力的，并且由于是强耦合的，再次添加和替换相同的服务时，仍然需要按照之前的开发流程再重新进行一遍。为了提高Web 应用的可用性，当服务发生故障时，可以使用相同功能的服务替换。为解决以上问题，我作为公司技术骨干，主持并参与了Web应用与OpenApi对接的自适应模型系统的项目计划、需求分析、设计、编码和测试阶段的工作。</p>
+<p>由于该系统要求具有极好的可维护性、适配性和可移植性，因此我选择了层次式架构，将整个系统分成以下四层：</p>
+<p>1.API 模块封装层</p>
+<p>该层的主要目标将原始的OpenApi文档封装成Web应用可识别和使用的信息，API模块封装层主要由构建统一的OpenAPI模版、功能分类、数据解析、数据标注和映射几部分组成。具体的实现过程主要由以下两部分组成：（1） 构建一个基于XML的OpenAPI文档模版。分析公司内现有的OpenAPI文档以及网上已经注册了UDDI的Web服务提供的OpenAPI文档、网页等，研究其共性和差异性，最后构建出了按照OpenAPI基本信息、封装格式、接口信息和返回码信息四部分组层的模版，OpenAPI基本信息如OpenAPI key、密钥等，封装格式如：WSDL REST等通信格式，接口信息主要指接口需要的入参，返回码信息指接口返回errorCode和errorInfo等，用户只需要按照提供的模版构建OpenAPI文档，上传到API模块封装层。（2）提供了Web可视化界面给用户，用户可以在界面上进行数据标注，待封装层进行数据解析后，将OpenAPI文档和接口需要的参数进行数据映射，从而生成web应用可识别和使用的信息。</p>
+<p>2.自适应对接层</p>
+<p>该层的主要目标是生成可供上层调用的OpenAPI 请求接口，主要由组件库和调用OpenAPI的请求接口构成。组件库由抽象组件和具体组件构成，具体组件是利用.NET开源编译器Roslyn和API模块封装的请求参数和返回参数生成的，抽象组件是一些通用的函数和方法，如通信格式和加密方法等。请求接口是利用组件库和提前预定义的代码生成器生成的，可通过注解的形式，在编译期生成请求接口。</p>
+<p>3.自适应切换层</p>
+<p>该层的主要目标是根据应用层的请求，根据web服务的运行情况自适应切换调用对接层生成的OpenAPI接口，从而提高Web服务的可用性。具体实现是利用软件自适应的思想，建立感知器和决策器，感知器获取上层发出的调用信息和服务调用后的运行信息，捕捉每次的变化，决策器基于感知器获取的信息，构建Web服务的Qos参数，并对其进行归一化处理，从而实现性能排序，自适应切换最优的服务。</p>
+<p>4.业务开发层</p>
+<p>该层的主要目标是让Web应用开发者专注于自己系统的开发，当需要调用服务的时候，只需将调用信息按照固定的格式发送给自适应切换层，就会返回 Web 应用需要的信息，方便了 Web 应用业务流程的开发。</p>
+<p>在设计的过程中，我也遇到了一些问题，我主要采取了以下的方式解决：</p>
+<p>1.OpenAPI文档种类繁多，格式各异，如何统计其相同点和差异性是一个难点，我采用了自然语言处理技术（NLP）和文本相似度算法。首先，通过文本预处理技术（如分词、去停用词和词干）清理文档内容，然后使用词向量模型将文档转换为向量标识，以便分析不同文本的语义相似性，接着通过余弦相似度等相似度度量方法，对每一对文档进行比较，计算相似度分数，从而提取相似点。同时利用主题模型识别每个文档的主要主题，进一步对比主题和关键词，找出差异点。最后，生成包含共同点和差异点的报告，来帮助生成OpenAPI文档的模版。</p>
+<p>2.在数据映射与组件生成中，为提升技术效率，我采用了注解处理器，将常用的请求和返回结构通过注解进行标注，借助注解处理器提前准备好模板。这样一来，用户完成数据标注后，系统即可自动生成具体的组件，并存储在组件库中供调用，实现了快速构建和复用，减少了重复开发的工作量。</p>
+<p>由于我软件四层架构体系设计得当，并采取了有效的措施去解决设计中遇到的问题，Web应用与OpenAPI对接的自适应模型系统最后按照计划完成并顺利投产，不但保证了系统的可用性、适应性和可维护性，还提升了公司的开发效率，收到了公司开发者的一致好评，为公司未来的发展提供了基础建设。</p>
+<p>在总结经验的同时，我也看到了在层次式架构中的不足，首先是在建立组件库时，都是通过系统的开发者手动填写生成的，不符合软件开发的自动化流程，因此通过注解处理器，提前准备一些通用的网络请求的模版，这样开发者在建立完数据映射后，就可以通过注解处理器生成对应的具体组件，大大提高了开发效率。其次是对于服务性能的考量，我严格按照了Qos的三大原则：可扩展性、个性化偏好和公平开放的原则进行设计，提供了可用性、正确性等多个指标，但是简单的归一化处理，使得性能指标总值总是和实际有所出入，因此将指标分为正向指标和负向指标，正向指标的值越高，则性能越好，如可用性、正确性，负向指标的值越高，则性能越差，两者使用不同的计算公式，再提供给开发者设立自己偏好比重，从而提升了服务性能考量的实际正确性。</p>
+<p>通过这次系统架构的开发，让我深刻理解了层次架构的关注点分离的特性，严格尊重了层级之间的前后依赖，我也将在以后的工作中学习更多的架构知识，提高自身的素质和能力，为我国的软件事业贡献自己的微博力量。</p>
+<p>胜乐票务管理系统</p>
+<p>1.私域网站建设</p>
+<p>​   主要采用微信公众号作为票务网站和网站的前端展示，</p>
+<p>2.票务管理</p>
+<p>3.分销商管理</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

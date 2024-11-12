@@ -1,4 +1,4 @@
-# Plugin 插件开发
+# IDEA Plugin 插件开发
 
 参考文档：https://beansoft.github.io/jetbrains/create-java-plugin-project.html#824922cf_1383
 

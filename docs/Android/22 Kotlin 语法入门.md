@@ -1,5 +1,7 @@
 # 22 Kotlin 语法入门
 
+https://book.kotlincn.net/text/classes.html
+
 ## 环境配置
 
 ### IDEA
@@ -39,9 +41,23 @@ fun main() {
 }
 ```
 
-
-
 ## 语法入门
+
+### 类与对象
+
+构造函数：分为主构造函数和次构造函数。
+
+主构造函数指直接在类名后进行初始化，用`()`实现
+
+主构造函数中可以直接定义属性
+
+主构造函数中不能有任何代码，可以使用init 定义的初始化块中来实现
+
+主构造函数定义的属性可以在init 中使用，也可以在声明属性的初始化器中使用
+
+初始化块是主构造函数的一部分，哪怕没有实现，也会隐式发生。
+
+次构造函数，在类中使用constructor(){} 来实现
 
 ### 函数
 
@@ -57,6 +73,89 @@ fun sum(a: Int, b: Int): Int {
 fun sum(a: Int, b: Int) = a + b
 public fun sum(a: Int, b: Int): Int = a + b   // public 方法则必须明确写出返回类型
 ```
+
+### 作用域函数
+
+let  with run apply also之间的联系和区别
+
+| 函数名 | 定义inline的结构                                             | 函数体内使用的对象       | 返回值       | 是否是扩展函数 | 适用的场景                                                   |
+| ------ | ------------------------------------------------------------ | ------------------------ | ------------ | -------------- | ------------------------------------------------------------ |
+| let    | fun <T, R> T.let(block: (T) -> R): R = block(this)           | it指代当前对象           | 闭包形式返回 | 是             | 适用于处理不为null的操作场景                                 |
+| with   | fun <T, R> with(receiver: T, block: T.() -> R): R = receiver.block() | this指代当前对象或者省略 | 闭包形式返回 | 否             | 适用于调用同一个类的多个方法时，可以省去类名重复，直接调用类的方法即可，经常用于Android中RecyclerView中onBinderViewHolder中，数据model的属性映射到UI上 |
+| run    | fun <T, R> T.run(block: T.() -> R): R = block()              | this指代当前对象或者省略 | 闭包形式返回 | 是             | 适用于let,with函数任何场景。                                 |
+| apply  | fun T.apply(block: T.() -> Unit): T { block(); return this } | this指代当前对象或者省略 | 返回this     | 是             | 1、适用于run函数的任何场景，一般用于初始化一个对象实例的时候，操作对象属性，并最终返回这个对象。<br/>2、动态inflate出一个XML的View的时候需要给View绑定数据也会用到.<br/>3、一般可用于多个扩展函数链式调用<br/>4、数据model多层级包裹判空处理的问题 |
+| also   | fun T.also(block: (T) -> Unit): T { block(this); return this } | it指代当前对象           | 返回this     | 是             | 适用于let函数的任何场景，一般可用于多个扩展函数链式调用      |
+
+![kotlin let also...](22 Kotlin 语法入门.assets/kotlin let also....png)
+
+### 扩展函数&& 扩展属性
+
+* 扩展函数
+
+```kotlin
+fun MutableList<Int>.swap(index1: Int, index2: Int) {
+    val tmp = this[index1] // “this”对应该列表
+    this[index1] = this[index2]
+    this[index2] = tmp
+}
+```
+
+* 扩展属性
+
+```java
+val <T> List<T>.lastIndex: Int
+    get() = size - 1
+```
+
+* 扩展对象的作用域：在使用的时候 引入相应的方法名
+
+```kotlin
+//在使用的时候 引入相应的方法名
+package org.example.declarations
+fun List<String>.getLongestString() { /*……*/}
+import org.example.declarations.getLongestString
+```
+
+* 伴生对象:内部类，静态内部类都可以写扩展函数和属性
+* 可以在一个类内部为另一个类声明扩展。
+
+```kotlin
+//Host的实例被称为扩展接收者
+class Host(val hostname: String) {
+    fun printHostname() { print(hostname) }
+}
+
+//Connection的实例称为分发接受者 
+class Connection(val host: Host, val port: Int) {
+    fun printPort() { print(port) }
+
+    fun Host.printConnectionString() {
+         printHostname()   // 调用 Host.printHostname()
+        print(":")
+         printPort()   // 调用 Connection.printPort()
+    }
+
+    fun connect() {
+         /*……*/
+         host.printConnectionString()   // 调用扩展函数
+    }
+}
+
+fun main() {
+    Connection(Host("kotl.in"), 443).connect()
+    //Host("kotl.in").printConnectionString()  // 错误，该扩展函数在 Connection 外不可用
+}
+```
+
+* @receiver 注解  用于静态检查,会在lint检查时报错
+
+```java
+fun  @receiver:ColorInt Int.toHexString(): String {
+    return String.format("#%06X", 0xFFFFFF and this)
+}
+```
+
+
 
 ### NULL检查机制
 
@@ -122,6 +221,20 @@ val fruits = listOf("banana", "avocado", "apple", "kiwifruit")
 .map { it.toUpperCase() }//可以转换
 .forEach { println(it) }
 ```
+
+let
+
+```kotlin
+@kotlin.internal.InlineOnly
+public inline fun <T, R> T.let(block: (T) -> R): R {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    return block(this)
+}
+```
+
+## 
 
 ## Contract的概念
 
@@ -194,35 +307,130 @@ callsInPlace() 中的 InvocationKind 是一个枚举类，包含如下的枚举�
 | AT_LEAST_ONCE | 函数参数调用次数 >= 1   |
 | UNKNOWN       | 函数参数调用次数 不限制 |
 
-let
+## Kotlin 协程
+
+https://github.com/Kotlin/kotlinx.coroutines?tab=readme-ov-file
+
+协程启动方式
+
+协程挂起函数
+
+
+
+
+
+### 全局协程类似于守护线程
+
+协程在 CoroutineScope 协程作用域 的上下文中通过 launch、async 等协程构造器（coroutine builder）来启动
 
 ```kotlin
-@kotlin.internal.InlineOnly
-public inline fun <T, R> T.let(block: (T) -> R): R {
-    contract {
-        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
-    }
-    return block(this)
+GlobalScope.launch {
+  delay(1000L) //非阻塞式地延迟一秒 此处挂起
+  Log.d(TAG, "world")
+}
+
+//阻塞式线程启动方式
+runBlocking {
+  delay(1000L)
 }
 ```
 
-### 类与对象
+注意：
 
-构造函数：分为主构造函数和次构造函数。
+* 抽取 launch 内部的代码块为一个独立的函数，需要将之声明为挂起函数
 
-主构造函数指直接在类名后进行初始化，用`()`实现
+* suspend 函数只能由其它 suspend 函数调用，或者是由协程来调用
 
-主构造函数中可以直接定义属性
+```java
+fun main() = runBlocking {
+    launch { doWorld() }
+    println("Hello,")
+}
 
-主构造函数中不能有任何代码，可以使用init 定义的初始化块中来实现
+// this is your first suspending function
+suspend fun doWorld() {
+    delay(1000L)
+    println("World!")
+}
+```
 
-主构造函数定义的属性可以在init 中使用，也可以在声明属性的初始化器中使用
+### 阻塞 runBlocking
 
-初始化块是主构造函数的一部分，哪怕没有实现，也会隐式发生。
+runBlocking 将代码转为协程
 
-次构造函数，在类中使用constructor(){} 来实现
+只有当内部**相同作用域**的所有协程都运行结束后，声明在 runBlocking 之后的代码才能执行，即 runBlocking 会阻塞其所在线程，但是内部运行的协程是非阻塞的
 
+相同作用域：是指相同级别的，比如  GlobalScope.launch 就不会等待
 
+异常处理：内部的异常会立即传播到调用方，且会取消同级和父级协程，可以使用常规的 try-catch 块捕获。
 
+```kotlin
+fun main() = runBlocking { // this: CoroutineScope
+  launch { // launch a new coroutine in the scope of runBlocking
+    delay(1000L)
+    println("World!")
+  }
+   launch { // launch a new coroutine in the scope of runBlocking
+    delay(1000L)
+    println("World!")
+  }
+  GlobalScope.launch {
+  delay(1000L) //非阻塞式地延迟一秒 此处挂起
+  Log.d(TAG, "world")
+}
+  println("Hello,")
+}
+```
 
+### 作用域构建器 自定义作用域 **coroutineScope**
+
+异常处理：内部的异常会立即传播到调用方，会取消同级和父级协程，可以使用常规的 try-catch 块捕获
+
+```java
+coroutineScope { // Creates a coroutine scope
+  launch {
+    delay(500L) 
+      println("Task from nested launch")
+  }
+
+  delay(100L)
+    println("Task from coroutine scope") // This line will be printed before the nested 
+}
+```
+
+### supervisorScope 
+
+会立即抛出异常，不会连锁取消同级协程和父协程，但无法通过try catch处理。
+
+### CoroutineBuilder
+
+协程的构建
+
+### 
+
+#### launch
+
+#### async
+
+* await()
+
+  获取异步执行的结果
+
+#### Job
+
+#### Deferred
+
+#### CoroutineStart
+
+> 协程执行规则
+
+* DEFAULT
+
+  默认启动规则，直接执行
+
+* LAZY
+
+  延迟启动，需要调用job.start()
+
+* ATOMIC
 

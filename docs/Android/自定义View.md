@@ -332,9 +332,9 @@
 
     | 父View      | 子View                                                       |
     | ----------- | ------------------------------------------------------------ |
-    | EXACTLY     | 父布局采用精准模式，有确切的大小，如果有大小则直接使用，如果子View没有大小，子View不得超出父view的大小范围 |
+    | EXACTLY     | 父布局采用精准模式，有确切的大小，如果子View有大小则直接使用，如果子View match_parent,则为父View大小，WRAP ,子View大小最大不得超过父布局 |
     | AT_MOST     | 父布局采用最大模式，存在确切的大小，如果有大小则直接使用，如果子View没有大小，子View不得超出父view的大小范围 |
-    | UNSPECIFIED | 父布局没有做出限制，子View有自己的尺寸，则使用，如果没有则为0 |
+    | UNSPECIFIED | 父布局没有做出限制，子View有自己的尺寸，则使用，如果如果没有，就按其实际的值来 |
 
     View 的 MeasureSpec 并不是父 View 独自决定，它是根据父 view 的MeasureSpec加上子 View 的自己的 LayoutParams，通过相应的规则转化。
 
@@ -548,6 +548,7 @@
     
         public MyTitleBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
             super(context, attrs, defStyleAttr, defStyleRes);
+      
         }
     }
     ```
@@ -920,5 +921,8 @@ ViewGroup 的实现要实现对View的测量onMeasure()和对View、子View的�
     | drawArc                  | 绘制弧：弧面和弧线                |
     | drawPath                 | 绘制path                          |
 
-    
+
+
+
+相对布局 先写bottom 再写上面 父布局为wrap_content
 

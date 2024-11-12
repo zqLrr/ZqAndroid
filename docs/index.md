@@ -2,9 +2,12 @@
 
 ## 个人技术Wiki包含的主要内容
 
-* Android
-* JAVA
+### Android
 
+![thumbnail](思维导图/Thumbnails/thumbnail.png)
+
+* Java
+* Kotlin
 * PYTHON
 
 ## 在4月完善以下目标：

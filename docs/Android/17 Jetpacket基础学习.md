@@ -2,6 +2,8 @@
 
 ## 1.概述
 
+https://developer.android.google.cn/jetpack/getting-started?hl=zh-cn
+
 > Jetpack 是一个由多个库组成的套件，可帮助开发者遵循最佳做法、减少样板代码并编写可在各种 Android 版本和设备中一致运行的代码，让开发者可将精力集中于真正重要的编码工作。
 >
 > 由于Jetpack 库在 `androidx` 命名空间中发布，因此只要使用了Androidx,就可以直接使用Androidx.
@@ -792,3 +794,217 @@ public class SampleStartupBenchmark {
 ```
 
 6.运行基准，查看结果
+
+## 13.LiveData
+
+https://github.com/jhbxyz/ArticleRecord/blob/master/articles/Jetpack/1Lifecycle%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md
+
+## 14.ViewModel
+
+[`ViewModel`](https://developer.android.com/reference/androidx/lifecycle/ViewModel?hl=zh-cn) 类是一种[业务逻辑或屏幕级状态容器](https://developer.android.com/topic/architecture/ui-layer/stateholders?hl=zh-cn)。它用于将状态公开给界面，以及封装相关的业务逻辑。 它的主要优点是，它可以缓存状态，并可在配置更改后持久保留相应状态。这意味着在 activity 之间导航时或进行配置更改后（例如旋转屏幕时），界面将无需重新提取数据。
+
+通过定义我们可以得出
+
+- ViewModel不会随着Activity的屏幕旋转而销毁；
+- 在对应的作用域内，保正只生产出对应的唯一实例，保证UI组件间的通信
+- 可以使用ViewModel来实UI和数据之间的交互和保存数据
+
+重点说一下ViewModel和onSaveInstanceState的关系
+
+- 对于简单的数据，Activity 可以使用 `onSaveInstanceState()` 方法从 `onCreate()` 中的捆绑包恢复其数据，但此方法仅适合可以序列化再反序列化的少量数据，而不适合数量可能较大的数据，如用户列表或位图。
+- ViewModel存储大量数据，不用序列化与反序列化
+- onSaveInstanceState存储少量数据
+- 相辅相成，不是替代
+- 进程关闭是onSaveInstanceState的数据会保留，而ViewModel销毁
+
+### 优势
+
+- 它允许您持久保留界面状态。
+- 它可以提供对业务逻辑的访问权限。
+
+基本使用
+
+* 在Activity中绑定一个ViewModel
+
+```kotlin
+//创建一个LiveData
+data class CustomData(val id: Int, val name: String?)
+
+class CustomLiveData:LiveData<CustomData>() {
+
+     // 重写 setValue 方法以更新 LiveData 的值
+     fun setNewValue(customData: CustomData) {
+          postValue(customData)
+     }
+}
+
+//创建一个ViewModel
+class CustomTestViewModel : ViewModel() {
+    // 使用 lazy 委托属性来延迟初始化 customLiveData ViewModel中的数据用LiveData 实现
+    val customLiveData: CustomLiveData by lazy {
+        CustomLiveData().apply {
+            this.setNewValue(CustomData(0,"这是第一次使用LiveData+viewmodel"))
+        }
+    }
+
+    fun updateCustomData(name:String){
+        customLiveData.setNewValue(CustomData(0,name))
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+    }
+}
+
+//初始化方法有三种 此时用最简单的方式，需要有androidx.activity:activity-ktx
+class MvvmTestActivity : AppCompatActivity() {
+
+    private val customTestViewModel: CustomTestViewModel by viewModels()//androidx-activity-ktx 使用viewModel的方法
+    //private val customTestViewModel:CustomTestViewModel by activityViewModels() //androidx-fragment-ktx Fragment调用ViewModel
+
+     //private lateinit var customTestViewModel: CustomTestViewModel;//延迟初始化后使用ViewModelProvider ||ViewModelProviders
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_mvvm_test)
+//        customTestViewModel = ViewModelProvider(this).get(CustomTestViewModel::class.java)
+
+        val textView = findViewById<TextView>(R.id.txt_data)
+        val button = findViewById<TextView>(R.id.bt_update)
+        customTestViewModel.customLiveData.observe(this) { customLiveData ->
+            textView.text = customLiveData.name
+        }
+//        customTestViewModel.customLiveData.name = "这是第一次使用ViewModel"
+        button.apply {
+            setText(R.string.update)
+            setOnClickListener {
+                customTestViewModel.updateCustomData("修改后的文案")
+                Toast.makeText(this@MvvmTestActivity, "Button clicked", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
+```
+
+总结一下：这个实现数据和Ui的绑定需要使用到LiveData和Observer，不是特别方便可能是因为很多特性我还没使用到。
+
+ViewModel 作用范围：Fragment 可以使用其 Activity 范围共享 [`ViewModel`](https://developer.android.com/reference/androidx/lifecycle/ViewModel) 来处理通信，因此可以使用ViewModel 实现Activity和Fragment之间的数据交互。
+
+### 生命周期
+
+![在这里插入图片描述](17 Jetpacket基础学习.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYW95YW5qdW42,size_16,color_FFFFFF,t_70.png)
+
+### 生命周期原理
+
+当ViewModel生命周期结束时会调用onCleared()方法，所以只要看其相关的源码就可以知道其什么时候结束
+
+- ViewModelStoreOwner：是一个接口，用来获取一个ViewModelStore对象
+- ViewModelStore：存储多个ViewModel，一个ViewModelStore的拥有者( Activity )在配置改变， 重建的时候，依然会有这个实例
+- ViewModel：一个对 Activity、Fragment 的数据管理类，通常配合 LiveData 使用
+- ViewModelProvider：创建一个 ViewModel 的实例，并且在给定的ViewModelStoreOwner中存储 ViewModel
+
+先看其以下销毁，可知其生命周期是跟随Activity的
+
+```java
+ //在ComponentActivity构造函数中，可知在onDestory	会调用VM.onCleared()方法
+getLifecycle().addObserver(new LifecycleEventObserver() {
+            @Override
+            public void onStateChanged(@NonNull LifecycleOwner source,
+                    @NonNull Lifecycle.Event event) {
+                if (event == Lifecycle.Event.ON_DESTROY) {
+                    // Clear out the available context
+                    mContextAwareHelper.clearAvailableContext();
+                    // And clear the ViewModelStore
+                    if (!isChangingConfigurations()) {
+                        getViewModelStore().clear();
+                    }
+                }
+            }
+        });
+
+```
+
+在看其配置：
+
+首先知道的是 ViewModel 不被销毁，是在一个 ViewModelStore 的 Map 中存着呢，所以要保证ViewModelStore不被销毁。
+
+首先得具备一个前置的知识
+
+在 Activity 中提供了 `onRetainNonConfigurationInstance` 方法，用于处理配置发生改变时数据的保存。随后在重新创建的 Activity 中调用 `getLastNonConfigurationInstance` 获取上次保存的数据。
+
+##### onRetainNonConfigurationInstance方法
+
+```
+//ComponentActivity.java
+/**
+ * Retain all appropriate non-config state.  You can NOT
+ * override this yourself!  Use a {@link androidx.lifecycle.ViewModel} if you want to
+ * retain your own non config state.
+ */
+@Override
+@Nullable
+public final Object onRetainNonConfigurationInstance() {
+    Object custom = onRetainCustomNonConfigurationInstance();
+
+    ViewModelStore viewModelStore = mViewModelStore;
+    if (viewModelStore == null) {
+        // No one called getViewModelStore(), so see if there was an existing
+        // ViewModelStore from our last NonConfigurationInstance
+        NonConfigurationInstances nc =
+                (NonConfigurationInstances) getLastNonConfigurationInstance();
+        if (nc != null) {
+            viewModelStore = nc.viewModelStore;
+        }
+    }
+
+    if (viewModelStore == null && custom == null) {
+        return null;
+    }
+		//1
+    NonConfigurationInstances nci = new NonConfigurationInstances();
+    nci.custom = custom;
+    nci.viewModelStore = viewModelStore;
+    return nci;
+}
+```
+
+注意看下方法上的注释
+
+- 不需要也不能重写此方法，因为用 final 修饰
+- 配置发生改变时数据的保存，用ViewModel就行
+- 注释 1：把ViewModel存储在 NonConfigurationInstances 对象中
+
+现在再看下ComponentActivity 的 getViewModelStore方法
+
+```java
+//ComponentActivity.java
+@NonNull
+@Override
+public ViewModelStore getViewModelStore() {
+    if (getApplication() == null) {
+        throw new IllegalStateException("Your activity is not yet attached to the "
+                + "Application instance. You can't request ViewModel before onCreate call.");
+    }
+    if (mViewModelStore == null) {
+      	//1
+        NonConfigurationInstances nc =
+                (NonConfigurationInstances) getLastNonConfigurationInstance();
+        if (nc != null) {
+            // Restore the ViewModelStore from NonConfigurationInstances
+            mViewModelStore = nc.viewModelStore;
+        }
+        if (mViewModelStore == null) {
+            mViewModelStore = new ViewModelStore();
+        }
+    }
+    return mViewModelStore;
+}
+```
+
+
+
+注释 1：获取了NonConfigurationInstances一个对象，不为空从其身上拿一个ViewModelStore，这个就是之前保存的ViewModelStore
+
+当 Activity 重建时还会走到`getViewModelStore`方法，这时候就是在NonConfigurationInstances拿一个缓存的ViewModelStore。
+
+而

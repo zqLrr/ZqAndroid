@@ -1,0 +1,1118 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="个人技术wiki">
+      
+      
+        <meta name="author" content="Zq">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>Android 资源打包和加载流程 - ZqAndroid</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#android" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZqAndroid" class="md-header__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZqAndroid
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Android 资源打包和加载流程
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZqAndroid" class="md-nav__button md-logo" aria-label="ZqAndroid" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZqAndroid
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 初识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2Android%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android 大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#android_1" class="md-nav__link">
+    Android 资源类型整理
+  </a>
+  
+    <nav class="md-nav" aria-label="Android 资源类型整理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#res" class="md-nav__link">
+    Res资源类型整理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assets" class="md-nav__link">
+    Assets资源
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android_2" class="md-nav__link">
+    Android 资源打包流程
+  </a>
+  
+    <nav class="md-nav" aria-label="Android 资源打包流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-arsc" class="md-nav__link">
+    Android .arsc文件详解
+  </a>
+  
+    <nav class="md-nav" aria-label="Android .arsc文件详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chunk" class="md-nav__link">
+    Chunk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android_3" class="md-nav__link">
+    Android 加载资源流程（源码解析）
+  </a>
+  
+    <nav class="md-nav" aria-label="Android 加载资源流程（源码解析）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources的创建
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources的创建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application" class="md-nav__link">
+    Application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activity" class="md-nav__link">
+    Activity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources_1" class="md-nav__link">
+    Resources加载资源
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources加载资源">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getdrawable" class="md-nav__link">
+    以getDrawable为例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources_2" class="md-nav__link">
+    Resources 添加皮肤包
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wb" class="md-nav__link">
+    wb编译中间过程生成的主要文件：
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    实战讲解
+  </a>
+  
+    <nav class="md-nav" aria-label="实战讲解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android_4" class="md-nav__link">
+    Android 删除无用资源方案流程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android_5" class="md-nav__link">
+    Android 深色模式
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="android">Android 资源打包和加载流程</h1>
+<p>目标</p>
+<p>1.Android 资源类型整理</p>
+<p>2.Android 资源打包流程</p>
+<ul>
+<li>主要讲解arsc文件的内容</li>
+<li>Arsc的组成部分</li>
+<li>Arsc如何实现索引</li>
+<li>Arsc文件的使用:重复资源删除、资源文件名混淆</li>
+</ul>
+<p>3.Android资源加载流程(源码梳理)</p>
+<p>4.Android 资源实战</p>
+<ul>
+<li>Android 无用资源删除</li>
+<li>深色模式——资源id固定</li>
+</ul>
+<h2 id="android_1">Android 资源类型整理</h2>
+<blockquote>
+<p>Android中总共存在两个目录来存放资源：res目录和assets目录</p>
+</blockquote>
+<h3 id="res">Res资源类型整理</h3>
+<table>
+<thead>
+<tr>
+<th>资源</th>
+<th>type</th>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anim</td>
+<td>anim</td>
+<td>res/anim/.xml</td>
+<td>补间动画</td>
+</tr>
+<tr>
+<td>animator</td>
+<td>animator</td>
+<td>res/animator/.xml</td>
+<td>属性动画</td>
+</tr>
+<tr>
+<td>color</td>
+<td>color</td>
+<td>res/color/.xml</td>
+<td><a href="https://developer.android.com/guide/topics/resources/color-list-resource?hl=zh-cn">颜色状态列表</a></td>
+</tr>
+<tr>
+<td>drawable</td>
+<td>drawable</td>
+<td>res/drawable/</td>
+<td><a href="https://developer.android.com/guide/topics/resources/drawable-resource?hl=zh-cn">位图文件</a></td>
+</tr>
+<tr>
+<td>drawablecolor</td>
+<td>drawable</td>
+<td>res/values/color.xml</td>
+<td>使用drawable生成的color文件，是可绘制资源的一种，专门抽出是因为Reasource有单独处理</td>
+</tr>
+<tr>
+<td>mipmap</td>
+<td>mipmap</td>
+<td>res/mipmap</td>
+<td>适用于不同启动器图标密度的可绘制对象文</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>layout</td>
+<td>res/layout/.xml</td>
+<td>定义界面布局</td>
+</tr>
+<tr>
+<td>menu</td>
+<td>menu</td>
+<td>res/menu/.xml</td>
+<td>用于定义应用菜单的xml文件</td>
+</tr>
+<tr>
+<td>raw</td>
+<td>raw</td>
+<td>res/raw</td>
+<td>需以原始形式保存的任意文件 比如.mp4</td>
+</tr>
+<tr>
+<td>array</td>
+<td>array</td>
+<td>res/value/arrays.xml</td>
+<td>用于资源数组（<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#TypedArray">类型化数组</a>）</td>
+</tr>
+<tr>
+<td>color</td>
+<td>color</td>
+<td>res/value/colors.xml</td>
+<td>用于<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#Color">颜色值</a></td>
+</tr>
+<tr>
+<td>dimen</td>
+<td>dimen</td>
+<td>res/value/dimens.xml</td>
+<td><code>dimens.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#Dimension">维度值</a></td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+<td>res/value/strings.xml</td>
+<td><code>strings.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/string-resource?hl=zh-cn">字符串值</a></td>
+</tr>
+<tr>
+<td>style</td>
+<td>style<br/>styleable</td>
+<td>res/value/styles.xml</td>
+<td><code>styles.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/style-resource?hl=zh-cn">样式</a></td>
+</tr>
+<tr>
+<td>xml</td>
+<td>xml</td>
+<td>res/xml/.xml</td>
+<td>可在运行时通过调用 <code>Resources.getXML()</code> 读取的任意 XML 文件。</td>
+</tr>
+<tr>
+<td>font</td>
+<td>font</td>
+<td>res/font</td>
+<td>带有扩展名的字体文件（例如 TTF、OTF 或 TTC）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="assets">Assets资源</h3>
+<blockquote>
+<p>存放原始资源文件，系统在编译时不会编译该目录下的资源文件，可以拿到原始的资源名称和资源目录</p>
+</blockquote>
+<h2 id="android_2">Android 资源打包流程</h2>
+<p>参考链接：<a href="https://mp.weixin.qq.com/s?__biz=MzA5MzI3NjE2MA==&amp;mid=2650265470&amp;idx=1&amp;sn=b0a8a269958339a9e33b6777572c97bb&amp;chksm=88632611bf14af079ce3ee1df90dc4e830aa3c106a12def378a5c957ef948f0a1802cd51d404&amp;scene=27">Android Apk 编译打包流程</a></p>
+<p>​                 <a href="https://sharrychoo.github.io/blog/android-source/resources-package">资源的打包流程</a></p>
+<p>​               <a href="https://juejin.cn/post/6986448355962404877">Android资源管理及资源的编译和打包过程分析</a></p>
+<p><img alt="image-20240701095940268" src="../Android%20%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E5%92%8C%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.assets/image-20240701095940268.png" /></p>
+<p>1.assets 和AndroidManifest.xml资源不进行编译，只进行merge，合并成一个后添加到资源Apk中</p>
+<p>2.res中每个资源生成一个id，然后生成R.java文件，实现name 和id 的一一对应，然后编译res资源到资源Apk中。</p>
+<p>res资源编译步骤：</p>
+<p>1.生成资源id</p>
+<p>2.生成R.java文件</p>
+<p>3.生成资源索引表</p>
+<p>res资源编译的好处：</p>
+<ul>
+<li>空间占用小</li>
+<li>解析速度快</li>
+</ul>
+<h3 id="android-arsc">Android .arsc文件详解</h3>
+<p>arsc文件的作用：</p>
+<p>可以帮助Android 通过id的形式获取资源文件内容，省去了文件路径的手动输入。</p>
+<p>资源索引具有固定的格式：<strong>0xPPTTEEEE</strong></p>
+<blockquote>
+<p>PackageId(2位) + TypeId（2位） + EntryId(4位)</p>
+<ul>
+<li><strong>PP</strong>:Package ID，包的命名空间，取值范围为[0x01, 0x7f]，第三方应用均为7f。</li>
+<li><strong>TT</strong>:资源类型，有anim、layout、mipmap、string、style等资源类型。</li>
+<li><strong>EEEE</strong>:代表某一类资源在偏移数组中的值</li>
+</ul>
+</blockquote>
+<p>​   <a href="https://juejin.cn/post/6880043571010813959">一文读懂resource.arsc文件结构</a></p>
+<p><a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/libs/androidfw/include/androidfw/ResourceTypes.h?hl=zh-cn">ResourceTypes.h</a></p>
+<p><img alt="img" src="../Android%20%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E5%92%8C%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.assets/6601a397d7244cc3941ffe5dee7f8c4d~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A1512%3A0%3A0%3A0.awebp" /></p>
+<h4 id="chunk">Chunk</h4>
+<p><code>chunk</code>翻译为中文就是“块、部分(尤指大部分，一大块)”的意思。</p>
+<p>主要结构分为：头部+Chunk。</p>
+<p>头部都以ResChunk_header开始，主要包含了，Chunk类型、Chunk头部大小和Chunk大小。</p>
+<p>具体资源项目的分析：</p>
+<p>提供一个测试工程：https://gitlab.weibo.cn/ST/android-chunk-utils-clone/-/tree/feature_test_operation_arsc</p>
+<p><img alt="Arsc文件结构分析" src="../Android%20%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E5%92%8C%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.assets/Arsc%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90.png" /></p>
+<h2 id="android_3">Android 加载资源流程（源码解析）</h2>
+<p>参考链接：<a href="https://juejin.cn/post/7182471289524158523">Android 换肤之资源</a></p>
+<p><a href="https://juejin.cn/post/6844904089696862221">APK 加载流程之资源加载</a></p>
+<h3 id="resources">Resources的创建</h3>
+<h4 id="application">Application</h4>
+<p>从Application的创建开始看：</p>
+<pre><code class="language-java"># ActivityThread.java
+
+// 创建application
+private Application makeApplicationInner(boolean forceDefaultAppClass,
+            Instrumentation instrumentation, boolean allowDuplicateInstances) {
+        if (mApplication != null) {
+            return mApplication;
+        }
+       ...
+
+        try {
+            ...
+               // 创建Context
+            ContextImpl appContext = ContextImpl.createAppContext(mActivityThread, this);
+            // The network security config needs to be aware of multiple
+            // applications in the same process to handle discrepancies
+            NetworkSecurityConfigProvider.handleNewApplication(appContext);
+            app = mActivityThread.mInstrumentation.newApplication(
+                    cl, appClass, appContext);
+            appContext.setOuterContext(app);
+        } catch (Exception e) {
+            if (!mActivityThread.mInstrumentation.onException(app, e)) {
+                Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
+                throw new RuntimeException(
+                    &quot;Unable to instantiate application &quot; + appClass
+                    + &quot; package &quot; + mPackageName + &quot;: &quot; + e.toString(), e);
+            }
+        }
+       ...
+  // 这里不会马上执行,因为默认传入的Instrumentation == null
+  // 当分发activity(performLaunchActivity)时候
+  // 才会调用  Application app = r.packageInfo.makeApplication(false, mInstrumentation); 来分发Application#onCreate()
+        if (instrumentation != null) {
+            try {
+                instrumentation.callApplicationOnCreate(app);
+            } catch (Exception e) {
+                if (!instrumentation.onException(app, e)) {
+                    Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
+                    throw new RuntimeException(
+                        &quot;Unable to create application &quot; + app.getClass().getName()
+                        + &quot;: &quot; + e.toString(), e);
+                }
+            }
+        }
+        return app;
+    }
+</code></pre>
+<p>ContextImpl创建Resource</p>
+<pre><code class="language-java"> @UnsupportedAppUsage
+    static ContextImpl createAppContext(ActivityThread mainThread, LoadedApk packageInfo) {
+        return createAppContext(mainThread, packageInfo, null);
+    }
+
+    static ContextImpl createAppContext(ActivityThread mainThread, LoadedApk packageInfo,
+            String opPackageName) {
+        if (packageInfo == null) throw new IllegalArgumentException(&quot;packageInfo&quot;);
+        ContextImpl context = new ContextImpl(null, mainThread, packageInfo,
+            ContextParams.EMPTY, null, null, null, null, null, 0, null, opPackageName);
+      //在这里给Application set Resources
+        context.setResources(packageInfo.getResources());
+        context.mContextType = isSystemOrSystemUI(context) ? CONTEXT_TYPE_SYSTEM_OR_SYSTEM_UI
+                : CONTEXT_TYPE_NON_UI;
+        return context;
+    }
+</code></pre>
+<p>最终会走到<strong>LoadedApk#getResources()</strong> 上</p>
+<pre><code class="language-java">  @UnsupportedAppUsage
+    public Resources getResources() {
+        if (mResources == null) {
+            final String[] splitPaths;
+            try {
+                splitPaths = getSplitPaths(null);
+            } catch (NameNotFoundException e) {
+                // This should never fail.
+                throw new AssertionError(&quot;null split not found&quot;);
+            }
+
+            if (Process.myUid() == mApplicationInfo.uid) {
+                ResourcesManager.getInstance().initializeApplicationPaths(mResDir, splitPaths);
+            }
+                        //这里通过ResourcesManager 来管理
+            mResources = ResourcesManager.getInstance().getResources(null, mResDir,
+                    splitPaths, mLegacyOverlayDirs, mOverlayPaths,
+                    mApplicationInfo.sharedLibraryFiles, null, null, getCompatibilityInfo(),
+                    getClassLoader(), null);
+        }
+        return mResources;
+    }
+</code></pre>
+<p>根据ResourcesKey判断是否有现成的ResourcesImpl，没有的话创建ResourcesImpl,返回Resources，然后添加到Application中。</p>
+<pre><code class="language-java"> public Resources getResources(
+            @Nullable IBinder activityToken,
+            @Nullable String resDir,
+            @Nullable String[] splitResDirs,
+            @Nullable String[] legacyOverlayDirs,
+            @Nullable String[] overlayPaths,
+            @Nullable String[] libDirs,
+            @Nullable Integer overrideDisplayId,
+            @Nullable Configuration overrideConfig,
+            @NonNull CompatibilityInfo compatInfo,
+            @Nullable ClassLoader classLoader,
+            @Nullable List&lt;ResourcesLoader&gt; loaders //资源加载Loader
+          ) {
+        try {
+          //根据ResourcesKey判断是否有现成的ResourcesImpl
+            final ResourcesKey key = new ResourcesKey(
+                    resDir, //Apk文件路径
+                    splitResDirs,//。Android 支持模块化 APK，这些分割 APK 可以包含额外的资源，这个参数用于指定这些分割资源的路径。
+                    combinedOverlayPaths(legacyOverlayDirs, overlayPaths),
+                    libDirs,
+                    overrideDisplayId != null ? overrideDisplayId : INVALID_DISPLAY,
+                    overrideConfig,
+                    compatInfo,
+                    loaders == null ? null : loaders.toArray(new ResourcesLoader[0]));
+            classLoader = classLoader != null ? classLoader : ClassLoader.getSystemClassLoader();
+            ...
+            Resources resources;
+            if (activityToken != null) {
+                            ...
+                resources = createResourcesForActivity(activityToken, key, initialOverrideConfig,
+                        overrideDisplayId, classLoader, assetsSupplier);
+            } else {
+                resources = createResources(key, classLoader, assetsSupplier);
+            }
+            return resources;
+        } finally {
+            Trace.traceEnd(Trace.TRACE_TAG_RESOURCES);
+        }
+    }
+
+private @Nullable ResourcesImpl findOrCreateResourcesImplForKeyLocked(
+            @NonNull ResourcesKey key, @Nullable ApkAssetsSupplier apkSupplier) {
+        ResourcesImpl impl = findResourcesImplForKeyLocked(key);
+        if (impl == null) {
+            impl = createResourcesImpl(key, apkSupplier);
+            if (impl != null) {
+                mResourceImpls.put(key, new WeakReference&lt;&gt;(impl));
+            }
+        }
+        return impl;
+    }
+</code></pre>
+<h4 id="activity">Activity</h4>
+<p>本质上也会走到ResourceManager#createResources(),然后创建在Activity中创建Resources。</p>
+<pre><code class="language-java"> #ActivityThread.java
+ private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
+    .... 省略部分代码
+ 
+     // 创建 activity 的上下文
+     ContextImpl appContext = createBaseContextForActivity(r);
+     Activity activity = null;
+     try {
+         java.lang.ClassLoader cl = appContext.getClassLoader();
+         // 通过反射创建 activity 的实例
+         activity = mInstrumentation.newActivity(
+                 cl, component.getClassName(), r.intent);
+        
+        
+    } catch (Exception e) {
+        .....
+    }
+ 
+     try {
+         if (activity != null) {
+ 
+             // szj 创建 PhoneWindow,设置windowManager等操作
+             activity.attach(appContext, this, getInstrumentation(), r.token,
+                     r.ident, app, r.intent, r.activityInfo, title, r.parent,
+                     r.embeddedID, r.lastNonConfigurationInstances, config,
+                     r.referrer, r.voiceInteractor, window, r.configCallback,
+                     r.assistToken);
+ 
+             activity.mCalled = false;
+             // szj 分发 onCreate() 事件
+             if (r.isPersistable()) {
+                 mInstrumentation.callActivityOnCreate(activity, r.state, r.persistentState);
+            } else {
+                 mInstrumentation.callActivityOnCreate(activity, r.state);
+            }
+             // 判断是否调用super.onCreate() 方法
+             if (!activity.mCalled) {
+                 throw new SuperNotCalledException(
+                     &quot;Activity &quot; + r.intent.getComponent().toShortString() +
+                     &quot; did not call through to super.onCreate()&quot;);
+            }
+        }
+        ...
+    }  catch (Exception e) {
+        ...
+    }
+     return activity;
+ }
+
+</code></pre>
+<p>Android 11 源码中，也会将Application#ResourcesLoader添加到Activity。</p>
+<pre><code class="language-java">static ContextImpl createActivityContext(ActivityThread mainThread,
+            LoadedApk packageInfo, ActivityInfo activityInfo, IBinder activityToken, int displayId,
+            Configuration overrideConfiguration) {
+        ... //添加Resources
+        context.setResources(resourcesManager.createBaseTokenResources(activityToken,
+                packageInfo.getResDir(),
+                splitDirs,
+                packageInfo.getOverlayDirs(),
+                packageInfo.getOverlayPaths(),
+                packageInfo.getApplicationInfo().sharedLibraryFiles,
+                displayId,
+                overrideConfiguration,
+                compatInfo,
+                classLoader,
+                packageInfo.getApplication() == null ? null
+                        : packageInfo.getApplication().getResources().getLoaders()));
+        context.mDisplay = resourcesManager.getAdjustedDisplay(displayId,
+                context.getResources());
+        return context;
+    }
+</code></pre>
+<h3 id="resources_1">Resources加载资源</h3>
+<p>相关资源加载的类图</p>
+<p><img alt="资源加载类图" src="../Android%20%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E5%92%8C%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.assets/%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E7%B1%BB%E5%9B%BE.png" /></p>
+<p>总结：</p>
+<p>ResourceManager管理了一个ResourcesImpl列表，用来创建Resources.</p>
+<p>RescourcesImpl中包含了对Resource Apk的处理，主要是通过AssetManager 来获取到资源路径，进行加载。</p>
+<p>AssetManager 管理了一个ApkAssets数组，表示有多个资源apk。</p>
+<h4 id="getdrawable">以getDrawable为例</h4>
+<p>正常我们在进行获取Drawable时，<code>getResources().getDrawable(int resid)</code>。</p>
+<pre><code class="language-java">//Context.java
+public final Drawable getDrawable(@DrawableRes int id) {
+     return getResources().getDrawable(id, getTheme());
+ }
+
+
+@Nullable
+public Drawable getDrawableForDensity(@DrawableRes int id, int density, @Nullable Theme theme) {
+  final TypedValue value = obtainTempTypedValue();
+  try {
+    final ResourcesImpl impl = mResourcesImpl;
+    //这里通过native 代码获取Drawable，然后把值存到TypedValue value
+    impl.getValueForDensity(id, density, value, true);
+    return loadDrawable(value, id, density, theme);
+  } finally {
+    releaseTempTypedValue(value);
+  }
+}
+
+void getValueForDensity(@AnyRes int id, int density, TypedValue outValue,
+            boolean resolveRefs) throws NotFoundException {
+        boolean found = mAssets.getResourceValue(id, density, outValue, resolveRefs);
+        if (found) {
+            return;
+        }
+        throw new NotFoundException(&quot;Resource ID #0x&quot; + Integer.toHexString(id));
+    }
+
+ boolean getResourceValue(@AnyRes int resId, int densityDpi, @NonNull TypedValue outValue,
+            boolean resolveRefs) {
+        Objects.requireNonNull(outValue, &quot;outValue&quot;);
+        synchronized (this) {
+            ensureValidLocked();
+           //由于前面已经将Apkset到存储列表中，在使用时直接通过set就能获取到值，
+            final int cookie = nativeGetResourceValue(
+                    mObject, resId, (short) densityDpi, outValue, resolveRefs);
+            if (cookie &lt;= 0) {
+                return false;
+            }
+
+            // Convert the changing configurations flags populated by native code.
+            outValue.changingConfigurations = ActivityInfo.activityInfoConfigNativeToJava(
+                    outValue.changingConfigurations);
+
+            if (outValue.type == TypedValue.TYPE_STRING) {
+                if ((outValue.string = getPooledStringForCookie(cookie, outValue.data)) == null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+</code></pre>
+<p>接着从TypedValue中看是否加载成功,加载成功后，处理</p>
+<pre><code class="language-java">  private Drawable loadDrawableForCookie(@NonNull Resources wrapper, @NonNull TypedValue value,int id, int density) {
+       ...
+        try {
+            // Perform a linear search to check if we have already referenced this resource before.
+            if (stack.contains(id)) {
+                throw new Exception(&quot;Recursive reference in drawable&quot;);
+            }
+            stack.push(id);
+            try {
+                if (file.endsWith(&quot;.xml&quot;)) {
+                    final String typeName = getResourceTypeName(id);
+
+                    if (typeName != null &amp;&amp; typeName.equals(&quot;color&quot;)) {
+                       //颜色
+                        dr = loadColorOrXmlDrawable(wrapper, value, id, density, file);
+                    } else {
+                      //非颜色
+                        dr = loadXmlDrawable(wrapper, value, id, density, file);
+                    }
+                } else {
+                    //图片
+                    final InputStream is = mAssets.openNonAsset(
+                            value.assetCookie, file, AssetManager.ACCESS_STREAMING);
+                    final AssetInputStream ais = (AssetInputStream) is;
+                    dr = decodeImageDrawable(ais, wrapper, value);
+                }
+            } finally {
+                stack.pop();
+            }
+        } catch (Exception | StackOverflowError e) {
+           ...
+        }
+        return dr;
+    }
+</code></pre>
+<p>如果是<strong>图片</strong>,就通过AssetManager#openNonAsset()来解析资源图片,获取到intputStream流,来解码成drawable。</p>
+<p>如果是<strong>xml</strong>,那么就通过XmlResourceParser来解析,最终生成drawable。</p>
+<p>如果是<strong>颜色</strong>,先直接获取value，生成ColorStateListDrawable，若失败了，则重新进行xml解析。</p>
+<h3 id="resources_2">Resources 添加皮肤包</h3>
+<p>Android 11 及以上，采用ResoucesLoader</p>
+<p>获取当前Application或者Activity的Resources,添加ResourcesLoader。</p>
+<pre><code class="language-java"> if (android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.R) {
+            try {
+                ResourcesProvider resourcesProvider
+                        = ResourcesProvider.loadFromApk(ParcelFileDescriptor.open(apkFile, ParcelFileDescriptor.MODE_READ_WRITE));
+                ResourcesLoader loader = new ResourcesLoader();
+                loader.addProvider(resourcesProvider);
+                Resources resources = context.getResources();
+                resources.addLoaders(loader);
+            } catch (IOException e) {
+                Log.e(&quot;test_dark_mode&quot;, &quot;loadDarkNight apk: &quot;, e);
+            }
+        } else {
+            Log.d(&quot;test_dark_mode&quot;, &quot;not exit apk&quot;);
+        }
+</code></pre>
+<p>Android 10 及以下, 采用反射调用AssetManager#addAssetPath()的方法添加Apk。</p>
+<pre><code class="language-java">public static final String PATH = &quot;&quot;；//Apk所在的路径。
+
+ try {
+     AssetManager assetManager = AssetManager.class.newInstance();
+     @SuppressLint(&quot;DiscouragedPrivateApi&quot;)
+     Method method = AssetManager.class.getDeclaredMethod(&quot;addAssetPath&quot;, String.class);
+     method.setAccessible(true);
+     /// 反射执行方法
+     method.invoke(assetManager, PATH);
+   // 创建自己的Resources
+     Resources resources = new Resources(assetManager, createDisplayMetrics(), createConfiguration());
+   /*
+    * getIdentifier 根据名字拿id
+    * name: 资源名
+    * defType: 资源类型
+    * defPackage: 所在包名
+    * return:如果返回0则表示没有找到
+    */
+   /// 加载drawable
+   int drawableId = resources.getIdentifier(&quot;shark&quot;, &quot;drawable&quot;, &quot;com.skin.skin_pack_making&quot;);
+   // 加载string
+   int stringId = resources.getIdentifier(&quot;hello_skin&quot;, &quot;string&quot;, &quot;com.skin.skin_pack_making&quot;);
+   // 加载color
+   int colorId = resources.getIdentifier(&quot;global_background&quot;, &quot;color&quot;, &quot;com.skin.skin_pack_making&quot;);
+   mImageView.setImageDrawable(resources.getDrawable(drawableId, null));
+   mTextView.setText(resources.getString(stringId));
+   mTextView.setBackgroundColor(resources.getColor(colorId, null));
+ } catch (Exception e) {
+     e.printStackTrace();
+     showDialog(&quot;出错了&quot; + e.getMessage());
+ }
+</code></pre>
+<h2 id="wb">wb编译中间过程生成的主要文件：</h2>
+<pre><code class="language-bash">intermediates/runtime_symbol_list/debug/R.txt #所有资源的id
+/intermediates/processed_res/debug/out/resources-debug.ap_ #AndroidManifest.xml .arsc文件
+</code></pre>
+<h2 id="_1">实战讲解</h2>
+<h3 id="android_4">Android 删除无用资源方案流程</h3>
+<p>1.通过R.txt文件获取所有的资源</p>
+<p>2.在AndroidManifest.xml查找引用的资源</p>
+<p>3.web.jar 通过R.java文件和resources.arsc 查找到Java文件中引用的资源</p>
+<ul>
+<li>若是layout, array,style等，会接着在xml找使用到的资源</li>
+</ul>
+<p>4.1减去2，3步中使用到的资源，就是无用资源，生成app/build/unuse_res.txt文件中</p>
+<p>5.根据merge.xml拿到各个aar中的res资源，判断res资源是否在无用资源中，最后得到需要删除的无用资源</p>
+<p>6.生成无用资源删除报告</p>
+<p>7.通过python脚本删除扫描出来的无用资源</p>
+<p>8.通过插桩getResources().getIdentifier() ,来hook通过资源name字符串来获取id的情况，上线观察</p>
+<h2 id="android_5">Android 深色模式</h2>
+<p>1.固定资源id后，添加深色资源，并打出深色资源包。</p>
+<p>2.通过ResourceLoader 添加深色资源包。</p>
+<p>3.修改Configuration,设置成深色模式。</p>
+<pre><code class="language-java">Configuration configuration = context.getResources().getConfiguration();
+                int newnightmode = isDark() ? UI_MODE_NIGHT_YES : UI_MODE_NIGHT_NO;
+                configuration.uiMode = newnightmode | (configuration.uiMode &amp; ~Configuration.UI_MODE_NIGHT_MASK);
+                context.getResources().updateConfiguration(configuration, null);
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+    
+  </body>
+</html>

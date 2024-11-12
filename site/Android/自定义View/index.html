@@ -867,7 +867,7 @@ public static int getChildMeasureSpec(int spec, int padding, int childDimension)
 <tbody>
 <tr>
 <td>EXACTLY</td>
-<td>父布局采用精准模式，有确切的大小，如果有大小则直接使用，如果子View没有大小，子View不得超出父view的大小范围</td>
+<td>父布局采用精准模式，有确切的大小，如果子View有大小则直接使用，如果子View match_parent,则为父View大小，WRAP ,子View大小最大不得超过父布局</td>
 </tr>
 <tr>
 <td>AT_MOST</td>
@@ -875,7 +875,7 @@ public static int getChildMeasureSpec(int spec, int padding, int childDimension)
 </tr>
 <tr>
 <td>UNSPECIFIED</td>
-<td>父布局没有做出限制，子View有自己的尺寸，则使用，如果没有则为0</td>
+<td>父布局没有做出限制，子View有自己的尺寸，则使用，如果如果没有，就按其实际的值来</td>
 </tr>
 </tbody>
 </table>
@@ -1081,6 +1081,7 @@ public class MyTitleBar extends RelativeLayout {
 
 public MyTitleBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
+
 }
 </code></pre>
 <p>}
@@ -1510,6 +1511,7 @@ public MyTitleBar(Context context, AttributeSet attrs, int defStyleAttr, int def
 </table>
 </li>
 </ul>
+<p>相对布局 先写bottom 再写上面 父布局为wrap_content</p>
 
 
 

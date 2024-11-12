@@ -312,21 +312,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contentprovider_1" class="md-nav__link">
-    监听ContentProvider
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -344,17 +329,6 @@
 
 
 <h1 id="contentprovider">ContentProvider</h1>
-<h2 id="contentprovider_1">监听ContentProvider</h2>
-<p>发送变化通知</p>
-<pre><code class="language-java">this.getContext().getContentResolver().notifyChange(URI,null);
-</code></pre>
-<p>注册监听</p>
-<pre><code class="language-java">context.getContentResolver().registerContentObserver(uri,true,new ContentObserver(new Handler()));
-</code></pre>
-<p>创建内部类继承ContentObserver并重写下面两个方法：
-(1)带有Handler的构造函数；
-(2)public void onChange(boolean selfChange); 此函数在内容提供者发出改变信号时就会被调用
-参数selfChange为如果是自己改变的原因，则为true；如果不是自己改变的，则为false；</p>
 
 
 
