@@ -319,18 +319,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1activity" class="md-nav__link">
-    1、根启动的流程：从桌面点击图标，到启动Activity的页面
+  <a href="#1launchactivity" class="md-nav__link">
+    1、Launch启动的流程：从桌面点击图标，到启动Activity的页面
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2activity" class="md-nav__link">
-    2、普通Activity的启动流程
+  <a href="#2activity-api-30" class="md-nav__link">
+    2、普通Activity的启动流程  (基于API 30的源码解析)
   </a>
   
-    <nav class="md-nav" aria-label="2、普通Activity的启动流程">
+    <nav class="md-nav" aria-label="2、普通Activity的启动流程 (基于API 30的源码解析)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -419,21 +419,14 @@
 
 
 <h1 id="acticity">Acticity启动流程源码解析</h1>
-<h2 id="1activity">1、根启动的流程：从桌面点击图标，到启动Activity的页面</h2>
+<h2 id="1launchactivity">1、Launch启动的流程：从桌面点击图标，到启动Activity的页面</h2>
 <ul>
 <li>Activity启动之前</li>
 <li>init进程-&gt;Zygote进程-&gt;SystemService进程和Launcher进程</li>
 <li>Launcher的定义：Android系统启动后，加载的第一个程序，是其他应用程序的入口。可以看成是整个桌面UI</li>
 </ul>
 <p><em>注：需要写一个Launcher的源码，来进行源码分析</em></p>
-<h2 id="2activity">2、普通Activity的启动流程</h2>
-<p><em>注：Android源码读取不到：1)编译版本不对  2)厂商修改了源码</em></p>
-<ul>
-<li>启动模式和Intent.Flag的区别</li>
-<li>栈中Activity 的变化</li>
-<li>handleLaunchActivity，handleStartActivity和handleResumeActivity 调用的区别</li>
-<li>基于API 30的源码解析</li>
-</ul>
+<h2 id="2activity-api-30">2、普通Activity的启动流程  (基于API 30的源码解析)</h2>
 <h3 id="21">2.1 涉及到的概念</h3>
 <ul>
 <li>进程：Android系统为每个APP分配至少一个进程</li>
@@ -449,7 +442,7 @@
 <p>Instrumentation:负责调用Activity和Application生命周期</p>
 </li>
 <li>
-<p>ActivityTaskManager:</p>
+<p>ActivityTaskManager:负责管理应用程序的Activity生命周期，Task管理，应用程序之间的交互</p>
 </li>
 <li>
 <p>IActivityTaskMansger:AIDL 接口，实现类是ATMS</p>
@@ -906,24 +899,25 @@ private int executeRequest(Request request) {</p>
 <li>
 <p><strong>RootWindowContainer</strong></p>
 <p><code>java
-   boolean resumeFocusedStacksTopActivities(
-            ActivityStack targetStack, ActivityRecord target, ActivityOptions targetOptions) {
-        ...
-        boolean result = false;
-        if (targetStack != null &amp;&amp; (targetStack.isTopStackInDisplayArea()
-                || getTopDisplayFocusedStack() == targetStack)) {
-          //ActivityStack来恢复Activity
-            result = targetStack.resumeTopActivityUncheckedLocked(target, targetOptions);
-        }
-       ...
-        return result;
-    }</code></p>
+boolean resumeFocusedStacksTopActivities(
+  ActivityStack targetStack, ActivityRecord target, ActivityOptions targetOptions) {
+  ...
+    boolean result = false;
+  if (targetStack != null &amp;&amp; (targetStack.isTopStackInDisplayArea()
+                              || getTopDisplayFocusedStack() == targetStack)) {
+    //ActivityStack来恢复Activity
+    result = targetStack.resumeTopActivityUncheckedLocked(target, targetOptions);
+  }
+  ...
+    return result;
+}</code></p>
 <p>当处理好Task和Acticity之间的关系，将Activity已经放在栈顶，进行启动处理：</p>
 <p><img alt="image-20210813174908589" src="../Acticity%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.assets/image-20210813174908589.png" /></p>
 </li>
 <li>
 <p><strong>ActivityStack</strong></p>
 <p>一个ActivityStack包含了若干个TaskRecord，每个TaskRecord又包含了若干个ActivityRecord，每个ActivityRecord对应了一个Activity。在这里，TaskRecord相当于在启动模式中的“任务栈”，根据启动模式的不同，在启动Activity的时候，会对TaskRecord进行不同的操作。在之前的操作中，已经将要可见的Activity放在了栈顶，只需要显示即可。</p>
+<p>一般来说Launcher的Task属于单独的一个ActivityStack，称为Home Activity Stack，System UI如rencentActivity的Task属于一个单独ActivityStack，其他App的Task属于另一个ActivityStack。</p>
 <p>```java
  boolean resumeTopActivityUncheckedLocked(ActivityRecord prev, ActivityOptions options) {
         if (mInResumeTopActivity) {
@@ -1083,7 +1077,7 @@ private int executeRequest(Request request) {</p>
 </li>
 <li>
 <p><strong>TransactionExecutor</strong>  管理事务执行顺序</p>
-<p>首先，所有回调顺序按照他门出现在列表中的顺序执行，其次，如果可以支持，客户端可以循环到最终的生命周期</p>
+<p>首先，所有回调顺序按照出现在列表中的顺序执行，其次，如果可以支持，客户端可以循环到最终的生命周期</p>
 <p><code>java
  public void execute(ClientTransaction transaction) {
         ...
@@ -1892,13 +1886,6 @@ private Task getReusableTask() {
 </tr>
 </tbody>
 </table>
-<ul>
-<li>App进程 为什么要分成两部走</li>
-<li>Provider 也可以启动app</li>
-<li>app冷启动时除了会启动Activity,还会启动Service BoardCast</li>
-<li>app冷启动的时间的入口和出口，包含Application启动的时间+Activity的启动时间</li>
-<li>如何可以控制冷启动的入口代码</li>
-</ul>
 
 
 

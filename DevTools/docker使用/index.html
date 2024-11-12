@@ -20,7 +20,7 @@
     
     
       
-        <title>docker使用 - ZqAndroid</title>
+        <title>docker 安装 - ZqAndroid</title>
       
     
     
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              docker使用
+              docker 安装
             
           </span>
         </div>
@@ -312,28 +312,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mysql" class="md-nav__link">
-    容器内执行mysql：
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mysql-dockermysql" class="md-nav__link">
-    在本地通过Mysql 连接Docker的Mysql
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -350,22 +328,99 @@
   
 
 
-<h1 id="docker">docker使用</h1>
+<h1 id="docker">docker 安装</h1>
+<p>Mac安装步骤:https://docs.docker.com/desktop/install/mac-install/</p>
+<h1 id="docker_1">docker常用命令</h1>
 <pre><code class="language-bash">docker version #查看docker信息
 docker info
 docker images #查看
 docker ps #查看容器进程
 </code></pre>
-<h3 id="mysql">容器内执行mysql：</h3>
+<p>以下按照一个镜像的快速使用步骤来学习</p>
+<h2 id="docker_2">docker 下载镜像</h2>
+<p>镜像搜索网站：https://dockerhub.p2hp.com/</p>
+<pre><code class="language-bas">docker pull &lt;镜像名称&gt;:&lt;标签&gt;
+</code></pre>
+<h2 id="docker_3">docker创建容器</h2>
+<pre><code class="language-bash">docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+</code></pre>
+<p>其中，<code>IMAGE</code> 是要使用的 Docker 镜像的名称或 ID。以下是一些常用选项：</p>
+<ul>
+<li><code>-d</code>：后台运行容器。</li>
+<li><code>-it</code>：交互式运行容器，并绑定标准输入、输出和终端。</li>
+<li><code>--name</code>：为容器指定名称。</li>
+<li><code>-p</code>：将容器的端口映射到主机的端口。</li>
+<li><code>-v</code>：将主机的目录挂载到容器内。</li>
+</ul>
+<p>以创建Mysql容器为例：</p>
 <blockquote>
 <p>docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root -d ibex/debian-mysql-server-5.7 --bind-address=0.0.0.0</p>
-<p>docker exec -it mysql(容器名称) bash</p>
 </blockquote>
-<h3 id="mysql-dockermysql">在本地通过Mysql 连接Docker的Mysql</h3>
+<p>run 一个容器的时候，若容器不存在，则创建容器并运行容器</p>
+<ul>
+<li><code>-p 3306:3306</code>：将容器的 3306 端口映射到主机的 3306 端口，这样可以通过主机的 3306 端口访问 MySQL 服务。</li>
+<li><code>--name mysql</code>：为容器指定名称为 "mysql"，这样可以通过该名称来引用容器。</li>
+<li><code>-e MYSQL_ROOT_PASSWORD=root</code>：设置 MySQL 的 root 用户密码为 "root"。这个选项通过环境变量设置了 MySQL 的 root 用户密码，密码是 "root"。</li>
+<li><code>-d</code>：后台运行容器，这意味着容器将在后台运行而不会占用当前终端。</li>
+<li><code>ibex/debian-mysql-server-5.7</code>：使用 <code>ibex/debian-mysql-server-5.7</code> 镜像来创建容器。这个镜像包含了一个基于 Debian 的 MySQL 5.7 服务器。</li>
+<li><code>--bind-address=0.0.0.0</code>：设置 MySQL 服务器监听所有网络接口，而不仅仅是本地接口。这使得可以从容器外部访问 MySQL 服务。</li>
+</ul>
+<h2 id="docker_4">docker 启动容器</h2>
+<pre><code class="language-bash"> docker start [容器名称]
+</code></pre>
+<blockquote>
+<p>Docker start mysql //启动名称为mysql的容器</p>
+</blockquote>
+<h2 id="docker_5">Docker 交互式运行容器</h2>
+<blockquote>
+<p>指创建一个本机和容器进行交互的命令终端</p>
+</blockquote>
+<pre><code class="language-bash">docker exec -it mysql(容器名称) bash(具体终端)
+</code></pre>
+<blockquote>
+<p>docker exec -it mysql mysql -u root -p  直接在终端进行数据库bash</p>
+</blockquote>
+<p>docker 创建镜像</p>
+<pre><code class="language-bash">docker build -t sgweb:v1.0.0 .
+</code></pre>
+<pre><code class="language-java">docker build --platform linux/amd64 -t my-python-app . //指定镜像的架构
+</code></pre>
+<p>Docker 删除镜像</p>
+<p>docker rmi image_id</p>
+<h3 id="ipspring-bootmysql">创建一个固定ip的spring boot+mysql容器</h3>
+<p>1.先建公用网络环境，制定网络地址和子网掩码</p>
+<pre><code class="language-java">docker network create --subnet=172.18.0.0/24 custom_network
+</code></pre>
+<p>2.创建mysql容器</p>
+<pre><code class="language-java">docker run  --network custom_network -p 3306:3306 --name mysql_test -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7 --bind-address=0.0.0.0
+</code></pre>
+<ul>
+<li>配置root权限</li>
+</ul>
+<pre><code class="language-bash">docker exec -it [容器名] mysql -u root -p
+GRANT ALL PRIVILEGES ON sg_case_scheme.* TO 'root'@'172.18.0.3' IDENTIFIED BY 'root';
+FLUSH PRIVILEGES;
+</code></pre>
+<p>3.创建spring-boot容器</p>
+<pre><code class="language-java">docker run --network custom_network --name=sgweb_v5 -d -p 8081:8081  sgweb_linux:v5.0.0 
+</code></pre>
+<p>4.启动即可</p>
+<h3 id="_1">保存镜像传递到服务端</h3>
+<p>1.保存</p>
+<pre><code class="language-bash">docker save -o downloads/sgweb.tar sgweb_linux:v1.0.0
+</code></pre>
+<p>2.上传</p>
+<p>3.加载</p>
+<pre><code class="language-bash">docker load -i /path/to/sgweb.tar
+</code></pre>
+<h3 id="ideadockermysql">在本地使用IDEA连接Docker的Mysql</h3>
 <p>1.查询宿主机容器的ip地址</p>
 <p>docker inspect [容器名称]|grep IPAddress</p>
-<h1 id="pecker">Pecker 工程</h1>
-<h2 id="_1">环境配置：</h2>
+<p>docker inspect mysql |grep IPAddress</p>
+<p>因为mysql 容器映射了 主机的3306端口，因此请求3306，会请求到容器的3306中，按照以下图片配置，点击“Test connection”就可以实现连接mysql.</p>
+<p><img alt="image-20240514211948662" src="../docker%E4%BD%BF%E7%94%A8.assets/image-20240514211948662.png" /></p>
+<h1 id="pecker">Pecker 工程使用</h1>
+<h2 id="_2">环境配置：</h2>
 <p>1.连接遇到连接不到mysql 修改root的host='%'</p>
 <pre><code class="language-shell">UPDATE mysql.user SET host='%' WHERE user='root';
 FLUSH PRIVILEGES;

@@ -355,7 +355,28 @@
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    类与对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    作用域函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    扩展函数&amp;&amp; 扩展属性
   </a>
   
 </li>
@@ -368,7 +389,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     类型检测与自动类型转换
   </a>
   
@@ -382,7 +403,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     集合
   </a>
   
@@ -390,6 +411,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    
+  </a>
   
 </li>
       
@@ -428,10 +456,99 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    类与对象
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kotlin" class="md-nav__link">
+    Kotlin 协程
   </a>
+  
+    <nav class="md-nav" aria-label="Kotlin 协程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    全局协程类似于守护线程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runblocking" class="md-nav__link">
+    阻塞 runBlocking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coroutinescope" class="md-nav__link">
+    作用域构建器 自定义作用域 coroutineScope
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supervisorscope" class="md-nav__link">
+    supervisorScope
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coroutinebuilder" class="md-nav__link">
+    CoroutineBuilder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    
+  </a>
+  
+    <nav class="md-nav" aria-label="">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launch" class="md-nav__link">
+    launch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async" class="md-nav__link">
+    async
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#job" class="md-nav__link">
+    Job
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred" class="md-nav__link">
+    Deferred
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coroutinestart" class="md-nav__link">
+    CoroutineStart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -459,6 +576,7 @@
 
 
 <h1 id="22-kotlin">22 Kotlin 语法入门</h1>
+<p>https://book.kotlincn.net/text/classes.html</p>
 <h2 id="_1">环境配置</h2>
 <h3 id="idea">IDEA</h3>
 <p>需要在IDEA中下载Kotlin插件</p>
@@ -487,7 +605,15 @@ dependencies {
 }
 </code></pre>
 <h2 id="_2">语法入门</h2>
-<h3 id="_3">函数</h3>
+<h3 id="_3">类与对象</h3>
+<p>构造函数：分为主构造函数和次构造函数。</p>
+<p>主构造函数指直接在类名后进行初始化，用<code>()</code>实现</p>
+<p>主构造函数中可以直接定义属性</p>
+<p>主构造函数中不能有任何代码，可以使用init 定义的初始化块中来实现</p>
+<p>主构造函数定义的属性可以在init 中使用，也可以在声明属性的初始化器中使用</p>
+<p>初始化块是主构造函数的一部分，哪怕没有实现，也会隐式发生。</p>
+<p>次构造函数，在类中使用constructor(){} 来实现</p>
+<h3 id="_4">函数</h3>
 <blockquote>
 <p>函数定义使用关键字 fun，函数格式：fun 函数名(函数参数): 返回类型；参数格式为：参数 : 类型。</p>
 </blockquote>
@@ -499,6 +625,124 @@ fun sum(a: Int, b: Int): Int {
 // 表达式作为函数体，返回类型自动推断
 fun sum(a: Int, b: Int) = a + b
 public fun sum(a: Int, b: Int): Int = a + b   // public 方法则必须明确写出返回类型
+</code></pre>
+<h3 id="_5">作用域函数</h3>
+<p>let  with run apply also之间的联系和区别</p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>定义inline的结构</th>
+<th>函数体内使用的对象</th>
+<th>返回值</th>
+<th>是否是扩展函数</th>
+<th>适用的场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>let</td>
+<td>fun <T, R> T.let(block: (T) -&gt; R): R = block(this)</td>
+<td>it指代当前对象</td>
+<td>闭包形式返回</td>
+<td>是</td>
+<td>适用于处理不为null的操作场景</td>
+</tr>
+<tr>
+<td>with</td>
+<td>fun <T, R> with(receiver: T, block: T.() -&gt; R): R = receiver.block()</td>
+<td>this指代当前对象或者省略</td>
+<td>闭包形式返回</td>
+<td>否</td>
+<td>适用于调用同一个类的多个方法时，可以省去类名重复，直接调用类的方法即可，经常用于Android中RecyclerView中onBinderViewHolder中，数据model的属性映射到UI上</td>
+</tr>
+<tr>
+<td>run</td>
+<td>fun <T, R> T.run(block: T.() -&gt; R): R = block()</td>
+<td>this指代当前对象或者省略</td>
+<td>闭包形式返回</td>
+<td>是</td>
+<td>适用于let,with函数任何场景。</td>
+</tr>
+<tr>
+<td>apply</td>
+<td block_="block();" return="return" this="this">fun T.apply(block: T.() -&gt; Unit): T</td>
+<td>this指代当前对象或者省略</td>
+<td>返回this</td>
+<td>是</td>
+<td>1、适用于run函数的任何场景，一般用于初始化一个对象实例的时候，操作对象属性，并最终返回这个对象。<br/>2、动态inflate出一个XML的View的时候需要给View绑定数据也会用到.<br/>3、一般可用于多个扩展函数链式调用<br/>4、数据model多层级包裹判空处理的问题</td>
+</tr>
+<tr>
+<td>also</td>
+<td block_this_="block(this);" return="return" this="this">fun T.also(block: (T) -&gt; Unit): T</td>
+<td>it指代当前对象</td>
+<td>返回this</td>
+<td>是</td>
+<td>适用于let函数的任何场景，一般可用于多个扩展函数链式调用</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="kotlin let also..." src="../22%20Kotlin%20%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8.assets/kotlin%20let%20also....png" /></p>
+<h3 id="_6">扩展函数&amp;&amp; 扩展属性</h3>
+<ul>
+<li>扩展函数</li>
+</ul>
+<pre><code class="language-kotlin">fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
+    val tmp = this[index1] // “this”对应该列表
+    this[index1] = this[index2]
+    this[index2] = tmp
+}
+</code></pre>
+<ul>
+<li>扩展属性</li>
+</ul>
+<pre><code class="language-java">val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
+    get() = size - 1
+</code></pre>
+<ul>
+<li>扩展对象的作用域：在使用的时候 引入相应的方法名</li>
+</ul>
+<pre><code class="language-kotlin">//在使用的时候 引入相应的方法名
+package org.example.declarations
+fun List&lt;String&gt;.getLongestString() { /*……*/}
+import org.example.declarations.getLongestString
+</code></pre>
+<ul>
+<li>伴生对象:内部类，静态内部类都可以写扩展函数和属性</li>
+<li>可以在一个类内部为另一个类声明扩展。</li>
+</ul>
+<pre><code class="language-kotlin">//Host的实例被称为扩展接收者
+class Host(val hostname: String) {
+    fun printHostname() { print(hostname) }
+}
+
+//Connection的实例称为分发接受者 
+class Connection(val host: Host, val port: Int) {
+    fun printPort() { print(port) }
+
+    fun Host.printConnectionString() {
+         printHostname()   // 调用 Host.printHostname()
+        print(&quot;:&quot;)
+         printPort()   // 调用 Connection.printPort()
+    }
+
+    fun connect() {
+         /*……*/
+         host.printConnectionString()   // 调用扩展函数
+    }
+}
+
+fun main() {
+    Connection(Host(&quot;kotl.in&quot;), 443).connect()
+    //Host(&quot;kotl.in&quot;).printConnectionString()  // 错误，该扩展函数在 Connection 外不可用
+}
+</code></pre>
+<ul>
+<li>@receiver 注解  用于静态检查,会在lint检查时报错</li>
+</ul>
+<pre><code class="language-java">fun  @receiver:ColorInt Int.toHexString(): String {
+    return String.format(&quot;#%06X&quot;, 0xFFFFFF and this)
+}
 </code></pre>
 <h3 id="null">NULL检查机制</h3>
 <blockquote>
@@ -517,7 +761,7 @@ fun parseInt(str: String): Int? {
     // ……
 }
 </code></pre>
-<h3 id="_4">类型检测与自动类型转换</h3>
+<h3 id="_7">类型检测与自动类型转换</h3>
 <blockquote>
 <p><code>is</code> 运算符检测一个表达式是否某类型的一个实例.</p>
 </blockquote>
@@ -547,7 +791,7 @@ fun getStringLength(obj: Any): Int? {
         else       -&gt; &quot;Unknown&quot;
     }
 </code></pre>
-<h3 id="_5">集合</h3>
+<h3 id="_8">集合</h3>
 <pre><code class="language-java">val fruits = listOf(&quot;banana&quot;, &quot;avocado&quot;, &quot;apple&quot;, &quot;kiwifruit&quot;)
   fruits
   .filter { it.startsWith(&quot;a&quot;) } //集合可以过滤
@@ -555,6 +799,16 @@ fun getStringLength(obj: Any): Int? {
 .map { it.toUpperCase() }//可以转换
 .forEach { println(it) }
 </code></pre>
+<p>let</p>
+<pre><code class="language-kotlin">@kotlin.internal.InlineOnly
+public inline fun &lt;T, R&gt; T.let(block: (T) -&gt; R): R {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    return block(this)
+}
+</code></pre>
+<h2 id="_9"></h2>
 <h2 id="contract">Contract的概念</h2>
 <p>Contract 是一种向编译器通知函数行为的方法，有以下特点：</p>
 <ol>
@@ -648,23 +902,103 @@ public inline fun &lt;T, R&gt; T.let(block: (T) -&gt; R): R {
 </tr>
 </tbody>
 </table>
-<p>let</p>
-<pre><code class="language-kotlin">@kotlin.internal.InlineOnly
-public inline fun &lt;T, R&gt; T.let(block: (T) -&gt; R): R {
-    contract {
-        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
-    }
-    return block(this)
+<h2 id="kotlin">Kotlin 协程</h2>
+<p>https://github.com/Kotlin/kotlinx.coroutines?tab=readme-ov-file</p>
+<p>协程启动方式</p>
+<p>协程挂起函数</p>
+<h3 id="_10">全局协程类似于守护线程</h3>
+<p>协程在 CoroutineScope 协程作用域 的上下文中通过 launch、async 等协程构造器（coroutine builder）来启动</p>
+<pre><code class="language-kotlin">GlobalScope.launch {
+  delay(1000L) //非阻塞式地延迟一秒 此处挂起
+  Log.d(TAG, &quot;world&quot;)
+}
+
+//阻塞式线程启动方式
+runBlocking {
+  delay(1000L)
 }
 </code></pre>
-<h3 id="_6">类与对象</h3>
-<p>构造函数：分为主构造函数和次构造函数。</p>
-<p>主构造函数指直接在类名后进行初始化，用<code>()</code>实现</p>
-<p>主构造函数中可以直接定义属性</p>
-<p>主构造函数中不能有任何代码，可以使用init 定义的初始化块中来实现</p>
-<p>主构造函数定义的属性可以在init 中使用，也可以在声明属性的初始化器中使用</p>
-<p>初始化块是主构造函数的一部分，哪怕没有实现，也会隐式发生。</p>
-<p>次构造函数，在类中使用constructor(){} 来实现</p>
+<p>注意：</p>
+<ul>
+<li>
+<p>抽取 launch 内部的代码块为一个独立的函数，需要将之声明为挂起函数</p>
+</li>
+<li>
+<p>suspend 函数只能由其它 suspend 函数调用，或者是由协程来调用</p>
+</li>
+</ul>
+<pre><code class="language-java">fun main() = runBlocking {
+    launch { doWorld() }
+    println(&quot;Hello,&quot;)
+}
+
+// this is your first suspending function
+suspend fun doWorld() {
+    delay(1000L)
+    println(&quot;World!&quot;)
+}
+</code></pre>
+<h3 id="runblocking">阻塞 runBlocking</h3>
+<p>runBlocking 将代码转为协程</p>
+<p>只有当内部<strong>相同作用域</strong>的所有协程都运行结束后，声明在 runBlocking 之后的代码才能执行，即 runBlocking 会阻塞其所在线程，但是内部运行的协程是非阻塞的</p>
+<p>相同作用域：是指相同级别的，比如  GlobalScope.launch 就不会等待</p>
+<p>异常处理：内部的异常会立即传播到调用方，且会取消同级和父级协程，可以使用常规的 try-catch 块捕获。</p>
+<pre><code class="language-kotlin">fun main() = runBlocking { // this: CoroutineScope
+  launch { // launch a new coroutine in the scope of runBlocking
+    delay(1000L)
+    println(&quot;World!&quot;)
+  }
+   launch { // launch a new coroutine in the scope of runBlocking
+    delay(1000L)
+    println(&quot;World!&quot;)
+  }
+  GlobalScope.launch {
+  delay(1000L) //非阻塞式地延迟一秒 此处挂起
+  Log.d(TAG, &quot;world&quot;)
+}
+  println(&quot;Hello,&quot;)
+}
+</code></pre>
+<h3 id="coroutinescope">作用域构建器 自定义作用域 <strong>coroutineScope</strong></h3>
+<p>异常处理：内部的异常会立即传播到调用方，会取消同级和父级协程，可以使用常规的 try-catch 块捕获</p>
+<pre><code class="language-java">coroutineScope { // Creates a coroutine scope
+  launch {
+    delay(500L) 
+      println(&quot;Task from nested launch&quot;)
+  }
+
+  delay(100L)
+    println(&quot;Task from coroutine scope&quot;) // This line will be printed before the nested 
+}
+</code></pre>
+<h3 id="supervisorscope">supervisorScope</h3>
+<p>会立即抛出异常，不会连锁取消同级协程和父协程，但无法通过try catch处理。</p>
+<h3 id="coroutinebuilder">CoroutineBuilder</h3>
+<p>协程的构建</p>
+<h3 id="_11"></h3>
+<h4 id="launch">launch</h4>
+<h4 id="async">async</h4>
+<ul>
+<li>await()</li>
+</ul>
+<p>获取异步执行的结果</p>
+<h4 id="job">Job</h4>
+<h4 id="deferred">Deferred</h4>
+<h4 id="coroutinestart">CoroutineStart</h4>
+<blockquote>
+<p>协程执行规则</p>
+</blockquote>
+<ul>
+<li>DEFAULT</li>
+</ul>
+<p>默认启动规则，直接执行</p>
+<ul>
+<li>LAZY</li>
+</ul>
+<p>延迟启动，需要调用job.start()</p>
+<ul>
+<li>ATOMIC</li>
+</ul>
 
 
 
