@@ -6,21 +6,168 @@
 * 声明式编程（需要了解所有的命令）
 * 虚拟的Dom+diff算法
 
-全局配置：Vue官网的API去查看
+## 快速创建
 
-## 原形🌟
+使用vite 创建Vue 应用
 
-在Js中一切皆为对象，方法是对象，方法的原型Function.prototype也是对象，对象具有属性（\__proto__）,称其为隐式原型。方法是一个特殊的对象，它除了具有隐式原型，还具有独特的属性(prototype),指向原型对象原型对象也有一个属性叫constructor，这个属性包含一个指针，指向原构造函数。
+```bash
+npm create vite@latest vite-vue-project -- --template vue
+```
 
-注：通过Function.prototype.bind方法构造出来的函数没有prototype属性。
+使用官方create-vue 创建Vue应用
 
-注：Object.prototype为null
+```bash
+npm create vue@latest
+```
 
-它们的指向关系如下图所示：
+联系：
 
-区别：对象的隐式原型=函数的显示原型
+都是采用的vite 构建工具和vue.js框架
 
-原型链：自己的没有方法可以查看原型有没有，实现了继承。
+区别：
+
+* vite 可以选择多个vue模版来创建应用，也可以自定义vue模版
+* create-vue 会提供更多的选项，比如是否使用vue-router，是否使用Ts 等等
+
+工程结构：
+
+```bash
+my-vue-project/
+├── index.html          # 入口 HTML 文件
+├── package.json        # 项目依赖和脚本
+├── vite.config.js      # Vite 配置文件
+├── src/                # 源代码目录
+│   ├── main.js         # 项目入口文件
+│   ├── App.vue         # 主 Vue 组件
+│   └── assets/         # 静态资源
+└── node_modules/       # npm 安装的依赖
+```
+
+App.vue 和 main.ts 是主要App的入口
+
+```typescript
+import './assets/main.css'
+
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+
+import App from './App.vue'
+//添加router
+import router from './router' 
+
+const app = createApp(App)
+app.use(createPinia())
+app.use(router)
+app.mount('#app')
+```
+
+
+
+## [Vue-Router](https://router.vuejs.org/zh/guide/)
+
+### 创建路由器实例
+
+```typescript
+import { createMemoryHistory, createRouter } from 'vue-router'
+
+//跳转的view
+import HomeView from './HomeView.vue' 
+import AboutView from './AboutView.vue'
+
+//路径
+const routes = [
+  { path: '/', component: HomeView },
+  { path: '/about', component: AboutView },
+]
+
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes,
+})
+```
+
+### 注册路由器插件
+
+在main.ts 注册路由插件
+
+```typescript
+//添加router
+import router from './route
+createApp(App)
+  .use(router)
+  .mount('#app')
+```
+
+### Vue-Router插件的作用
+
+1. [全局注册](https://cn.vuejs.org/guide/components/registration.html#global-registration) `RouterView` 和 `RouterLink` 组件。
+2. 添加全局 `$router` 和 `$route` 属性。
+3. 启用 `useRouter()` 和 `useRoute()` 组合式函数。
+4. 触发路由器解析初始路由。
+
+### VueRouter 使用
+
+`RouterView`  组件：是一个占位符，用来展示Router路由展示的View，默认展示 `/` 路由的组件
+
+`RouterLink` 组件: 是一个路由展示组件，结合`RouterView`使用。
+
+```vue
+  <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/test">About</RouterLink>
+    </nav>
+    <RouterView />
+```
+
+ `$router` 和 `$route`在选项式API 中使用：
+
+```vue
+<script>
+export default {
+  methods: {
+    goToAbout() {
+      this.$router.push('/about')
+    },
+  },
+}
+</script>
+
+<template>
+  <h2>HomeView</h2>
+  <button @click="goToAbout">Go to About</button>
+</template>
+```
+
+ `useRouter()` 和 `useRoute()` 组合式函数d的使用
+
+```vue
+<script setup lang="ts">
+import { useRouter } from 'vue-router' // 导入 useRouter
+import { useRoute } from 'vue-router'  // 导入 useRoute
+
+// 获取 router 实例
+const router = useRouter()
+
+// 获取当前路由信息（如果需要）
+const route = useRoute()
+
+// 跳转到 About 页面
+const goToAbout = () => {
+  router.push('/')
+}
+</script>
+
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
+    <button @click="goToAbout">Go to Home</button>
+  </div>
+</template>
+```
+
+
+
+
 
 ## 模版语法
 
@@ -181,6 +328,22 @@ v-model: 双向绑定，只能应用于表单交互的标签。 `v-model:value =
 * concat()
 * slice()
 
+js 语法
+
+## 原形🌟
+
+在Js中一切皆为对象，方法是对象，方法的原型Function.prototype也是对象，对象具有属性（\__proto__）,称其为隐式原型。方法是一个特殊的对象，它除了具有隐式原型，还具有独特的属性(prototype),指向原型对象原型对象也有一个属性叫constructor，这个属性包含一个指针，指向原构造函数。
+
+注：通过Function.prototype.bind方法构造出来的函数没有prototype属性。
+
+注：Object.prototype为null
+
+它们的指向关系如下图所示：
+
+区别：对象的隐式原型=函数的显示原型
+
+原型链：自己的没有方法可以查看原型有没有，实现了继承。
+
 ## 组件
 
 ### 组件组册
@@ -240,7 +403,11 @@ onMounted(() => {
 
     1.没有选项式Api的固定模版
 
+# [Vite](https://cn.vitejs.dev/guide/)
 
+前端构建工具
+
+# 开发实战
 
 ## Basic工程 使用说明
 

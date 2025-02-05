@@ -68,7 +68,7 @@ docker exec -it mysql(容器名称) bash(具体终端)
 
 
 
-docker 创建镜像
+docker 将当前目录下的文件创建镜像
 
 ```bash
 docker build -t sgweb:v1.0.0 .
@@ -78,11 +78,13 @@ docker build -t sgweb:v1.0.0 .
 docker build --platform linux/amd64 -t my-python-app . //指定镜像的架构
 ```
 
+docker 删除镜像
 
-
-Docker 删除镜像
-
+```bash
 docker rmi image_id
+```
+
+
 
 
 

@@ -155,8 +155,6 @@ fun  @receiver:ColorInt Int.toHexString(): String {
 }
 ```
 
-
-
 ### NULL检查机制
 
 > 字段后+`?`:可不做处理返回值为null或使用`?:`，字段后+`!!`:抛出空指针异常。
@@ -222,19 +220,25 @@ val fruits = listOf("banana", "avocado", "apple", "kiwifruit")
 .forEach { println(it) }
 ```
 
-let
+### Annotation 
+
+> 提供元信息，用于标记类、方法、属性或参数。拆分了java中interface的注解作用
+
+以@StringDef  为例
 
 ```kotlin
-@kotlin.internal.InlineOnly
-public inline fun <T, R> T.let(block: (T) -> R): R {
-    contract {
-        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+@Retention(AnnotationRetention.SOURCE)
+@StringDef(
+    GenericHeadAndFootType.TEST1,
+    GenericHeadAndFootType.TEST2
+)
+annotation class GenericHeadAndFootType {
+    companion object {
+        const val TEST1: String = "test1" 
+        const val TEST2: String = "test2" 
     }
-    return block(this)
 }
 ```
-
-## 
 
 ## Contract的概念
 
@@ -314,10 +318,6 @@ https://github.com/Kotlin/kotlinx.coroutines?tab=readme-ov-file
 协程启动方式
 
 协程挂起函数
-
-
-
-
 
 ### 全局协程类似于守护线程
 

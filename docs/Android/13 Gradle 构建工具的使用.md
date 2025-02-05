@@ -68,7 +68,7 @@ plugins {
 //引用.gradle 文件
 apply from: "filename.gradle"
 //插件 library 声明
- apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
 ```
 
 Android常见五种插件id：
@@ -468,15 +468,7 @@ RepositoriesMode.FAIL_ON_PROJECT_REPOS : 解析依赖库时 , 强行使用远程
 
 # 常用的Gradle命令
 
-### Gradlew 依赖问题
-
-#### 1.`Program type already present: XXX`
-
-一般是依赖重复导致的，解决方案是排除重复的依赖。
-
-排查依赖的命令：`./gradlew -q 模块名:dependencies`,会出现多个依赖树，
-
-# [打包过程中的Gladle的Task](https://mp.weixin.qq.com/s?__biz=MzA5MzI3NjE2MA==&mid=2650265470&idx=1&sn=b0a8a269958339a9e33b6777572c97bb&chksm=88632611bf14af079ce3ee1df90dc4e830aa3c106a12def378a5c957ef948f0a1802cd51d404&scene=27)
+## [打包过程中的Gladle的Task](https://mp.weixin.qq.com/s?__biz=MzA5MzI3NjE2MA==&mid=2650265470&idx=1&sn=b0a8a269958339a9e33b6777572c97bb&chksm=88632611bf14af079ce3ee1df90dc4e830aa3c106a12def378a5c957ef948f0a1802cd51d404&scene=27)
 
 > Android 使用Gradle打包的过程是通过Android Gradle Plugin来完成的。
 
@@ -518,6 +510,16 @@ RepositoriesMode.FAIL_ON_PROJECT_REPOS : 解析依赖库时 , 强行使用远程
 > Task :app:packageDebug
 ```
 
+
+
+## Gradle常见问题整理
+
+1.Gradlew 依赖问题：`Program type already present: XXX`
+
+一般是依赖重复导致的，解决方案是排除重复的依赖。
+
+排查依赖的命令：`./gradlew -q 模块名:dependencies`,会出现多个依赖树，
+
 # Gradle 语法学习
 
 Gradle DSL（Domain Specific Language）是一种用于编写 Gradle 构建脚本的特定领域语言。它是基于 Groovy 语言的语法，并且为构建脚本提供了一组特定的语法和约定，用于定义构建任务、依赖关系、插件配置等。
@@ -526,7 +528,15 @@ Gradle 是一种开源的构建自动化工具，用于构建和管理项目的�
 
 因此，Gradle DSL 是用于编写 Gradle 构建脚本的语言，而 Gradle 是构建工具本身。通过 Gradle DSL，开发者可以编写描述项目构建和管理的脚本，然后使用 Gradle 工具来执行这些脚本以完成相应的构建任务。Gradle DSL 提供了一种易于阅读和编写的语法，使得构建脚本的编写变得更加简洁和可维护。
 
-1.定义任务Task
+## Project和Task
+
+>  每一个构建都是由一个或多个 projects 构成的. 一个 project 到底代表什么依赖于你想用 Gradle 做什么. 举个例子, 一个 project 可以代表一个 JAR 或者一个网页应用. 它也可能代表一个发布的 ZIP 压缩包, 这个 ZIP 可能是由许多其他项目的 JARs 构成的. 但是一个 project 不一定非要代表被构建的某个东西. 它可以代表一件**要做的事, 比如部署你的应用.
+
+* Project 
+
+  一个项目原则上是由多个Projects组成的，项目的根project是 root project
+
+* Task
 
 在build.gradle文件或者自定义的.gradle文件中
 
@@ -537,9 +547,150 @@ task hello {
         println 'Hello world!'
     }
 }
+//or
+tasks.register("hello") {
+    doLast {
+        println 'Hello world!'
+    }
+}
+
 //在控制台运行命令
 ./gradlew -q hello // Android 用户在根目录使用 ./gradlew
 ```
+
+`doFirst`:
+
+* 使用 `doFirst` 方法可以向任务添加将在任务执行时最先执行的操作。
+
+* 如果对同一任务多次调用 `doFirst`，每次添加的操作都会被插入到前一个 `doFirst` 操作之前，形成逆序执行。
+
+**`doLast`：**
+
+- 使用 `doLast` 方法可以向任务添加将在任务执行时最后执行的操作。
+- 如果对同一任务多次调用 `doLast`，每次添加的操作都会被附加到前一个 `doLast` 操作之后，按照添加顺序执行。
+
+```groovy
+task myTask {
+    doFirst {
+        println 'First action'
+    }
+    doLast {
+        println 'Last action'
+    }
+    doFirst {
+        println 'Second action'
+    }
+    doLast {
+        println 'Penultimate action'
+    }
+}
+//执行顺序：
+//Second action（第二次调用 doFirst）
+//First action（第一次调用 doFirst）
+//任务主体的默认操作（如果有）
+//Penultimate action（第一次调用 doLast）
+//Last action（第二次调用 doLast）
+```
+
+Task依赖
+
+使用`dependsOn`、`finalizedBy` 来实现Task的依赖
+
+```groovy
+task compile {
+    dependsOn preCompile // preCompile 会在 compile 之前执行
+    finalizedBy postCompile // postCompile 会在 compile 之后执行
+    doLast {
+        println 'Executing compile...'
+    }
+}
+```
+
+`mustRunAfter`  在 compile之后执行
+
+```Groovy
+tasks.named("postCompile").configure {
+    mustRunAfter tasks.named("compile")
+}
+```
+
+动态创建
+
+这里是指在Task运行时，创建新的Task进行执行。
+
+## 插拔式扩展(使用已存在的Task)
+
+* afterEvaluate
+
+  Gradle 的构建过程分为三个主要阶段：初始化、配置和执行。
+
+  **注册回调：** 在配置阶段，您可以通过调用 `project.afterEvaluate { ... }` 方法来注册一个回调。该回调将在配置阶段结束后执行。
+
+  **执行回调：** 当配置阶段完成时，Gradle 会调用所有已注册的 `afterEvaluate` 回调。这使得插件或构建脚本能够在项目配置完成后，根据最终的配置状态执行特定的逻辑。
+
+  想要将新的Task插入到其中,将依赖关系写好，就会执行，
+
+  举一个例子，在assembleDebug 命令的依赖树中mergeDebugAssets后添加一个checkAsset的命令，执行assembleDebug后执行。
+
+  ```Groovy
+  project.project(":app").afterEvaluate {
+      def p = project.pluginManager.findPlugin("com.android.application")
+      if (p == null) {
+          return
+      }
+      def ext = project.extensions.getByName("android")
+      def variants = ext.applicationVariants
+      variants.each {
+          if (it.name == "debug") {
+              tasks.register("checkAssetsDebug") {
+                  dependsOn("mergeDebugAssets")
+                  doLast {
+                      check("debug")
+                  }
+              }
+             tasks.named("assembleDebug").configure {
+                  dependsOn("checkAssetsDebug")
+              }
+          }
+      }
+  }
+  ```
+
+  Android 提供了androidComponents 来进行afterEvaluate来进行回调，上面的代码可以写成如下代码：
+
+  ```Groovy
+  androidComponents {
+      onVariants(selector().withBuildType('debug')) { variant ->
+          println "debug ${variant}"
+          // 获取 mergeDebugAssets 任务的名称
+          def mergeAssetsTaskName = "mergedebugAssets"
+  
+          // 注册新的任务
+          tasks.register("checkAssetsDebug") {
+              dependsOn(mergeAssetsTaskName)
+              doLast {
+                  println "Executing custom task after ${mergeAssetsTaskName}"
+                  check("debug")
+              }
+          }
+          afterEvaluate {
+              tasks.named("assembleDebug").configure {
+                  dependsOn("checkAssetsDebug")
+              }
+          }
+      }
+  }
+  ```
+
+* doLast 
+
+  该方式是修改Task，而不是提供一个新的Task，不建议这么执行修改
+
+  ```groovy
+  project.tasks.named("mergeDebugAssets").doLast{ } 
+  ```
+
+**AntBuilder**来加载文件，现在只支持Groovy
 
 # Gradle  Plugin学习
 

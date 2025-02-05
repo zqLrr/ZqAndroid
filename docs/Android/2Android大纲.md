@@ -1324,12 +1324,15 @@ View
 
 3.Binder机制： AIDL,intent,Messager
 
-4.Socket
+* Activity，Service，Receiver 都支持在 Intent 中传递 Bundle 数据，而 Bundle 实现了 Parcelable 接口，可以在不同的进程间进行传输。
 
-5.共享内存 ContentProvider file 
+4.共享内存 ContentProvider file 
 
-* Intent 
-  * Activity，Service，Receiver 都支持在 Intent 中传递 Bundle 数据，而 Bundle 实现了 Parcelable 接口，可以在不同的进程间进行传输。
+5.socket
+
+
+
+
 
 * 文件共享
 
