@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../4ContentProvider/">
+        <link rel="prev" href="../31.%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/">
       
       
-        <link rel="next" href="../5Application/">
+        <link rel="next" href="../34Compose%E7%9A%84%E4%BD%BF%E7%94%A8/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Android 的消息传递机制——Handler - ZqAndroid</title>
+        <title>Android 资源详解 - ZqAndroid</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#5android-handler" class="md-skip">
+        <a href="#android" class="md-skip">
           跳转至
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Android 的消息传递机制——Handler
+              Android 资源详解
             
           </span>
         </div>
@@ -541,29 +541,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Android 的消息传递机制——Handler
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -572,75 +552,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1.概述
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2.目标
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3handler" class="md-nav__link">
-    3.Handler源码解析
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4handler" class="md-nav__link">
-    4.Handler消息机制的原理分析
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5.消息屏障
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6handler" class="md-nav__link">
-    6.Handler使用的注意要点
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7handler-native" class="md-nav__link">
-    7.Handler Native
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1170,9 +1081,29 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../33Android%20%E8%B5%84%E6%BA%90%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Android 资源详解
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1181,6 +1112,87 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    资源使用方法
+  </a>
+  
+    <nav class="md-nav" aria-label="资源使用方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    主题和样式资源：
+  </a>
+  
+    <nav class="md-nav" aria-label="主题和样式资源：">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    系统主题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#material-design" class="md-nav__link">
+    Material Design 主题应用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    主题继承关系
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#res" class="md-nav__link">
+    Res资源类型整理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asset" class="md-nav__link">
+    Asset资源
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2397,50 +2409,62 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1.概述
+  <a href="#_1" class="md-nav__link">
+    资源使用方法
+  </a>
+  
+    <nav class="md-nav" aria-label="资源使用方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    主题和样式资源：
+  </a>
+  
+    <nav class="md-nav" aria-label="主题和样式资源：">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    系统主题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#material-design" class="md-nav__link">
+    Material Design 主题应用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    主题继承关系
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#res" class="md-nav__link">
+    Res资源类型整理
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2.目标
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3handler" class="md-nav__link">
-    3.Handler源码解析
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4handler" class="md-nav__link">
-    4.Handler消息机制的原理分析
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5.消息屏障
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6handler" class="md-nav__link">
-    6.Handler使用的注意要点
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7handler-native" class="md-nav__link">
-    7.Handler Native
+  <a href="#asset" class="md-nav__link">
+    Asset资源
   </a>
   
 </li>
@@ -2463,798 +2487,794 @@
   
 
 
-<h1 id="5android-handler">5、Android 的消息传递机制——Handler机制</h1>
-<h2 id="1">1.概述</h2>
-<pre><code>Android的消息机制是通过 Handler 的运行机制来实现将一个任务切换到 Handler 所在的线程中去执行。Handler作为消息机制的上层接口，Handler将一个任务的消息发送到Handler所在的线程中去执行对消息的处理，开发者只需要和Handler打交道就可以，但是实际上Handler需要Looper、MessageQueue和Message来支持。
+<h1 id="android">Android 资源知识详解</h1>
+<h2 id="_1">资源使用方法</h2>
+<h3 id="_2">主题和样式资源：</h3>
+<h4 id="_3">系统主题</h4>
+<p>写法：@android:style/Theme.Black.NoTitleBar.Fullscreen</p>
+<p>也可简写成：android:style/Theme.Black.NoTitleBar.Fullscreen</p>
+<p>​                       android:Theme.Black.NoTitleBar.Fullscreen</p>
+<p>尽量使用官方推荐写法</p>
+<h4 id="material-design">Material Design 主题应用</h4>
+<p>写法：</p>
+<p>Theme.Appcompat.XXX</p>
+<p>来源：androidx.appcompat库中</p>
+<h3 id="_4">主题继承关系</h3>
+<p>可以使用parent</p>
+<pre><code class="language-xml">&lt;resources&gt;
+    &lt;style name=&quot;GreenText&quot; parent=&quot;TextAppearance.AppCompat&quot;&gt;
+        &lt;item name=&quot;android:textColor&quot;&gt;#00FF00&lt;/item&gt;
+    &lt;/style&gt;
+&lt;/resources&gt;
 </code></pre>
-<blockquote>
-<p>Android有大量的消息驱动方式来进行交互，比如Android的四剑客<code>Activity</code>, <code>Service</code>, <code>Broadcast</code>, <code>ContentProvider</code>的启动过程的交互，都离不开消息机制，Android某种意义上也可以说成是一个以消息驱动的系统。</p>
-<p>消息机制涉及MessageQueue/Message/Looper/Handler这4个类。</p>
-</blockquote>
-<p>主要目的:<strong>多个线程并发更新UI的同时 保证线程安全</strong></p>
-<h2 id="2">2.目标</h2>
-<ul>
-<li>
-<p>了解Handler的原理</p>
-</li>
-<li>
-<p>Handler是如何实现线程切换的</p>
-</li>
-<li>
-<p>Handler如何保证多线程安全</p>
-</li>
-</ul>
-<p>通过MessageQueue的enqueueMessage()和next()保证了入队和出队的线程安全</p>
-<ul>
-<li>Handler如何保证主线程loop()不会在死循环中卡死？</li>
-</ul>
-<p>通过loop()的死循环保证了主线程不会退出，不是简单的死循环，当没有消息的时候会主动进入线程阻塞，释放CPU</p>
-<p>发生ANR的原因是因为没有及时处理MessageQueue的事件造成的，真正会卡死主线程的操作是在回调方法onCreate/onStart/onResume等操作时间过长，会导致掉帧，甚至发生ANR，looper.loop本身不会导致应用卡死。</p>
-<ul>
-<li>主线程死循环，如何保证其他事务进行处理的</li>
-</ul>
-<p>在ActivityThread开了一个线程去处理其他事务。</p>
-<h2 id="3handler">3.Handler源码解析</h2>
-<ul>
-<li>Message </li>
-</ul>
-<blockquote>
-<p>消息分为硬件产生的消息(如按钮、触摸)和软件生成的消息,消息机制中主要传递信息的载体。</p>
-</blockquote>
-<ul>
-<li>
-<p>主要属性</p>
-<ul>
-<li>What,arg1,arg2,obj:用来存储信息</li>
-<li>target:用来保存message对应的handler,消息分发时通过target找到对应的handler。</li>
-<li>callback:用来存储runable()</li>
-<li>next:用来存储下一条消息，Loop()循环时、消息缓存都会使用到。</li>
-<li>when:用来存储消息的延迟时间，sendMessage时会给其赋值。</li>
-</ul>
-</li>
-<li>
-<p>为了减少消息的产生，提高消息的利用率，建议使用如下的方式生成消息:</p>
-<p><code>java
-//Message方法 Message.obtain()及其重载方法
- public static Message obtain() {
-        synchronized (sPoolSync) {
-            if (sPool != null) {
-                Message m = sPool;
-                sPool = m.next;
-                m.next = null;
-                m.flags = 0; // clear in-use flag
-                sPoolSize--;
-                return m;
-            }
-        }
-        return new Message();
-    }
-//handler handler#obtainMessage()及其重载方法
- public final Message obtainMessage()
-    {
-        return Message.obtain(this);
-    }</code></p>
-<p>主要是因为在message#recycleUnchecked()，会在MessageQueue||Looper中将使用完的消息回收到消息缓存中。</p>
-<p><code>java
- @UnsupportedAppUsage
-    void recycleUnchecked() {
-        // Mark the message as in use while it remains in the recycled object pool.
-        // Clear out all other details.
-        flags = FLAG_IN_USE;
-        what = 0;
-        arg1 = 0;
-        arg2 = 0;
-        obj = null;
-        replyTo = null;
-        sendingUid = UID_NONE;
-        workSourceUid = UID_NONE;
-        when = 0;
-        target = null;
-        callback = null;
-        data = null;
-      //MAX_POOL_SIZE:50 在这里进行回收
-        synchronized (sPoolSync) {
-            if (sPoolSize &lt; MAX_POOL_SIZE) {
-                next = sPool;
-                sPool = this;
-                sPoolSize++;
-            }
-        }
-    }</code></p>
-</li>
-<li>
-<p>Handler</p>
-</li>
-</ul>
-<blockquote>
-<p>消息辅助类，主要功能向消息池发送各种消息事件(<code>Handler.sendMessage</code>)和处理相应消息事件(<code>Handler.handleMessage</code>)；4.主线程的handler。</p>
-</blockquote>
-<ul>
-<li>
-<p>主要属性</p>
-<ul>
-<li>mLooper，通过ThreadLocal获取当前线程的Looper</li>
-<li>mQueue，从Looper中获取MessageQueue</li>
-<li>mCallback，接口回调，用来处理Message</li>
-<li>mAsynchronous，是否是异步消息，主要是同步屏障使用</li>
-</ul>
-</li>
-<li>
-<p>主要方法</p>
-<ul>
-<li>发送信息 </li>
-</ul>
-<blockquote>
-<p>主要有sendMessage和Post方法，post是将runable存到Message中，然后调用sendMessage.</p>
-</blockquote>
-<p><img alt="sendMessage" src="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler.assets/image-20221228121355416.png" /></p>
-<ul>
-<li>进入消息队列</li>
-</ul>
-<blockquote>
-<p>从上图可以看出所有的消息最后都会通过enqueueMessage进到消息队列</p>
-</blockquote>
-<p>```java
- private boolean enqueueMessage(@NonNull MessageQueue queue, @NonNull Message msg,
-            long uptimeMillis) {
-        msg.target = this;
-        msg.workSourceUid = ThreadLocalWorkSource.getUid();</p>
-<pre><code>    if (mAsynchronous) {
-        msg.setAsynchronous(true);
-    }
-    //最后会调用到Queue的equeueMessage
-    return queue.enqueueMessage(msg, uptimeMillis);
-}
+<p>也可以使用.继承,而非Parent属性，</p>
+<pre><code class="language-xml">&lt;style name=&quot;GreenText.Large&quot;&gt;
+    &lt;item name=&quot;android:textSize&quot;&gt;22dp&lt;/item&gt;
+&lt;/style&gt;
 </code></pre>
-<p>```</p>
-<ul>
-<li>处理消息 </li>
-</ul>
+<p>Theme R.styleable 来查询有哪些属性有效</p>
+<p>Style  R.attr来查询哪些属性有效</p>
+<h2 id="res">Res资源类型整理</h2>
+<table>
+<thead>
+<tr>
+<th>资源</th>
+<th>type</th>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anim</td>
+<td>anim</td>
+<td>res/anim/.xml</td>
+<td>补间动画</td>
+</tr>
+<tr>
+<td>animator</td>
+<td>animator</td>
+<td>res/animator/.xml</td>
+<td>属性动画</td>
+</tr>
+<tr>
+<td>color</td>
+<td>color</td>
+<td>res/color/.xml</td>
+<td><a href="https://developer.android.com/guide/topics/resources/color-list-resource?hl=zh-cn">颜色状态列表</a></td>
+</tr>
+<tr>
+<td>drawable</td>
+<td>drawable</td>
+<td>res/drawable/</td>
+<td><a href="https://developer.android.com/guide/topics/resources/drawable-resource?hl=zh-cn">位图文件</a></td>
+</tr>
+<tr>
+<td>drawablecolor</td>
+<td>drawable</td>
+<td>res/values/color.xml</td>
+<td>使用drawable生成的color文件，是可绘制资源的一种，专门抽出是因为Reasource有单独处理</td>
+</tr>
+<tr>
+<td>mipmap</td>
+<td>mipmap</td>
+<td>res/mipmap</td>
+<td>适用于不同启动器图标密度的可绘制对象文</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>layout</td>
+<td>res/layout/.xml</td>
+<td>定义界面布局</td>
+</tr>
+<tr>
+<td>menu</td>
+<td>menu</td>
+<td>res/menu/.xml</td>
+<td>用于定义应用菜单的xml文件</td>
+</tr>
+<tr>
+<td>raw</td>
+<td>raw</td>
+<td>res/raw</td>
+<td>需以原始形式保存的任意文件 比如.mp4</td>
+</tr>
+<tr>
+<td>array</td>
+<td>array</td>
+<td>res/value/arrays.xml</td>
+<td>用于资源数组（<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#TypedArray">类型化数组</a>）</td>
+</tr>
+<tr>
+<td>color</td>
+<td>color</td>
+<td>res/value/colors.xml</td>
+<td>用于<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#Color">颜色值</a></td>
+</tr>
+<tr>
+<td>dimen</td>
+<td>dimen</td>
+<td>res/value/dimens.xml</td>
+<td><code>dimens.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#Dimension">维度值</a></td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+<td>res/value/strings.xml</td>
+<td><code>strings.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/string-resource?hl=zh-cn">字符串值</a></td>
+</tr>
+<tr>
+<td>style</td>
+<td>style<br/>styleable</td>
+<td>res/value/styles.xml</td>
+<td><code>styles.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/style-resource?hl=zh-cn">样式</a></td>
+</tr>
+<tr>
+<td>xml</td>
+<td>xml</td>
+<td>res/xml/.xml</td>
+<td>可在运行时通过调用 <code>Resources.getXML()</code> 读取的任意 XML 文件。</td>
+</tr>
+<tr>
+<td>font</td>
+<td>font</td>
+<td>res/font</td>
+<td>带有扩展名的字体文件（例如 TTF、OTF 或 TTC）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="asset">Asset资源</h2>
 <blockquote>
-<p>优先级：Message.callback &gt; Handler.callback &gt; Handler#handleMessage()</p>
+<p>可以拿到原始的资源名称和资源目录</p>
 </blockquote>
-<p><code>java
-public void dispatchMessage(@NonNull Message msg) {
-        if (msg.callback != null) {
-            handleCallback(msg);
-        } else {
-            if (mCallback != null) {
-                if (mCallback.handleMessage(msg)) {
-                    return;
-                }
-            }
-            handleMessage(msg);
-        }
-    }</code></p>
-</li>
-<li>
-<p>MessageQueue</p>
-</li>
+<h1 id="android_1">Android 资源打包和加载流程</h1>
+<p>目标</p>
+<p>1.Android 资源类型整理</p>
+<p>2.Android 资源打包流程</p>
+<ul>
+<li>主要讲解arsc文件的内容</li>
+<li>Arsc的组成部分</li>
+<li>Arsc如何实现索引</li>
+<li>Arsc文件的使用:重复资源删除、资源文件名混淆</li>
 </ul>
+<p>3.Android资源加载流程(源码梳理)</p>
+<p>4.Android 资源实战</p>
+<ul>
+<li>Android 无用资源删除</li>
+<li>深色模式——资源id固定</li>
+</ul>
+<h2 id="android_2">Android 资源类型整理</h2>
 <blockquote>
-<p>消息队列的主要功能向消息池投递消息(<code>MessageQueue.enqueueMessage</code>)和取走消息池的消息(<code>MessageQueue.next</code>)；MessageQueue是消息机制的Java层和C++层的连接纽带，大部分核心方法都交给native层来处理。</p>
+<p>Android中总共存在两个目录来存放资源：res目录和assets目录</p>
 </blockquote>
+<h3 id="res_1">Res资源类型整理</h3>
+<table>
+<thead>
+<tr>
+<th>资源</th>
+<th>type</th>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anim</td>
+<td>anim</td>
+<td>res/anim/.xml</td>
+<td>补间动画</td>
+</tr>
+<tr>
+<td>animator</td>
+<td>animator</td>
+<td>res/animator/.xml</td>
+<td>属性动画</td>
+</tr>
+<tr>
+<td>color</td>
+<td>color</td>
+<td>res/color/.xml</td>
+<td><a href="https://developer.android.com/guide/topics/resources/color-list-resource?hl=zh-cn">颜色状态列表</a></td>
+</tr>
+<tr>
+<td>drawable</td>
+<td>drawable</td>
+<td>res/drawable/</td>
+<td><a href="https://developer.android.com/guide/topics/resources/drawable-resource?hl=zh-cn">位图文件</a></td>
+</tr>
+<tr>
+<td>drawablecolor</td>
+<td>drawable</td>
+<td>res/values/color.xml</td>
+<td>使用drawable生成的color文件，是可绘制资源的一种，专门抽出是因为Reasource有单独处理</td>
+</tr>
+<tr>
+<td>mipmap</td>
+<td>mipmap</td>
+<td>res/mipmap</td>
+<td>适用于不同启动器图标密度的可绘制对象文</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>layout</td>
+<td>res/layout/.xml</td>
+<td>定义界面布局</td>
+</tr>
+<tr>
+<td>menu</td>
+<td>menu</td>
+<td>res/menu/.xml</td>
+<td>用于定义应用菜单的xml文件</td>
+</tr>
+<tr>
+<td>raw</td>
+<td>raw</td>
+<td>res/raw</td>
+<td>需以原始形式保存的任意文件 比如.mp4</td>
+</tr>
+<tr>
+<td>array</td>
+<td>array</td>
+<td>res/value/arrays.xml</td>
+<td>用于资源数组（<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#TypedArray">类型化数组</a>）</td>
+</tr>
+<tr>
+<td>color</td>
+<td>color</td>
+<td>res/value/colors.xml</td>
+<td>用于<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#Color">颜色值</a></td>
+</tr>
+<tr>
+<td>dimen</td>
+<td>dimen</td>
+<td>res/value/dimens.xml</td>
+<td><code>dimens.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/more-resources?hl=zh-cn#Dimension">维度值</a></td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+<td>res/value/strings.xml</td>
+<td><code>strings.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/string-resource?hl=zh-cn">字符串值</a></td>
+</tr>
+<tr>
+<td>style</td>
+<td>style<br/>styleable</td>
+<td>res/value/styles.xml</td>
+<td><code>styles.xml</code> 用于<a href="https://developer.android.com/guide/topics/resources/style-resource?hl=zh-cn">样式</a></td>
+</tr>
+<tr>
+<td>xml</td>
+<td>xml</td>
+<td>res/xml/.xml</td>
+<td>可在运行时通过调用 <code>Resources.getXML()</code> 读取的任意 XML 文件。</td>
+</tr>
+<tr>
+<td>font</td>
+<td>font</td>
+<td>res/font</td>
+<td>带有扩展名的字体文件（例如 TTF、OTF 或 TTC）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="assets">Assets资源</h3>
+<blockquote>
+<p>存放原始资源文件，系统在编译时不会编译该目录下的资源文件，可以拿到原始的资源名称和资源目录</p>
+</blockquote>
+<h2 id="android_3">Android 资源打包流程</h2>
+<p>参考链接：<a href="https://mp.weixin.qq.com/s?__biz=MzA5MzI3NjE2MA==&amp;mid=2650265470&amp;idx=1&amp;sn=b0a8a269958339a9e33b6777572c97bb&amp;chksm=88632611bf14af079ce3ee1df90dc4e830aa3c106a12def378a5c957ef948f0a1802cd51d404&amp;scene=27">Android Apk 编译打包流程</a></p>
+<p>​                 <a href="https://sharrychoo.github.io/blog/android-source/resources-package">资源的打包流程</a></p>
+<p>​               <a href="https://juejin.cn/post/6986448355962404877">Android资源管理及资源的编译和打包过程分析</a></p>
+<p><img alt="image-20240701095940268" src="../Android%20%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E5%92%8C%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.assets/image-20240701095940268.png" /></p>
+<p>1.assets 和AndroidManifest.xml资源不进行编译，只进行merge，合并成一个后添加到资源Apk中</p>
+<p>2.res中每个资源生成一个id，然后生成R.java文件，实现name 和id 的一一对应，然后编译res资源到资源Apk中。</p>
+<p>res资源编译步骤：</p>
+<p>1.生成资源id</p>
+<p>2.生成R.java文件</p>
+<p>3.生成资源索引表</p>
+<p>res资源编译的好处：</p>
 <ul>
-<li>
-<p>创建消息队列的时机，Looper创建时，同时会创建MessageQueue</p>
-</li>
-<li>
-<p>主要属性</p>
-<ul>
-<li>mQuitAllowed :是否允许消息队列退出,主要是创建消息队列时使用，mQuitAllowed为false时只存在主线程</li>
-<li>mQuitting: 是否可以退出</li>
+<li>空间占用小</li>
+<li>解析速度快</li>
 </ul>
-</li>
-<li>
-<p>主要方法</p>
+<h3 id="android-arsc">Android .arsc文件详解</h3>
+<p>arsc文件的作用：</p>
+<p>可以帮助Android 通过id的形式获取资源文件内容，省去了文件路径的手动输入。</p>
+<p>资源索引具有固定的格式：<strong>0xPPTTEEEE</strong></p>
+<blockquote>
+<p>PackageId(2位) + TypeId（2位） + EntryId(4位)</p>
 <ul>
-<li>进入消息队列 enqueuemessage() 关键方法</li>
+<li><strong>PP</strong>:Package ID，包的命名空间，取值范围为[0x01, 0x7f]，第三方应用均为7f。</li>
+<li><strong>TT</strong>:资源类型，有anim、layout、mipmap、string、style等资源类型。</li>
+<li><strong>EEEE</strong>:代表某一类资源在偏移数组中的值</li>
 </ul>
-<p>```java
- boolean enqueueMessage(Message msg, long when) {
-        //进队的Message必须持有handler
-            if (msg.target == null) {
-            throw new IllegalArgumentException("Message must have a target.");
+</blockquote>
+<p>​   <a href="https://juejin.cn/post/6880043571010813959">一文读懂resource.arsc文件结构</a></p>
+<p><a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/libs/androidfw/include/androidfw/ResourceTypes.h?hl=zh-cn">ResourceTypes.h</a></p>
+<p><img alt="img" src="../Android%20%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E5%92%8C%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.assets/6601a397d7244cc3941ffe5dee7f8c4d~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A1512%3A0%3A0%3A0.awebp" /></p>
+<h4 id="chunk">Chunk</h4>
+<p><code>chunk</code>翻译为中文就是“块、部分(尤指大部分，一大块)”的意思。</p>
+<p>主要结构分为：头部+Chunk。</p>
+<p>头部都以ResChunk_header开始，主要包含了，Chunk类型、Chunk头部大小和Chunk大小。</p>
+<p>具体资源项目的分析：</p>
+<p>提供一个测试工程：</p>
+<p><img alt="Arsc文件结构分析" src="../Android%20%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E5%92%8C%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.assets/Arsc%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90.png" /></p>
+<h2 id="android_4">Android 加载资源流程（源码解析）</h2>
+<p>参考链接：<a href="https://juejin.cn/post/7182471289524158523">Android 换肤之资源</a></p>
+<p><a href="https://juejin.cn/post/6844904089696862221">APK 加载流程之资源加载</a></p>
+<h3 id="resources">Resources的创建</h3>
+<h4 id="application">Application</h4>
+<p>从Application的创建开始看：</p>
+<pre><code class="language-java"># ActivityThread.java
+
+// 创建application
+private Application makeApplicationInner(boolean forceDefaultAppClass,
+            Instrumentation instrumentation, boolean allowDuplicateInstances) {
+        if (mApplication != null) {
+            return mApplication;
         }
-                //同步方法 保证了多线程下的线程安全
-        synchronized (this) {
-            if (msg.isInUse()) {
-                throw new IllegalStateException(msg + " This message is already in use.");
+       ...
+
+        try {
+            ...
+               // 创建Context
+            ContextImpl appContext = ContextImpl.createAppContext(mActivityThread, this);
+            // The network security config needs to be aware of multiple
+            // applications in the same process to handle discrepancies
+            NetworkSecurityConfigProvider.handleNewApplication(appContext);
+            app = mActivityThread.mInstrumentation.newApplication(
+                    cl, appClass, appContext);
+            appContext.setOuterContext(app);
+        } catch (Exception e) {
+            if (!mActivityThread.mInstrumentation.onException(app, e)) {
+                Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
+                throw new RuntimeException(
+                    &quot;Unable to instantiate application &quot; + appClass
+                    + &quot; package &quot; + mPackageName + &quot;: &quot; + e.toString(), e);
             }
-                        //若是选择了退出，新建的消息不会再入队，并且会被销毁
-            if (mQuitting) {
-                IllegalStateException e = new IllegalStateException(
-                        msg.target + " sending message to a Handler on a dead thread");
-                Log.w(TAG, e.getMessage(), e);
-                msg.recycle();
-                return false;
-            }</p>
-<pre><code>        msg.markInUse();
-      //Message设置了延迟时间 when
-        msg.when = when;
-        Message p = mMessages;
-        boolean needWake;
-      //会根据when将消息入队到合适的位置
-        if (p == null || when == 0 || when &lt; p.when) {
-            // New head, wake up the event queue if blocked.
-            msg.next = p;
-            mMessages = msg;
-            needWake = mBlocked; //mBlocked：是否线程阻塞
-        } else {
-            // Inserted within the middle of the queue.  Usually we don't have to wake
-            // up the event queue unless there is a barrier at the head of the queue
-            // and the message is the earliest asynchronous message in the queue.
-            needWake = mBlocked &amp;&amp; p.target == null &amp;&amp; msg.isAsynchronous();
-            Message prev;
-            for (;;) {
-                prev = p;
-                p = p.next;
-                if (p == null || when &lt; p.when) {
-                    break;
-                }
-                if (needWake &amp;&amp; p.isAsynchronous()) {
-                    needWake = false;
-                }
-            }
-            msg.next = p; // invariant: p == prev.next
-            prev.next = msg;
         }
-
-        // We can assume mPtr != 0 because mQuitting is false.
-      //会唤醒阻塞的线程
-        if (needWake) {
-            nativeWake(mPtr);
-        }
-    }
-    return true;
-}
-</code></pre>
-<p>```</p>
-<ul>
-<li>next()</li>
-</ul>
-<p>```java
-Message next() {
-        // Return here if the message loop has already quit and been disposed.
-        // This can happen if the application tries to restart a looper after quit
-        // which is not supported. 当App重新启动已经退出的Loop时，直接返回null
-        final long ptr = mPtr;
-        if (ptr == 0) {
-            return null;
-        }</p>
-<pre><code>    int pendingIdleHandlerCount = -1; // -1 only during first iteration 空闲进程的清理
-    int nextPollTimeoutMillis = 0; //阻塞的时间 是在Native中进行的
-    //for循环拿到下一个Message 此处会阻塞
-    for (;;) {
-        if (nextPollTimeoutMillis != 0) {
-            Binder.flushPendingCommands();
-        }
-
-        //阻塞线程
-        nativePollOnce(ptr, nextPollTimeoutMillis);
-
-       //同步方法 和enqueueumessage 保证了线程安全 
-        synchronized (this) {
-            // Try to retrieve the next message.  Return if found.
-            final long now = SystemClock.uptimeMillis();
-            Message prevMsg = null;
-            Message msg = mMessages;
-            if (msg != null &amp;&amp; msg.target == null) {
-                // Stalled by a barrier.  Find the next asynchronous message in the queue.
-              //当target为null时，说明发出了消息屏障，会优先执行异步消息
-                do {
-                    prevMsg = msg;
-                    msg = msg.next;
-                } while (msg != null &amp;&amp; !msg.isAsynchronous());
-            }
-            if (msg != null) {
-                if (now &lt; msg.when) {
-                    // Next message is not ready.  Set a timeout to wake up when it is ready.
-                    //当下一个消息没有到延迟时间时，会阻塞线程
-                    nextPollTimeoutMillis = (int) Math.min(msg.when - now, Integer.MAX_VALUE);
-                } else {
-                    // Got a message.
-                    mBlocked = false;
-                    if (prevMsg != null) {
-                        prevMsg.next = msg.next;
-                    } else {
-                        mMessages = msg.next;
-                    }
-                    msg.next = null;
-                    if (DEBUG) Log.v(TAG, "Returning message: " + msg);
-                    msg.markInUse();
-                    return msg;
-                }
-            } else {
-                // No more messages.
-                nextPollTimeoutMillis = -1;
-            }
-
-            // Process the quit message now that all pending messages have been handled.
-          //若有退出标记，会返回null的message
-            if (mQuitting) {
-                dispose();
-                return null;
-            }
-
-            // If first time idle, then get the number of idlers to run.
-            // Idle handles only run if the queue is empty or if the first message
-            // in the queue (possibly a barrier) is due to be handled in the future.
-
-          //最后会执行对MessageQueue的清理工作
-            if (pendingIdleHandlerCount &lt; 0
-                    &amp;&amp; (mMessages == null || now &lt; mMessages.when)) {
-                pendingIdleHandlerCount = mIdleHandlers.size();
-            }
-            if (pendingIdleHandlerCount &lt;= 0) {
-                // No idle handlers to run.  Loop and wait some more.
-                mBlocked = true;
-                continue;
-            }
-
-            if (mPendingIdleHandlers == null) {
-                mPendingIdleHandlers = new IdleHandler[Math.max(pendingIdleHandlerCount, 4)];
-            }
-            mPendingIdleHandlers = mIdleHandlers.toArray(mPendingIdleHandlers);
-        }
-
-        // Run the idle handlers.
-        // We only ever reach this code block during the first iteration.
-        for (int i = 0; i &lt; pendingIdleHandlerCount; i++) {
-            final IdleHandler idler = mPendingIdleHandlers[i];
-            mPendingIdleHandlers[i] = null; // release the reference to the handler
-
-            boolean keep = false;
+       ...
+  // 这里不会马上执行,因为默认传入的Instrumentation == null
+  // 当分发activity(performLaunchActivity)时候
+  // 才会调用  Application app = r.packageInfo.makeApplication(false, mInstrumentation); 来分发Application#onCreate()
+        if (instrumentation != null) {
             try {
-                keep = idler.queueIdle();
-            } catch (Throwable t) {
-                Log.wtf(TAG, "IdleHandler threw exception", t);
-            }
-
-            if (!keep) {
-                synchronized (this) {
-                    mIdleHandlers.remove(idler);
+                instrumentation.callApplicationOnCreate(app);
+            } catch (Exception e) {
+                if (!instrumentation.onException(app, e)) {
+                    Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
+                    throw new RuntimeException(
+                        &quot;Unable to create application &quot; + app.getClass().getName()
+                        + &quot;: &quot; + e.toString(), e);
                 }
             }
         }
-
-        // Reset the idle handler count to 0 so we do not run them again.
-        pendingIdleHandlerCount = 0;
-
-        // While calling an idle handler, a new message could have been delivered
-        // so go back and look again for a pending message without waiting.
-        nextPollTimeoutMillis = 0;
+        return app;
     }
-}
 </code></pre>
-<p>```</p>
-<ul>
-<li>quit(boolean safe) ：是否可以退出，safe为true,清空已分发过或者阻塞的消息，safe为false全部清空</li>
-</ul>
-<p>```java
- void quit(boolean safe) {
-        if (!mQuitAllowed) {
-            throw new IllegalStateException("Main thread not allowed to quit.");
-        }</p>
-<pre><code>    synchronized (this) {
-        if (mQuitting) {
-            return;
-        }
-        mQuitting = true;
-
-        if (safe) {
-            removeAllFutureMessagesLocked();
-        } else {
-            removeAllMessagesLocked();
-        }
-
-        // We can assume mPtr != 0 because mQuitting was previously false.
-        //唤醒消息队列
-        nativeWake(mPtr);
-    }
-}
-</code></pre>
-<p>```</p>
-</li>
-<li>
-<p>Looper</p>
-</li>
-</ul>
-<blockquote>
-<p>不断循环执行(<code>Looper.loop</code>)，按分发机制将消息分发给目标处理者。</p>
-</blockquote>
-<ul>
-<li>Looper的新建</li>
-</ul>
-<p><code>java
-  //主线程Looper的建立
-   public static void prepareMainLooper() {
-          prepare(false);
-          synchronized (Looper.class) {
-              if (sMainLooper != null) {
-                  throw new IllegalStateException("The main Looper has already been prepared.");
-              }
-              sMainLooper = myLooper();
-          }
-      }
-  //其他线程Looper的建立 Looper.prepare()
-  private static void prepare(boolean quitAllowed) {
-          if (sThreadLocal.get() != null) {
-              throw new RuntimeException("Only one Looper may be created per thread");
-          }
-          sThreadLocal.set(new Looper(quitAllowed));
-      }
-  //区别：主线程不允许Looper退出
-  //会新建MessageQueue，并绑定线程和Looper
-   private Looper(boolean quitAllowed) {
-          mQueue = new MessageQueue(quitAllowed);
-          mThread = Thread.currentThread();
-      }</code></p>
-<ul>
-<li>
-<p>主要属性</p>
-<ul>
-<li>mQueue</li>
-<li>sMainLooper 主线程的Looper</li>
-</ul>
-</li>
-<li>
-<p>主要方法</p>
-<ul>
-<li>loop()</li>
-</ul>
-<p>```java
-   public static void loop() {
-          final Looper me = myLooper();
-          if (me == null) {
-              throw new RuntimeException("No Looper; Looper.prepare() wasn't called on this thread.");
-          }
-          if (me.mInLoop) {
-              Slog.w(TAG, "Loop again would have the queued messages be executed"
-                      + " before this one completed.");
-          }</p>
-<pre><code>      me.mInLoop = true;
-      final MessageQueue queue = me.mQueue;
-
-      // Make sure the identity of this thread is that of the local process,
-      // and keep track of what that identity token actually is.
-      Binder.clearCallingIdentity();
-      final long ident = Binder.clearCallingIdentity();
-
-      // Allow overriding a threshold with a system prop. e.g.
-      // adb shell 'setprop log.looper.1000.main.slow 1 &amp;&amp; stop &amp;&amp; start'
-      final int thresholdOverride =
-              SystemProperties.getInt("log.looper."
-                      + Process.myUid() + "."
-                      + Thread.currentThread().getName()
-                      + ".slow", 0);
-
-      boolean slowDeliveryDetected = false;
-
-      for (;;) {
-          Message msg = queue.next(); // might block 这里可能会阻塞
-          //退出后message会为null,此时Loop会退出循环
-          if (msg == null) {
-              // No message indicates that the message queue is quitting.
-              return;
-          }
-
-          // This must be in a local variable, in case a UI event sets the logger
-          final Printer logging = me.mLogging;
-          if (logging != null) {
-              logging.println("&gt;&gt;&gt;&gt;&gt; Dispatching to " + msg.target + " " +
-                      msg.callback + ": " + msg.what);
-          }
-          // Make sure the observer won't change while processing a transaction.
-          final Observer observer = sObserver;
-
-          final long traceTag = me.mTraceTag;
-          long slowDispatchThresholdMs = me.mSlowDispatchThresholdMs;
-          long slowDeliveryThresholdMs = me.mSlowDeliveryThresholdMs;
-          if (thresholdOverride &gt; 0) {
-              slowDispatchThresholdMs = thresholdOverride;
-              slowDeliveryThresholdMs = thresholdOverride;
-          }
-          final boolean logSlowDelivery = (slowDeliveryThresholdMs &gt; 0) &amp;&amp; (msg.when &gt; 0);
-          final boolean logSlowDispatch = (slowDispatchThresholdMs &gt; 0);
-
-          final boolean needStartTime = logSlowDelivery || logSlowDispatch;
-          final boolean needEndTime = logSlowDispatch;
-
-          if (traceTag != 0 &amp;&amp; Trace.isTagEnabled(traceTag)) {
-              Trace.traceBegin(traceTag, msg.target.getTraceName(msg));
-          }
-
-          final long dispatchStart = needStartTime ? SystemClock.uptimeMillis() : 0;
-          final long dispatchEnd;
-          Object token = null;
-          if (observer != null) {
-              token = observer.messageDispatchStarting();
-          }
-          long origWorkSource = ThreadLocalWorkSource.setUid(msg.workSourceUid);
-          try {
-            //重点方法，会分发到message的handler
-              msg.target.dispatchMessage(msg);
-              if (observer != null) {
-                  observer.messageDispatched(token, msg);
-              }
-              dispatchEnd = needEndTime ? SystemClock.uptimeMillis() : 0;
-          } catch (Exception exception) {
-              if (observer != null) {
-                  observer.dispatchingThrewException(token, msg, exception);
-              }
-              throw exception;
-          } finally {
-              ThreadLocalWorkSource.restore(origWorkSource);
-              if (traceTag != 0) {
-                  Trace.traceEnd(traceTag);
-              }
-          }
-          if (logSlowDelivery) {
-              if (slowDeliveryDetected) {
-                  if ((dispatchStart - msg.when) &lt;= 10) {
-                      Slog.w(TAG, "Drained");
-                      slowDeliveryDetected = false;
-                  }
-              } else {
-                  if (showSlowLog(slowDeliveryThresholdMs, msg.when, dispatchStart, "delivery",
-                          msg)) {
-                      // Once we write a slow delivery log, suppress until the queue drains.
-                      slowDeliveryDetected = true;
-                  }
-              }
-          }
-          if (logSlowDispatch) {
-              showSlowLog(slowDispatchThresholdMs, dispatchStart, dispatchEnd, "dispatch", msg);
-          }
-
-          if (logging != null) {
-              logging.println("&lt;&lt;&lt;&lt;&lt; Finished to " + msg.target + " " + msg.callback);
-          }
-
-          // Make sure that during the course of dispatching the
-          // identity of the thread wasn't corrupted.
-          final long newIdent = Binder.clearCallingIdentity();
-          if (ident != newIdent) {
-              Log.wtf(TAG, "Thread identity changed from 0x"
-                      + Long.toHexString(ident) + " to 0x"
-                      + Long.toHexString(newIdent) + " while dispatching to "
-                      + msg.target.getClass().getName() + " "
-                      + msg.callback + " what=" + msg.what);
-          }
-
-          msg.recycleUnchecked();
-      }
-  }
-</code></pre>
-<p>```</p>
-<ul>
-<li>quit() &amp;&amp; quitsafely():会调用MessageQueue的方法,保证了退出后消息队列为空，且next获取不到消息</li>
-</ul>
-</li>
-<li>
-<p>四者关系</p>
-</li>
-</ul>
-<p>Handler :Looper:MessageQueue:Thread  1:1:1:1</p>
-<p>Handler:Message 1:N</p>
-<ul>
-<li>消息机制运行的原理</li>
-</ul>
-<p><img alt="handler_java" src="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler.assets/handler_java.jpg" /></p>
-<p>在子线程中生成Message,通过Looper分发到主线程中让Handler去处理.</p>
-<ul>
-<li>Handler 更新UI的原理</li>
-</ul>
-<p>​        现有的Handler介绍书籍中大多说是为了实现在非UI线程更新界面UI，但是Handler 却不是仅仅专门用来更新UI的。看一下工作线程更新UI的过程：在 UI 线程创建一个 <code>Handler</code> 对象，在子线程中使用这个 <code>Handler</code> 对象将要显示的数据切换到 <code>Handler</code> 所在的 UI 线程，再操作 UI 控件来显示数据。</p>
-<p>实际上Handler的主要作用是为了实现线程的调度，切换线程，可以从UI线程切换到工作线程，也可以从工作线程切换到UI线程。</p>
-<p>​       那么为什么子线程不能更新UI呢？实际上子线程是可以更新UI的，但是更新UI使用的是单线程模型，即哪个线程创建的UI，哪个线程可以修改，Android 的 UI 控件不是线程安全的，如果在多线程中并发访问可能会导致 UI 控件处于不可预期的状态；而如果对 UI 控件的访问加上锁机制，会让 UI 访问的逻辑变得复杂，也会降低 UI 访问的效率。而我们大部分的UI操作都是在UI线程创建的，因此常用Handler来帮助工作线程修改UI。</p>
-<pre><code class="language-java">//ViewRootImpl
-void checkThread() {
-    if (mThread != Thread.currentThread()) {
-        throw new CalledFromWrongThreadException(
-                &quot;Only the original thread that created a view hierarchy can touch its views.&quot;);
-    }
-}
-</code></pre>
-<p>​     由<code>checkThread</code>方可知，更新UI必须是新建UI的线程。</p>
-<ul>
-<li>Android Handler运行的流程</li>
-</ul>
-<p><img alt="5265a0a7c0054f2bbcbc93804f199aeb" src="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler.assets/5265a0a7c0054f2bbcbc93804f199aeb.png" /></p>
-<ul>
-<li>在主线程创建 Handler 对象 handler，默认使用的是主线程的 Looper 对象以及对应的 MessageQueue 对象；</li>
-<li>在工作线程通过 Handler 对象 handler 的发送消息方法发送消息，最终通过 MessageQueue 对象的 enqueueMessage 方法把消息加入到消息队列中</li>
-<li>Looper.loop() 方法运行在创建 Handler 里的线程，在这里就是运行在主线程， Loop.loop() 方法不断从消息队列中获取符合条件的 Message 对象；</li>
-<li>获取到符合条件的 Message 对象后，通过 Message 对象持有的 target 字段（实际就是发送该消息的那个 Handler 对象）的 dispatchMessage 方法把消息回调给发送消息的那个 Handler，这样消息就在主线程接收到了。</li>
-</ul>
-<h2 id="4handler">4.Handler消息机制的原理分析</h2>
-<ul>
-<li>
-<p>Handler作为消息机制的上层接口，可以实现对消息的所有处理</p>
-</li>
-<li>
-<p>Handler的构造函数中，会获取当前线程的Looper对象、MessageQueue对象，<code>mcallback</code> 和<code>mAsynchronous</code></p>
-<p>```java
-//构造函数有5个 仅以其中的一个为例
-public Handler(@Nullable Callback callback, boolean async) {</p>
-<pre><code>    mLooper = Looper.myLooper();
-    if (mLooper == null) {
-        throw new RuntimeException(
-            "Can't create handler inside thread " + Thread.currentThread()
-                    + " that has not called Looper.prepare()");
-    }
-    mQueue = mLooper.mQueue;
-    mCallback = callback;
-    mAsynchronous = async;
-}
-</code></pre>
-<p>```</p>
-</li>
-<li>
-<p>发送消息</p>
-<p>发送消息有以下几种,最后都会走到enqueueMessage</p>
-<p><img alt="91c28f332cd14c808b02dd3ca8b0395e" src="../5Android%20%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E2%80%94%E2%80%94Handler.assets/91c28f332cd14c808b02dd3ca8b0395e.png" /></p>
-<p>```java
-  private boolean enqueueMessage(@NonNull MessageQueue queue, @NonNull Message msg,
-            long uptimeMillis) {
-        msg.target = this;
-        msg.workSourceUid = ThreadLocalWorkSource.getUid();</p>
-<pre><code>    if (mAsynchronous) {
-        msg.setAsynchronous(true);
-    }
-    return queue.enqueueMessage(msg, uptimeMillis);
-}
-</code></pre>
-<p>```</p>
-<p>获取当前线程Uid,hanler对象赋值给msg.target,然后讲消息加入到消息队列。</p>
-</li>
-<li>
-<p>处理消息</p>
-<p>在loop()循环时，会将轮到的消息分发给各个Handler,然后Handler进行处理</p>
-<p><code>java
-  public void dispatchMessage(@NonNull Message msg) {
-        if (msg.callback != null) {
-            handleCallback(msg);
-        } else {
-            if (mCallback != null) {
-                if (mCallback.handleMessage(msg)) {
-                    return;
-                }
-            }
-            handleMessage(msg);
-        }
-    }
-//Looper#loop()
- msg.target.dispatchMessage(msg);</code></p>
-<p>由源码可知，实际上回调有三种方法，message的callback,handler的Callback,handleMessage(msg),实际上我们常用的只是最后一种</p>
-</li>
-<li>
-<p>封装消息</p>
-<p><code>Handler</code> 封装了一系列的 <code>obtainMessage</code> 工具方法，方便我们拿到 <code>Message</code> 对象。</p>
-</li>
-<li>
-<p>移除消息</p>
-<p><code>Handler</code> 封装了 removeXXX 方法，内部委托给 <code>MessageQueue</code> 对象去做真正的工作，实际上就是在消息队列中移除消息对象。</p>
-</li>
-<li>
-<p>Looper 作为消息机制中的核心，提供了循环的流程</p>
-</li>
-<li>
-<p>Looper.prepare()和Looper.prepareMainLooper()的区别</p>
-<p><code>java
-//prepare创建了一个Looper对象，并创建了消息队列，获取当前线、将其放入 ThreadLocal&lt;Looper&gt;对象中
-public static void prepare() {
-        prepare(true);
-    }
-private static void prepare(boolean quitAllowed) {
-  if (sThreadLocal.get() != null) {
-    throw new RuntimeException("Only one Looper may be created per thread");
-  }
-  sThreadLocal.set(new Looper(quitAllowed));
-}
-private Looper(boolean quitAllowed) {
-        mQueue = new MessageQueue(quitAllowed);
-        mThread = Thread.currentThread();
-    }
-//prepareMainLooper 也创建了Looper对象，但是quitAllowed=false，不允许退出消息循环
-public static void prepareMainLooper() {
-        prepare(false);
-        synchronized (Looper.class) {
-            if (sMainLooper != null) {
-                throw new IllegalStateException("The main Looper has already been prepared.");
-            }
-            sMainLooper = myLooper();
-        }
-    }</code></p>
-<p>Looper.prepare()创建的Looper是允许loop()退出循环，允许消息队列为空</p>
-<p>Looper.prepareMainLooper()创建的Looper是不允许loop()退出循环的</p>
-</li>
-<li>
-<p>Looper.quit()和Looper.quitSafely()的区别</p>
-<p>这两个方法实际上是调用了MessageQueue的quit(boolean safe)</p>
-<p>Looper.quit()中safe= false,设置退出标志位，并移除所有的消息</p>
-<p>Looper.quit()中safe= true,设置退出标志位，移除所有需要延时处理的消息</p>
-<p>```java
- void quit(boolean safe) {
-        if (!mQuitAllowed) {
-            throw new IllegalStateException("Main thread not allowed to quit.");
-        }</p>
-<pre><code>    synchronized (this) {
-        if (mQuitting) {
-            return;
-        }
-        mQuitting = true;
-
-        if (safe) {
-            removeAllFutureMessagesLocked();
-        } else {
-            removeAllMessagesLocked();
-        }
-
-        // We can assume mPtr != 0 because mQuitting was previously false.
-        nativeWake(mPtr);
-    }
-}
-</code></pre>
-<p>```</p>
-</li>
-</ul>
-<h2 id="5">5.消息屏障</h2>
-<blockquote>
-<p>主要是通过MessageQueue#postSyncBarrier(long when)和MessageQueue#removeSyncBarrier(int token)来产生消息屏障和消除消息屏障。</p>
-</blockquote>
-<p>消息屏障的作用是:先处理异步消息，起了过滤和提升优先级的作用，具体处理在MessageQueue#next()中，标志是有一个target为null的message在消息队列中，起到消息屏障的作用。</p>
+<p>ContextImpl创建Resource</p>
 <pre><code class="language-java"> @UnsupportedAppUsage
-    Message next() {
-        ...
-        for (;;) {
-        ...
-            synchronized (this) {
-                // Try to retrieve the next message.  Return if found.
-                final long now = SystemClock.uptimeMillis();
-                Message prevMsg = null;
-                Message msg = mMessages;
-          //这里 targat == null说明有消息屏障
-                if (msg != null &amp;&amp; msg.target == null) {
-                    // Stalled by a barrier.  Find the next asynchronous message in the queue.
-                    do {
-                        prevMsg = msg;
-                        msg = msg.next;
-                    } while (msg != null &amp;&amp; !msg.isAsynchronous());
+    static ContextImpl createAppContext(ActivityThread mainThread, LoadedApk packageInfo) {
+        return createAppContext(mainThread, packageInfo, null);
+    }
+
+    static ContextImpl createAppContext(ActivityThread mainThread, LoadedApk packageInfo,
+            String opPackageName) {
+        if (packageInfo == null) throw new IllegalArgumentException(&quot;packageInfo&quot;);
+        ContextImpl context = new ContextImpl(null, mainThread, packageInfo,
+            ContextParams.EMPTY, null, null, null, null, null, 0, null, opPackageName);
+      //在这里给Application set Resources
+        context.setResources(packageInfo.getResources());
+        context.mContextType = isSystemOrSystemUI(context) ? CONTEXT_TYPE_SYSTEM_OR_SYSTEM_UI
+                : CONTEXT_TYPE_NON_UI;
+        return context;
+    }
+</code></pre>
+<p>最终会走到<strong>LoadedApk#getResources()</strong> 上</p>
+<pre><code class="language-java">  @UnsupportedAppUsage
+    public Resources getResources() {
+        if (mResources == null) {
+            final String[] splitPaths;
+            try {
+                splitPaths = getSplitPaths(null);
+            } catch (NameNotFoundException e) {
+                // This should never fail.
+                throw new AssertionError(&quot;null split not found&quot;);
+            }
+
+            if (Process.myUid() == mApplicationInfo.uid) {
+                ResourcesManager.getInstance().initializeApplicationPaths(mResDir, splitPaths);
+            }
+                        //这里通过ResourcesManager 来管理
+            mResources = ResourcesManager.getInstance().getResources(null, mResDir,
+                    splitPaths, mLegacyOverlayDirs, mOverlayPaths,
+                    mApplicationInfo.sharedLibraryFiles, null, null, getCompatibilityInfo(),
+                    getClassLoader(), null);
+        }
+        return mResources;
+    }
+</code></pre>
+<p>根据ResourcesKey判断是否有现成的ResourcesImpl，没有的话创建ResourcesImpl,返回Resources，然后添加到Application中。</p>
+<pre><code class="language-java"> public Resources getResources(
+            @Nullable IBinder activityToken,
+            @Nullable String resDir,
+            @Nullable String[] splitResDirs,
+            @Nullable String[] legacyOverlayDirs,
+            @Nullable String[] overlayPaths,
+            @Nullable String[] libDirs,
+            @Nullable Integer overrideDisplayId,
+            @Nullable Configuration overrideConfig,
+            @NonNull CompatibilityInfo compatInfo,
+            @Nullable ClassLoader classLoader,
+            @Nullable List&lt;ResourcesLoader&gt; loaders //资源加载Loader
+          ) {
+        try {
+          //根据ResourcesKey判断是否有现成的ResourcesImpl
+            final ResourcesKey key = new ResourcesKey(
+                    resDir, //Apk文件路径
+                    splitResDirs,//。Android 支持模块化 APK，这些分割 APK 可以包含额外的资源，这个参数用于指定这些分割资源的路径。
+                    combinedOverlayPaths(legacyOverlayDirs, overlayPaths),
+                    libDirs,
+                    overrideDisplayId != null ? overrideDisplayId : INVALID_DISPLAY,
+                    overrideConfig,
+                    compatInfo,
+                    loaders == null ? null : loaders.toArray(new ResourcesLoader[0]));
+            classLoader = classLoader != null ? classLoader : ClassLoader.getSystemClassLoader();
+            ...
+            Resources resources;
+            if (activityToken != null) {
+                            ...
+                resources = createResourcesForActivity(activityToken, key, initialOverrideConfig,
+                        overrideDisplayId, classLoader, assetsSupplier);
+            } else {
+                resources = createResources(key, classLoader, assetsSupplier);
+            }
+            return resources;
+        } finally {
+            Trace.traceEnd(Trace.TRACE_TAG_RESOURCES);
+        }
+    }
+
+private @Nullable ResourcesImpl findOrCreateResourcesImplForKeyLocked(
+            @NonNull ResourcesKey key, @Nullable ApkAssetsSupplier apkSupplier) {
+        ResourcesImpl impl = findResourcesImplForKeyLocked(key);
+        if (impl == null) {
+            impl = createResourcesImpl(key, apkSupplier);
+            if (impl != null) {
+                mResourceImpls.put(key, new WeakReference&lt;&gt;(impl));
+            }
+        }
+        return impl;
+    }
+</code></pre>
+<h4 id="activity">Activity</h4>
+<p>本质上也会走到ResourceManager#createResources(),然后创建在Activity中创建Resources。</p>
+<pre><code class="language-java"> #ActivityThread.java
+ private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
+    .... 省略部分代码
+ 
+     // 创建 activity 的上下文
+     ContextImpl appContext = createBaseContextForActivity(r);
+     Activity activity = null;
+     try {
+         java.lang.ClassLoader cl = appContext.getClassLoader();
+         // 通过反射创建 activity 的实例
+         activity = mInstrumentation.newActivity(
+                 cl, component.getClassName(), r.intent);
+        
+        
+    } catch (Exception e) {
+        .....
+    }
+ 
+     try {
+         if (activity != null) {
+ 
+             // szj 创建 PhoneWindow,设置windowManager等操作
+             activity.attach(appContext, this, getInstrumentation(), r.token,
+                     r.ident, app, r.intent, r.activityInfo, title, r.parent,
+                     r.embeddedID, r.lastNonConfigurationInstances, config,
+                     r.referrer, r.voiceInteractor, window, r.configCallback,
+                     r.assistToken);
+ 
+             activity.mCalled = false;
+             // szj 分发 onCreate() 事件
+             if (r.isPersistable()) {
+                 mInstrumentation.callActivityOnCreate(activity, r.state, r.persistentState);
+            } else {
+                 mInstrumentation.callActivityOnCreate(activity, r.state);
+            }
+             // 判断是否调用super.onCreate() 方法
+             if (!activity.mCalled) {
+                 throw new SuperNotCalledException(
+                     &quot;Activity &quot; + r.intent.getComponent().toShortString() +
+                     &quot; did not call through to super.onCreate()&quot;);
+            }
+        }
+        ...
+    }  catch (Exception e) {
+        ...
+    }
+     return activity;
+ }
+
+</code></pre>
+<p>Android 11 源码中，也会将Application#ResourcesLoader添加到Activity。</p>
+<pre><code class="language-java">static ContextImpl createActivityContext(ActivityThread mainThread,
+            LoadedApk packageInfo, ActivityInfo activityInfo, IBinder activityToken, int displayId,
+            Configuration overrideConfiguration) {
+        ... //添加Resources
+        context.setResources(resourcesManager.createBaseTokenResources(activityToken,
+                packageInfo.getResDir(),
+                splitDirs,
+                packageInfo.getOverlayDirs(),
+                packageInfo.getOverlayPaths(),
+                packageInfo.getApplicationInfo().sharedLibraryFiles,
+                displayId,
+                overrideConfiguration,
+                compatInfo,
+                classLoader,
+                packageInfo.getApplication() == null ? null
+                        : packageInfo.getApplication().getResources().getLoaders()));
+        context.mDisplay = resourcesManager.getAdjustedDisplay(displayId,
+                context.getResources());
+        return context;
+    }
+</code></pre>
+<h3 id="resources_1">Resources加载资源</h3>
+<p>相关资源加载的类图</p>
+<p><img alt="资源加载类图" src="../Android%20%E8%B5%84%E6%BA%90%E6%89%93%E5%8C%85%E5%92%8C%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B.assets/%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E7%B1%BB%E5%9B%BE.png" /></p>
+<p>总结：</p>
+<p>ResourceManager管理了一个ResourcesImpl列表，用来创建Resources.</p>
+<p>RescourcesImpl中包含了对Resource Apk的处理，主要是通过AssetManager 来获取到资源路径，进行加载。</p>
+<p>AssetManager 管理了一个ApkAssets数组，表示有多个资源apk。</p>
+<h4 id="getdrawable">以getDrawable为例</h4>
+<p>正常我们在进行获取Drawable时，<code>getResources().getDrawable(int resid)</code>。</p>
+<pre><code class="language-java">//Context.java
+public final Drawable getDrawable(@DrawableRes int id) {
+     return getResources().getDrawable(id, getTheme());
+ }
+
+
+@Nullable
+public Drawable getDrawableForDensity(@DrawableRes int id, int density, @Nullable Theme theme) {
+  final TypedValue value = obtainTempTypedValue();
+  try {
+    final ResourcesImpl impl = mResourcesImpl;
+    //这里通过native 代码获取Drawable，然后把值存到TypedValue value
+    impl.getValueForDensity(id, density, value, true);
+    return loadDrawable(value, id, density, theme);
+  } finally {
+    releaseTempTypedValue(value);
+  }
+}
+
+void getValueForDensity(@AnyRes int id, int density, TypedValue outValue,
+            boolean resolveRefs) throws NotFoundException {
+        boolean found = mAssets.getResourceValue(id, density, outValue, resolveRefs);
+        if (found) {
+            return;
+        }
+        throw new NotFoundException(&quot;Resource ID #0x&quot; + Integer.toHexString(id));
+    }
+
+ boolean getResourceValue(@AnyRes int resId, int densityDpi, @NonNull TypedValue outValue,
+            boolean resolveRefs) {
+        Objects.requireNonNull(outValue, &quot;outValue&quot;);
+        synchronized (this) {
+            ensureValidLocked();
+           //由于前面已经将Apkset到存储列表中，在使用时直接通过set就能获取到值，
+            final int cookie = nativeGetResourceValue(
+                    mObject, resId, (short) densityDpi, outValue, resolveRefs);
+            if (cookie &lt;= 0) {
+                return false;
+            }
+
+            // Convert the changing configurations flags populated by native code.
+            outValue.changingConfigurations = ActivityInfo.activityInfoConfigNativeToJava(
+                    outValue.changingConfigurations);
+
+            if (outValue.type == TypedValue.TYPE_STRING) {
+                if ((outValue.string = getPooledStringForCookie(cookie, outValue.data)) == null) {
+                    return false;
                 }
-                if (msg != null) {
-                  ...
+            }
+            return true;
+        }
+    }
+</code></pre>
+<p>接着从TypedValue中看是否加载成功,加载成功后，处理</p>
+<pre><code class="language-java">  private Drawable loadDrawableForCookie(@NonNull Resources wrapper, @NonNull TypedValue value,int id, int density) {
+       ...
+        try {
+            // Perform a linear search to check if we have already referenced this resource before.
+            if (stack.contains(id)) {
+                throw new Exception(&quot;Recursive reference in drawable&quot;);
+            }
+            stack.push(id);
+            try {
+                if (file.endsWith(&quot;.xml&quot;)) {
+                    final String typeName = getResourceTypeName(id);
+
+                    if (typeName != null &amp;&amp; typeName.equals(&quot;color&quot;)) {
+                       //颜色
+                        dr = loadColorOrXmlDrawable(wrapper, value, id, density, file);
+                    } else {
+                      //非颜色
+                        dr = loadXmlDrawable(wrapper, value, id, density, file);
                     }
                 } else {
-                    // No more messages.
-                    nextPollTimeoutMillis = -1;
+                    //图片
+                    final InputStream is = mAssets.openNonAsset(
+                            value.assetCookie, file, AssetManager.ACCESS_STREAMING);
+                    final AssetInputStream ais = (AssetInputStream) is;
+                    dr = decodeImageDrawable(ais, wrapper, value);
                 }
-                        ...
+            } finally {
+                stack.pop();
             }
-                        ...
+        } catch (Exception | StackOverflowError e) {
+           ...
         }
+        return dr;
     }
 </code></pre>
-<pre><code class="language-java">//同步的消息为s 异步的消息为a,消息屏障为b
-s1-&gt;b-&gt;s2-&gt;a1-&gt;s3-&gt;a2-&gt;s4
+<p>如果是<strong>图片</strong>,就通过AssetManager#openNonAsset()来解析资源图片,获取到intputStream流,来解码成drawable。</p>
+<p>如果是<strong>xml</strong>,那么就通过XmlResourceParser来解析,最终生成drawable。</p>
+<p>如果是<strong>颜色</strong>,先直接获取value，生成ColorStateListDrawable，若失败了，则重新进行xml解析。</p>
+<h3 id="resources_2">Resources 添加皮肤包</h3>
+<p>Android 11 及以上，采用ResoucesLoader</p>
+<p>获取当前Application或者Activity的Resources,添加ResourcesLoader。</p>
+<pre><code class="language-java"> if (android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.R) {
+            try {
+                ResourcesProvider resourcesProvider
+                        = ResourcesProvider.loadFromApk(ParcelFileDescriptor.open(apkFile, ParcelFileDescriptor.MODE_READ_WRITE));
+                ResourcesLoader loader = new ResourcesLoader();
+                loader.addProvider(resourcesProvider);
+                Resources resources = context.getResources();
+                resources.addLoaders(loader);
+            } catch (IOException e) {
+                Log.e(&quot;test_dark_mode&quot;, &quot;loadDarkNight apk: &quot;, e);
+            }
+        } else {
+            Log.d(&quot;test_dark_mode&quot;, &quot;not exit apk&quot;);
+        }
 </code></pre>
-<p>执行顺序为s1-&gt;a1-&gt;a2,当移除消息屏障后，才会执行s2-&gt;s3-&gt;s4.</p>
-<p><a href="https://cloud.tencent.com/developer/article/1685247">“终于懂了” 系列：Android屏幕刷新机制—VSync、Choreographer 全面理解！</a></p>
-<h2 id="6handler">6.Handler使用的注意要点</h2>
+<p>Android 10 及以下, 采用反射调用AssetManager#addAssetPath()的方法添加Apk。</p>
+<pre><code class="language-java">public static final String PATH = &quot;&quot;；//Apk所在的路径。
+
+ try {
+     AssetManager assetManager = AssetManager.class.newInstance();
+     @SuppressLint(&quot;DiscouragedPrivateApi&quot;)
+     Method method = AssetManager.class.getDeclaredMethod(&quot;addAssetPath&quot;, String.class);
+     method.setAccessible(true);
+     /// 反射执行方法
+     method.invoke(assetManager, PATH);
+   // 创建自己的Resources
+     Resources resources = new Resources(assetManager, createDisplayMetrics(), createConfiguration());
+   /*
+    * getIdentifier 根据名字拿id
+    * name: 资源名
+    * defType: 资源类型
+    * defPackage: 所在包名
+    * return:如果返回0则表示没有找到
+    */
+   /// 加载drawable
+   int drawableId = resources.getIdentifier(&quot;shark&quot;, &quot;drawable&quot;, &quot;com.skin.skin_pack_making&quot;);
+   // 加载string
+   int stringId = resources.getIdentifier(&quot;hello_skin&quot;, &quot;string&quot;, &quot;com.skin.skin_pack_making&quot;);
+   // 加载color
+   int colorId = resources.getIdentifier(&quot;global_background&quot;, &quot;color&quot;, &quot;com.skin.skin_pack_making&quot;);
+   mImageView.setImageDrawable(resources.getDrawable(drawableId, null));
+   mTextView.setText(resources.getString(stringId));
+   mTextView.setBackgroundColor(resources.getColor(colorId, null));
+ } catch (Exception e) {
+     e.printStackTrace();
+     showDialog(&quot;出错了&quot; + e.getMessage());
+ }
+</code></pre>
+<h2 id="_5">编译中间过程生成的主要文件：</h2>
+<pre><code class="language-bash">intermediates/runtime_symbol_list/debug/R.txt #所有资源的id
+/intermediates/processed_res/debug/out/resources-debug.ap_ #AndroidManifest.xml .arsc文件
+</code></pre>
+<h2 id="_6">实战讲解</h2>
+<h2 id="android_5">Android 深色模式</h2>
+<p>1.固定资源id后，添加深色资源，并打出深色资源包。</p>
+<p>2.通过ResourceLoader 添加深色资源包。</p>
+<p>3.修改Configuration,设置成深色模式。</p>
+<pre><code class="language-java">Configuration configuration = context.getResources().getConfiguration();
+                int newnightmode = isDark() ? UI_MODE_NIGHT_YES : UI_MODE_NIGHT_NO;
+                configuration.uiMode = newnightmode | (configuration.uiMode &amp; ~Configuration.UI_MODE_NIGHT_MASK);
+                context.getResources().updateConfiguration(configuration, null);
+</code></pre>
+<h2 id="android_6">Android 删除无用资源方案流程</h2>
+<p>1.通过R.txt文件获取所有的资源</p>
+<p>2.在AndroidManifest.xml查找引用的资源</p>
+<p>3.web.jar 通过R.java文件和resources.arsc 查找到Java文件中引用的资源</p>
 <ul>
-<li>message的生成</li>
+<li>若是layout, array,style等，会接着在xml找使用到的资源</li>
 </ul>
+<p>4.1减去2，3步中使用到的资源，就是无用资源，生成app/build/unuse_res.txt文件中</p>
+<p>5.根据merge.xml拿到各个aar中的res资源，判断res资源是否在无用资源中，最后得到需要删除的无用资源</p>
+<p>6.生成无用资源删除报告</p>
+<p>7.通过python脚本删除扫描出来的无用资源</p>
+<p>8.通过插桩getResources().getIdentifier() ,来hook通过资源name字符串来获取id的情况，上线观察</p>
+<h2 id="_7">方案原理</h2>
+<h3 id="_rtxt">所有资源的索引文件_R.txt：</h3>
+<pre><code class="language-bash">/app/build/intermediates/runtime_symbol_list/debug/R.txt
+</code></pre>
+<p>格式为：数据类型 资源分类 资源名称 资源id</p>
+<pre><code class="language-xml">&lt;!--举例--&gt;
+int anim abc_fade_in 0x7f010000
+</code></pre>
+<h3 id="processres-task-ap_"><em>processRes Task</em> 的产物AP_ 文件:</h3>
 <blockquote>
-<p>Message中会有一个大小为50的消息池，使用Message.obtain()可以复用这个消息池中的消息，降低了开销</p>
+<p>AP_ 文件 是processDResources 命令下的产物</p>
 </blockquote>
+<p>解压后主要有以下三个文件：</p>
+<ol>
+<li><code>AndroidManifest.xml</code>:合并的AndroidManifest文件</li>
+<li><code>res/*</code> ：合并后的所有res文件</li>
+<li><code>resources.arsc</code>:resources.arsc是Android编译后生成的产物，主要是用来建立资源映射关系</li>
+</ol>
+<blockquote>
+<p><a href="https://juejin.cn/post/6844903911602683918">详细介绍</a></p>
+</blockquote>
+<p>merge.xml：</p>
+<pre><code class="language-bash">/intermediates/incremental/debug/mergeDebugResources/merger.xml
+</code></pre>
+<h3 id="hookgetresourcesgetidentifier">通过插桩hookgetResources().getIdentifier()</h3>
+<h2 id="_8">方案</h2>
+<h3 id="_9">方案流程</h3>
+<p>1.通过R.txt文件获取所有的资源</p>
+<p>2.在AndroidManifest.xml查找引用的资源</p>
+<p>3.web.jar 通过R.java文件和resources.arsc 查找到Java文件中引用的资源</p>
 <ul>
-<li>内存泄漏</li>
+<li>若是layout, array,style等，会接着在xml找使用到的资源</li>
 </ul>
-<blockquote>
-<p>因为Handler可以发送延迟消息，并且内部类会持有外部类的引用，因此在Activity中创建Handler时容易造成内存泄漏。</p>
-</blockquote>
-<h2 id="7handler-native">7.<a href="http://gityuan.com/2015/12/27/handler-message-native/#nativepollonce">Handler Native</a></h2>
+<p>4.1减去2，3步中使用到的资源，就是无用资源，生成app/build/unuse_res.txt文件中</p>
+<p>5.根据merge.xml拿到各个aar中的res资源，判断res资源是否在无用资源中，最后得到需要删除的无用资源</p>
+<p>6.生成无用资源删除报告</p>
+<p>7.通过python脚本删除扫描出来的无用资源</p>
+<p>8.通过插桩getResources().getIdentifier() ,来hook通过资源name字符串来获取id的情况，上线观察</p>
+<h3 id="_10">方案使用方式</h3>
+<p>下载地址：https:///zhangqian20/unres</p>
+<p>CheckResUnuse2File.groovy</p>
+<p>1.脚本使用方式：</p>
+<p>需要groovy运行环境</p>
+<ul>
+<li>首先先在本地切到dev分支编译微博源码</li>
+</ul>
+<p>./gradlew clean app:assembleDebug</p>
+<ul>
+<li>
+<p>修改source_moudle 中添加打开的模块：如: Arrays.asList("allmodules:sdk", "allmodules:main")</p>
+</li>
+<li>
+<p>运行CheckResUnuse2File.groovy</p>
+</li>
+</ul>
+<p>./groovy CheckResUnuse2File.groovy [微博工程目录]  [报告生成文件]</p>
+<p><code>java
+  ./groovy CheckResUnuse2File.groovy Android/Weibo/Weibo_Project  GroovyTest/src/result.html</code></p>
+<p>2.删除脚本使用方式</p>
+<p>需要python运行环境</p>
+<p>python3 -m delete_res_in_weibo.py--file_path /Users/zhangqian20/Project/JAVA/GroovyTest/public/unuseres
+--res_path /Users/zhangqian20/Project/Android/Weibo/Weibo_Project
+--delete true</p>
+<p>3.上线运行</p>
+<p>将删除的资源做一个兜底，然后上线验证是否有通过字符串拼接name获取id。</p>
+<h3 id="_11">注意</h3>
+<p>1.getResources().getIdentifier()  拼接的id,不是name的全名——hook住</p>
+<p>2.layout 中id资源并没有排出—— 编译时可以检查出来</p>
+<p>3.Tool:text 中引用的资源未扫描到 ——不打进包里</p>
+<p>4.Widget中的资源会放在assert的json资源下——不会引起崩溃</p>
+<p>5.ci 自动化测试中需要使用的资源</p>
+<p>6.Assert 中引用的资源，会放在json文件中</p>
+<p>7.无用资源删除需要Hook的白名单</p>
+<ul>
+<li>drawable_weixin_brush_pic</li>
+</ul>
+<p>在这个文件中:/mediaproducer/assets/photoalbum/local_graffiti.json</p>
 
 
 
@@ -3276,7 +3296,7 @@ s1-&gt;b-&gt;s2-&gt;a1-&gt;s3-&gt;a2-&gt;s4
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../4ContentProvider/" class="md-footer__link md-footer__link--prev" aria-label="上一页: ContentProvider">
+          <a href="../31.%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 鸿蒙开发">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -3286,20 +3306,20 @@ s1-&gt;b-&gt;s2-&gt;a1-&gt;s3-&gt;a2-&gt;s4
                 上一页
               </span>
               <div class="md-ellipsis">
-                ContentProvider
+                鸿蒙开发
               </div>
             </div>
           </a>
         
         
           
-          <a href="../5Application/" class="md-footer__link md-footer__link--next" aria-label="下一页: Application">
+          <a href="../34Compose%E7%9A%84%E4%BD%BF%E7%94%A8/" class="md-footer__link md-footer__link--next" aria-label="下一页: Compose的使用">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Application
+                Compose的使用
               </div>
             </div>
             <div class="md-footer__button md-icon">
