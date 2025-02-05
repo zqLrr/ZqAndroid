@@ -55,10 +55,9 @@ nav:
     - 鸿蒙开发: 'Android/31.鸿蒙开发.md'
     - Android 资源详解: 'Android/33Android 资源详解.md'
     - Compose的使用: 'Android/34Compose的使用.md'
-    - 反编译工具使用和总结: 'Android/反编译工具使用和总结.md'
     - 模块间通信: 'Android/模块间通信.md'
     - 嵌套滑动造成的滑动冲突原理分析: 'Android/嵌套滑动造成的滑动冲突原理分析.md'
-    - 自定义View: 'Android/自定义View.md'
+    - 自定义View: 'Android/32自定义View.md'
     - Android 问题总结: 'Android/Android 问题总结.md'
     - Android Demo  200: 'Android/Android Demo  200.md'
     - Android工具使用教程: 'Android/Android工具使用教程.md'
@@ -66,7 +65,6 @@ nav:
     - ContentProvider: 'Android/ContentProvider.md'
     - Fragment的知识点: 'Android/Fragment的知识点.md'
     - Plugin 插件开发: 'Android/Plugin 插件开发.md'
-    - README: 'Android/README.md'
   - 前端:
     - 跨端经验开发: '前端/跨端经验开发.md'
     - css: '前端/css.md'
@@ -77,6 +75,7 @@ nav:
   - DevTools:
     - docker使用: 'DevTools/docker使用.md'
     - Easy-Make本地搭建: 'DevTools/Easy-Make本地搭建.md'
+    - 反编译工具使用和总结: 'DevTools/反编译工具使用和总结.md'
   - Flutter:
     - Base: 'Flutter/Base.md'
   - Java:
