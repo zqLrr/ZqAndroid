@@ -5,7 +5,6 @@ edit_uri: -/blob/master/
 site_description: 个人技术wiki
 site_author: Zq
 
-
 theme:
   name: material
   language: zh
@@ -20,18 +19,93 @@ nav:
   - Android:
     - Android 初识: 'Android/1安卓学习.md'
     - Android 大纲: 'Android/2Android大纲.md'
-
+    - Activity 启动流程和启动模式源码解析: 'Android/1Acticity启动流程和启动模式源码解析.md'
+    - Activity: 'Android/1Activity.md'
+    - Broadcast Receiver: 'Android/2Boradcast Receiver.md'
+    - Service: 'Android/3Service.md'
+    - View控件和布局: 'Android/3View控件和布局.md'
+    - 多媒体: 'Android/4多媒体.md'
+    - ContentProvider: 'Android/4ContentProvider.md'
+    - Android 的消息传递机制——Handler: 'Android/5Android 的消息传递机制——Handler.md'
+    - Application: 'Android/5Application.md'
+    - Android Lint ——代码优化的扫描工具: 'Android/6Android Lint ——代码优化的扫描工具.md'
+    - Android 杂记: 'Android/7Android 杂记.md'
+    - Android混淆——proguard: 'Android/8Android混淆——proguard.md'
+    - 暗黑模式(深色主题)适配: 'Android/9暗黑模式(深色主题)适配.md'
+    - Android Crash 分析: 'Android/10Android Crash 分析.md'
+    - 设计模式: 'Android/11 设计模式.md'
+    - Otto库、IPCOtto库的使用: 'Android/12 Otto库、IPCOtto库的使用.md'
+    - Gradle 构建工具的使用: 'Android/13 Gradle 构建工具的使用.md'
+    - Service: 'Android/14 Service.md'
+    - Android 常用业务功能: 'Android/15 Android 常用业务功能.md'
+    - Jetpacket基础学习: 'Android/17 Jetpacket基础学习.md'
+    - RxJAVA 基础知识: 'Android/18 RxJAVA 基础知识.md'
+    - 音视频开发: 'Android/19 音视频开发.md'
+    - 性能优化: 'Android/20 性能优化.md'
+    - Gson使用和源码解析: 'Android/21Gson使用和源码解析.md'
+    - Kotlin 语法入门: 'Android/22 Kotlin 语法入门.md'
+    - OkDownLoad 使用教程: 'Android/23 OkDownLoad 使用教程.md'
+    - 自动化测试: 'Android/24 自动化测试.md'
+    - Apk大小优化: 'Android/25 Apk大小优化.md'
+    - AOSP源码学习: 'Android/26 AOSP源码学习.md'
+    - JNI 和.SO入门: 'Android/27 JNI 和.SO入门.md'
+    - 内存泄漏方案处理: 'Android/28 内存泄漏方案处理.md'
+    - Room数据库的使用: 'Android/29 Room数据库的使用.md'
+    - 网络整理: 'Android/30.网络整理.md'
+    - 鸿蒙开发: 'Android/31.鸿蒙开发.md'
+    - Android 资源详解: 'Android/33Android 资源详解.md'
+    - Compose的使用: 'Android/34Compose的使用.md'
+    - 反编译工具使用和总结: 'Android/反编译工具使用和总结.md'
+    - 模块间通信: 'Android/模块间通信.md'
+    - 嵌套滑动造成的滑动冲突原理分析: 'Android/嵌套滑动造成的滑动冲突原理分析.md'
+    - 自定义View: 'Android/自定义View.md'
+    - Android 问题总结: 'Android/Android 问题总结.md'
+    - Android Demo  200: 'Android/Android Demo  200.md'
+    - Android工具使用教程: 'Android/Android工具使用教程.md'
+    - AppBarLayout的使用: 'Android/AppBarLayout的使用.md'
+    - ContentProvider: 'Android/ContentProvider.md'
+    - Fragment的知识点: 'Android/Fragment的知识点.md'
+    - Plugin 插件开发: 'Android/Plugin 插件开发.md'
+    - README: 'Android/README.md'
+  - 前端:
+    - 跨端经验开发: '前端/跨端经验开发.md'
+    - css: '前端/css.md'
+    - Preact: '前端/Preact.md'
+    - Vue: '前端/Vue.md'
+  - 数据结构:
+    - 1绪论: '数据结构/1绪论.md'
+  - DevTools:
+    - docker使用: 'DevTools/docker使用.md'
+    - Easy-Make本地搭建: 'DevTools/Easy-Make本地搭建.md'
+  - Flutter:
+    - Base: 'Flutter/Base.md'
+  - Java:
+    - JAVA 线程详解: 'Java/JAVA 线程详解.md'
+    - Java基础学习: 'Java/Java基础学习.md'
+    - Java异常: 'Java/Java异常.md'
+    - Java注解（Annotation）: 'Java/Java注解（Annotation）.md'
+    - LeetCode 题解: 'Java/LeetCode 题解.md'
+  - Net:
+    - Http协议: 'Net/Http协议.md'
+  - Python:
+    - Python 教程: 'Python/Python 教程.md'
+  - ReadNotes:
+    - Coding Easy: 'ReadNotes/Coding Easy.md'
+  - SoftwareExam:
+    - 层次式架构范文: 'SoftwareExam/层次式架构范文.md'
+    - software: 'SoftwareExam/software.md'
+  - Spring-Boot:
+    - Spring-Boot 框架: 'Spring-Boot/Spring-Boot 框架.md'
+  - Tools:
+    - common tools: 'Tools/common tools.md'
 
 plugins:
-- search:
-    lang:
-      - zh
-      - en
-
-
+  - search:
+      lang:
+        - zh
+        - en
 
 markdown_extensions:
   - attr_list
   - admonition
   - footnotes
-  
