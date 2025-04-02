@@ -124,8 +124,6 @@ java.lang.IllegalStateException: Room cannot verify the data integrity. Looks li
 
 sinaweibo://qa/detail?object_id=1022:2310684917667189620819&cip=61.135.152.143&ua=OPPO-PEEM00__weibo__13.6.1__android__android12
 
-
-
 # SQLite知识点总结
 
 ### enableWriteAheadLogging

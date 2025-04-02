@@ -630,8 +630,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
   注意：**子View中的监听事件优先级： OnTouchListener---->OnTouchEvent---->OnCLickListener**
 
-
-
 ### 2、Handler消息传递机制
 
 1、handler机制的作用：为了解决Android的多线程问题——Android只允许UI线程修改Activity的UI组件。主线程通常被称作UI线程。

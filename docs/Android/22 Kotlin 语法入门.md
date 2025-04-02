@@ -155,6 +155,69 @@ fun  @receiver:ColorInt Int.toHexString(): String {
 }
 ```
 
+* AS反编译Java方法
+
+  在 **工具栏** 点击 `Tools`（工具） > `Kotlin` > `Show Kotlin Bytecode`（显示 Kotlin 字节码）。
+
+  在 **Kotlin Bytecode** 窗口，点击 `Decompile` 按钮，即可查看 Kotlin 反编译后的 Java 代码
+
+* Java调用扩展函数
+
+  ```kotlin
+  //ViewExtension.Kt
+  val Float.dp: Float
+      get() = TypedValue.applyDimension(
+          TypedValue.COMPLEX_UNIT_DIP,
+          this,
+          Resources.getSystem().displayMetrics
+      )
+  
+  val Float.sp: Float
+      get() = TypedValue.applyDimension(
+          TypedValue.COMPLEX_UNIT_SP,
+          this,
+          Resources.getSystem().displayMetrics
+      )
+  
+  inline val Int.dp: Int get() = this.toFloat().dp.toInt()
+  inline val Int.sp: Int get() = this.toFloat().sp.toInt()
+  ```
+
+  ```java
+  ViewExtensionKt.java
+  @Metadata(
+     mv = {1, 8, 0},
+     k = 2,
+     xi = 48,
+     d1 = {"\u0000\u0012\n\u0000\n\u0002\u0010\u0007\n\u0002\b\u0004\n\u0002\u0010\b\n\u0002\b\u0002\"\u0015\u0010\u0000\u001a\u00020\u0001*\u00020\u00018F¢\u0006\u0006\u001a\u0004\b\u0002\u0010\u0003\"\u0015\u0010\u0004\u001a\u00020\u0001*\u00020\u00018F¢\u0006\u0006\u001a\u0004\b\u0005\u0010\u0003\"\u0016\u0010\u0000\u001a\u00020\u0006*\u00020\u00068Æ\u0002¢\u0006\u0006\u001a\u0004\b\u0002\u0010\u0007\"\u0016\u0010\u0004\u001a\u00020\u0006*\u00020\u00068Æ\u0002¢\u0006\u0006\u001a\u0004\b\u0005\u0010\u0007¨\u0006\b"},
+     d2 = {"dp", "", "getDp", "(F)F", "sp", "getSp", "", "(I)I", "Sources of KotlinDemo.app.main"}
+  )
+  public final class ViewExtensionKt {
+     public static final float getDp(float $this$dp) {
+        return TypedValue.applyDimension(1, $this$dp, Resources.getSystem().getDisplayMetrics());
+     }
+  
+     public static final float getSp(float $this$sp) {
+        return TypedValue.applyDimension(2, $this$sp, Resources.getSystem().getDisplayMetrics());
+     }
+  
+     public static final int getDp(int $this$dp) {
+        int $i$f$getDp = 0;
+        return (int)getDp((float)$this$dp);
+     }
+  
+     public static final int getSp(int $this$sp) {
+        int $i$f$getSp = 0;
+        return (int)getSp((float)$this$sp);
+     }
+  }
+  
+  ```
+
+  Kotlin 扩展函数 其实是一个 **静态方法**，它 **接收对象作为参数**。这个对象是扩展函数的接收者，扩展函数能够通过该对象访问它的公共属性。
+
+  扩展函数并不会修改类本身，而是创建了一个与类无关的静态方法，接受类的实例作为参数。
+
 ### NULL检查机制
 
 > 字段后+`?`:可不做处理返回值为null或使用`?:`，字段后+`!!`:抛出空指针异常。

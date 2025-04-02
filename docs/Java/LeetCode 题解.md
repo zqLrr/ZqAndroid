@@ -501,3 +501,106 @@ public boolean evaluateTree(TreeNode root) {
 }
 ```
 
+# 位运算
+
+* & 与运算
+  * 对某位置0  x &= ~(1 << k);
+  * 取某一位的值  x & (1 << k)
+  * 判断奇偶性  (x & 1) == 1;
+
+* ｜ 或运算
+  * 对某位置1 x|= (1 << k)   常用来合并全县
+* ^ 异或运算
+  * 使特定位反转
+  * 与0 异或 保持原值
+
+* ～ 非运算
+* `>>` 右移
+* `<<` 左移
+* `>>>`无符号右移
+* `<<<` 无符号左移
+
+### 综合应用
+
+#### 1) **判断一个数是否是 2 的幂**
+
+```
+cpp
+
+
+复制编辑
+bool isPowerOfTwo(int x) {
+    return (x > 0) && (x & (x - 1)) == 0;
+}
+```
+
+**原理**：`2^n` 只有 1 位是 `1`，`x - 1` 会使所有低位变成 `1`，所以 `x & (x - 1) == 0`。
+
+------
+
+#### 2) **求二进制中 1 的个数**
+
+```
+cpp
+
+
+复制编辑
+int countOnes(int x) {
+    int count = 0;
+    while (x) {
+        x &= (x - 1);
+        count++;
+    }
+    return count;
+}
+```
+
+**原理**：每次 `x & (x - 1)` 都会消去 `x` 最右边的 `1`。
+
+------
+
+#### 3) **快速求 `log2(x)`（整数部分）**
+
+```
+cpp
+
+
+复制编辑
+int log2(int x) {
+    int res = 0;
+    while (x >>= 1) {
+        res++;
+    }
+    return res;
+}
+```
+
+**原理**：不断右移 `x` 直到 `0`，移动次数就是 `log2(x)`。
+
+------
+
+#### 4) **找出只出现一次的两个数**
+
+```
+cpp
+
+
+复制编辑
+vector<int> findTwoUniqueNumbers(vector<int>& nums) {
+    int xorSum = 0;
+    for (int num : nums) {
+        xorSum ^= num;
+    }
+
+    int lowBit = xorSum & (-xorSum);  // 取最低位的 1
+    int a = 0, b = 0;
+
+    for (int num : nums) {
+        if (num & lowBit) a ^= num;
+        else b ^= num;
+    }
+    return {a, b};
+}
+```
+
+**原理**：`xorSum` 是两个唯一数 `a ^ b`，找到最低位的 `1`，分成两组分别异或，最终得到 `a` 和 `b`。

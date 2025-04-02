@@ -108,7 +108,7 @@ Android常见五种插件id：
 implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])//依赖libs目录下的所有相关类型文件
 implementation project(path: ':moudlename')//依赖本地文件
 implementation files('libs/libraryname.jar')//依赖本地库
-  implementation(group: 'com.sina.weibo.lib', name: 'ipc', version: '0.1.2-SNAPSHOT', ext: 'aar') { transitive = true //是否穿透 }//依赖远程库 需要在allprojects中添加maven仓库
+implementation(group: 'com.sina.weibo.lib', name: 'ipc', version: '0.1.2-SNAPSHOT', ext: 'aar') { transitive = true //是否穿透 }//依赖远程库 需要在allprojects中添加maven仓库
 ```
 
   dependencies的Api
@@ -510,7 +510,12 @@ RepositoriesMode.FAIL_ON_PROJECT_REPOS : 解析依赖库时 , 强行使用远程
 > Task :app:packageDebug
 ```
 
+## 获取各个版本的签名信息
 
+./gradlew signingReport  # Mac/Linux
+gradlew signingReport  # Windows
+
+比如SHA1 MD5 SHA-256:
 
 ## Gradle常见问题整理
 

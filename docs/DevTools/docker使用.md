@@ -170,3 +170,13 @@ FLUSH PRIVILEGES;
 ```shell
 CREATE DATABASE front;
 ```
+
+
+
+GRANT ALL PRIVILEGES ON sg_case_scheme.* TO 'root'@'%' IDENTIFIED BY 'root';
+
+
+
+
+
+File uploaded successfully: http://127.0.0.1:8081/uploads/1329f096-69ae-4d6a-93e5-e30d6355a378-header_bg_414.9.png

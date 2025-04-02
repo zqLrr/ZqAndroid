@@ -264,23 +264,24 @@ FutureTask的构造函数有两个，可以传入callable(),也可以传入runab
 
     创建一个成员变量来当对象锁，零长度的byte数组对象创建起来将比任何对象都经济
     
-  * synchronized作用于static 函数 = 使用*class literal(类名称字面常量)*当锁
 
-    ```java
-    Class Foo
+* 类锁：synchronized作用于static 函数 = 使用*class literal(类名称字面常量)*当锁
+
+  ```java
+  Class Foo
+  {
+    public synchronized static void methodAAA()   // 同步的static 函数
     {
-      public synchronized static void methodAAA()   // 同步的static 函数
-      {
-        //….
-      }
-      public void methodBBB()
-      {
-        synchronized(Foo.class)   //  class literal(类名称字面常量)
-      }
+      //….
     }
-    ```
-    
-    该同步是说调用这个方法对象的类作为锁，不同的对象在不同的线程中使用该方法需要同步
+    public void methodBBB()
+    {
+      synchronized(Foo.class)   //  class literal(类名称字面常量)
+    }
+  }
+  ```
+
+  该同步是说调用这个方法对象的类作为锁，不同的对象在不同的线程中使用该方法需要同步
 
 * 成员锁
 
@@ -602,4 +603,8 @@ Android 中使用遇到的问题：
 > 对象的构造函数的执行、结束先于finalize()方法
 
 ## Java Reference
+
+
+
+
 

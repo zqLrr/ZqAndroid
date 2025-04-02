@@ -24,10 +24,6 @@ pip install --upgrade pip
 
 * 更新pip源
 
-```bash
-
-```
-
 # 语法
 
 ### 函数

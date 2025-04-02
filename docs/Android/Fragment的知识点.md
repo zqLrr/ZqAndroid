@@ -467,7 +467,7 @@
 
     * 解决方案:
 
-      不要把Fragment事务放在异步线程的回调中，比如不要把Fragment事务放在AsyncTask的`onPostExecute()`，因此`onPostExecute()`可能会在`onSaveInstanceState()`之后执行。逼不得已时使用`commitAllowingStateLoss()`。
+      不要把Fragment事务放在异步线程的回调中，比如不要把Fragment事务放在AsyncTask的`onPostExecute()`，因为`onPostExecute()`可能会在`onSaveInstanceState()`之后执行。逼不得已时使用`commitAllowingStateLoss()`。
 
 
 ## DialogFragment

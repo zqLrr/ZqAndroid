@@ -303,6 +303,17 @@ APT的使用：
 
 [ButterKnife的简单使用](https://github.com/JakeWharton/butterknife)
 
+## **Filer API** 
+
+在注解处理器中，我们使用 `Filer` API 来生成新的源代码文件。`Filer` 是一个 Java 编译工具提供的接口，它允许你在编译时创建新的 Java 源文件。
+
+```java
+JavaFileObject sourceFile = filer.createSourceFile(packageName + "." + className + "Generated");
+try (java.io.Writer writer = sourceFile.openWriter()) {
+    writer.write(constructorCode.toString());
+}
+```
+
 ## javapoet 的基本用法
 
 [开源文档](https://github.com/square/javapoet)

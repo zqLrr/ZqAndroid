@@ -792,5 +792,21 @@ s1->b->s2->a1->s3->a2->s4
 
 ## 7.[Handler Native](http://gityuan.com/2015/12/27/handler-message-native/#nativepollonce)
 
+## 8.ThreadLocal的作用
+
+ThreadLocal保证了线程间的隔离，是用来每个线程存放在Looper的。原理是内部维持了ThreadLocalMap，key值是线程对象，value是要存放的值。
+
+```java
+//Looper.class
+   static final ThreadLocal<Looper> sThreadLocal = new ThreadLocal<Looper>();
+//存放在堆中，通过sThreadLocal来实现线程分离
+```
+
+```java
+//Thread.class
+ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
+//是为了继承父线程的ThreadLocalMap
+```
+
 
 

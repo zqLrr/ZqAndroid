@@ -480,3 +480,74 @@ ANR 产生原因：
 | **适用场景**     | 大量数据，性能要求较高的场景                               | 少量数据，内存敏感型应用或性能要求较低的场景 |
 | **并发处理能力** | 支持多线程，线程安全需要额外保证（如 `ConcurrentHashMap`） | 不支持并发修改                               |
 
+## Android .9 Patch 图处理流程
+
+参考链接：https://juejin.cn/post/7306716962138112052 
+
+1. 制作.9图
+
+2. 若是在端上使用，直接放到drawable/文件夹下
+
+3. 若是需要通过线上下发来展示图片，需进行以下步骤
+
+   1. 先使用AAPT对.9图进行编译，可以去掉外面的黑边，并添加ninePatchChunk判断
+
+      1.//单张图片转换，命令：aapt s -i 点9图路径 -o 转换后的图片输出路径
+
+      aapt s -i /Users/xxx/Desktop/test.9.png -o /Users/xxx/Desktop/test_out.png
+
+      2.//图片文件的批量转换，命令：aapt c -v -S 文件夹路径 -C 转换后的图片文件夹的输出路径
+
+      aapt c -v -S /Users/xxx/Desktop/files -C /Users/xxx/Desktop/filesout
+
+      注意：aapt2 对此不生效
+
+   2. 在端上使用glide 代码加载.9图
+
+      ```java
+      private void loadNinePatchUrl(String url) {
+              Glide.with(getContext())
+                      .asFile()
+                      .load(url)
+                      .addListener(new RequestListener<File>() {
+      
+                          @Override
+                          public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
+                              return false;
+                          }
+      
+                          @Override
+                          public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
+                              if (!Utils.isActivityAvailable((Activity) getContext())) {
+                                  return true;
+                              }
+                              InputStream is = null;
+                              try {
+                                  is = new FileInputStream(resource);
+                                  Bitmap bitmap = BitmapFactory.decodeStream(is);
+                                  byte[] chunk = bitmap.getNinePatchChunk();
+                                  if (NinePatch.isNinePatchChunk(chunk)) {
+                                      NinePatchDrawable drawable = UIUtils.createNinePathDrawable(getResources(), bitmap);
+                                      if (mCoverImg != null) {
+                                          mCoverImg.setImageDrawable(drawable);
+                                      }
+                                  } else {
+                                      Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+                                      mCoverImg.setImageDrawable(drawable);
+                                  }
+                              } catch (Exception e) {
+                                  e.printStackTrace();
+                              } 
+                              return true;
+                          }
+                      }).preload();
+          }
+      
+      ```
+
+      
+
+
+
+
+

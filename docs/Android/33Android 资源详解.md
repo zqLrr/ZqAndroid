@@ -606,8 +606,6 @@ public static final String PATH = ""；//Apk所在的路径。
  }
 ```
 
-
-
 ## 编译中间过程生成的主要文件：
 
 ```bash
@@ -686,28 +684,6 @@ merge.xml：
 ```
 
 ### 通过插桩hookgetResources().getIdentifier()
-
-## 方案
-
-### 方案流程
-
-1.通过R.txt文件获取所有的资源
-
-2.在AndroidManifest.xml查找引用的资源
-
-3.web.jar 通过R.java文件和resources.arsc 查找到Java文件中引用的资源
-
-* 若是layout, array,style等，会接着在xml找使用到的资源
-
-4.1减去2，3步中使用到的资源，就是无用资源，生成app/build/unuse_res.txt文件中
-
-5.根据merge.xml拿到各个aar中的res资源，判断res资源是否在无用资源中，最后得到需要删除的无用资源
-
-6.生成无用资源删除报告
-
-7.通过python脚本删除扫描出来的无用资源
-
-8.通过插桩getResources().getIdentifier() ,来hook通过资源name字符串来获取id的情况，上线观察
 
 ### 方案使用方式
 

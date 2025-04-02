@@ -51,8 +51,6 @@ AppBarLayout$Behavior#onStartNestedScroll
 
 CoondinatorLayout  会判断是否需要拦截滑动事件，若需要拦截，使用每个子View#Behavior#onTouchEvent(),若不需要拦截，子View#Behavior#onInterceptTouchEvent
 
-
-
 RecycleView#onTouchEvent
 
  ViewParentCompat#onNestedPreScroll
