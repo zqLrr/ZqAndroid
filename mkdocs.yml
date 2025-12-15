@@ -36,7 +36,7 @@ nav:
     - 设计模式: 'Android/11 设计模式.md'
     - Otto库、IPCOtto库的使用: 'Android/12 Otto库、IPCOtto库的使用.md'
     - Gradle 构建工具的使用: 'Android/13 Gradle 构建工具的使用.md'
-    - Service: 'Android/14 Service.md'
+    - Android 回调机制原理分析: 'Android/Android 回调机制原理分析.md'
     - Android 常用业务功能: 'Android/15 Android 常用业务功能.md'
     - Jetpacket基础学习: 'Android/17 Jetpacket基础学习.md'
     - RxJAVA 基础知识: 'Android/18 RxJAVA 基础知识.md'
@@ -65,6 +65,9 @@ nav:
     - ContentProvider: 'Android/ContentProvider.md'
     - Fragment的知识点: 'Android/Fragment的知识点.md'
     - Plugin 插件开发: 'Android/Plugin 插件开发.md'
+  - AI:
+    - AI大模型学习计划: 'AI/AI大模型学习计划.md'
+    - dify工作流使用: 'AI/dify工作流使用.md'
   - 前端:
     - 跨端经验开发: '前端/跨端经验开发.md'
     - css: '前端/css.md'
@@ -74,7 +77,7 @@ nav:
     - 1绪论: '数据结构/1绪论.md'
   - DevTools:
     - docker使用: 'DevTools/docker使用.md'
-    - Easy-Make本地搭建: 'DevTools/Easy-Make本地搭建.md'
+    - Easy-Moke本地搭建: 'DevTools/Easy-Moke本地搭建.md'
     - 反编译工具使用和总结: 'DevTools/反编译工具使用和总结.md'
   - Flutter:
     - Base: 'Flutter/Base.md'
@@ -96,7 +99,10 @@ nav:
   - Spring-Boot:
     - Spring-Boot 框架: 'Spring-Boot/Spring-Boot 框架.md'
   - Tools:
-    - common tools: 'Tools/common tools.md'
+    - Android Studio 运行时使用到的Jdk: 'Tools/Android Studio 运行时使用到的Jdk.md'
+    - 工具使用教程: 'Tools/工具使用教程.md'
+  - 健身:
+    - 健身目标: '健身/健身目标.md'
 
 plugins:
   - search:
