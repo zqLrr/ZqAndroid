@@ -1,7 +1,7 @@
 site_name: ZqAndroid
-site_url: 
-repo_url: 
-edit_uri: -/blob/master/
+repo_url: https://github.com/zqLrr/ZqAndroid
+repo_name: ZqAndroid          # 可选，显示的名称
+edit_uri: edit/main/docs/   # 可选，启用“编辑此页”按钮时用，按你的分支调整 main/master
 site_description: 个人技术wiki
 site_author: Zq
 
