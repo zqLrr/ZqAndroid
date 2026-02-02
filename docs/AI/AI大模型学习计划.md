@@ -2,20 +2,20 @@
 
 ## 学习大纲
 
-* 模型应用
+方向一：模型应用
 
-  **核心能力**
+**核心能力**
 
-  - RAG 系统搭建
-  - Agent 架构设计
-  - 私有化部署（Ollama / vLLM）
-  - 工程能力（Java / Python / 后端）
+- RAG 系统搭建
+- Agent 架构设计
+- 私有化部署（Ollama / vLLM）
+- 工程能力（Java / Python / 后端）
 
-* 基座模型
+方向二：基座模型
 
-  微调、模型原理方向
+* 微调、模型原理方向
 
-  微调理解如何实现，调参需要使用的硬件、软件情况
+* 微调理解如何实现，调参需要使用的硬件、软件情况
 
 目标：做到理论和实践都一致的状态
 
@@ -30,6 +30,7 @@
 | https://huggingface.co/docs                                  | hug 模型库+数据集+工具链 |
 | https://github.com/LLMBook-zh/LLMBook-zh.github.io           | 大模型参考书籍           |
 | https://prompt-engineering.xiniushu.com/                     | 吴恩达提示词工程参考书籍 |
+| https://modelcontextprotocol.io                              | Map 协议                 |
 
 ## 学习规划
 
@@ -53,8 +54,6 @@
   - Qwen2.5
   - Llama3
 - 写 Prompt 对比实验
-
-
 
 ------
 
@@ -146,7 +145,7 @@
 
 ### 推荐资源
 
-- 📘 https://modelcontextprotocol.io
+- 📘 
 - 📘 Anthropic MCP 官方示例（GitHub）
 
 ------
